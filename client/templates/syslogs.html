@@ -312,103 +312,114 @@ Home | GRID Server
                 });
             </script>
 
+            <!-- CPU Script: adjusts values for form depending on options chosen for CPU -->
             <script type="text/javascript">
+                // Get elements from DOM
                 let cpuBrandSelector = document.querySelector('#cpu-brand-selector');
                 let cpuTypeSelector = document.querySelector('#cpu-type-selector');
                 let cpuGenSelector = document.querySelector('#cpu-gen-selector');
+
+                //Add action listeners to appropriate elements
                 cpuBrandSelector.addEventListener("change", function() {
-                console.log("Change CPU Brand to " + cpuBrandSelector.value);
-                setCPUBrandOptions(cpuBrandSelector.selectedIndex);
-                setCPUTypeOptions('');
+                    console.log("Change CPU Brand to " + cpuBrandSelector.value);
+                    setCPUBrandOptions(cpuBrandSelector.selectedIndex);
+                    setCPUTypeOptions('');
                 });
                 cpuTypeSelector.addEventListener("change", function() {
-                console.log("Change CPU Type to " + cpuTypeSelector.value);
-                setCPUTypeOptions(cpuTypeSelector.value);
+                    console.log("Change CPU Type to " + cpuTypeSelector.value);
+                    setCPUTypeOptions(cpuTypeSelector.value);
                 });
+
+                // The functions for the elements
                 function setCPUBrandOptions(i) {
-                switch (i) {
-                    case 0:
-                    cpuTypeSelector.setAttribute('disabled', true);
-                    cpuTypeSelector.innerHTML =
-                    "<option value=''>Select One...</option>";
-                    break;
-                    case 1:
-                    cpuTypeSelector.removeAttribute('disabled');
-                    cpuTypeSelector.innerHTML =
-                    "<option value='' selected disabled hidden>Select One...</option>" +
-                    "<option value='pentium'>Pentium</option>" +
-                    "<option value='celeron'>Celeron</option>" +
-                    "<option value='coreduo'>Core Duo</option>" +
-                    "<option value='corequad'>Core Quad</option>" +
-                    "<option value='i3'>Core i3</option>" +
-                    "<option value='i5'>Core i5</option>" +
-                    "<option value='i7'>Core i7</option>";
-                    break;
-                    case 2:
-                    cpuTypeSelector.removeAttribute('disabled');
-                    cpuTypeSelector.innerHTML =
-                    "<option value='' selected disabled hidden>Select One...</option>" +
-                    "<option value='k10'>K10</option>" +
-                    "<option value='bulldozer'>Bulldozer</option>" +
-                    "<option value='zen3'>Ryzen 3</option>" +
-                    "<option value='zen5'>Ryzen 5</option>" +
-                    "<option value='zen7'>Ryzen 7</option>";
-                    break;
-                    case 3:
-                    //cpuTypeSelector.removeAttribute('disabled');
-                    let cpuTypeInput = prompt('Please enter the CPU Brand');
-                    if (cpuTypeInput == null || cpuTypeInput == '') {
-                        cpuBrandSelector.selectedIndex = 0;
-                        setCPUBrandOptions(0);
-                        alert('CPU Brand not chosen');
-                    } else {
-                        cpuTypeSelector.innerHTML =
-                        "<option value=''>" + cpuTypeInput + "</option>";
-                        break;
+                    switch (i) {
+                        case 0:
+                            cpuTypeSelector.setAttribute('disabled', true);
+                            cpuTypeSelector.innerHTML =
+                            "<option value=''>Select One...</option>";
+                            break;
+                        case 1:
+                            cpuTypeSelector.removeAttribute('disabled');
+                            cpuTypeSelector.innerHTML =
+                            "<option value='' selected disabled hidden>Select One...</option>" +
+                            "<option value='Pentium'>Pentium</option>" +
+                            "<option value='Celeron'>Celeron</option>" +
+                            "<option value='Core Duo'>Core Duo</option>" +
+                            "<option value='Core 2 Duo'>Core Duo</option>" +
+                            "<option value='Core Quad'>Core Quad</option>" +
+                            "<option value='Core 2 Quad'>Core Quad</option>" +
+                            "<option value='Core i3'>Core i3</option>" +
+                            "<option value='Core i5'>Core i5</option>" +
+                            "<option value='Core i7'>Core i7</option>";
+                            break;
+                        case 2:
+                            cpuTypeSelector.removeAttribute('disabled');
+                            cpuTypeSelector.innerHTML =
+                            "<option value='' selected disabled hidden>Select One...</option>" +
+                            "<option value='K10'>K10</option>" +
+                            "<option value='Bulldozer'>Bulldozer</option>" +
+                            "<option value='Ryzen 3'>Ryzen 3</option>" +
+                            "<option value='Ryzen 5'>Ryzen 5</option>" +
+                            "<option value='Ryzen 7'>Ryzen 7</option>";
+                            break;
+                        case 3:
+                            //cpuTypeSelector.removeAttribute('disabled');
+                            let cpuTypeInput = prompt('Please enter the CPU Brand');
+                            if (cpuTypeInput == null || cpuTypeInput == '') {
+                                cpuBrandSelector.selectedIndex = 0;
+                                setCPUBrandOptions(0);
+                                alert('CPU Brand not chosen');
+                            } else {
+                                cpuTypeSelector.innerHTML =
+                                "<option value=''>" + cpuTypeInput + "</option>";
+                                break;
+                            }
+                            break;
                     }
-                    break;
-                }
                 }
                 function setCPUTypeOptions(t) {
-                switch (t) {
-                    case 'i3':
-                    case 'i5':
-                    case 'i7':
-                    cpuGenSelector.removeAttribute('disabled');
-                    cpuGenSelector.innerHTML =
-                    "<option value='' selected disabled hidden>Select One...</option>" +
-                    "<option value='1'>Gen 1</option>" +
-                    "<option value='2'>Gen 2</option>" +
-                    "<option value='3'>Gen 3</option>" +
-                    "<option value='4'>Gen 4</option>" +
-                    "<option value='5'>Gen 5</option>" +
-                    "<option value='6'>Gen 6</option>" +
-                    "<option value='7'>Gen 7</option>" +
-                    "<option value='8'>Gen 8</option>" +
-                    "<option value='9'>Gen 9</option>" +
-                    "<option value='10'>Gen 10</option>" +
-                    "<option value='11'>Gen 11</option>" +
-                    "<option value='12'>Gen 12</option>";
-                    break;
-                    case 'zen3':
-                    case 'zen5':
-                    case 'zen7':
-                    cpuGenSelector.removeAttribute('disabled');
-                    cpuGenSelector.innerHTML =
-                    "<option value='' selected disabled hidden>Select One...</option>" +
-                    "<option value='1000'>1000 Series</option>" +
-                    "<option value='2000'>2000 Series</option>" +
-                    "<option value='3000'>3000 Series</option>" +
-                    "<option value='4000'>4000 Series</option>" +
-                    "<option value='5000'>5000 Series</option>";
-                    break;
-                    default:
-                    cpuGenSelector.setAttribute('disabled', true);
-                    cpuGenSelector.innerHTML =
-                    "<option value='' selected disabled hidden>Select One...</option>";
-                    break;
-                    break;
-                }
+                    switch (t) {
+                        case 'Core i3':
+                        case 'Core i5':
+                        case 'Core i7':
+                            cpuGenSelector.removeAttribute('disabled');
+                            cpuGenSelector.innerHTML =
+                            "<option value='' selected disabled hidden>Select One...</option>" +
+                            "<option value='Gen 1'>Gen 1</option>" +
+                            "<option value='Gen 2'>Gen 2</option>" +
+                            "<option value='Gen 3'>Gen 3</option>" +
+                            "<option value='Gen 4'>Gen 4</option>" +
+                            "<option value='Gen 5'>Gen 5</option>" +
+                            "<option value='Gen 6'>Gen 6</option>" +
+                            "<option value='Gen 7'>Gen 7</option>" +
+                            "<option value='Gen 8'>Gen 8</option>" +
+                            "<option value='Gen 9'>Gen 9</option>" +
+                            "<option value='Gen 10'>Gen 10</option>" +
+                            "<option value='Gen 11'>Gen 11</option>" +
+                            "<option value='Gen 12'>Gen 12</option>" +
+                            "<option value='Gen 13'>Gen 13</option>";
+                            break;
+                        case 'Ryzen 3':
+                        case 'Ryzen 5':
+                        case 'Ryzen 7':
+                            cpuGenSelector.removeAttribute('disabled');
+                            cpuGenSelector.innerHTML =
+                            "<option value='' selected disabled hidden>Select One...</option>" +
+                            "<option value='1000 Serioes'>1000 Series</option>" +
+                            "<option value='2000 Series'>2000 Series</option>" +
+                            "<option value='3000 Series'>3000 Series</option>" +
+                            "<option value='4000 Series'>4000 Series</option>" +
+                            "<option value='5000 Series'>5000 Series</option>" +
+                            "<option value='6000 Series'>6000 Series</option>" +
+                            "<option value='7000 Series'>7000 Series</option>";
+                            break;
+                        default:
+                            cpuGenSelector.setAttribute('disabled', true);
+                            cpuGenSelector.innerHTML =
+                            "<option value='' selected disabled hidden>Select One...</option>";
+                            break;
+                            break;
+                    }
                 }
             </script>
 
