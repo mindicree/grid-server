@@ -1,0 +1,117 @@
+:root {
+  --green: #aea;
+}
+
+.data-entry-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: #eee;
+  width: 100%;
+  margin: auto;
+}
+
+.data-entry-part {
+  width: 90%;
+  margin: auto;
+}
+
+.data-entry-label-and-input {
+  display: grid;
+  grid-template-columns: auto 70%;
+  padding: 10px 0px;
+}
+
+.data-entry-label-and-input-double {
+  display: grid;
+  grid-template-columns: 30% auto 30% auto;
+  padding: 10px 0px;
+}
+
+.data-entry-label-and-input-double p {
+  margin: auto;
+}
+
+.data-entry-label-and-input-double select {
+  width: 100%;
+}
+
+.data-entry-label-and-input p {
+  margin: auto;
+}
+
+.radio-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: auto;
+}
+
+.data-submission-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: #eee;
+  width: 100%;
+  margin: auto;
+}
+.data-submission-container button {
+  margin: auto;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.search-tools-container {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+table {
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.tableStockListButtonContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: auto;
+}
+
+.tableStockListButtonContainer button {
+  width: 100%;
+  margin: auto;
+}
+
+@media only screen and (min-width: 600px) {
+  .data-entry-part {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .data-entry-container {
+    grid-template-columns: 1fr 1fr;
+    padding: 0px 0px;
+    max-width: 1024px;
+  }
+
+  .data-submission-container {
+    max-width: 1024px;
+  }
+
+  .data-entry-part {
+    width: 90%;
+    margin: auto;
+  }
+
+  .data-entry-label-and-input {
+
+  }
+
+  .radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .tableStockListButtonContainer {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

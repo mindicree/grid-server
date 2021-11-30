@@ -1,0 +1,40 @@
+### CRUD examples ###
+CREATE (PUT)
+record = json.loads(request.data)
+example = Example(ex1=record['ex1'], ex2=record[ex2])
+example.save()
+return jsonify(example.to_json())
+
+READ (GET)
+
+
+#####################
+
+### Model Field Types ###
+"""
+ObjectIdField
+StringField
+BinaryField
+URLField
+EmailField
+IntField
+FloatField
+DecimalField
+BooleanField
+DateTimeField
+"""
+
+### Response Codes
+200 - OK
+201 - CREATED
+
+304 - NOT MODIFIED
+
+400 - BAD REQUEST
+401 - UNAUTHORIZED
+403 - FORBIDDEN
+404 - NOT FOUND
+410 - GONE
+
+500 - SERVER ERROR
+503 - SERVICE UNAVAILABLE

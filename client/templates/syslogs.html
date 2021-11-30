@@ -1,0 +1,483 @@
+{% extends 'template.html' %}
+
+{% block page_title %}
+Home | GRID Server
+{% endblock %}
+
+{% block body %}
+<!--Data Entry-->
+<script type="text/javascript">
+    function confirmSubmit(form) {
+        var initials = prompt("Please confirm your entry and sign with your initials");
+        if (initials == null || initials == '') {
+        alert('No initials provided. Submission cancelled.');
+        return false;
+        } else {
+        document.querySelector('#initialsSubmit').setAttribute('value', initials);
+        return true;
+        }
+    }
+</script>
+<form onsubmit="return confirmSubmit(this)">
+    <input type="text" name="initials" value="" id='initialsSubmit' style="display: none"/>
+    <!--Data Entry Table-->
+    <div class="data-entry-container">
+        <div class="data-entry-part">
+        <div class="data-entry-label-and-input">
+            <p>Old COA: </p>
+            <input type="text" name="oldCOA" value="" required>
+        </div>
+        <div class="data-entry-label-and-input">
+            <p>New COA: </p>
+            <input type="text" name="newCOA" value="" required>
+        </div>
+        <div class="data-entry-label-and-input">
+            <p>Serial No.: </p>
+            <input type="text" name="serial" value="" required>
+        </div>
+        <div class="data-entry-label-and-input">
+            <p>Brand Name: </p>
+            <input type="text" name="brand" value="" required>
+        </div>
+        <div class="data-entry-label-and-input">
+            <p>Model: </p>
+            <input type="text" name="model" value="" required>
+        </div>
+        <div class="data-entry-label-and-input">
+            <p>OS: </p>
+            <select name="os" required>
+            <option value="" selected disabled hidden>Select One...</option>
+            <option value="win10">Windows 10</option>
+            <option value="win11">Windows 11</option>
+            <option value="OSX105">OSX 10.5</option>
+            <option value="OSX105">OSX 10.6</option>
+            <option value="OSX105">OSX 10.7</option>
+            <option value="OSX105">OSX 10.8</option>
+            <option value="OSX105">OSX 10.9</option>
+            <option value="OSX105">OSX 10.10</option>
+            <option value="OSX105">OSX 10.11</option>
+            <option value="OSX105">OSX 10.12</option>
+            <option value="OSX105">OSX 10.13</option>
+            <option value="OSX105">OSX 10.14</option>
+            <option value="OSX105">OSX 10.15</option>
+            </select>
+        </div>
+
+        <div class="data-entry-label-and-input">
+            <p>Computer: </p>
+            <div class="radio-group">
+            <div class="radio-group-item">
+                <input type="radio" id="compTypeChoice1" name="computer-type" value="desktop" required>
+                <label for="contactChoice1">Desktop</label>
+            </div>
+            <div class="radio-group-item">
+                <input type="radio" id="compTypeChoice2" name="computer-type" value="laptop" required>
+                <label for="contactChoice2">Laptop</label>
+            </div>
+            <div class="radio-group-item">
+                <input type="radio" id="compTypeChoice3" name="computer-type" value="aio" required>
+                <label for="contactChoice3">All-In-One</label>
+            </div>
+            </div>
+        </div>
+
+        <div class="data-entry-label-and-input">
+            <p>Source: </p>
+            <div class="radio-group">
+            <div class="radio-group-item">
+                <input type="radio" id="sourceChoice1" name="source" value="corporate" required>
+                <label for="contactChoice1">Corporate</label>
+            </div>
+            <div class="radio-group-item">
+                <input type="radio" id="sourceChoice2" name="source" value="charlotte" required>
+                <label for="contactChoice1">Charlotte</label>
+            </div>
+            <div class="radio-group-item">
+                <input type="radio" id="sourceChoice3" name="source" value="residential" required>
+                <label for="contactChoice2">Residential</label>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+        <!--Right Side On Desktop-->
+        <div class="data-entry-part">
+        <div class="data-entry-label-and-input">
+            <p>CPU Brand: </p>
+            <select name="cpu-brand" id="cpu-brand-selector" required>
+            <option value="" selected disabled hidden>Select One...</option>
+            <option value="intel">Intel</option>
+            <option value="amd">AMD</option>
+            <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="data-entry-label-and-input">
+            <p>CPU Type: </p>
+            <select name="cpu-type" id="cpu-type-selector" disabled required>
+            <option value="" selected disabled hidden>Select One...</option>
+            </select>
+        </div>
+
+        <div class="data-entry-label-and-input-double">
+            <p>CPU Gen: </p>
+            <select name="cpu-gen" id="cpu-gen-selector" disabled required>
+            <option value="" selected disabled hidden>Select One...</option>
+            </select>
+            <p>CPU Speed: </p>
+            <select name="cpu-speed" id="cpu-speed-selector" required>
+            <option value="" selected disabled hidden>Select One...</option>
+            <option value="1.6">1.6</option>
+            <option value="1.6">1.7</option>
+            <option value="1.6">1.8</option>
+            <option value="1.6">1.9</option>
+            <option value="1.6">2.0</option>
+            <option value="1.6">2.1</option>
+            <option value="1.6">2.2</option>
+            <option value="1.6">2.3</option>
+            <option value="1.6">2.4</option>
+            <option value="1.6">2.5</option>
+            <option value="1.6">2.6</option>
+            <option value="1.6">2.7</option>
+            <option value="1.6">2.8</option>
+            <option value="1.6">2.9</option>
+            <option value="1.6">3.0</option>
+            <option value="1.6">3.1</option>
+            <option value="1.6">3.2</option>
+            <option value="1.6">3.3</option>
+            <option value="1.6">3.4</option>
+            <option value="1.6">3.5</option>
+            <option value="1.6">3.6</option>
+            <option value="1.6">3.7</option>
+            <option value="1.6">3.8</option>
+            <option value="1.6">3.9</option>
+            <option value="1.6">4.0</option>
+            <option value="1.6">4.1</option>
+            <option value="1.6">4.2</option>
+            <option value="1.6">4.3</option>
+            <option value="1.6">4.4</option>
+            <option value="1.6">4.5</option>
+            <option value="1.6">4.6</option>
+            <option value="1.6">4.7</option>
+            <option value="1.6">4.8</option>
+            <option value="1.6">4.9</option>
+            <option value="1.6">5.0</option>
+            </select>
+        </div>
+
+        <div class="data-entry-label-and-input-double">
+            <p>RAM: </p>
+            <select name="ram" id="ram-selector" required>
+            <option value="" selected disabled hidden>Select One...</option>
+            <option value="1">1GB</option>
+            <option value="2">2GB</option>
+            <option value="3">3GB</option>
+            <option value="4">4GB</option>
+            <option value="6">6GB</option>
+            <option value="8">8GB</option>
+            <option value="12">12GB</option>
+            <option value="16">16GB</option>
+            <option value="24">24GB</option>
+            <option value="32">32GB</option>
+            </select>
+            <p>HDD: </p>
+            <select name="hdd" id="hdd-selector" required>
+            <option value="" selected disabled hidden>Select One...</option>
+            <option value="1">80GB</option>
+            <option value="2">120GB</option>
+            <option value="3">160GB</option>
+            <option value="4">250GB</option>
+            <option value="6">320GB</option>
+            <option value="8">500GB</option>
+            <option value="12">640GB</option>
+            <option value="16">750GB</option>
+            <option value="24">1TB</option>
+            </select>
+        </div>
+
+        <div class="data-entry-label-and-input">
+            <p>Disk Drive: </p>
+            <select name="disk-drive" id="disk-type-selector" required>
+            <option value="" selected disabled hidden>Select One...</option>
+            <option value="cdrom">CD-ROM</option>
+            <option value="cdrw">CD-RW</option>
+            <option value="dvdrom">DVD-ROM</option>
+            <option value="dvdrw">DVR-RW</option>
+            <option value="blu">BLU-RAY</option>
+            <option value="none">None</option>
+            </select>
+        </div>
+
+        <div class="data-entry-label-and-input">
+            <p>Tags:</p>
+            <div class="tags-select-container">
+            <div class="tags-option">
+                <input class="form-check-input" type="checkbox" value="" id="tag-webcam">
+                <label class="form-check-label" for="flexCheckDefault">
+                Webcam
+                </label>
+            </div>
+            <div class="tags-option">
+                <input class="form-check-input" type="checkbox" value="" id="tag-HDMI">
+                <label class="form-check-label" for="flexCheckDefault">
+                HDMI
+                </label>
+            </div>
+            <div class="tags-option">
+                <input class="form-check-input" type="checkbox" value="" id="tag-touch">
+                <label class="form-check-label" for="flexCheckDefault">
+                TouchScreen
+                </label>
+            </div>
+            <div class="tags-option">
+                <input class="form-check-input" type="checkbox" value="" id="tag-SSD">
+                <label class="form-check-label" for="flexCheckDefault">
+                SSD
+                </label>
+            </div>
+            <div class="tags-option-alt">
+                <input class="form-check-input" type="checkbox" value="" id="tag-second-drive">
+                <label class="form-check-label" for="flexCheckDefault">
+                2nd Drive
+                </label>
+                <select name="second-hdd" id="second-hdd-selector" disabled style="float: right; width: 50%;">
+                <option value="" selected disabled hidden>Select One...</option>
+                <option value="1">80GB</option>
+                <option value="2">120GB</option>
+                <option value="3">160GB</option>
+                <option value="4">250GB</option>
+                <option value="6">320GB</option>
+                <option value="8">500GB</option>
+                <option value="12">640GB</option>
+                <option value="16">750GB</option>
+                <option value="24">1TB</option>
+                </select>
+            </div>
+            </div>
+        </div>
+
+        <!---->
+        <script type="text/javascript">
+            let driveToggle = document.querySelector('#tag-second-drive');
+            let secondDriveSelector = document.querySelector('#second-hdd-selector');
+            driveToggle.addEventListener('change', function () {
+            console.log('Second Drive Toggle Changed to ' + driveToggle.checked);
+            if (this.checked) {
+                secondDriveSelector.removeAttribute('disabled');
+                secondDriveSelector.setAttribute('required', true);
+            } else {
+                secondDriveSelector.setAttribute('disabled', true);
+                secondDriveSelector.removeAttribute('required');
+                secondDriveSelector.selectedIndex = 0;
+            }
+            });
+        </script>
+
+        <script type="text/javascript">
+            let cpuBrandSelector = document.querySelector('#cpu-brand-selector');
+            let cpuTypeSelector = document.querySelector('#cpu-type-selector');
+            let cpuGenSelector = document.querySelector('#cpu-gen-selector');
+            cpuBrandSelector.addEventListener("change", function() {
+            console.log("Change CPU Brand to " + cpuBrandSelector.value);
+            setCPUBrandOptions(cpuBrandSelector.selectedIndex);
+            setCPUTypeOptions('');
+            });
+            cpuTypeSelector.addEventListener("change", function() {
+            console.log("Change CPU Type to " + cpuTypeSelector.value);
+            setCPUTypeOptions(cpuTypeSelector.value);
+            });
+            function setCPUBrandOptions(i) {
+            switch (i) {
+                case 0:
+                cpuTypeSelector.setAttribute('disabled', true);
+                cpuTypeSelector.innerHTML =
+                "<option value=''>Select One...</option>";
+                break;
+                case 1:
+                cpuTypeSelector.removeAttribute('disabled');
+                cpuTypeSelector.innerHTML =
+                "<option value='' selected disabled hidden>Select One...</option>" +
+                "<option value='pentium'>Pentium</option>" +
+                "<option value='celeron'>Celeron</option>" +
+                "<option value='coreduo'>Core Duo</option>" +
+                "<option value='corequad'>Core Quad</option>" +
+                "<option value='i3'>Core i3</option>" +
+                "<option value='i5'>Core i5</option>" +
+                "<option value='i7'>Core i7</option>";
+                break;
+                case 2:
+                cpuTypeSelector.removeAttribute('disabled');
+                cpuTypeSelector.innerHTML =
+                "<option value='' selected disabled hidden>Select One...</option>" +
+                "<option value='k10'>K10</option>" +
+                "<option value='bulldozer'>Bulldozer</option>" +
+                "<option value='zen3'>Ryzen 3</option>" +
+                "<option value='zen5'>Ryzen 5</option>" +
+                "<option value='zen7'>Ryzen 7</option>";
+                break;
+                case 3:
+                //cpuTypeSelector.removeAttribute('disabled');
+                let cpuTypeInput = prompt('Please enter the CPU Brand');
+                if (cpuTypeInput == null || cpuTypeInput == '') {
+                    cpuBrandSelector.selectedIndex = 0;
+                    setCPUBrandOptions(0);
+                    alert('CPU Brand not chosen');
+                } else {
+                    cpuTypeSelector.innerHTML =
+                    "<option value=''>" + cpuTypeInput + "</option>";
+                    break;
+                }
+                break;
+            }
+            }
+            function setCPUTypeOptions(t) {
+            switch (t) {
+                case 'i3':
+                case 'i5':
+                case 'i7':
+                cpuGenSelector.removeAttribute('disabled');
+                cpuGenSelector.innerHTML =
+                "<option value='' selected disabled hidden>Select One...</option>" +
+                "<option value='1'>Gen 1</option>" +
+                "<option value='2'>Gen 2</option>" +
+                "<option value='3'>Gen 3</option>" +
+                "<option value='4'>Gen 4</option>" +
+                "<option value='5'>Gen 5</option>" +
+                "<option value='6'>Gen 6</option>" +
+                "<option value='7'>Gen 7</option>" +
+                "<option value='8'>Gen 8</option>" +
+                "<option value='9'>Gen 9</option>" +
+                "<option value='10'>Gen 10</option>" +
+                "<option value='11'>Gen 11</option>" +
+                "<option value='12'>Gen 12</option>";
+                break;
+                case 'zen3':
+                case 'zen5':
+                case 'zen7':
+                cpuGenSelector.removeAttribute('disabled');
+                cpuGenSelector.innerHTML =
+                "<option value='' selected disabled hidden>Select One...</option>" +
+                "<option value='1000'>1000 Series</option>" +
+                "<option value='2000'>2000 Series</option>" +
+                "<option value='3000'>3000 Series</option>" +
+                "<option value='4000'>4000 Series</option>" +
+                "<option value='5000'>5000 Series</option>";
+                break;
+                default:
+                cpuGenSelector.setAttribute('disabled', true);
+                cpuGenSelector.innerHTML =
+                "<option value='' selected disabled hidden>Select One...</option>";
+                break;
+                break;
+            }
+            }
+        </script>
+
+        </div>
+    </div>
+
+    <!--Submission Section-->
+    <div class="data-submission-container">
+        <button name="button" class="btn" style="background-color: #aea;" id='submitButton'>Submit</button>
+    </div>
+</form>
+
+<!--Database Search Tools-->
+<div class="search-tools-container">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search by Serial No.">
+        <button type="button" name="button"><img src="https://cdn.onlinewebfonts.com/svg/img_588.png" width="24px" height="24px" style="margin: auto 20px;" onclick="alert('search')"></img></button>
+    </div>
+</div>
+
+<!--Information Table-->
+<table class="table table-striped table-hover table-bordered" id='tableStockList' >
+    <thead>
+        <tr>
+        <th>Date</th>
+        <th>Model</th>
+        <th>Price</th>
+        <th>Options</th>
+        </tr>
+    </thead>
+    <tbody id='tableStockListBody'>
+
+    </tbody>
+</table>
+<div class="" id='tableModalContainer'>
+
+</div>
+
+<script>
+    fetch('http://localhost:5000/syslogs')
+    .then(response => response.json())
+    .then(data => {
+        let tableBody = document.querySelector('#tableStockListBody');
+        let tableModalContainer = document.querySelector('#tableModalContainer');
+        var tableEntry, tableModal;
+        //load into table
+        data.reverse().forEach(element => {
+            //create table entry
+            tableEntry = document.createElement('tr');
+            tableEntry.innerHTML =
+            "<th>" + element.dt_initial_irl_log + "</th>" +
+            "<th>" + element.brand + " " + element.model + " (" + element.computer_type + ")" + "</th>" +
+            "<th>$" + element.price + "</th>" +
+            "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#sn"+element.serial_no+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
+            "";
+            tableEntry.addEventListener('click', function() {
+                this.querySelector('#infoBtn').click();
+            });
+            tableEntry.setAttribute('class', 'align-middle');
+            tableBody.appendChild(tableEntry);
+
+            //create modal
+            tableModal = document.createElement('div');
+            tableModal.setAttribute('class', 'modal fade');
+            tableModal.setAttribute('id', 'sn'+element.serial_no);
+            tableModal.innerHTML =
+            '<div class="modal-dialog modal-xl">' +
+            '<div class="modal-content">' +
+            '<div class="modal-header">' +
+            '<h5 class="modal-title">'+element.brand + ' ' + element.model + ' - Stock#'+element.serial_no+' - ('+element.dt_initial_irl_log+')</h5>' +
+            '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
+            '</div>' +
+            '<div class="modal-body">' +
+            entryStringGenerator(element) +
+            '</div>' +
+            '<div class="modal-footer">' +
+            '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
+            '<button type="button" class="btn btn-primary">Edit</button>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '';
+            tableModalContainer.appendChild(tableModal);
+        })
+
+        
+    })
+    .catch(error => console.log(error));
+
+    //string generator for bootstrap modals
+    function entryStringGenerator(entry) {
+        return '<p><b>Old COA: </b>' + entry.old_coa + '</p>' +
+        '<p><b>New COA: </b>' + entry.new_coa + '</p>' +
+        '<p><b>Serial No.: </b>' + entry.serial_no + '</p>' +
+        '<p><b>Operating System: </b>' + entry.os + '</p>' +
+        '<p><b>Computer Type: </b>' + entry.computer_type + '</p>' +
+        '<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
+        '<p><b>RAM Amount: </b>' + entry.ram + '</p>' +
+        '<p><b>Hard Drive: </b>' + entry.hdd + '</p>' +
+        '<p><b>Disk Drive: </b>' + entry.disk_drive + '</p>' +
+        '<p><b>Other Information: </b>' + entry.tags + '</p>' +
+        '<p><b>Price: </b>$' + entry.price + '</p>' +
+        '<p><b>Tech: </b>' + entry.tech + '</p>' +
+        '';
+    }
+
+</script>
+
+
+{% endblock %}

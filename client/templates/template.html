@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="static/styles/styles.css">
+    <script src="static/bootstrap/js/bootstrap.js"></script>
+    <script src="static/js/jquery.js"></script>
+    <title>{% block page_title %}{% endblock %}</title>
+</head>
+<body>
+    <!--Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <!--Home-->
+          <a class="navbar-brand" href="#">The Grid</a>
+          <!--Mobile Bar-->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!--Items List-->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <!--Items-->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Game Prices
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Games</a></li>
+                  <li><a class="dropdown-item" href="#">Date Codes</a></li>
+                  <li><a class="dropdown-item" href="#">Consoles</a></li>
+                  <li><a class="dropdown-item" href="#">Controllers</a></li>
+                  <li><a class="dropdown-item" href="#">Figures (Skylanders)</a></li>
+                  <li><a class="dropdown-item" href="#">Figures (Infinity)</a></li>
+                  <li><a class="dropdown-item" href="#">Cables</a></li>
+                  <li><a class="dropdown-item" href="#">Game Accessories</a></li>
+                  <li><a class="dropdown-item" href="#">Dance Mats</a></li>
+                  <li><a class="dropdown-item" href="#">Educational</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Other Prices
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Apple</a></li>
+                  <li><a class="dropdown-item" href="#">Cables</a></li>
+                  <li><a class="dropdown-item" href="#">Components</a></li>
+                  <li><a class="dropdown-item" href="#">Monitors</a></li>
+                  <li><a class="dropdown-item" href="#">Electronics</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Production
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">System Log</a></li>
+                  <li><a class="dropdown-item" href="#">Production Labels</a></li>
+                  <li><a class="dropdown-item" href="#">E-COMM Labels</a></li>
+                  <li><a class="dropdown-item" href="#">Parts Labels</a></li>
+                  <li><a class="dropdown-item" href="#">Work Orders</a></li>
+                  <li><a class="dropdown-item" href="#">HDD Log</a></li>
+                  <li><a class="dropdown-item" href="#">Label Maker</a></li>
+                  <li><a class="dropdown-item" href="#">Software</a></li>
+                  <li><a class="dropdown-item" href="#">Web</a></li>
+                  <li><a class="dropdown-item" href="#">Admin</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Work Orders</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="content-container">
+    {% block body %}{% endblock %}
+    </div>
+</body>
+</html>
