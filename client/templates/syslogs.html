@@ -27,7 +27,7 @@ Home | GRID Server
             <!-- Old COA -->
             <div class="data-entry-label-and-input">
                 <p>Old COA: </p>
-                <input type="text" name="old_coa" value="" required>
+                <input type="text" name="old_coa" required>
             </div>
             <!-- New COA -->
             <div class="data-entry-label-and-input">
@@ -257,23 +257,23 @@ Home | GRID Server
                 <p>Tags:</p>
                 <div class="tags-select-container">
                     <div class="tags-option">
-                        <input class="form-check-input" type="checkbox" value="" id="tag-webcam">
+                        <input class="form-check-input" type="checkbox" value="Webcam" id="tag-webcam">
                         <label class="form-check-label" for="flexCheckDefault"> Webcam </label>
                     </div>
                     <div class="tags-option">
-                        <input class="form-check-input" type="checkbox" value="" id="tag-HDMI">
+                        <input class="form-check-input" type="checkbox" value="HDMI" id="tag-HDMI">
                         <label class="form-check-label" for="flexCheckDefault"> HDMI </label>
                     </div>
                     <div class="tags-option">
-                        <input class="form-check-input" type="checkbox" value="" id="tag-touch">
+                        <input class="form-check-input" type="checkbox" value="Touchscreen" id="tag-touch">
                         <label class="form-check-label" for="flexCheckDefault"> TouchScreen </label>
                     </div>
                     <div class="tags-option">
-                        <input class="form-check-input" type="checkbox" value="" id="tag-SSD">
+                        <input class="form-check-input" type="checkbox" value="SSD" id="tag-SSD">
                         <label class="form-check-label" for="flexCheckDefault"> SSD </label>
                     </div>
                     <div class="tags-option-alt">
-                        <input class="form-check-input" type="checkbox" value="" id="tag-second-drive">
+                        <input class="form-check-input" type="checkbox" value="2nd Drive - " id="tag-second-drive">
                         <label class="form-check-label" for="flexCheckDefault"> 2nd Drive </label>
                         <select name="second-hdd" id="second-hdd-selector" disabled style="float: right; width: 50%;">
                             <option value="" selected disabled hidden>Select One...</option>
@@ -434,6 +434,64 @@ Home | GRID Server
     <script>
         function renderSubmission() {
             console.log('Button Clicked!');
+            //get selected computer type
+            let computer_type;
+            document.getElementsByName('computer_type').forEach((item) => {
+                if (item.checked) {
+                    computer_type = item.value;
+                }
+            });
+            //get selected computer type
+            let computer_source;
+            document.getElementsByName('source').forEach((item) => {
+                if (item.checked) {
+                    computer_source = item.value;
+                }
+            });
+            //get tags
+            let computer_tags = [];
+            document.querySelectorAll('.form-check-input').forEach((item) => {
+                console.log(item)
+                if (item.checked && item.type=="checkbox") {
+                    if (item.id == "tag-second-drive") {
+                        let drive_value = document.querySelector('#second-hdd-selector').value;
+                        computer_tags.push(item.value + drive_value);
+                    } else {
+                        computer_tags.push(item.value);
+                    }
+                }
+            });
+
+            try {
+                let submission = {
+                    'old_coa': document.getElementsByName('old_coa')[0].value,
+                    'new_coa': document.getElementsByName('new_coa')[0].value,
+                    'serial_no': document.getElementsByName('serial_no')[0].value,
+                    'brand': document.getElementsByName('brand')[0].value,
+                    'model': document.getElementsByName('model')[0].value,
+                    'os': document.getElementsByName('os')[0].value,
+                    //computer_type
+                    'computer_type': computer_type,
+                    //computer_source
+                    'source': computer_source,
+                    'cpu_brand': document.getElementsByName('cpu-brand')[0].value,
+                    'cpu_model': document.getElementsByName('cpu-type')[0].value,
+                    'cpu_gen': document.getElementsByName('cpu-gen')[0].value,
+                    'cpu_speed': document.getElementsByName('cpu-speed')[0].value,
+                    'ram': document.getElementsByName('ram')[0].value,
+                    'hdd': document.getElementsByName('hdd')[0].value,
+                    'disk_drive': document.getElementsByName('disk-drive')[0].value,
+                    //computer_tags
+                    'tags': computer_tags
+                };
+                console.log('JSON Data Rendered:\n' + JSON.stringify(submission));
+                //return false to cancel default form submission
+                //instead relying on API call from submission modal
+                return false;
+            } catch (error) {
+                console.log(error);
+                return false;
+            }
             return false;
         }
     </script>
@@ -465,6 +523,7 @@ Home | GRID Server
 
 </div>
 
+<!-- CALL TO API AND FILL TABLE -->
 <script>
     fetch('http://localhost:5000/syslogs')
     .then(response => response.json())
