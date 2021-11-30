@@ -129,6 +129,7 @@ Home | GRID Server
 
         <!--RIGHT SIDE (on desktop)-->
         <div class="data-entry-part">
+            <!-- CPU Brand -->
             <div class="data-entry-label-and-input">
                 <p>CPU Brand: </p>
                 <select name="cpu-brand" id="cpu-brand-selector" required>
@@ -138,19 +139,21 @@ Home | GRID Server
                     <option value="Other">Other</option>
                 </select>
             </div>
-
+            <!-- CPU Type -->
             <div class="data-entry-label-and-input">
                 <p>CPU Type: </p>
                 <select name="cpu-type" id="cpu-type-selector" disabled required>
                     <option value="" selected disabled hidden>Select One...</option>
                 </select>
             </div>
-
+            <!-- CPU Gen (if applicable) and CPU Speed-->
             <div class="data-entry-label-and-input-double">
+                <!-- CPU Gen (if applicable) -->
                 <p>CPU Gen: </p>
                 <select name="cpu-gen" id="cpu-gen-selector" disabled required>
                     <option value="" selected disabled hidden>Select One...</option>
                 </select>
+                <!-- CPU Speed -->
                 <p>CPU Speed: </p>
                 <select name="cpu-speed" id="cpu-speed-selector" required>
                 <option value="" selected disabled hidden>Select One...</option>
@@ -198,111 +201,114 @@ Home | GRID Server
                 </select>
             </div>
 
+            <!-- RAM and HDD -->
             <div class="data-entry-label-and-input-double">
+                <!-- RAM -->
                 <p>RAM: </p>
                 <select name="ram" id="ram-selector" required>
-                <option value="" selected disabled hidden>Select One...</option>
-                <option value="1">1GB</option>
-                <option value="2">2GB</option>
-                <option value="3">3GB</option>
-                <option value="4">4GB</option>
-                <option value="6">6GB</option>
-                <option value="8">8GB</option>
-                <option value="12">12GB</option>
-                <option value="16">16GB</option>
-                <option value="24">24GB</option>
-                <option value="32">32GB</option>
+                    <option value="" selected disabled hidden>Select One...</option>
+                    <option value="1GB">1GB</option>
+                    <option value="2GB">2GB</option>
+                    <option value="3GB">3GB</option>
+                    <option value="4GB">4GB</option>
+                    <option value="6GB">6GB</option>
+                    <option value="8GB">8GB</option>
+                    <option value="12GB">12GB</option>
+                    <option value="16GB">16GB</option>
+                    <option value="24GB">24GB</option>
+                    <option value="32GB">32GB</option>
                 </select>
+                <!-- HDD -->
                 <p>HDD: </p>
                 <select name="hdd" id="hdd-selector" required>
-                <option value="" selected disabled hidden>Select One...</option>
-                <option value="1">80GB</option>
-                <option value="2">120GB</option>
-                <option value="3">160GB</option>
-                <option value="4">250GB</option>
-                <option value="6">320GB</option>
-                <option value="8">500GB</option>
-                <option value="12">640GB</option>
-                <option value="16">750GB</option>
-                <option value="24">1TB</option>
+                    <option value="" selected disabled hidden>Select One...</option>
+                    <option value="80GB">80GB</option>
+                    <option value="120GB">120GB</option>
+                    <option value="160GB">160GB</option>
+                    <option value="250GB">250GB</option>
+                    <option value="320GB">320GB</option>
+                    <option value="500GB">500GB</option>
+                    <option value="640GB">640GB</option>
+                    <option value="750GB">750GB</option>
+                    <option value="1.0TB">1.0TB</option>
+                    <option value="1.5TB">1.5TB</option>
+                    <option value="2.0TB">2.0TB</option>
+                    <option value="3.0TB">3.0TB</option>
+                    <option value="4.0TB">4.0TB</option>
                 </select>
             </div>
 
+            <!-- Disk Drive -->
             <div class="data-entry-label-and-input">
                 <p>Disk Drive: </p>
                 <select name="disk-drive" id="disk-type-selector" required>
-                <option value="" selected disabled hidden>Select One...</option>
-                <option value="cdrom">CD-ROM</option>
-                <option value="cdrw">CD-RW</option>
-                <option value="dvdrom">DVD-ROM</option>
-                <option value="dvdrw">DVR-RW</option>
-                <option value="blu">BLU-RAY</option>
-                <option value="none">None</option>
+                    <option value="" selected disabled hidden>Select One...</option>
+                    <option value="CD-ROM">CD-ROM</option>
+                    <option value="CD-RW">CD-RW</option>
+                    <option value="DVD-ROM">DVD-ROM</option>
+                    <option value="DVR-RW">DVR-RW</option>
+                    <option value="BLU-RAY">BLU-RAY</option>
+                    <option value="None">None</option>
                 </select>
             </div>
 
+            <!-- Tags  -->
             <div class="data-entry-label-and-input">
                 <p>Tags:</p>
                 <div class="tags-select-container">
-                <div class="tags-option">
-                    <input class="form-check-input" type="checkbox" value="" id="tag-webcam">
-                    <label class="form-check-label" for="flexCheckDefault">
-                    Webcam
-                    </label>
-                </div>
-                <div class="tags-option">
-                    <input class="form-check-input" type="checkbox" value="" id="tag-HDMI">
-                    <label class="form-check-label" for="flexCheckDefault">
-                    HDMI
-                    </label>
-                </div>
-                <div class="tags-option">
-                    <input class="form-check-input" type="checkbox" value="" id="tag-touch">
-                    <label class="form-check-label" for="flexCheckDefault">
-                    TouchScreen
-                    </label>
-                </div>
-                <div class="tags-option">
-                    <input class="form-check-input" type="checkbox" value="" id="tag-SSD">
-                    <label class="form-check-label" for="flexCheckDefault">
-                    SSD
-                    </label>
-                </div>
-                <div class="tags-option-alt">
-                    <input class="form-check-input" type="checkbox" value="" id="tag-second-drive">
-                    <label class="form-check-label" for="flexCheckDefault">
-                    2nd Drive
-                    </label>
-                    <select name="second-hdd" id="second-hdd-selector" disabled style="float: right; width: 50%;">
-                    <option value="" selected disabled hidden>Select One...</option>
-                    <option value="1">80GB</option>
-                    <option value="2">120GB</option>
-                    <option value="3">160GB</option>
-                    <option value="4">250GB</option>
-                    <option value="6">320GB</option>
-                    <option value="8">500GB</option>
-                    <option value="12">640GB</option>
-                    <option value="16">750GB</option>
-                    <option value="24">1TB</option>
-                    </select>
-                </div>
+                    <div class="tags-option">
+                        <input class="form-check-input" type="checkbox" value="" id="tag-webcam">
+                        <label class="form-check-label" for="flexCheckDefault"> Webcam </label>
+                    </div>
+                    <div class="tags-option">
+                        <input class="form-check-input" type="checkbox" value="" id="tag-HDMI">
+                        <label class="form-check-label" for="flexCheckDefault"> HDMI </label>
+                    </div>
+                    <div class="tags-option">
+                        <input class="form-check-input" type="checkbox" value="" id="tag-touch">
+                        <label class="form-check-label" for="flexCheckDefault"> TouchScreen </label>
+                    </div>
+                    <div class="tags-option">
+                        <input class="form-check-input" type="checkbox" value="" id="tag-SSD">
+                        <label class="form-check-label" for="flexCheckDefault"> SSD </label>
+                    </div>
+                    <div class="tags-option-alt">
+                        <input class="form-check-input" type="checkbox" value="" id="tag-second-drive">
+                        <label class="form-check-label" for="flexCheckDefault"> 2nd Drive </label>
+                        <select name="second-hdd" id="second-hdd-selector" disabled style="float: right; width: 50%;">
+                            <option value="" selected disabled hidden>Select One...</option>
+                            <option value="80GB">80GB</option>
+                            <option value="120GB">120GB</option>
+                            <option value="160GB">160GB</option>
+                            <option value="250GB">250GB</option>
+                            <option value="320GB">320GB</option>
+                            <option value="500GB">500GB</option>
+                            <option value="640GB">640GB</option>
+                            <option value="750GB">750GB</option>
+                            <option value="1.0TB">1.0TB</option>
+                            <option value="1.5TB">1.5TB</option>
+                            <option value="2.0TB">2.0TB</option>
+                            <option value="3.0TB">3.0TB</option>
+                            <option value="4.0TB">4.0TB</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <!---->
+            <!-- Second Drive Script: activates/deactivates the second drive options-->
             <script type="text/javascript">
                 let driveToggle = document.querySelector('#tag-second-drive');
                 let secondDriveSelector = document.querySelector('#second-hdd-selector');
                 driveToggle.addEventListener('change', function () {
                 console.log('Second Drive Toggle Changed to ' + driveToggle.checked);
-                if (this.checked) {
-                    secondDriveSelector.removeAttribute('disabled');
-                    secondDriveSelector.setAttribute('required', true);
-                } else {
-                    secondDriveSelector.setAttribute('disabled', true);
-                    secondDriveSelector.removeAttribute('required');
-                    secondDriveSelector.selectedIndex = 0;
-                }
+                    if (this.checked) {
+                        secondDriveSelector.removeAttribute('disabled');
+                        secondDriveSelector.setAttribute('required', true);
+                    } else {
+                        secondDriveSelector.setAttribute('disabled', true);
+                        secondDriveSelector.removeAttribute('required');
+                        secondDriveSelector.selectedIndex = 0;
+                    }
                 });
             </script>
 
