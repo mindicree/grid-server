@@ -18,7 +18,7 @@ Home | GRID Server
         }
     }
 </script>
-<form onsubmit="return confirmSubmit(this)">
+<form onsubmit="return renderSubmission()">
     <input type="text" name="initials" value="" id='initialsSubmit' style="display: none"/>
     <!--Data Entry Table-->
     <div class="data-entry-container">
@@ -427,9 +427,16 @@ Home | GRID Server
     </div>
 
     <!--Submission Section-->
-    <div class="data-submission-container">
+    <div class="data-submission-container"">
         <button name="button" class="btn" style="background-color: #aea;" id='submitButton'>Submit</button>
     </div>
+    <!-- Submission modal -->
+    <script>
+        function renderSubmission() {
+            console.log('Button Clicked!');
+            return false;
+        }
+    </script>
 </form>
 
 <!--Database Search Tools-->
