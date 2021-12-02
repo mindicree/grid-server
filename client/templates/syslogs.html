@@ -156,7 +156,7 @@ Home | GRID Server
                 <!-- CPU Speed -->
                 <p>CPU Speed: </p>
                 <select name="cpu-speed" id="cpu-speed-selector" required>
-                <option value="" selected disabled hidden>Select One...</option>
+                    <option value="" selected disabled hidden>Select One...</option>
                     <option value="1.0">1.0</option>
                     <option value="1.1">1.1</option>
                     <option value="1.2">1.2</option>
@@ -431,6 +431,8 @@ Home | GRID Server
         <button name="button" class="btn" style="background-color: #aea;" id='submitButton'>Submit</button>
     </div>
     <!-- Submission modal -->
+
+    <!--Submission Script-->
     <script>
         function renderSubmission() {
             console.log('Button Clicked!');
@@ -553,19 +555,19 @@ Home | GRID Server
             tableModal.setAttribute('id', 'sn'+element.serial_no);
             tableModal.innerHTML =
             '<div class="modal-dialog modal-xl">' +
-            '<div class="modal-content">' +
-            '<div class="modal-header">' +
-            '<h5 class="modal-title">'+element.brand + ' ' + element.model + ' - Stock#'+element.serial_no+' - ('+element.dt_initial_irl_log+')</h5>' +
-            '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
-            '</div>' +
-            '<div class="modal-body">' +
-            entryStringGenerator(element) +
-            '</div>' +
-            '<div class="modal-footer">' +
-            '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
-            '<button type="button" class="btn btn-primary">Edit</button>' +
-            '</div>' +
-            '</div>' +
+                '<div class="modal-content">' +
+                    '<div class="modal-header">' +
+                        '<h5 class="modal-title">'+element.brand + ' ' + element.model + ' - Stock#'+element.serial_no+' - ('+element.dt_initial_irl_log+')</h5>' +
+                        '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
+                    '</div>' +
+                    '<div class="modal-body">' +
+                         entryStringGenerator(element) +
+                    '</div>' +
+                    '<div class="modal-footer">' +
+                        '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
+                        '<button type="button" class="btn btn-primary">Edit</button>' +
+                    '</div>' +
+                '</div>' +
             '</div>' +
             '';
             tableModalContainer.appendChild(tableModal);
