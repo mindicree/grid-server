@@ -51,7 +51,9 @@ def syslogs():
             log = SystemLog(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'])
             log.price = calc_price(log)
             log.save()
-            return make_response(jsonify(log.get_json()), 201)
+            response = make_response(jsonify(log.get_json()), 201)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
         except ValueError:
             return make_response(jsonify({'error': 'Failed to decode JSON properly'}), 400)
 

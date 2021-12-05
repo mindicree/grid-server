@@ -430,8 +430,26 @@ Home | GRID Server
     <div class="data-submission-container"">
         <button name="button" class="btn" style="background-color: #aea;" id='submitButton'>Submit</button>
     </div>
-    <!-- Submission modal -->
-
+    <!-- Submission modal container-->
+    <div id='submission-modal-container'> 
+        <div class="modal fade" id="submission_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="submission-modal-title"></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="submission-modal-body" class="modal-body">
+                  
+                </div>
+                <div id="submission-modal-footer" class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" id="submission-modal-button" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
     <!--Submission Script-->
     <script>
         function renderSubmission() {
@@ -453,7 +471,7 @@ Home | GRID Server
             //get tags
             let computer_tags = [];
             document.querySelectorAll('.form-check-input').forEach((item) => {
-                console.log(item)
+                //console.log(item)
                 if (item.checked && item.type=="checkbox") {
                     if (item.id == "tag-second-drive") {
                         let drive_value = document.querySelector('#second-hdd-selector').value;
@@ -486,7 +504,31 @@ Home | GRID Server
                     //computer_tags
                     'tags': computer_tags
                 };
-                console.log('JSON Data Rendered:\n' + JSON.stringify(submission));
+                //console.log('JSON Data Rendered:\n' + JSON.stringify(submission));
+
+                document.querySelector("#submission-modal-title").innerHTML = submission.brand + ' ' + submission.model + ' - Serial No.#'+submission.serial_no;
+                document.querySelector("#submission-modal-body").innerHTML = submissionStringGenerator(submission);
+                let submissionModalElement = document.getElementById('submission_modal');
+                let submissionModal = new bootstrap.Modal(submissionModalElement);
+                submissionModal.toggle();
+
+                document.querySelector("#submission-modal-button").addEventListener('click', function() {
+                    let techInitials = document.querySelector("#submission-modal-tech-input").value;
+                    if (techInitials.length < 2)  {
+                        document.querySelector("#tech-confirmer").style = "color: #f00; visibility: visible;";
+                    } else {
+                        
+                        submission.tech = techInitials;
+                        fetch('http://localhost:5000/syslogs', {method: 'POST', body: JSON.stringify(submission)})
+                        .then(response => response.json())
+                        .then(data => {
+                            window.location.reload();
+                        })
+                        .catch (error => {
+                            console.log(error);
+                        });
+                    }
+                });
                 //return false to cancel default form submission
                 //instead relying on API call from submission modal
                 return false;
@@ -495,6 +537,22 @@ Home | GRID Server
                 return false;
             }
             return false;
+        }
+    
+        //string generator for bootstrap modals
+        function submissionStringGenerator(entry) {
+            return '<p><b>Old COA: </b>' + entry.old_coa + '</p>' +
+            '<p><b>New COA: </b>' + entry.new_coa + '</p>' +
+            '<p><b>Serial No.: </b>' + entry.serial_no + '</p>' +
+            '<p><b>Operating System: </b>' + entry.os + '</p>' +
+            '<p><b>Computer Type: </b>' + entry.computer_type + '</p>' +
+            '<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
+            '<p><b>RAM Amount: </b>' + entry.ram + '</p>' +
+            '<p><b>Hard Drive: </b>' + entry.hdd + '</p>' +
+            '<p><b>Disk Drive: </b>' + entry.disk_drive + '</p>' +
+            '<p><b>Other Information: </b>' + entry.tags + '</p>' +
+            '<p><b>Tech: </b> <input id="submission-modal-tech-input" type="text" placeholder="Initials here..."><span id="tech-confirmer" style="color: #f00; visibility: hidden;">&emsp;Please enter your initials</span></p>' +
+            '';
         }
     </script>
 </form>
@@ -540,7 +598,7 @@ Home | GRID Server
             tableEntry.innerHTML =
             "<th>" + element.dt_initial_irl_log + "</th>" +
             "<th>" + element.brand + " " + element.model + " (" + element.computer_type + ")" + "</th>" +
-            "<th>$" + element.price + "</th>" +
+            "<th>$" + element.price.toFixed(2) + "</th>" +
             "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#sn"+element.serial_no+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
             "";
             tableEntry.addEventListener('click', function() {
@@ -589,7 +647,7 @@ Home | GRID Server
         '<p><b>Hard Drive: </b>' + entry.hdd + '</p>' +
         '<p><b>Disk Drive: </b>' + entry.disk_drive + '</p>' +
         '<p><b>Other Information: </b>' + entry.tags + '</p>' +
-        '<p><b>Price: </b>$' + entry.price + '</p>' +
+        '<p><b>Price: </b>$' + entry.price.toFixed(2) + '</p>' +
         '<p><b>Tech: </b>' + entry.tech + '</p>' +
         '';
     }
