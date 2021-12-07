@@ -116,10 +116,6 @@ table {
     margin: auto;
   }
 
-  .data-entry-label-and-input {
-
-  }
-
   .radio-group {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

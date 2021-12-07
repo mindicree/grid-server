@@ -606,7 +606,7 @@ Home | GRID Server
             "<th>" + element.dt_initial_irl_log + "</th>" +
             "<th>" + element.brand + " " + element.model + " (" + element.computer_type + ")" + "</th>" +
             "<th>$" + element.price.toFixed(2) + "</th>" +
-            "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#sn"+element.serial_no+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
+            "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
             "";
             tableEntry.addEventListener('click', function() {
                 this.querySelector('#infoBtn').click();
@@ -617,25 +617,53 @@ Home | GRID Server
             //create modal
             tableModal = document.createElement('div');
             tableModal.setAttribute('class', 'modal fade');
-            tableModal.setAttribute('id', 'sn'+element.serial_no);
+            tableModal.setAttribute('id', 'id-'+element._id);
             tableModal.innerHTML =
             '<div class="modal-dialog modal-xl">' +
                 '<div class="modal-content">' +
                     '<div class="modal-header">' +
                         '<h5 class="modal-title">'+element.brand + ' ' + element.model + ' - Stock#'+element.serial_no+' - ('+element.dt_initial_irl_log+')</h5>' +
-                        '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
+                        '<button id="system-modal-close-'+element._id+'" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
                     '</div>' +
                     '<div class="modal-body">' +
                          entryStringGenerator(element) +
                     '</div>' +
                     '<div class="modal-footer">' +
-                        '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
-                        '<button type="button" class="btn btn-primary">Edit</button>' +
+                        '<button id="edit-btn-close-'+element._id+'"type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
+                        '<button id="edit-btn-'+element._id+'" type="button" class="btn btn-primary">Edit</button>' +
+                        '<button id="edit-btn-cancel-'+element._id+'"type="button" class="btn btn-secondary" style="display: none;">Cancel</button>' +
+                        '<button id="edit-btn-submit-'+element._id+'" type="button" class="btn btn-primary" style="display: none;">Submit</button>' +
                     '</div>' +
                 '</div>' +
             '</div>' +
             '';
             tableModalContainer.appendChild(tableModal);
+
+            //add edit button functionalities
+            document.querySelector('#edit-btn-'+element._id).addEventListener('click', function() {
+                this.style.display = "none";
+                document.querySelector('#edit-btn-close-'+element._id).style.display = "none";
+                document.querySelector('#system-modal-data-'+element._id).style.display = "none";
+                document.querySelector('#edit-btn-cancel-'+element._id).style.display = "initial";
+                document.querySelector('#edit-btn-submit-'+element._id).style.display = "initial";
+                document.querySelector('#system-modal-data-edit-'+element._id).style.display = "grid";
+            });
+            document.querySelector('#edit-btn-cancel-'+element._id).addEventListener('click', function() {
+                this.style.display = "none";
+                document.querySelector('#edit-btn-close-'+element._id).style.display = "initial";
+                document.querySelector('#system-modal-data-'+element._id).style.display = "grid";
+                document.querySelector('#edit-btn-cancel-'+element._id).style.display = "none";
+                document.querySelector('#edit-btn-submit-'+element._id).style.display = "none";
+                document.querySelector('#system-modal-data-edit-'+element._id).style.display = "none";
+                document.querySelector('#edit-btn-'+element._id).style.display = "initial";
+            });
+            document.querySelector('#edit-btn-close-'+element._id).addEventListener('click', function() {
+                let cancelButton = document.querySelector('#edit-btn-cancel-'+element._id);
+                cancelButton.onclick.apply(cancelButton);
+            });
+            document.querySelector('#edit-btn-submit-'+element._id).addEventListener('click', function() {
+                //TODO confirm form, PUT to server, check success, reload modal
+            });
         })
 
         
@@ -645,7 +673,7 @@ Home | GRID Server
     //string generator for bootstrap modals
     function entryStringGenerator(entry) {
         let static_data= 
-        '<div class="system-modal-data">' + 
+        '<div id="system-modal-data-'+entry._id+'"class="system-modal-data">' + 
             '<p><b>Old COA: </b>' + entry.old_coa + '</p>' +
             '<p><b>New COA: </b>' + entry.new_coa + '</p>' +
             '<p><b>Serial No.: </b>' + entry.serial_no + '</p>' +
@@ -660,7 +688,7 @@ Home | GRID Server
             '<p><b>Tech: </b>' + entry.tech + '</p>' +
         '</div>';
         let edit_data = 
-        '<div class="system-modal-data-edit">' + 
+        '<div id="system-modal-data-edit-'+entry._id+'" class="system-modal-data-edit" style="display: none;">' + 
             '<div class="system-modal-data-edit-left">' + 
                 '<p><b>Old COA: </b><input type="text" value="' + entry.old_coa + '"></p>' +
                 '<p><b>New COA: </b><input type="text" value="' + entry.new_coa + '"></p>' +
