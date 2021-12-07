@@ -657,12 +657,9 @@ Home | GRID Server
                 document.querySelector('#system-modal-data-edit-'+element._id).style.display = "none";
                 document.querySelector('#edit-btn-'+element._id).style.display = "initial";
             });
-            document.querySelector('#edit-btn-close-'+element._id).addEventListener('click', function() {
-                let cancelButton = document.querySelector('#edit-btn-cancel-'+element._id);
-                cancelButton.onclick.apply(cancelButton);
-            });
             document.querySelector('#edit-btn-submit-'+element._id).addEventListener('click', function() {
                 //TODO confirm form, PUT to server, check success, reload modal
+                console.log('TODO: complete U functionality');
             });
         })
 
