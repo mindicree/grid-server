@@ -644,19 +644,38 @@ Home | GRID Server
 
     //string generator for bootstrap modals
     function entryStringGenerator(entry) {
-        return '<p><b>Old COA: </b>' + entry.old_coa + '</p>' +
-        '<p><b>New COA: </b>' + entry.new_coa + '</p>' +
-        '<p><b>Serial No.: </b>' + entry.serial_no + '</p>' +
-        '<p><b>Operating System: </b>' + entry.os + '</p>' +
-        '<p><b>Computer Type: </b>' + entry.computer_type + '</p>' +
-        '<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
-        '<p><b>RAM Amount: </b>' + entry.ram + '</p>' +
-        '<p><b>Hard Drive: </b>' + entry.hdd + '</p>' +
-        '<p><b>Disk Drive: </b>' + entry.disk_drive + '</p>' +
-        '<p><b>Other Information: </b>' + entry.tags + '</p>' +
-        '<p><b>Price: </b>$' + entry.price.toFixed(2) + '</p>' +
-        '<p><b>Tech: </b>' + entry.tech + '</p>' +
-        '';
+        let static_data= 
+        '<div class="system-modal-data">' + 
+            '<p><b>Old COA: </b>' + entry.old_coa + '</p>' +
+            '<p><b>New COA: </b>' + entry.new_coa + '</p>' +
+            '<p><b>Serial No.: </b>' + entry.serial_no + '</p>' +
+            '<p><b>Operating System: </b>' + entry.os + '</p>' +
+            '<p><b>Computer Type: </b>' + entry.computer_type + '</p>' +
+            '<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
+            '<p><b>RAM Amount: </b>' + entry.ram + '</p>' +
+            '<p><b>Hard Drive: </b>' + entry.hdd + '</p>' +
+            '<p><b>Disk Drive: </b>' + entry.disk_drive + '</p>' +
+            '<p><b>Other Information: </b>' + entry.tags + '</p>' +
+            '<p><b>Price: </b>$' + entry.price.toFixed(2) + '</p>' +
+            '<p><b>Tech: </b>' + entry.tech + '</p>' +
+        '</div>';
+        let edit_data = 
+        '<div class="system-modal-data" style="display: grid; grid-template-rows: 1fr 1fr;">' + 
+            '<p><b>Old COA: </b><input type="text" value="' + entry.old_coa + '"></p>' +
+            '<p><b>New COA: </b><input type="text" value="' + entry.old_coa + '"></p>' +
+            '<p><b>Serial No.: </b><input type="text" value="' + entry.old_coa + '"></p>' +
+            '<p><b>Operating System: </b><input type="text" value="' + entry.old_coa + '"></p>' +
+            '<p><b>Computer Type: </b><input type="text" value="' + entry.old_coa + '"></p>' +
+            '<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
+            '<p><b>RAM Amount: </b><input type="text" value="' + entry.old_coa + '"></p>' +
+            '<p><b>Hard Drive: </b><input type="text" value="' + entry.old_coa + '"></p>' +
+            '<p><b>Disk Drive: </b><input type="text" value="' + entry.old_coa + '"></p>' +
+            '<p><b>Other Information: </b><input type="text" value="' + entry.old_coa + '"></p>' +
+            '<p><b>Price: </b>$<input type="text" value="' + entry.old_coa + '"></p>' +
+            '<p><b>Tech: </b><input type="text" value="' + entry.old_coa + '"></p>' +
+        '</div>';
+
+        return static_data + edit_data;
     }
 
 </script>
