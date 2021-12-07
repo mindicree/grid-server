@@ -685,34 +685,36 @@ Home | GRID Server
             '<p><b>Tech: </b>' + entry.tech + '</p>' +
         '</div>';
         let edit_data = 
-        '<div id="system-modal-data-edit-'+entry._id+'" class="system-modal-data-edit" style="display: none;">' + 
-            '<div class="system-modal-data-edit-left">' + 
-                '<p><b>Old COA: </b><input type="text" value="' + entry.old_coa + '"></p>' +
-                '<p><b>New COA: </b><input type="text" value="' + entry.new_coa + '"></p>' +
-                '<p><b>Serial No.: </b><input type="text" value="' + entry.serial_no + '"></p>' +
-                '<p><b>Brand: </b><input type="text" value="' + entry.brand + '"></p>' +
-                '<p><b>Model: </b><input type="text" value="' + entry.model + '"></p>' +
-                '<p><b>OS: </b><input type="text" value="' + entry.os + '"></p>' +
-                '<p><b>Computer Type: </b><input type="text" value="' + entry.computer_type + '"></p>' +
-                //'<br><br><p><b>Tech: </b><input type="text" value="' + entry.tech + '"></p>' +
-            '</div>' + 
-            '<div class="system-modal-data-edit-right">' + 
-                '<div class="system-edit-double">' + 
-                    '<p><b>CPU Brand: </b><input value="'+entry.cpu_brand+'">'+
-                    '<p><b>CPU Model: </b><input value="'+entry.cpu_model+'">'+
-                    '<p><b>CPU Generation: </b><input value="'+entry.cpu_gen+'">'+
-                    '<p><b>CPU Speed: </b><input value="'+entry.cpu_speed+'">'+
-                //'<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
-                    '<p><b>RAM Amount: </b><input type="text" value="' + entry.ram + '"></p>' +
-                    '<p><b>Hard Drive: </b><input type="text" value="' + entry.hdd + '"></p>' +
+        '<form id="system-edit-form-'+entry._id+'" onsumit="return false()">' + 
+            '<div id="system-modal-data-edit-'+entry._id+'" class="system-modal-data-edit" style="display: none;">' + 
+                '<div class="system-modal-data-edit-left">' + 
+                    '<p><b>Old COA: </b><input type="text" value="' + entry.old_coa + '" required></p>' +
+                    '<p><b>New COA: </b><input type="text" value="' + entry.new_coa + '" required></p>' +
+                    '<p><b>Serial No.: </b><input type="text" value="' + entry.serial_no + '" required></p>' +
+                    '<p><b>Brand: </b><input type="text" value="' + entry.brand + '" required></p>' +
+                    '<p><b>Model: </b><input type="text" value="' + entry.model + '" required></p>' +
+                    '<p><b>OS: </b><input type="text" value="' + entry.os + '" required></p>' +
+                    '<p><b>Computer Type: </b><input type="text" value="' + entry.computer_type + '" required></p>' +
+                    //'<br><br><p><b>Tech: </b><input type="text" value="' + entry.tech + '" required></p>' +
                 '</div>' + 
-                '<p><b>Disk Drive: </b><input type="text" value="' + entry.disk_drive + '"></p>' +
-                '<p><b>Tags: </b><input type="text" value="' + entry.tags + '"></p>' +
-                '<p><b>Price: $</b><input type="text" value="' + entry.price + '"></p>' +
-                '<br><br><p><b>Tech: </b><input type="text" value="' + entry.tech + '"></p>' +
-            '</div>' +
-            //'<br><br><p><b>Tech: </b><input type="text" value="' + entry.tech + '"></p>' + 
-        '</div>';
+                '<div class="system-modal-data-edit-right">' + 
+                    '<div class="system-edit-double">' + 
+                        '<p><b>CPU Brand: </b><input value="'+entry.cpu_brand+'" required>'+
+                        '<p><b>CPU Model: </b><input value="'+entry.cpu_model+'" required>'+
+                        '<p><b>CPU Generation: </b><input value="'+entry.cpu_gen+'" required>'+
+                        '<p><b>CPU Speed: </b><input value="'+entry.cpu_speed+'" required>'+
+                    //'<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
+                        '<p><b>RAM Amount: </b><input type="text" value="' + entry.ram + '" required></p>' +
+                        '<p><b>Hard Drive: </b><input type="text" value="' + entry.hdd + '" required></p>' +
+                    '</div>' + 
+                    '<p><b>Disk Drive: </b><input type="text" value="' + entry.disk_drive + '" required></p>' +
+                    '<p><b>Tags: </b><input type="text" value="' + entry.tags + '" required></p>' +
+                    '<p><b>Price: $</b><input type="text" value="' + entry.price + '" required></p>' +
+                    '<br><br><p><b>Tech: </b><input type="text" value="' + entry.tech + '" required></p>' +
+                '</div>' +
+                //'<br><br><p><b>Tech: </b><input type="text" value="' + entry.tech + '" required></p>' + 
+            '</div>' + 
+        '</form>';
 
         return static_data + edit_data;
     }
