@@ -590,9 +590,11 @@ Home | GRID Server
 
 <!-- CALL TO API AND FILL TABLE -->
 <script>
+    let systems;
     fetch('http://localhost:5000/syslogs')
     .then(response => response.json())
     .then(data => {
+        systems = data;
         let tableBody = document.querySelector('#tableStockListBody');
         let tableModalContainer = document.querySelector('#tableModalContainer');
         var tableEntry, tableModal;
