@@ -91,7 +91,10 @@ def syslog(log_id):
         data = json.loads(request.data)
         if not data:
             return make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
-        log.update(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'], price=data['price'], dt_initial_irl_log=datetime.strptime(data['dt_initial_irl_log'], '%a, %d %b %Y %H:%M:%S %Z'), dt_last_update=datetime.utcnow())
+        try:
+            log.update(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'], price=data['price'], dt_initial_irl_log=datetime.strptime(data['dt_initial_irl_log'], '%a, %d %b %Y %H:%M:%S %Z'), dt_last_update=datetime.utcnow())
+        except:
+            log.update(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'], price=data['price'], dt_last_update=datetime.utcnow())
         return make_response(jsonify({'message': 'System log ['+str(log_id)+'] updated successfully'}), 200)
 
     if request.method == 'DELETE':

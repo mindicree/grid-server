@@ -660,6 +660,7 @@ Home | GRID Server
             document.querySelector('#edit-btn-submit-'+element._id).addEventListener('click', function() {
                 //TODO confirm form, PUT to server, check success, reload modal
                 console.log('TODO: complete U functionality');
+                document.querySelector('#edit-button-submit-trigger-'+element._id).click();
             });
         })
 
@@ -667,6 +668,19 @@ Home | GRID Server
     })
     .catch(error => console.log(error));
 
+    //submit edit function
+    function submitEdit(formContainer) {
+        console.log('What is this? \n' + formContainer + '\n' + formContainer.id);
+        console.log('What is this? \n' + formContainer[0] + '\n' + formContainer[0].name);
+        for (let i = 0; i < formContainer.length; i++) {
+            try {
+                console.log(formContainer[i].name + ': '+formContainer[i].value + '\n');
+            } catch (error) {
+                console.log('Could not get name for index position: ' + i + '.\nResulting error: ' + error);
+            }      
+        }
+        return false;
+    }
     //string generator for bootstrap modals
     function entryStringGenerator(entry) {
         let static_data= 
@@ -685,35 +699,37 @@ Home | GRID Server
             '<p><b>Tech: </b>' + entry.tech + '</p>' +
         '</div>';
         let edit_data = 
-        '<form id="system-edit-form-'+entry._id+'" onsumit="return false()">' + 
+        '<form id="system-edit-form-'+entry._id+'" onsubmit="return submitEdit(this)">' + 
             '<div id="system-modal-data-edit-'+entry._id+'" class="system-modal-data-edit" style="display: none;">' + 
                 '<div class="system-modal-data-edit-left">' + 
-                    '<p><b>Old COA: </b><input type="text" value="' + entry.old_coa + '" required></p>' +
-                    '<p><b>New COA: </b><input type="text" value="' + entry.new_coa + '" required></p>' +
-                    '<p><b>Serial No.: </b><input type="text" value="' + entry.serial_no + '" required></p>' +
-                    '<p><b>Brand: </b><input type="text" value="' + entry.brand + '" required></p>' +
-                    '<p><b>Model: </b><input type="text" value="' + entry.model + '" required></p>' +
-                    '<p><b>OS: </b><input type="text" value="' + entry.os + '" required></p>' +
-                    '<p><b>Computer Type: </b><input type="text" value="' + entry.computer_type + '" required></p>' +
-                    //'<br><br><p><b>Tech: </b><input type="text" value="' + entry.tech + '" required></p>' +
+                    '<p><b>Old COA: </b><input name="edit-old-coa-'+entry._id+'" type="text" value="' + entry.old_coa + '" required></p>' +
+                    '<p><b>New COA: </b><input name="edit-new-coa-'+entry._id+'" type="text" value="' + entry.new_coa + '" required></p>' +
+                    '<p><b>Serial No.: </b><input name="edit-serial-no-'+entry._id+'" type="text" value="' + entry.serial_no + '" required></p>' +
+                    '<p><b>Brand: </b><input name="edit-brand-'+entry._id+'" type="text" value="' + entry.brand + '" required></p>' +
+                    '<p><b>Model: </b><input name="edit-model-'+entry._id+'" type="text" value="' + entry.model + '" required></p>' +
+                    '<p><b>OS: </b><input name="edit-os-'+entry._id+'" type="text" value="' + entry.os + '" required></p>' +
+                    '<p><b>Computer Type: </b><input name="edit-computer-type-'+entry._id+'" type="text" value="' + entry.computer_type + '" required></p>' +
+                    '<p><b>Source: </b><input name="edit-source-'+entry._id+'" type="text" value="' + entry.source + '" required></p>' +
+                    //'<br><br><p><b>Tech: </b><input name="edit-tech-'+entry._id+'type="text" value="' + entry.tech + '" required></p>' +
                 '</div>' + 
                 '<div class="system-modal-data-edit-right">' + 
                     '<div class="system-edit-double">' + 
-                        '<p><b>CPU Brand: </b><input value="'+entry.cpu_brand+'" required>'+
-                        '<p><b>CPU Model: </b><input value="'+entry.cpu_model+'" required>'+
-                        '<p><b>CPU Generation: </b><input value="'+entry.cpu_gen+'" required>'+
-                        '<p><b>CPU Speed: </b><input value="'+entry.cpu_speed+'" required>'+
+                        '<p><b>CPU Brand: </b><input name="edit-cpu-brand-'+entry._id+'"value="'+entry.cpu_brand+'" required>'+
+                        '<p><b>CPU Model: </b><input name="edit-cpu-model-'+entry._id+'"value="'+entry.cpu_model+'" required>'+
+                        '<p><b>CPU Generation: </b><input name="edit-cpu-gen-'+entry._id+'"value="'+entry.cpu_gen+'">'+
+                        '<p><b>CPU Speed: </b><input name="edit-cpu-speed-'+entry._id+'"value="'+entry.cpu_speed+'" required>'+
                     //'<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
-                        '<p><b>RAM Amount: </b><input type="text" value="' + entry.ram + '" required></p>' +
-                        '<p><b>Hard Drive: </b><input type="text" value="' + entry.hdd + '" required></p>' +
+                        '<p><b>RAM Amount: </b><input name="edit-ram-'+entry._id+'type="text" value="' + entry.ram + '" required></p>' +
+                        '<p><b>Hard Drive: </b><input name="edit-hdd-'+entry._id+'type="text" value="' + entry.hdd + '" required></p>' +
                     '</div>' + 
-                    '<p><b>Disk Drive: </b><input type="text" value="' + entry.disk_drive + '" required></p>' +
-                    '<p><b>Tags: </b><input type="text" value="' + entry.tags + '" required></p>' +
-                    '<p><b>Price: $</b><input type="text" value="' + entry.price + '" required></p>' +
-                    '<br><br><p><b>Tech: </b><input type="text" value="' + entry.tech + '" required></p>' +
+                    '<p><b>Disk Drive: </b><input name="edit-disk-drive-'+entry._id+'" type="text" value="' + entry.disk_drive + '" required></p>' +
+                    '<p><b>Tags: </b><input name="edit-tags-'+entry._id+'" type="text" value="' + entry.tags + '" required></p>' +
+                    '<p><b>Price: $</b><input name="edit-price-'+entry._id+'" type="text" value="' + entry.price + '" required></p>' +
+                    '<br><br><p><b>Tech: </b><input name="edit-tech-'+entry._id+'" type="text" value="' + entry.tech + '" required></p>' +
                 '</div>' +
-                //'<br><br><p><b>Tech: </b><input type="text" value="' + entry.tech + '" required></p>' + 
+                //'<br><br><p><b>Tech: </b><input name="edit-old-coa-'+entry._id+'type="text" value="' + entry.tech + '" required></p>' + 
             '</div>' + 
+            '<button type="submit" id="edit-button-submit-trigger-'+entry._id+'">' + 
         '</form>';
 
         return static_data + edit_data;
