@@ -670,14 +670,35 @@ Home | GRID Server
 
     //submit edit function
     function submitEdit(formContainer) {
-        console.log('What is this? \n' + formContainer + '\n' + formContainer.id);
-        console.log('What is this? \n' + formContainer[0] + '\n' + formContainer[0].name);
-        for (let i = 0; i < formContainer.length; i++) {
-            try {
-                console.log(formContainer[i].name + ': '+formContainer[i].value + '\n');
-            } catch (error) {
-                console.log('Could not get name for index position: ' + i + '.\nResulting error: ' + error);
-            }      
+        //console.log('What is this? \n' + formContainer + '\n' + formContainer.id);
+        //console.log('What is this? \n' + formContainer[0] + '\n' + formContainer[0].name);
+
+        //get tags
+        let computer_tags = [];
+        let tag_string = formContainer[15].value.replace(" ", "").split(",");
+
+        let submission = {
+            'old_coa': formContainer[0].value,
+            'new_coa': formContainer[1].value,
+            'serial_no': formContainer[2].value,
+            'brand': formContainer[3].value,
+            'model': formContainer[4].value,
+            'os': formContainer[5].value,
+            'computer_type': formContainer[6].value,
+            'source': formContainer[7].value,
+            'cpu_brand': formContainer[8].value,
+            'cpu_model': formContainer[9].value,
+            'cpu_gen': formContainer[10].value,
+            'cpu_speed': formContainer[11].value,
+            'ram': formContainer[12].value,
+            'hdd': formContainer[13].value,
+            'disk_drive': formContainer[14].value,
+            'tags': tag_string
+        }
+        try {
+            console.log('JSON Object: \n' + JSON.stringify(submission));
+        } catch (error) {
+            console.log('Could not create JSON object.');
         }
         return false;
     }
