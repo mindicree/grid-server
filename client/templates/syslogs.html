@@ -673,6 +673,12 @@ Home | GRID Server
         //console.log('What is this? \n' + formContainer + '\n' + formContainer.id);
         //console.log('What is this? \n' + formContainer[0] + '\n' + formContainer[0].name);
 
+        //get ID
+        let systemId = formContainer.id.replace('system-edit-form-', "");
+        let apiURL = 'http://localhost:5000/syslogs/' + systemId;
+        console.log('ID recieved: ' + systemId);
+        console.log('URL for PUT: ' + apiURL);
+
         //get tags
         let computer_tags = [];
         let tag_string = formContainer[15].value.replace(" ", "").split(",");
@@ -700,6 +706,9 @@ Home | GRID Server
         } catch (error) {
             console.log('Could not create JSON object.');
         }
+
+        //API call to update
+
         return false;
     }
     //string generator for bootstrap modals
@@ -750,7 +759,7 @@ Home | GRID Server
                 '</div>' +
                 //'<br><br><p><b>Tech: </b><input name="edit-old-coa-'+entry._id+'type="text" value="' + entry.tech + '" required></p>' + 
             '</div>' + 
-            '<button type="submit" id="edit-button-submit-trigger-'+entry._id+'">' + 
+            '<button type="submit" id="edit-button-submit-trigger-'+entry._id+'" style="visibility: hidden;">' + 
         '</form>';
 
         return static_data + edit_data;
