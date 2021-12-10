@@ -696,12 +696,12 @@ Home | GRID Server
                          entryStringGenerator(element) +
                     '</div>' +
                     '<div class="modal-footer justify-content-between">' +
-                        '<button id="edit-btn-delete-'+element._id+'"type="button" class="btn btn-danger">Delete</button>' +
+                        '<button id="edit-btn-delete-'+element._id+'"type="button" class="btn btn-danger" style="visibility: hidden;">Delete</button>' +
                         '<div>' + 
                             '<button id="edit-btn-close-'+element._id+'"type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
-                            '<button id="edit-btn-'+element._id+'" type="button" class="btn btn-primary">Edit</button>' +
+                            '<button id="edit-btn-'+element._id+'" type="button" class="btn btn-primary" style="margin-left: 10px;">Edit</button>' +
                             '<button id="edit-btn-cancel-'+element._id+'"type="button" class="btn btn-secondary" style="display: none;">Cancel</button>' +
-                            '<button id="edit-btn-submit-'+element._id+'" type="button" class="btn btn-primary" style="display: none;">Submit</button>' +
+                            '<button id="edit-btn-submit-'+element._id+'" type="button" class="btn btn-primary" style="display: none; margin-left: 10px;">Submit</button>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +
@@ -716,6 +716,7 @@ Home | GRID Server
                 document.querySelector('#system-modal-data-'+element._id).style.display = "none";
                 document.querySelector('#edit-btn-cancel-'+element._id).style.display = "initial";
                 document.querySelector('#edit-btn-submit-'+element._id).style.display = "initial";
+                document.querySelector('#edit-btn-delete-'+element._id).style.visibility = "visible";
                 document.querySelector('#system-modal-data-edit-'+element._id).style.display = "grid";
             });
             document.querySelector('#edit-btn-cancel-'+element._id).addEventListener('click', function() {
@@ -724,6 +725,7 @@ Home | GRID Server
                 document.querySelector('#system-modal-data-'+element._id).style.display = "grid";
                 document.querySelector('#edit-btn-cancel-'+element._id).style.display = "none";
                 document.querySelector('#edit-btn-submit-'+element._id).style.display = "none";
+                document.querySelector('#edit-btn-delete-'+element._id).style.visibility = "hidden";
                 document.querySelector('#system-modal-data-edit-'+element._id).style.display = "none";
                 document.querySelector('#edit-btn-'+element._id).style.display = "initial";
             });
