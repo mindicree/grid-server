@@ -82,20 +82,29 @@ def syslog(log_id):
         log = SystemLog.objects(id=log_id).first()
         if not log:
             return make_response(jsonify({'error': 'System log with ID [' + log_id + '] not found.'}), 404)
-        return make_response(jsonify(log.get_json()), 200);
+        response = make_response(jsonify(log.get_json()), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
 
     if request.method == 'PUT':
         log = SystemLog.objects(id=log_id).first()
         if not log:
-            return make_response(jsonify({'error': 'System log with ID [' + log_id + '] not found.'}), 404)
+            reponse = make_response(jsonify({'error': 'System log with ID [' + log_id + '] not found.'}), 404)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
         data = json.loads(request.data)
         if not data:
-            return make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
+            response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
         try:
             log.update(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'], price=data['price'], dt_initial_irl_log=datetime.strptime(data['dt_initial_irl_log'], '%a, %d %b %Y %H:%M:%S %Z'), dt_last_update=datetime.utcnow())
         except:
             log.update(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'], price=data['price'], dt_last_update=datetime.utcnow())
-        return make_response(jsonify({'message': 'System log ['+str(log_id)+'] updated successfully'}), 200)
+        response = make_response(jsonify({'message': 'System log ['+str(log_id)+'] updated successfully'}), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
 
     if request.method == 'DELETE':
         log = SystemLog.objects(id=log_id).first()

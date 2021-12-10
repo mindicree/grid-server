@@ -681,7 +681,10 @@ Home | GRID Server
 
         //get tags
         let computer_tags = [];
-        let tag_string = formContainer[15].value.replace(" ", "").split(",");
+        formContainer[15].value
+        .replace(" ", "")
+        .split(",")
+        .forEach(element => computer_tags.push(element));
 
         let submission = {
             'old_coa': formContainer[0].value,
@@ -699,15 +702,28 @@ Home | GRID Server
             'ram': formContainer[12].value,
             'hdd': formContainer[13].value,
             'disk_drive': formContainer[14].value,
-            'tags': tag_string
+            'tags': computer_tags,
+            'price': formContainer[16].value,
+            'tech': formContainer[17].value
         }
         try {
             console.log('JSON Object: \n' + JSON.stringify(submission));
         } catch (error) {
             console.log('Could not create JSON object.');
+            return false;
         }
 
         //API call to update
+        fetch(apiURL, {method: 'PUT', body: JSON.stringify(submission)})
+        .then(response => response.json())
+        .then(data => {
+            alert('Data updated successfully!');
+            window.location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+            alert(error);
+        });
 
         return false;
     }
