@@ -676,8 +676,8 @@ Home | GRID Server
         //get ID
         let systemId = formContainer.id.replace('system-edit-form-', "");
         let apiURL = 'http://localhost:5000/syslogs/' + systemId;
-        console.log('ID recieved: ' + systemId);
-        console.log('URL for PUT: ' + apiURL);
+        // console.log('ID recieved: ' + systemId);
+        // console.log('URL for PUT: ' + apiURL);
 
         //get tags
         let computer_tags = [];
@@ -686,6 +686,7 @@ Home | GRID Server
         .split(",")
         .forEach(element => computer_tags.push(element));
 
+        //create submission JSON object
         let submission = {
             'old_coa': formContainer[0].value,
             'new_coa': formContainer[1].value,
@@ -706,12 +707,13 @@ Home | GRID Server
             'price': formContainer[16].value,
             'tech': formContainer[17].value
         }
-        try {
-            console.log('JSON Object: \n' + JSON.stringify(submission));
-        } catch (error) {
-            console.log('Could not create JSON object.');
-            return false;
-        }
+        
+        // try {
+        //     console.log('JSON Object: \n' + JSON.stringify(submission));
+        // } catch (error) {
+        //     console.log('Could not create JSON object.');
+        //     return false;
+        // }
 
         //API call to update
         fetch(apiURL, {method: 'PUT', body: JSON.stringify(submission)})
@@ -725,6 +727,7 @@ Home | GRID Server
             alert(error);
         });
 
+        //return false to prevent form post
         return false;
     }
     //string generator for bootstrap modals
