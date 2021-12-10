@@ -672,7 +672,8 @@ Home | GRID Server
             "<th>" + element.dt_initial_irl_log + "</th>" +
             "<th>" + element.brand + " " + element.model + " (" + element.computer_type + ")" + "</th>" +
             "<th>$" + element.price.toFixed(2) + "</th>" +
-            "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
+            //"<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
+            "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Print</button></div></th>" +
             "";
             tableEntry.addEventListener('click', function() {
                 this.querySelector('#infoBtn').click();
