@@ -67,7 +67,7 @@ class SystemLog(db.Document):
             "disk_drive": self.disk_drive,
             "tags": self.tags,
             "tech": self.tech,
-            "price": self.price,
+            "price": round(self.price, 2),
             "dt_initial_system_log": self.dt_initial_system_log,
             "dt_initial_irl_log": self.dt_initial_irl_log,
             "dt_last_update": self.dt_last_update
