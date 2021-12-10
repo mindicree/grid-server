@@ -695,11 +695,14 @@ Home | GRID Server
                     '<div class="modal-body">' +
                          entryStringGenerator(element) +
                     '</div>' +
-                    '<div class="modal-footer">' +
-                        '<button id="edit-btn-close-'+element._id+'"type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
-                        '<button id="edit-btn-'+element._id+'" type="button" class="btn btn-primary">Edit</button>' +
-                        '<button id="edit-btn-cancel-'+element._id+'"type="button" class="btn btn-secondary" style="display: none;">Cancel</button>' +
-                        '<button id="edit-btn-submit-'+element._id+'" type="button" class="btn btn-primary" style="display: none;">Submit</button>' +
+                    '<div class="modal-footer justify-content-between">' +
+                        '<button id="edit-btn-delete-'+element._id+'"type="button" class="btn btn-danger">Delete</button>' +
+                        '<div>' + 
+                            '<button id="edit-btn-close-'+element._id+'"type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
+                            '<button id="edit-btn-'+element._id+'" type="button" class="btn btn-primary">Edit</button>' +
+                            '<button id="edit-btn-cancel-'+element._id+'"type="button" class="btn btn-secondary" style="display: none;">Cancel</button>' +
+                            '<button id="edit-btn-submit-'+element._id+'" type="button" class="btn btn-primary" style="display: none;">Submit</button>' +
+                        '</div>' +
                     '</div>' +
                 '</div>' +
             '</div>' +
