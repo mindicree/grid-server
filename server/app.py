@@ -109,7 +109,7 @@ def syslog(log_id):
     if request.method == 'DELETE':
         log = SystemLog.objects(id=log_id).first()
         if not log:
-            return make_response(jsonify({'error': 'System log not found'}), 404)
+            return make_response(jsonify({'message': 'System log not found'}), 404)
         log.delete()
         return make_response(jsonify({'message': 'System log [' + str(log_id) + '] deleted successfully'}), 200)
 
