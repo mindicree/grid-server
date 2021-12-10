@@ -570,6 +570,72 @@ Home | GRID Server
     </div>
 </div>
 
+<!--EDIT SUBMISSION SCRIPT-->
+<script>
+    //submit edit function
+    function submitEdit(formContainer) {
+        //console.log('What is this? \n' + formContainer + '\n' + formContainer.id);
+        //console.log('What is this? \n' + formContainer[0] + '\n' + formContainer[0].name);
+
+        //get ID
+        let systemId = formContainer.id.replace('system-edit-form-', "");
+        let apiURL = 'http://localhost:5000/syslogs/' + systemId;
+        // console.log('ID recieved: ' + systemId);
+        // console.log('URL for PUT: ' + apiURL);
+
+        //get tags
+        let computer_tags = [];
+        formContainer[15].value
+        .replace(" ", "")
+        .split(",")
+        .forEach(element => computer_tags.push(element));
+
+        //create submission JSON object
+        let submission = {
+            'old_coa': formContainer[0].value,
+            'new_coa': formContainer[1].value,
+            'serial_no': formContainer[2].value,
+            'brand': formContainer[3].value,
+            'model': formContainer[4].value,
+            'os': formContainer[5].value,
+            'computer_type': formContainer[6].value,
+            'source': formContainer[7].value,
+            'cpu_brand': formContainer[8].value,
+            'cpu_model': formContainer[9].value,
+            'cpu_gen': formContainer[10].value,
+            'cpu_speed': formContainer[11].value,
+            'ram': formContainer[12].value,
+            'hdd': formContainer[13].value,
+            'disk_drive': formContainer[14].value,
+            'tags': computer_tags,
+            'price': formContainer[16].value,
+            'tech': formContainer[17].value
+        }
+        
+        // try {
+        //     console.log('JSON Object: \n' + JSON.stringify(submission));
+        // } catch (error) {
+        //     console.log('Could not create JSON object.');
+        //     return false;
+        // }
+
+        //API call to update
+        fetch(apiURL, {method: 'PUT', body: JSON.stringify(submission)})
+        .then(response => response.json())
+        .then(data => {
+            alert('Data updated successfully!');
+            window.location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+            alert(error);
+        });
+
+        //return false to prevent form post
+        return false;
+    }
+</script>
+
 <!--Information Table-->
 <table class="table table-striped table-hover table-bordered" id='tableStockList' >
     <thead>
@@ -658,8 +724,7 @@ Home | GRID Server
                 document.querySelector('#edit-btn-'+element._id).style.display = "initial";
             });
             document.querySelector('#edit-btn-submit-'+element._id).addEventListener('click', function() {
-                //TODO confirm form, PUT to server, check success, reload modal
-                console.log('TODO: complete U functionality');
+                //console.log('TODO: complete U functionality');
                 document.querySelector('#edit-button-submit-trigger-'+element._id).click();
             });
         })
@@ -668,68 +733,6 @@ Home | GRID Server
     })
     .catch(error => console.log(error));
 
-    //submit edit function
-    function submitEdit(formContainer) {
-        //console.log('What is this? \n' + formContainer + '\n' + formContainer.id);
-        //console.log('What is this? \n' + formContainer[0] + '\n' + formContainer[0].name);
-
-        //get ID
-        let systemId = formContainer.id.replace('system-edit-form-', "");
-        let apiURL = 'http://localhost:5000/syslogs/' + systemId;
-        // console.log('ID recieved: ' + systemId);
-        // console.log('URL for PUT: ' + apiURL);
-
-        //get tags
-        let computer_tags = [];
-        formContainer[15].value
-        .replace(" ", "")
-        .split(",")
-        .forEach(element => computer_tags.push(element));
-
-        //create submission JSON object
-        let submission = {
-            'old_coa': formContainer[0].value,
-            'new_coa': formContainer[1].value,
-            'serial_no': formContainer[2].value,
-            'brand': formContainer[3].value,
-            'model': formContainer[4].value,
-            'os': formContainer[5].value,
-            'computer_type': formContainer[6].value,
-            'source': formContainer[7].value,
-            'cpu_brand': formContainer[8].value,
-            'cpu_model': formContainer[9].value,
-            'cpu_gen': formContainer[10].value,
-            'cpu_speed': formContainer[11].value,
-            'ram': formContainer[12].value,
-            'hdd': formContainer[13].value,
-            'disk_drive': formContainer[14].value,
-            'tags': computer_tags,
-            'price': formContainer[16].value,
-            'tech': formContainer[17].value
-        }
-        
-        // try {
-        //     console.log('JSON Object: \n' + JSON.stringify(submission));
-        // } catch (error) {
-        //     console.log('Could not create JSON object.');
-        //     return false;
-        // }
-
-        //API call to update
-        fetch(apiURL, {method: 'PUT', body: JSON.stringify(submission)})
-        .then(response => response.json())
-        .then(data => {
-            alert('Data updated successfully!');
-            window.location.reload();
-        })
-        .catch(error => {
-            console.log(error);
-            alert(error);
-        });
-
-        //return false to prevent form post
-        return false;
-    }
     //string generator for bootstrap modals
     function entryStringGenerator(entry) {
         let static_data= 
