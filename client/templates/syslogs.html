@@ -658,8 +658,8 @@ Home | GRID Server
 </div>
 
 <!--Pagination-->
-<nav>
-    <ul id='system-log-table-pagination' class="pagination justify-content-end">
+<nav style="width: 50%; margin: auto;">
+    <ul id='system-log-table-pagination' class="pagination pagination-sm justify-content-center">
     </ul>
 </nav>
 <!--Entry Modal-->
@@ -767,6 +767,13 @@ Home | GRID Server
         myModal.toggle();
     }
     
+    //function to changePage
+    function changePage(pageBtn) {
+        console.log('Page ID: ' + pageBtn.id);
+        let pageNum = Number(pageBtn.id.replace('system-log-page-', ''));
+        console.log('Page number clicked: ' + pageNum);
+    }
+
     //fetch system log data from backend API
     fetch('http://localhost:5000/syslogs')
     .then(response => response.json())
@@ -791,14 +798,14 @@ Home | GRID Server
                 let pageNumber = index/numRowsPerPage + 1;
                 if (pageNumber == 1) {
                     document.querySelector('#system-log-table-pagination').innerHTML += 
-                    '<li class="page-item active" id="system-log-page-'+pageNumber+'">' + 
-                        '<a class="page-link" >'+pageNumber+'</a>' + 
+                    '<li class="page-item active" >' + 
+                        '<a class="page-link" id="system-log-page-'+pageNumber+'" onclick="changePage(this)">'+pageNumber+'</a>' + 
                     '</li>' + 
                     '';
                 } else {
                     document.querySelector('#system-log-table-pagination').innerHTML += 
-                    '<li class="page-item" id="system-log-page-'+pageNumber+'">' + 
-                        '<a class="page-link" >'+pageNumber+'</a>' + 
+                    '<li class="page-item" >' + 
+                        '<a class="page-link" id="system-log-page-'+pageNumber+'" onclick="changePage(this)">'+pageNumber+'</a>' + 
                     '</li>' + 
                     '';
                 }
