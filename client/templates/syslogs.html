@@ -650,11 +650,20 @@ Home | GRID Server
 
     </tbody>
 </table>
+
+<!--Loading Thing-->
+<div id='table-loading-indicator' style='display: grid; width: 100%; margin: auto;'>
+    <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+    <h4 style="color: #aaa; margin: auto;">Loading</h4>
+</div>
+
 <div class="" id='tableModalContainer'>
     <div class="modal fade" id="modal-system-viewer">
 
     </div>
 </div>
+
+
 
 <!--DELETE SYSTEM SCRIPT-->
 <script>
@@ -772,6 +781,7 @@ Home | GRID Server
             tableEntry.setAttribute('class', 'align-middle');
             tableBody.appendChild(tableEntry);
         })
+        document.querySelector('#table-loading-indicator').style.display = "none";
     })
     .catch(error => console.log(error));
 
