@@ -834,17 +834,28 @@ Home | GRID Server
         if (num <= 4 || num >= numTotalPages - 3) {
             // 1 2 3 ... 98 99 100 N
             for (let i = 1; i <=4; i++) {
-                pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';   
+                try {
+                    pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>'; 
+                } catch (error) {
+                    console.log(error);
+                }  
             }
             pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses" onclick="changePage(this)">...</a></li>';   
             for (let i = numTotalPages - 3; i <=numTotalPages; i++) {
-                pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';   
+                try {
+                    pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';   
+                } catch (error) {
+                    console.log(error);
+                }
             }
         } else {
             //P 1 ... 49 50 51 ... 100
             pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-1" onclick="changePage(this)">1</a></li>'; 
-            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-left" onclick="changePage(this)">...</a></li>';   
-            for (let i = num-2; i <= num+2; i++) {
+            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-left" onclick="changePage(this)">...</a></li>'; 
+            //console.log('Num given: ' + num);
+            //console.log('Num range: (' + (num-2) + ', ' + (num+2) + ')')
+            for (let i = Number.parseInt(num)-2; i <= Number.parseInt(num)+2; i++) {
+                console.log('Current Value of i: ' + i)
                 pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';
             }
             pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-right" onclick="changePage(this)">...</a></li>';   
