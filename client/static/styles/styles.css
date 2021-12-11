@@ -94,6 +94,32 @@ table {
   padding-top: 50px;
 }
 
+.pagination li a {
+  color: black;
+}
+
+.pagination li a:focus,
+.pagination li a:hover,
+.pagination li span:focus,
+.pagination li span:hover
+{
+    color: black;
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.pagination .active .page-link {
+    color: black;
+    background-color: var(--green) !Important;
+    border: solid 1px var(--green) !Important;
+}
+
+.pagination .active a:hover {
+    background-color: var(--green) !Important;
+    border: solid 1px var(--green);
+}
+
+
 @media only screen and (min-width: 600px) {
   .data-entry-part {
     width: 80%;

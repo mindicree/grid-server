@@ -702,7 +702,7 @@ Home | GRID Server
     let currentPage = 1;
     //global pagination values
     //pagination calculations
-    let numRowsPerPage;
+    let numRowsPerPage = 50;
     let numTotalRows;
     let numTotalPages;
     //function to add data to modal system viewer
@@ -787,9 +787,9 @@ Home | GRID Server
             } else if (pageNum === 'elipses-left') {
                 currentPage = Number.parseInt(currentPage/2);
             } else if (pageNum === 'elipses-right') {
-                currentPage = Number.parseInt((numTotalPages-currentPage)/2) + currentPage;
+                currentPage = Number.parseInt(currentPage) + Number.parseInt((numTotalPages-currentPage)/2);
             } else {
-                currentPage = 50;
+                currentPage = Number.parseInt(numTotalPages/2);
             }
         }
         renderPagination(currentPage);
@@ -802,24 +802,29 @@ Home | GRID Server
         let tbody = document.querySelector('#tableStockListBody');
         tbody.innerHTML = "";
         //load new data into table
+        //console.log('Page number recieved' + num);
         for (let i = numRowsPerPage * (num - 1); i < numRowsPerPage * num; i++) {
-            let tableEntry = document.createElement('tr');
-            tableEntry.id = 'table-row-'+systems[i]._id;
-            tableEntry.innerHTML =
-            "<th>" + systems[i].dt_initial_irl_log + "</th>" +
-            "<th>" + systems[i].brand + " " + systems[i].model + " (" + systems[i].computer_type + ")" + "</th>" +
-            "<th>$" + systems[i].price.toFixed(2) + "</th>" +
-            //"<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
-            "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn'>Info</button><button class='btn'>Print</button></div></th>" +
-            "";
-            //add row click functionality to show information
-            tableEntry.addEventListener('click', function() {
-                renderSystemModal(this.id);
-                //this.querySelector('#infoBtn').click();
-            });
-            tableEntry.setAttribute('class', 'align-middle');
-            //add entry to table
-            tbody.appendChild(tableEntry);
+            try {
+                let tableEntry = document.createElement('tr');
+                tableEntry.id = 'table-row-'+systems[i]._id;
+                tableEntry.innerHTML =
+                "<th>" + systems[i].dt_initial_irl_log + "</th>" +
+                "<th>" + systems[i].brand + " " + systems[i].model + " (" + systems[i].computer_type + ")" + "</th>" +
+                "<th>$" + systems[i].price.toFixed(2) + "</th>" +
+                //"<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
+                "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn'>Info</button><button class='btn'>Print</button></div></th>" +
+                "";
+                //add row click functionality to show information
+                tableEntry.addEventListener('click', function() {
+                    renderSystemModal(this.id);
+                    //this.querySelector('#infoBtn').click();
+                });
+                tableEntry.setAttribute('class', 'align-middle');
+                //add entry to table
+                tbody.appendChild(tableEntry);
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
     //function to render pagination
@@ -829,7 +834,7 @@ Home | GRID Server
         //clear pagination
         pagination.innerHTML = "";
         //add prev to pagination if not available
-        pagination.innerHTML += '<li class="page-item '+(num == 1 ? 'disabled' : '') +'"><a id="system-log-page-prev" onclick="changePage(this)"class="page-link">Prev</a></li>'
+        pagination.innerHTML += '<li class="page-item '+(num == 1 ? 'disabled' : '') +'"><a id="system-log-page-prev" onclick="changePage(this)"class="page-link"'+(num != 1 ? 'style="background-color: var(--green); border: solid 1px var(--green);"' : '')+'>Prev</a></li>'
         //add pagination
         if (num <= 4 || num >= numTotalPages - 3) {
             // 1 2 3 ... 98 99 100 N
@@ -855,7 +860,7 @@ Home | GRID Server
             //console.log('Num given: ' + num);
             //console.log('Num range: (' + (num-2) + ', ' + (num+2) + ')')
             for (let i = Number.parseInt(num)-2; i <= Number.parseInt(num)+2; i++) {
-                console.log('Current Value of i: ' + i)
+                //console.log('Current Value of i: ' + i)
                 pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';
             }
             pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-right" onclick="changePage(this)">...</a></li>';   
@@ -863,7 +868,7 @@ Home | GRID Server
         }
         
         //add next
-        pagination.innerHTML += '<li class="page-item '+(num == numTotalPages ? 'disabled' : '') +'"><a id="system-log-page-next" onclick="changePage(this)"class="page-link">Next</a></li>'
+        pagination.innerHTML += '<li class="page-item '+(num == numTotalPages ? 'disabled' : '') +'"><a id="system-log-page-next" onclick="changePage(this)"class="page-link"'+(num != numTotalPages ? 'style="background-color: var(--green); border: solid 1px var(--green);"' : '')+'>Next</a></li>'
     }
 
     //fetch system log data from backend API
@@ -873,7 +878,6 @@ Home | GRID Server
         //assign data to global variable
         systems = data;
         //pagination calculations
-        numRowsPerPage = 10;
         numTotalRows = systems.length;
         numTotalPages = parseInt(numTotalRows/numRowsPerPage);
         let index = 0;
