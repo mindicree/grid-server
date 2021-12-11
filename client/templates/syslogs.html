@@ -657,6 +657,12 @@ Home | GRID Server
     <h4 style="color: #aaa; margin: auto;">Loading</h4>
 </div>
 
+<!--Pagination-->
+<nav>
+    <ul id='system-log-table-pagination' class="pagination justify-content-end">
+    </ul>
+</nav>
+<!--Entry Modal-->
 <div class="" id='tableModalContainer'>
     <div class="modal fade" id="modal-system-viewer">
 
@@ -691,6 +697,8 @@ Home | GRID Server
 <script>
     //global variable for accessing system logs from API call
     let systems;
+    //global page number for rendering the right tables
+    let currentPage = 1;
 
     //function to add data to modal system viewer
     function renderSystemModal(row_id) {
@@ -775,26 +783,53 @@ Home | GRID Server
         let tableModalContainer = document.querySelector('#tableModalContainer');
         let tableEntry;
         //load data into table (reverse order for latest entry to first entry)
+        document.querySelector('#system-log-table-pagination').innerHTML += '<li class="page-item"><a class="page-link" href="#">Previous</a></li>'
         data.reverse().forEach(element => {
+            //check page number and add if new
+            if (index % numRowsPerPage == 0) {
+                //TODO add new pagination number
+                let pageNumber = index/numRowsPerPage + 1;
+                if (pageNumber == 1) {
+                    document.querySelector('#system-log-table-pagination').innerHTML += 
+                    '<li class="page-item active" id="system-log-page-'+pageNumber+'">' + 
+                        '<a class="page-link" >'+pageNumber+'</a>' + 
+                    '</li>' + 
+                    '';
+                } else {
+                    document.querySelector('#system-log-table-pagination').innerHTML += 
+                    '<li class="page-item" id="system-log-page-'+pageNumber+'">' + 
+                        '<a class="page-link" >'+pageNumber+'</a>' + 
+                    '</li>' + 
+                    '';
+                }
+                
+            }
+
             //create table entry
-            tableEntry = document.createElement('tr');
-            tableEntry.id = 'table-row-'+element._id;
-            tableEntry.innerHTML =
-            "<th>" + element.dt_initial_irl_log + "</th>" +
-            "<th>" + element.brand + " " + element.model + " (" + element.computer_type + ")" + "</th>" +
-            "<th>$" + element.price.toFixed(2) + "</th>" +
-            //"<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
-            "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn'>Info</button><button class='btn'>Print</button></div></th>" +
-            "";
-            //add row click functionality to show information
-            tableEntry.addEventListener('click', function() {
-                renderSystemModal(this.id);
-                //this.querySelector('#infoBtn').click();
-            });
-            tableEntry.setAttribute('class', 'align-middle');
-            //add entry to table
-            tableBody.appendChild(tableEntry);
+            if (index < numRowsPerPage) {
+                tableEntry = document.createElement('tr');
+                tableEntry.id = 'table-row-'+element._id;
+                tableEntry.innerHTML =
+                "<th>" + element.dt_initial_irl_log + "</th>" +
+                "<th>" + element.brand + " " + element.model + " (" + element.computer_type + ")" + "</th>" +
+                "<th>$" + element.price.toFixed(2) + "</th>" +
+                //"<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
+                "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn'>Info</button><button class='btn'>Print</button></div></th>" +
+                "";
+                //add row click functionality to show information
+                tableEntry.addEventListener('click', function() {
+                    renderSystemModal(this.id);
+                    //this.querySelector('#infoBtn').click();
+                });
+                tableEntry.setAttribute('class', 'align-middle');
+                //add entry to table
+                tableBody.appendChild(tableEntry);
+            }
+
+            index++;
         })
+        //add next to pagination
+        document.querySelector('#system-log-table-pagination').innerHTML += '<li class="page-item"><a class="page-link" href="#">Next</a></li>'
         //make loading indicator disappear
         document.querySelector('#table-loading-indicator').style.display = "none";
     })
