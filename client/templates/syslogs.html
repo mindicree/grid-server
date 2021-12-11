@@ -689,7 +689,10 @@ Home | GRID Server
 
 <!-- CALL TO API AND FILL TABLE -->
 <script>
+    //global variable for accessing system logs from API call
     let systems;
+
+    //function to add data to modal system viewer
     function renderSystemModal(row_id) {
         //console.log('renderSystemModal called with HTML ID: ' + row_id);
         let systemIdForDisplay = row_id.replace('table-row-', "");
@@ -755,14 +758,23 @@ Home | GRID Server
         let myModal = new bootstrap.Modal(document.getElementById('modal-system-viewer'))
         myModal.toggle();
     }
+    
+    //fetch system log data from backend API
     fetch('http://localhost:5000/syslogs')
     .then(response => response.json())
     .then(data => {
+        //assign data to global variable
         systems = data;
+        //pagination calculations
+        let numRowsPerPage = 10;
+        let numTotalRows = systems.length;
+        let numTotalPages = numTotalRows/numRowsPerPage;
+        let index = 0;
+        //get table HTML elements and create dynamic table row for each entry
         let tableBody = document.querySelector('#tableStockListBody');
         let tableModalContainer = document.querySelector('#tableModalContainer');
-        var tableEntry, tableModal;
-        //load into table
+        let tableEntry;
+        //load data into table (reverse order for latest entry to first entry)
         data.reverse().forEach(element => {
             //create table entry
             tableEntry = document.createElement('tr');
@@ -774,13 +786,16 @@ Home | GRID Server
             //"<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
             "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn'>Info</button><button class='btn'>Print</button></div></th>" +
             "";
+            //add row click functionality to show information
             tableEntry.addEventListener('click', function() {
                 renderSystemModal(this.id);
                 //this.querySelector('#infoBtn').click();
             });
             tableEntry.setAttribute('class', 'align-middle');
+            //add entry to table
             tableBody.appendChild(tableEntry);
         })
+        //make loading indicator disappear
         document.querySelector('#table-loading-indicator').style.display = "none";
     })
     .catch(error => console.log(error));
