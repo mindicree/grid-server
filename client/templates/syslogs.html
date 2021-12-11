@@ -662,6 +662,7 @@ Home | GRID Server
     <ul id='system-log-table-pagination' class="pagination pagination-sm justify-content-center">
     </ul>
 </nav>
+
 <!--Entry Modal-->
 <div class="" id='tableModalContainer'>
     <div class="modal fade" id="modal-system-viewer">
@@ -699,7 +700,11 @@ Home | GRID Server
     let systems;
     //global page number for rendering the right tables
     let currentPage = 1;
-
+    //global pagination values
+    //pagination calculations
+    let numRowsPerPage;
+    let numTotalRows;
+    let numTotalPages;
     //function to add data to modal system viewer
     function renderSystemModal(row_id) {
         //console.log('renderSystemModal called with HTML ID: ' + row_id);
@@ -769,9 +774,85 @@ Home | GRID Server
     
     //function to changePage
     function changePage(pageBtn) {
-        console.log('Page ID: ' + pageBtn.id);
-        let pageNum = Number(pageBtn.id.replace('system-log-page-', ''));
-        console.log('Page number clicked: ' + pageNum);
+        //console.log('Page ID: ' + pageBtn.id);
+        let pageNum = pageBtn.id.replace('system-log-page-', '');
+        //console.log('Page number clicked: ' + pageNum);
+        if (Number.isInteger(Number.parseInt(pageNum))) {
+            currentPage = pageNum;
+        } else {
+            if (pageNum === 'prev') {
+                currentPage--;
+            } else if (pageNum === 'next') {
+                currentPage++;
+            } else if (pageNum === 'elipses-left') {
+                currentPage = Number.parseInt(currentPage/2);
+            } else if (pageNum === 'elipses-right') {
+                currentPage = Number.parseInt((numTotalPages-currentPage)/2) + currentPage;
+            } else {
+                currentPage = 50;
+            }
+        }
+        renderPagination(currentPage);
+        renderTablePage(currentPage);
+    }
+
+    function renderTablePage(num) {
+        //console.log('TODO render table with new page number ' + num);
+        //clear table
+        let tbody = document.querySelector('#tableStockListBody');
+        tbody.innerHTML = "";
+        //load new data into table
+        for (let i = numRowsPerPage * (num - 1); i < numRowsPerPage * num; i++) {
+            let tableEntry = document.createElement('tr');
+            tableEntry.id = 'table-row-'+systems[i]._id;
+            tableEntry.innerHTML =
+            "<th>" + systems[i].dt_initial_irl_log + "</th>" +
+            "<th>" + systems[i].brand + " " + systems[i].model + " (" + systems[i].computer_type + ")" + "</th>" +
+            "<th>$" + systems[i].price.toFixed(2) + "</th>" +
+            //"<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
+            "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn'>Info</button><button class='btn'>Print</button></div></th>" +
+            "";
+            //add row click functionality to show information
+            tableEntry.addEventListener('click', function() {
+                renderSystemModal(this.id);
+                //this.querySelector('#infoBtn').click();
+            });
+            tableEntry.setAttribute('class', 'align-middle');
+            //add entry to table
+            tbody.appendChild(tableEntry);
+        }
+    }
+    //function to render pagination
+    function renderPagination(num) {
+        //get pagination
+        let pagination = document.querySelector('#system-log-table-pagination');
+        //clear pagination
+        pagination.innerHTML = "";
+        //add prev to pagination if not available
+        pagination.innerHTML += '<li class="page-item '+(num == 1 ? 'disabled' : '') +'"><a id="system-log-page-prev" onclick="changePage(this)"class="page-link">Prev</a></li>'
+        //add pagination
+        if (num <= 4 || num >= numTotalPages - 3) {
+            // 1 2 3 ... 98 99 100 N
+            for (let i = 1; i <=4; i++) {
+                pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';   
+            }
+            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses" onclick="changePage(this)">...</a></li>';   
+            for (let i = numTotalPages - 3; i <=numTotalPages; i++) {
+                pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';   
+            }
+        } else {
+            //P 1 ... 49 50 51 ... 100
+            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-1" onclick="changePage(this)">1</a></li>'; 
+            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-left" onclick="changePage(this)">...</a></li>';   
+            for (let i = num-2; i <= num+2; i++) {
+                pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';
+            }
+            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-right" onclick="changePage(this)">...</a></li>';   
+            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-1" onclick="changePage(this)">'+numTotalPages+'</a></li>';
+        }
+        
+        //add next
+        pagination.innerHTML += '<li class="page-item '+(num == numTotalPages ? 'disabled' : '') +'"><a id="system-log-page-next" onclick="changePage(this)"class="page-link">Next</a></li>'
     }
 
     //fetch system log data from backend API
@@ -781,37 +862,16 @@ Home | GRID Server
         //assign data to global variable
         systems = data;
         //pagination calculations
-        let numRowsPerPage = 10;
-        let numTotalRows = systems.length;
-        let numTotalPages = numTotalRows/numRowsPerPage;
+        numRowsPerPage = 10;
+        numTotalRows = systems.length;
+        numTotalPages = parseInt(numTotalRows/numRowsPerPage);
         let index = 0;
         //get table HTML elements and create dynamic table row for each entry
         let tableBody = document.querySelector('#tableStockListBody');
         let tableModalContainer = document.querySelector('#tableModalContainer');
         let tableEntry;
         //load data into table (reverse order for latest entry to first entry)
-        document.querySelector('#system-log-table-pagination').innerHTML += '<li class="page-item"><a class="page-link" href="#">Previous</a></li>'
-        data.reverse().forEach(element => {
-            //check page number and add if new
-            if (index % numRowsPerPage == 0) {
-                //TODO add new pagination number
-                let pageNumber = index/numRowsPerPage + 1;
-                if (pageNumber == 1) {
-                    document.querySelector('#system-log-table-pagination').innerHTML += 
-                    '<li class="page-item active" >' + 
-                        '<a class="page-link" id="system-log-page-'+pageNumber+'" onclick="changePage(this)">'+pageNumber+'</a>' + 
-                    '</li>' + 
-                    '';
-                } else {
-                    document.querySelector('#system-log-table-pagination').innerHTML += 
-                    '<li class="page-item" >' + 
-                        '<a class="page-link" id="system-log-page-'+pageNumber+'" onclick="changePage(this)">'+pageNumber+'</a>' + 
-                    '</li>' + 
-                    '';
-                }
-                
-            }
-
+        systems.reverse().forEach(element => {
             //create table entry
             if (index < numRowsPerPage) {
                 tableEntry = document.createElement('tr');
@@ -831,12 +891,11 @@ Home | GRID Server
                 tableEntry.setAttribute('class', 'align-middle');
                 //add entry to table
                 tableBody.appendChild(tableEntry);
+                index++;
             }
-
-            index++;
         })
-        //add next to pagination
-        document.querySelector('#system-log-table-pagination').innerHTML += '<li class="page-item"><a class="page-link" href="#">Next</a></li>'
+        //load pagination
+        renderPagination(1);
         //make loading indicator disappear
         document.querySelector('#table-loading-indicator').style.display = "none";
     })
