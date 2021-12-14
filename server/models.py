@@ -2,6 +2,28 @@ from app import db
 from datetime import datetime
 import json
 
+class GCommLog (db.Document):
+    brand = db.StringField(required=True)
+    model = db.StringField(required=True)
+    description = db.StringField(required=True)
+    computer_type = db.StringField(required=True)
+    laptop_screen_condition = db.StringField(required=True)
+    laptop_screen_size = db.FloatField(required=True)
+    desktop_gpu_type = db.StringField(required=True)
+    desktop_display_port = db.StringField(required=True)
+    aio_screen_condition = db.StringField(required=True)
+    aio_screen_size = db.FloatField(required=True)
+    os = db.StringField(required=True)
+    hdd = db.StringField(required=True) #incorporate size as well as N/A
+    hdd_type = db.StringField(required=True) #HDD, SSD, M.2 SATA, NVME, Embedded
+    cpu_brand = db.StringField(required=True)
+    cpu_model = db.StringField(required=True)
+    cpu_speed = db.FloatField(required=True)
+    ram = db.StringField(required=True)
+    notes = db.StringField(required=True)
+    tech = db.StringField(required=True)
+    
+
 class Price(db.Document):
     type_0 = db.StringField()
     type_1 = db.StringField()
