@@ -60,7 +60,7 @@ def syslogs():
     return make_response(jsonify({'error': 'Bad request'}), 400)
 
 #SYSTEM LOG MASS LOAD (FOR TESTING ONLY)
-@app.route('/syslogs/mass-data-test/1', methods=['POST'])
+@app.route('/syslogs/mass-data-entry/1', methods=['POST'])
 def syslogs_mass():
     if request.method == 'POST':
         try:
