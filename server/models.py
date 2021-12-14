@@ -47,7 +47,7 @@ class SystemLog(db.Document):
     dt_last_update = db.DateTimeField(default = datetime.utcnow())
 
     def get_json(self):
-        print('Logging: ' + str(self.dt_initial_system_log))
+        #print('Logging: ' + str(self.dt_initial_system_log))
         return {
             "_id": str(self.id),
             "old_coa": self.old_coa,
