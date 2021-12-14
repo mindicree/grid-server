@@ -724,7 +724,7 @@ Home | GRID Server
         '<div class="modal-dialog modal-xl">' +
             '<div class="modal-content">' +
                 '<div class="modal-header">' +
-                    '<h5 class="modal-title">'+element.brand + ' ' + element.model + ' - Stock#'+element.serial_no+' - '+new Date(element.dt_initial_irl_log)+'</h5>' +
+                    '<h5 class="modal-title">'+element.brand + ' ' + element.model + ' - Stock#'+element.serial_no+' - '+formatDateString(element.dt_initial_irl_log)+'</h5>' +
                     '<button id="system-modal-close-'+element._id+'" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
                 '</div>' +
                 '<div class="modal-body">' +
@@ -796,6 +796,7 @@ Home | GRID Server
         renderTablePage(currentPage);
     }
 
+    //function to render data into table
     function renderTablePage(num) {
         //console.log('TODO render table with new page number ' + num);
         //clear table
@@ -808,7 +809,7 @@ Home | GRID Server
                 let tableEntry = document.createElement('tr');
                 tableEntry.id = 'table-row-'+systems[i]._id;
                 tableEntry.innerHTML =
-                "<th>" + new Date(systems[i].dt_initial_irl_log) + "</th>" +
+                "<th>" + formatDateString(systems[i].dt_initial_irl_log) + "</th>" +
                 "<th>" + systems[i].brand + " " + systems[i].model + " (" + systems[i].computer_type + ")" + "</th>" +
                 "<th>$" + systems[i].price.toFixed(2) + "</th>" +
                 //"<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
@@ -872,6 +873,21 @@ Home | GRID Server
         pagination.innerHTML += '<li class="page-item '+(num == numTotalPages ? 'disabled' : '') +'"><a id="system-log-page-next" onclick="changePage(this)"class="page-link"'+(num != numTotalPages ? 'style="background-color: var(--green); border: solid 1px var(--green);"' : '')+'>Next</a></li>'
     }
 
+    //function to format date for data
+    function formatDateString(dateString) {
+        date = new Date(dateString);
+        dateFormat = {
+            weekday: 'short',
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        }
+        return date.toLocaleDateString('en-UK', dateFormat);
+    }
+
     //fetch system log data from backend API
     fetch('http://localhost:5000/syslogs')
     .then(response => response.json())
@@ -893,7 +909,7 @@ Home | GRID Server
                 tableEntry = document.createElement('tr');
                 tableEntry.id = 'table-row-'+element._id;
                 tableEntry.innerHTML =
-                "<th>" + new Date(element.dt_initial_irl_log) + "</th>" +
+                "<th>" + formatDateString(element.dt_initial_irl_log) + "</th>" +
                 "<th>" + element.brand + " " + element.model + " (" + element.computer_type + ")" + "</th>" +
                 "<th>$" + element.price.toFixed(2) + "</th>" +
                 //"<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
