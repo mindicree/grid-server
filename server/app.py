@@ -472,6 +472,29 @@ def syslog_date_after_inc(date_one):
 ######################################################################
 ### GCommLOG ROUTES ##################################################
 ######################################################################
+@app.route('/gcommlogs', methods=['POST', 'GET'])
+def gcommlogs():
+    if request.method == 'GET':
+        logs = GCommLog.objects()
+        log_data = []
+        for log in logs:
+            log_data.append(log.get_json())
+        response = make_response(jsonify(log_data), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.data)
+            log = GCommLog(brand=data['brand'], model=data['model'], condition=data['condition'], os=data['os'], computer_type=data['computer_type'], laptop_screen_condition=data['laptop_screen_condition'], laptop_screen_size=data['laptop_screen_size'], desktop_gpu_type=data['desktop_gpu_type'], desktop_display_ports=data['desktop_display_ports'], aio_screen_condition=data['aio_screen_condition'], aio_screen_size=data['aio_screen_size'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], hdd_type = data['hdd_type'], tech=data['tech'])
+            log.save()
+            response = make_response(jsonify(log.get_json()), 201)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+        except ValueError:
+            return make_response(jsonify({'error': 'Failed to decode JSON properly'}), 400)
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
 
 ######################################################################
 ### ITEM/PRICING ROUTES ##############################################

@@ -7,10 +7,10 @@ class GCommLog (db.Document):
     model = db.StringField(required=True)
     condition = db.StringField(required=True)
     computer_type = db.StringField(required=True)
-    laptop_screen_condition = db.StringField(required=True)
-    laptop_screen_size = db.FloatField(required=True)
-    desktop_gpu_type = db.StringField(required=True)
-    desktop_display_port = db.ListField(required=True) #VGA, DVI, DMS, DP, HDMI, MINI DP, MINI HDMI, USB-C
+    laptop_screen_condition = db.StringField(required=True) 
+    laptop_screen_size = db.FloatField(required=True) #provide a list N/A (-1), <11(-11), 11, 13, 14, 15, 17, 18, >18 (-100)
+    desktop_gpu_type = db.StringField(required=True) #prompt for name if dedicated
+    desktop_display_ports = db.ListField(required=True) #VGA, DVI, DMS, DP, HDMI, MINI DP, MINI HDMI, USB-C
     aio_screen_condition = db.StringField(required=True)
     aio_screen_size = db.FloatField(required=True)
     os = db.StringField(required=True)
@@ -18,9 +18,9 @@ class GCommLog (db.Document):
     cpu_model = db.StringField(required=True)
     cpu_speed = db.FloatField(required=True)
     hdd = db.StringField(required=True) #incorporate size as well as N/A
-    hdd_type = db.StringField(required=True) #HDD, SSD, M.2 SATA, NVME, Embedded
-    ram = db.StringField(required=True)
-    notes = db.StringField(required=True)
+    hdd_type = db.StringField(required=True) #N/A HDD, SSD, M.2 SATA, NVME, Embedded
+    ram = db.StringField(required=True) #None, <1GB - 32GB
+    notes = db.StringField()
     tech = db.StringField(required=True)
     dt_initial_system_log = db.DateTimeField(default = datetime.utcnow())
     dt_last_update = db.DateTimeField(default = datetime.utcnow())
@@ -36,7 +36,7 @@ class GCommLog (db.Document):
             "laptop_screen_condition": self.laptop_screen_condition,
             "laptop_screen_size": self.laptop_screen_size,
             "desktop_gpu_type": self.desktop_gpu_type,
-            "desktop_display_port": self.desktop_display_port,
+            "desktop_display_ports": self.desktop_display_ports,
             "aio_screen_condition": self.aio_screen_condition,
             "aio_screen_size": self.aio_screen_size,
             "cpu_brand": self.cpu_brand,
