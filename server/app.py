@@ -511,7 +511,7 @@ def gcommlog(log_id):
     if request.method == 'PUT':
         log = GCommLog.objects(id=log_id).first()
         if not log:
-            reponse = make_response(jsonify({'error': 'GCOMM log with ID [' + log_id + '] not found.'}), 404)
+            response = make_response(jsonify({'error': 'GCOMM log with ID [' + log_id + '] not found.'}), 404)
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
         data = json.loads(request.data)
