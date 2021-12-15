@@ -119,10 +119,19 @@ table {
     border: solid 1px var(--green);
 }
 
+#desktop_video_ports {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
 @media only screen and (min-width: 600px) {
   .data-entry-part {
     width: 80%;
+  }
+
+  #desktop-video-port-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
