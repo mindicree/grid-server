@@ -5,23 +5,51 @@ import json
 class GCommLog (db.Document):
     brand = db.StringField(required=True)
     model = db.StringField(required=True)
-    description = db.StringField(required=True)
+    condition = db.StringField(required=True)
     computer_type = db.StringField(required=True)
     laptop_screen_condition = db.StringField(required=True)
     laptop_screen_size = db.FloatField(required=True)
     desktop_gpu_type = db.StringField(required=True)
-    desktop_display_port = db.StringField(required=True)
+    desktop_display_port = db.ListField(required=True) #VGA, DVI, DMS, DP, HDMI, MINI DP, MINI HDMI, USB-C
     aio_screen_condition = db.StringField(required=True)
     aio_screen_size = db.FloatField(required=True)
     os = db.StringField(required=True)
-    hdd = db.StringField(required=True) #incorporate size as well as N/A
-    hdd_type = db.StringField(required=True) #HDD, SSD, M.2 SATA, NVME, Embedded
     cpu_brand = db.StringField(required=True)
     cpu_model = db.StringField(required=True)
     cpu_speed = db.FloatField(required=True)
+    hdd = db.StringField(required=True) #incorporate size as well as N/A
+    hdd_type = db.StringField(required=True) #HDD, SSD, M.2 SATA, NVME, Embedded
     ram = db.StringField(required=True)
     notes = db.StringField(required=True)
     tech = db.StringField(required=True)
+    dt_initial_system_log = db.DateTimeField(default = datetime.utcnow())
+    dt_last_update = db.DateTimeField(default = datetime.utcnow())
+
+    def get_json(self):
+        return {
+            "_id": str(self.id),
+            "brand": self.brand,
+            "model": self.model,
+            "condition": self.condition,
+            "computer_type": self.computer_type,
+            "os": self.os,
+            "laptop_screen_condition": self.laptop_screen_condition,
+            "laptop_screen_size": self.laptop_screen_size,
+            "desktop_gpu_type": self.desktop_gpu_type,
+            "desktop_display_port": self.desktop_display_port,
+            "aio_screen_condition": self.aio_screen_condition,
+            "aio_screen_size": self.aio_screen_size,
+            "cpu_brand": self.cpu_brand,
+            "cpu_model": self.cpu_model,
+            "cpu_speed": self.cpu_speed,
+            "ram": self.ram,
+            "hdd": self.hdd,
+            "hdd_type": self.hdd_type,
+            "notes": self.notes,
+            "tech": self.tech,
+            "dt_initial_system_log": self.dt_initial_system_log,
+            "dt_last_update": self.dt_last_update
+        }
     
 
 class Price(db.Document):
