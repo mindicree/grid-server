@@ -6,18 +6,6 @@ System Logs | GRID Server
 
 {% block body %}
 <!--Data Entry-->
-<script type="text/javascript">
-    function confirmSubmit(form) {
-        var initials = prompt("Please confirm your entry and sign with your initials");
-        if (initials == null || initials == '') {
-        alert('No initials provided. Submission cancelled.');
-        return false;
-        } else {
-        document.querySelector('#initialsSubmit').setAttribute('value', initials);
-        return true;
-        }
-    }
-</script>
 <form onsubmit="return renderSubmission()">
     <input type="text" name="initials" value="" id='initialsSubmit' style="display: none"/>
     <!--Data Entry Table-->
