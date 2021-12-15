@@ -10,7 +10,7 @@ class GCommLog (db.Document):
     laptop_screen_condition = db.StringField(required=True) 
     laptop_screen_size = db.FloatField(required=True) #provide a list N/A (-1), <11(-11), 11, 13, 14, 15, 17, 18, >18 (-100)
     desktop_gpu_type = db.StringField(required=True) #prompt for name if dedicated
-    desktop_display_ports = db.ListField(required=True) #VGA, DVI, DMS, DP, HDMI, MINI DP, MINI HDMI, USB-C
+    desktop_display_ports = db.ListField() #VGA, DVI, DMS, DP, HDMI, MINI DP, MINI HDMI, USB-C
     aio_screen_condition = db.StringField(required=True)
     aio_screen_size = db.FloatField(required=True)
     os = db.StringField(required=True)
@@ -23,6 +23,7 @@ class GCommLog (db.Document):
     notes = db.StringField()
     tech = db.StringField(required=True)
     dt_initial_system_log = db.DateTimeField(default = datetime.utcnow())
+    dt_initial_irl_log = db.DateTimeField(default = datetime.utcnow())
     dt_last_update = db.DateTimeField(default = datetime.utcnow())
 
     def get_json(self):
@@ -48,6 +49,7 @@ class GCommLog (db.Document):
             "notes": self.notes,
             "tech": self.tech,
             "dt_initial_system_log": self.dt_initial_system_log,
+            "dt_initial_irl_log": self.dt_initial_irl_log,
             "dt_last_update": self.dt_last_update
         }
     

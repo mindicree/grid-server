@@ -496,6 +496,43 @@ def gcommlogs():
 
     return make_response(jsonify({'error': 'Bad request'}), 400)
 
+#SYSTEM LOG BY ID
+@app.route('/gcommlogs/<log_id>', methods=['GET', 'PUT', 'DELETE'])
+def gcommlog(log_id):
+    if request.method == 'GET':
+        log = GCommLog.objects(id=log_id).first()
+        if not log:
+            return make_response(jsonify({'error': 'GCOMM log with ID [' + log_id + '] not found.'}), 404)
+        response = make_response(jsonify(log.get_json()), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+
+    if request.method == 'PUT':
+        log = GCommLog.objects(id=log_id).first()
+        if not log:
+            reponse = make_response(jsonify({'error': 'GCOMM log with ID [' + log_id + '] not found.'}), 404)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+        data = json.loads(request.data)
+        if not data:
+            response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+        try:
+            log.update(brand=data['brand'], model=data['model'], condition=data['condition'], os=data['os'], computer_type=data['computer_type'], laptop_screen_condition=data['laptop_screen_condition'], laptop_screen_size=data['laptop_screen_size'], desktop_gpu_type=data['desktop_gpu_type'], desktop_display_ports=data['desktop_display_ports'], aio_screen_condition=data['aio_screen_condition'], aio_screen_size=data['aio_screen_size'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], hdd_type = data['hdd_type'], tech=data['tech'], dt_initial_irl_log=datetime.strptime(data['dt_initial_irl_log'], '%a, %d %b %Y %H:%M:%S %Z'), dt_last_update = datetime.utcnow())
+        except:
+            log.update(brand=data['brand'], model=data['model'], condition=data['condition'], os=data['os'], computer_type=data['computer_type'], laptop_screen_condition=data['laptop_screen_condition'], laptop_screen_size=data['laptop_screen_size'], desktop_gpu_type=data['desktop_gpu_type'], desktop_display_ports=data['desktop_display_ports'], aio_screen_condition=data['aio_screen_condition'], aio_screen_size=data['aio_screen_size'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], hdd_type = data['hdd_type'], tech=data['tech'], dt_last_update = datetime.utcnow())
+        response = make_response(jsonify({'message': 'GCOMM log ['+str(log_id)+'] updated successfully'}), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+    if request.method == 'DELETE':
+        log = GCommLog.objects(id=log_id).first()
+        if not log:
+            return make_response(jsonify({'message': 'GCOMM log not found'}), 404)
+        log.delete()
+        return make_response(jsonify({'message': 'GCOMM log [' + str(log_id) + '] deleted successfully'}), 200)
 ######################################################################
 ### ITEM/PRICING ROUTES ##############################################
 ######################################################################
