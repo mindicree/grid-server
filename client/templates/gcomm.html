@@ -117,7 +117,7 @@ G-COMM | GRID Server
             <div id='computer-options-desktop' style="display: none;">
                 <div class="data-entry-label-and-input">
                     <p>Graphics: </p>
-                    <select name="desktop_gpu_type" id="desktop_gpu_type_select">
+                    <select name="desktop_gpu_type" id="desktop_gpu_type_select" required>
                         <option value="" selected disabled hidden>Select One...</option>
                         <option value="Integrated">Integrated</option>
                         <option value="Dedicated" onclick="promptGPUName(this)">Dedicated</option>
@@ -176,6 +176,21 @@ G-COMM | GRID Server
             </div>
             <div id='computer-options-laptop' style='display: none;'>
                 <div class="data-entry-label-and-input">
+                    <p>Screen Size: </p>
+                    <select name="laptop_screen_size" id='laptop_screen_size'>
+                        <option value="" selected disabled hidden>Select One...</option>
+                        <option value=-11>less than 11in.</option>
+                        <option value=11>11 inches</option>
+                        <option value=13>13 inches</option>
+                        <option value=14>14 inches</option>
+                        <option value=15>15 inches</option>
+                        <option value=17>17 inches</option>
+                        <option value=18>18 inches</option>
+                        <option value=-100>greater than 18in.</option>
+                        <option value=-1 hidden >N/A</option>
+                    </select>
+                </div>
+                <div class="data-entry-label-and-input">
                     <p>Screen Cond:</p>
                     <select name="laptop_screen_condition" id = "laptop_screen_condition">
                         <option value="" selected disabled hidden>Select One...</option>
@@ -191,39 +206,8 @@ G-COMM | GRID Server
                         <option value="N/A" hidden >N/A</option>
                     </select>
                 </div>
-                <div class="data-entry-label-and-input">
-                    <p>Screen Size: </p>
-                    <select name="laptop_screen_size" id='laptop_screen_size'>
-                        <option value="" selected disabled hidden>Select One...</option>
-                        <option value=-11>less than 11in.</option>
-                        <option value=11>11 inches</option>
-                        <option value=13>13 inches</option>
-                        <option value=14>14 inches</option>
-                        <option value=15>15 inches</option>
-                        <option value=17>17 inches</option>
-                        <option value=18>18 inches</option>
-                        <option value=-100>greater than 18in.</option>
-                        <option value=-1 hidden >N/A</option>
-                    </select>
-                </div>
             </div>
             <div id='computer-options-aio' style="display: none;">
-                <div class="data-entry-label-and-input">
-                    <p>Screen Cond:</p>
-                    <select name="aio_screen_condition" id = "aio_screen_condition">
-                        <option value="" selected disabled hidden>Select One...</option>
-                        <option value="Working">Working</option>
-                        <option value="Cracked">Cracked</option>
-                        <option value="Cracked (unusable)">Cracked (unusable)</option>
-                        <option value="Dead Pixels">Dead Pixels</option>
-                        <option value="Dead Pixels (unusable)">Dead Pixels (unusable)</option>
-                        <option value="Dark Spots">Dark Spots</option>
-                        <option value="Discolored">Discolored</option>
-                        <option value="Dim">Dim</option>
-                        <option value="Dead">Dead</option>
-                        <option value="N/A" hidden >N/A</option>
-                    </select>
-                </div>
                 <div class="data-entry-label-and-input">
                     <p>Screen Size: </p>
                     <select name="aio_screen_size" id='aio_screen_size'>
@@ -247,6 +231,22 @@ G-COMM | GRID Server
                         <option value=34>34 inches</option>
                         <option value=-100>greater than 34in.</option>
                         <option value=-1 hidden >N/A</option>
+                    </select>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Screen Cond:</p>
+                    <select name="aio_screen_condition" id = "aio_screen_condition">
+                        <option value="" selected disabled hidden>Select One...</option>
+                        <option value="Working">Working</option>
+                        <option value="Cracked">Cracked</option>
+                        <option value="Cracked (unusable)">Cracked (unusable)</option>
+                        <option value="Dead Pixels">Dead Pixels</option>
+                        <option value="Dead Pixels (unusable)">Dead Pixels (unusable)</option>
+                        <option value="Dark Spots">Dark Spots</option>
+                        <option value="Discolored">Discolored</option>
+                        <option value="Dim">Dim</option>
+                        <option value="Dead">Dead</option>
+                        <option value="N/A" hidden >N/A</option>
                     </select>
                 </div>
             </div>
@@ -311,6 +311,7 @@ G-COMM | GRID Server
                 <p>CPU Speed: </p>
                 <select name="cpu-speed" id="cpu-speed-selector" required>
                     <option value="" selected disabled hidden>Select One...</option>
+                    <option value="-1">Unknown</option>
                     <option value="1.0">1.0</option>
                     <option value="1.1">1.1</option>
                     <option value="1.2">1.2</option>
@@ -426,6 +427,12 @@ G-COMM | GRID Server
                     </div>
                 </div>
             </div>
+
+            <!-- Notes -->
+            <div class="data-entry-label-and-input">
+                <p>Notes: </p>
+                <input type="text" name="notes" value="">
+            </div>
         </div>
     </div>
 
@@ -465,52 +472,48 @@ G-COMM | GRID Server
                     computer_type = item.value;
                 }
             });
-            //get selected computer type
-            let computer_source;
-            document.getElementsByName('source').forEach((item) => {
-                if (item.checked) {
-                    computer_source = item.value;
-                }
-            });
-            //get tags
-            let computer_tags = [];
+            //get display ports
+            let desktop_display_ports = [];
             document.querySelectorAll('.form-check-input').forEach((item) => {
                 //console.log(item)
                 if (item.checked && item.type=="checkbox") {
-                    if (item.id == "tag-second-drive") {
-                        let drive_value = document.querySelector('#second-hdd-selector').value;
-                        computer_tags.push(item.value + drive_value);
-                    } else {
-                        computer_tags.push(item.value);
-                    }
+                    desktop_display_ports.push(item.value);
+                }
+            });
+            //get selected HDD type
+            let hdd_type;
+            document.getElementsByName('hdd_type').forEach((item) => {
+                if (item.checked) {
+                    hdd_type = item.value;
                 }
             });
 
             try {
                 let submission = {
-                    'old_coa': document.getElementsByName('old_coa')[0].value,
-                    'new_coa': document.getElementsByName('new_coa')[0].value,
-                    'serial_no': document.getElementsByName('serial_no')[0].value,
                     'brand': document.getElementsByName('brand')[0].value,
                     'model': document.getElementsByName('model')[0].value,
-                    'os': document.getElementsByName('os')[0].value,
+                    'condition': document.getElementsByName('condition')[0].value,
                     //computer_type
                     'computer_type': computer_type,
-                    //computer_source
-                    'source': computer_source,
+                    //computer type values
+                    'laptop_screen_condition': (computer_type != 'Laptop' ? 'N/A' : document.getElementsByName('laptop_screen_condition')[0].value),
+                    'laptop_screen_size': (computer_type != 'Laptop' ? -1 : document.getElementsByName('laptop_screen_size')[0].value),
+                    'desktop_gpu_type': (computer_type != 'Desktop' ? 'N/A' : document.getElementsByName('desktop_gpu_type')[0].value),
+                    'desktop_display_ports': (computer_type != 'Desktop' ? [] : desktop_display_ports),
+                    'aio_screen_condition': (computer_type != 'All-In-One' ? 'N/A' : document.getElementsByName('aio_screen_condition')[0].value),
+                    'aio_screen_size': (computer_type != 'All-In-One' ? -1 : document.getElementsByName('aio_screen_size')[0].value),
+                    'os': document.getElementsByName('os')[0].value,
                     'cpu_brand': document.getElementsByName('cpu-brand')[0].value,
-                    'cpu_model': document.getElementsByName('cpu-type')[0].value,
-                    'cpu_gen': document.getElementsByName('cpu-gen')[0].value,
+                    'cpu_model': document.getElementsByName('cpu_model')[0].value,
                     'cpu_speed': document.getElementsByName('cpu-speed')[0].value,
                     'ram': document.getElementsByName('ram')[0].value,
                     'hdd': document.getElementsByName('hdd')[0].value,
-                    'disk_drive': document.getElementsByName('disk-drive')[0].value,
-                    //computer_tags
-                    'tags': computer_tags
+                    'hdd_type': hdd_type,
+                    'notes': document.getElementsByName('notes')[0].value
                 };
-                //console.log('JSON Data Rendered:\n' + JSON.stringify(submission));
+                console.log('JSON Data Rendered:\n' + JSON.stringify(submission));
 
-                document.querySelector("#submission-modal-title").innerHTML = submission.brand + ' ' + submission.model + ' - Serial No.#'+submission.serial_no;
+                document.querySelector("#submission-modal-title").innerHTML = submission.brand + ' ' + submission.model;
                 document.querySelector("#submission-modal-body").innerHTML = submissionStringGenerator(submission);
                 let submissionModalElement = document.getElementById('submission_modal');
                 let submissionModal = new bootstrap.Modal(submissionModalElement);
@@ -524,10 +527,10 @@ G-COMM | GRID Server
                         this.style.display = "none";
                         document.querySelector("#loading-gif").style.display = "initial";
                         submission.tech = techInitials;
-                        fetch('http://localhost:5000/syslogs', {method: 'POST', body: JSON.stringify(submission)})
+                        fetch('http://localhost:5000/gcommlogs', {method: 'POST', body: JSON.stringify(submission)})
                         .then(response => response.json())
                         .then(data => {
-                            window.location.assign('syslogs');
+                            window.location.assign('gcomm');
                         })
                         .catch (error => {
                             this.style.display = "initial";
@@ -549,16 +552,51 @@ G-COMM | GRID Server
     
         //string generator for bootstrap modals
         function submissionStringGenerator(entry) {
-            return '<p><b>Old COA: </b>' + entry.old_coa + '</p>' +
-            '<p><b>New COA: </b>' + entry.new_coa + '</p>' +
-            '<p><b>Serial No.: </b>' + entry.serial_no + '</p>' +
-            '<p><b>Operating System: </b>' + entry.os + '</p>' +
+            let type_text, screenSize;
+            switch (entry.computer_type) {
+                case 'Desktop':
+                    type_text = '' +
+                        '<p><b>Graphics Type: </b>' + entry.desktop_gpu_type + '</p>' + 
+                        '<p><b>Display Ports: </b>' + entry.desktop_display_ports + '</p>' + 
+                        '';
+                    break;
+                case 'Laptop':
+                    if (entry.laptop_screen_size == -11) {
+                        screenSize = 'less than 11';
+                    } else if (entry.laptop_screen_size == -100) {
+                        screenSize = 'greater than 18';
+                    } else {
+                        screenSize = entry.laptop_screen_size;
+                    }
+                    type_text = '' +
+                        '<p><b>Screen Size: </b>' + screenSize+ ' inches</p>' + 
+                        '<p><b>Screen Condition: </b>' + entry.laptop_screen_condition + '</p>' + 
+                        '';
+                    break;
+                case 'All-In-One':
+                    if (entry.aio_screen_size == -19) {
+                        screenSize = 'less than 19';
+                    } else if (entry.aio_screen_size == -100) {
+                        screenSize = 'greater than 34';
+                    } else {
+                        screenSize = entry.aio_screen_size;
+                    }
+                    type_text = '' +
+                        '<p><b>Screen Size: </b>' + screenSize+ ' inches</p>' + 
+                        '<p><b>Screen Condition: </b>' + entry.aio_screen_condition + '</p>' + 
+                        '';
+                    break;
+                default:
+                    console.log('Something went wrong. Please contact developer.');
+            }
+            return '' +
             '<p><b>Computer Type: </b>' + entry.computer_type + '</p>' +
-            '<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
+            type_text + 
+            '<p><b>Operating System: </b>' + entry.os + '</p>' +
+            '<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + ' ' + (entry.cpu_speed != -1 ? '- ' + entry.cpu_speed + 'Ghz' : '(Unknown Speed)') + '</p>' +
             '<p><b>RAM Amount: </b>' + entry.ram + '</p>' +
-            '<p><b>Hard Drive: </b>' + entry.hdd + '</p>' +
-            '<p><b>Disk Drive: </b>' + entry.disk_drive + '</p>' +
-            '<p><b>Other Information: </b>' + entry.tags + '</p>' +
+            '<p><b>Hard Drive: </b>' + entry.hdd + ' ' + entry.hdd_type + '</p>' +
+            '<p><b>Notes: </b>' + (entry.notes.length <= 0 ? 'N/A' : entry.notes) + '</p>' +
             '<p><b>Tech: </b> <input id="submission-modal-tech-input" type="text" placeholder="Initials here..."><span id="tech-confirmer" style="color: #f00; visibility: hidden;">&emsp;Please enter your initials</span></p>' +
             '';
         }
