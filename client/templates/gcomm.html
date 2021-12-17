@@ -1126,12 +1126,12 @@ G-COMM | GRID Server
             'model': formContainer[1].value,
             'condition': formContainer[2].value,
             'computer_type': formContainer[3].value,
-            'laptop_screen_size': (type != 'Laptop' ? 'N/A' : formContainer[4].value),
-            'laptop_screen_condition': (type != 'Laptop' ? -1 : formContainer[5].value),
+            'laptop_screen_size': (type != 'Laptop' ? -1 : formContainer[4].value),
+            'laptop_screen_condition': (type != 'Laptop' ? 'N/A' : formContainer[5].value),
             'desktop_gpu_type': (type != 'Desktop' ? 'N/A' : formContainer[6].value),
             'desktop_display_ports': (type != 'Desktop' ? [] : displayPorts),
-            'aio_screen_condition': (type != 'All-In-One' ? 'N/A' : formContainer[8].value),
-            'aio_screen_size': (type != 'All-In-One' ? -1 : formContainer[9].value),
+            'aio_screen_size': (type != 'All-In-One' ? -1 : formContainer[8].value),
+            'aio_screen_condition': (type != 'All-In-One' ? 'N/A' : formContainer[9].value),
             'os': formContainer[10].value,
             'cpu_brand': formContainer[11].value,
             'cpu_model': formContainer[12].value,
@@ -1149,7 +1149,7 @@ G-COMM | GRID Server
             console.log('Could not create JSON object.');
             return false;
         } finally {
-            return false;
+            //return false;
         }
 
         //API call to update
