@@ -905,19 +905,53 @@ G-COMM | GRID Server
                     '<p><b>Model: </b><input name="edit-model-'+entry._id+'" type="text" value="' + entry.model + '" required></p>' +
                     '<p><b>Cond: </b><input name="edit-condition-'+entry._id+'" type="text" value="' + entry.condition + '" required></p>' +
                     '<p><b>Computer Type: </b>' + 
-                        '<select name="edit-condition-' + entry._id + '" onchange="selectEditOptions(this)">' + 
+                        '<select name="edit-computer-type-' + entry._id + '" onchange="selectEditOptions(this)">' + 
                             '<option value="Desktop" ' + (entry.computer_type == "Desktop" ? 'selected' : '') + '>Desktop</option>' + 
                             '<option value="Laptop" ' + (entry.computer_type == "Laptop" ? 'selected' : '') + '>Laptop</option>' + 
                             '<option value="All-In-One" ' + (entry.computer_type == "All-In-One" ? 'selected' : '') + '>All-In-One</option>' + 
                         '</select>' + 
                     '</p>' +
 
-                    '<p ' + (entry.computer_type != 'Laptop' ? 'hidden' : '') + '><b>Screen Size: </b><input name="edit-laptop-screen-size-'+entry._id+'" type="text" value="' + entry.laptop_screen_size + '" required></p>' +
-                    '<p ' + (entry.computer_type != 'Laptop' ? 'hidden' : '') + '><b>Screen Cond: </b><input name="edit-laptop-screen-condition'+entry._id+'" type="text" value="' + entry.laptop_screen_condition + '" required></p>' +
-                    '<p ' + (entry.computer_type != 'Desktop' ? 'hidden' : '') + '><b>Graphics: </b><input name="edit-desktop-graphics-'+entry._id+'" type="text" value="' + entry.desktop_gpu_type + '" required></p>' +
-                    '<p ' + (entry.computer_type != 'Desktop' ? 'hidden' : '') + '><b>Display Ports: </b><input name="edit-condition-'+entry._id+'" type="text" value="' + entry.desktop_display_ports + '" required></p>' +
-                    '<p ' + (entry.computer_type != 'All-In-One' ? 'hidden' : '') + '><b>Screen Size: </b><input name="edit-condition-'+entry._id+'" type="text" value="' + entry.aio_screen_size + '" required></p>' +
-                    '<p ' + (entry.computer_type != 'All-In-One' ? 'hidden' : '') + '><b>Screen Cond: </b><input name="edit-condition-'+entry._id+'" type="text" value="' + entry.aio_screen_condition + '" required></p>' +
+                    '<p ' + (entry.computer_type != 'Laptop' ? 'hidden' : '') + '><b>Screen Size: </b>' + 
+                        '<select name="edit-laptop-screen-size-'+entry._id+'" required>' + 
+                            '<option value=-11'+ (entry.laptop_screen_size == -11 ? ' selected ' : ' ') +'>less than 11in.</option>' +
+                            '<option value=11'+ (entry.laptop_screen_size == 11 ? ' selected ' : ' ') +'>11 inches</option>'+
+                            '<option value=13'+ (entry.laptop_screen_size == 13 ? ' selected ' : ' ') +'>13 inches</option>'+
+                            '<option value=14'+ (entry.laptop_screen_size == 14 ? ' selected ' : ' ') +'>14 inches</option>'+
+                            '<option value=15'+ (entry.laptop_screen_size == 15 ? ' selected ' : ' ') +'>15 inches</option>'+
+                            '<option value=17'+ (entry.laptop_screen_size == 17 ? ' selected ' : ' ') +'>17 inches</option>'+
+                            '<option value=18'+ (entry.laptop_screen_size == 19 ? ' selected ' : ' ') +'>18 inches</option>'+
+                            '<option value=-100'+ (entry.laptop_screen_size == -100 ? ' selected ' : ' ') +'>greater than 18in.</option>'+
+                            '<option value=-1 hidden '+ (entry.laptop_screen_size == -11 ? ' selected ' : ' ') +'>N/A</option>'+
+                        '</select>' + 
+                    '</p>' +
+                    '<p ' + (entry.computer_type != 'Laptop' ? 'hidden' : '') + '><b>Screen Cond: </b><input name="edit-laptop-screen-condition-'+entry._id+'" type="text" value="' + entry.laptop_screen_condition + '" required></p>' +
+                    '<p ' + (entry.computer_type != 'Desktop' ? 'hidden' : '') + '><b>Graphics: </b><input name="edit-desktop-graphics-'+entry._id+'" type="text" value="' + (entry.desktop_gpu_type != 'N/A' ? entry.desktop_gpu_type : '') + '" placeholder="Integrated or Dedicated" required></p>' +
+                    '<p ' + (entry.computer_type != 'Desktop' ? 'hidden' : '') + '><b>Display Ports: </b><input name="edit-desktop-display-ports-'+entry._id+'" type="text" value="' + (entry.desktop_display_ports.length > 0 ? entry.desktop_display_ports : '') + '" placeholder="VGA,DVI,HDMI" required></p>' +
+                    '<p ' + (entry.computer_type != 'All-In-One' ? 'hidden' : '') + '><b>Screen Size: </b>'+
+                        '<select name="edit-aio-screen-size-'+entry._id+'" required>'+
+                            '<option value=-19'+ (entry.aio_screen_size == -19 ? ' selected ' : ' ') +'>less than 19in.</option>' +
+                            '<option value=19'+ (entry.aio_screen_size == 19 ? ' selected ' : ' ') +'>19 inches</option>' +
+                            '<option value=20'+ (entry.aio_screen_size == 20 ? ' selected ' : ' ') +'>20 inches</option>' +
+                            '<option value=21'+ (entry.aio_screen_size == 21 ? ' selected ' : ' ') +'>21 inches</option>' +
+                            '<option value=22'+ (entry.aio_screen_size == 22 ? ' selected ' : ' ') +'>22 inches</option>' +
+                            '<option value=23'+ (entry.aio_screen_size == 23 ? ' selected ' : ' ') +'>23 inches</option>' +
+                            '<option value=24'+ (entry.aio_screen_size == 24 ? ' selected ' : ' ') +'>24 inches</option>' +
+                            '<option value=25'+ (entry.aio_screen_size == 25 ? ' selected ' : ' ') +'>25 inches</option>' +
+                            '<option value=26'+ (entry.aio_screen_size == 26 ? ' selected ' : ' ') +'>26 inches</option>' +
+                            '<option value=27'+ (entry.aio_screen_size == 27 ? ' selected ' : ' ') +'>27 inches</option>' +
+                            '<option value=28'+ (entry.aio_screen_size == 28 ? ' selected ' : ' ') +'>28 inches</option>' +
+                            '<option value=29'+ (entry.aio_screen_size == 29 ? ' selected ' : ' ') +'>29 inches</option>' +
+                            '<option value=30'+ (entry.aio_screen_size == 30 ? ' selected ' : ' ') +'>30 inches</option>' +
+                            '<option value=31'+ (entry.aio_screen_size == 31 ? ' selected ' : ' ') +'>31 inches</option>' +
+                            '<option value=32'+ (entry.aio_screen_size == 32 ? ' selected ' : ' ') +'>32 inches</option>' +
+                            '<option value=33'+ (entry.aio_screen_size == 33 ? ' selected ' : ' ') +'>33 inches</option>' +
+                            '<option value=34'+ (entry.aio_screen_size == 34 ? ' selected ' : ' ') +'>34 inches</option>' +
+                            '<option value=-100'+ (entry.aio_screen_size == -100 ? ' selected ' : ' ') +'>greater than 34in.</option>' +
+                            '<option value=-1 hidden >N/A</option>' +
+                        '</select>' +
+                    '</p>' +
+                    '<p ' + (entry.computer_type != 'All-In-One' ? 'hidden' : '') + '><b>Screen Cond: </b><input name="edit-aio-screen-condition-'+entry._id+'" type="text" value="' + entry.aio_screen_condition + '" required></p>' +
                     
                     '<p><b>Op. System: </b><input name="edit-os-'+entry._id+'" type="text" value="' + entry.os + '" required></p>' +
                     //'<br><br><p><b>Tech: </b><input name="edit-tech-'+entry._id+'type="text" value="' + entry.tech + '" required></p>' +
@@ -931,7 +965,7 @@ G-COMM | GRID Server
                         '<p><b>Hard Drive: </b><input name="edit-hdd-'+entry._id+'type="text" value="' + entry.hdd + '" required></p>' +
                         '<p><b>HDD Type: </b><input name="edit-hdd-'+entry._id+'type="text" value="' + entry.hdd_type + '" required></p>' +
                     '</div>' + 
-                    '<br><br><p><b>Tech: </b><input name="edit-tech-'+entry._id+'" type="text" value="' + entry.tech + '" required></p>' +
+                    '<br><br><p><b>Tech: </b><br><input name="edit-tech-'+entry._id+'" type="text" value="' + entry.tech + '" required></p>' +
                 '</div>' +
                 //'<br><br><p><b>Tech: </b><input name="edit-old-coa-'+entry._id+'type="text" value="' + entry.tech + '" required></p>' + 
             '</div>' + 
@@ -939,6 +973,38 @@ G-COMM | GRID Server
         '</form>';
 
         return static_data + edit_data;
+    }
+
+    //function for changing computer options based on computer type
+    function selectEditOptions(element) {
+        let id = element.name.replace('edit-computer-type-', '');
+        console.log(id);
+        switch (element.value) {
+            case 'Desktop':
+                document.getElementsByName('edit-laptop-screen-size-'+id)[0].parentElement.setAttribute('hidden', true);
+                document.getElementsByName('edit-laptop-screen-condition-'+id)[0].parentElement.setAttribute('hidden', true);
+                document.getElementsByName('edit-desktop-graphics-'+id)[0].parentElement.removeAttribute('hidden');
+                document.getElementsByName('edit-desktop-display-ports-'+id)[0].parentElement.removeAttribute('hidden');
+                document.getElementsByName('edit-aio-screen-size-'+id)[0].parentElement.setAttribute('hidden', true);
+                document.getElementsByName('edit-aio-screen-condition-'+id)[0].parentElement.setAttribute('hidden', true);
+                break;
+            case 'Laptop':
+                document.getElementsByName('edit-laptop-screen-size-'+id)[0].parentElement.removeAttribute('hidden');
+                document.getElementsByName('edit-laptop-screen-condition-'+id)[0].parentElement.removeAttribute('hidden', true);
+                document.getElementsByName('edit-desktop-graphics-'+id)[0].parentElement.setAttribute('hidden', true);
+                document.getElementsByName('edit-desktop-display-ports-'+id)[0].parentElement.setAttribute('hidden', true);
+                document.getElementsByName('edit-aio-screen-size-'+id)[0].parentElement.setAttribute('hidden', true);
+                document.getElementsByName('edit-aio-screen-condition-'+id)[0].parentElement.setAttribute('hidden', true);
+                break;
+            case 'All-In-One':
+                document.getElementsByName('edit-laptop-screen-size-'+id)[0].parentElement.setAttribute('hidden', true);
+                document.getElementsByName('edit-laptop-screen-condition-'+id)[0].parentElement.setAttribute('hidden', true);
+                document.getElementsByName('edit-desktop-graphics-'+id)[0].parentElement.setAttribute('hidden', true);
+                document.getElementsByName('edit-desktop-display-ports-'+id)[0].parentElement.setAttribute('hidden', true);
+                document.getElementsByName('edit-aio-screen-size-'+id)[0].parentElement.removeAttribute('hidden');
+                document.getElementsByName('edit-aio-screen-condition-'+id)[0].parentElement.removeAttribute('hidden');
+                break;
+        }
     }
 
 </script>
