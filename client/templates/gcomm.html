@@ -117,7 +117,7 @@ G-COMM | GRID Server
             <div id='computer-options-desktop' style="display: none;">
                 <div class="data-entry-label-and-input">
                     <p>Graphics: </p>
-                    <select name="desktop_gpu_type" id="desktop_gpu_type_select" required>
+                    <select name="desktop_gpu_type" id="desktop_gpu_type_select">
                         <option value="" selected disabled hidden>Select One...</option>
                         <option value="Integrated">Integrated</option>
                         <option value="Dedicated" onclick="promptGPUName(this)">Dedicated</option>
@@ -958,16 +958,101 @@ G-COMM | GRID Server
                 '</div>' + 
                 '<div class="system-modal-data-edit-right">' + 
                     '<div class="system-edit-double">' + 
-                        '<p><b>CPU Brand: </b><input name="edit-cpu-brand-'+entry._id+'"value="'+entry.cpu_brand+'" required>'+
-                        '<p><b>CPU Model: </b><input name="edit-cpu-model-'+entry._id+'"value="'+entry.cpu_model+'" required>'+
-                        '<p><b>CPU Speed: </b><input name="edit-cpu-speed-'+entry._id+'"value="'+entry.cpu_speed.toFixed(1)+'" required>'+
-                        '<p><b>RAM Amount: </b><input name="edit-ram-'+entry._id+'type="text" value="' + entry.ram + '" required></p>' +
-                        '<p><b>Hard Drive: </b><input name="edit-hdd-'+entry._id+'type="text" value="' + entry.hdd + '" required></p>' +
-                        '<p><b>HDD Type: </b><input name="edit-hdd-'+entry._id+'type="text" value="' + entry.hdd_type + '" required></p>' +
+                        '<p><b>CPU Brand: </b><input name="edit-cpu-brand-'+entry._id+'"value="'+entry.cpu_brand+'" required></p>'+
+                        '<p><b>CPU Model: </b><input name="edit-cpu-model-'+entry._id+'"value="'+entry.cpu_model+'" required></p>'+
+                        '<p><b>CPU Speed: </b>' + 
+                            '<select name="edit-cpu-speed-'+entry._id+'" required>' + 
+                                '<option value="-1" '+ (entry.cpu_speed.toFixed(1) == -1.0 ? 'selected' : '') +' >Unknown</option>' + 
+                                '<option value="1.0" '+ (entry.cpu_speed == 1.0 ? 'selected' : '') +' >1.0 Ghz</option>' + 
+                                '<option value="1.1" '+ (entry.cpu_speed == 1.1 ? 'selected' : '') +' >1.1 Ghz</option>' + 
+                                '<option value="1.2" '+ (entry.cpu_speed == 1.2 ? 'selected' : '') +' >1.2 Ghz</option>' + 
+                                '<option value="1.3" '+ (entry.cpu_speed == 1.3 ? 'selected' : '') +' >1.3 Ghz</option>' + 
+                                '<option value="1.4" '+ (entry.cpu_speed == 1.4 ? 'selected' : '') +' >1.4 Ghz</option>' + 
+                                '<option value="1.5" '+ (entry.cpu_speed == 1.5 ? 'selected' : '') +' >1.5 Ghz</option>' + 
+                                '<option value="1.6" '+ (entry.cpu_speed == 1.6 ? 'selected' : '') +' >1.6 Ghz</option>' + 
+                                '<option value="1.7" '+ (entry.cpu_speed == 1.7 ? 'selected' : '') +' >1.7 Ghz</option>' + 
+                                '<option value="1.8" '+ (entry.cpu_speed == 1.8 ? 'selected' : '') +' >1.8 Ghz</option>' + 
+                                '<option value="1.9" '+ (entry.cpu_speed == 1.9 ? 'selected' : '') +' >1.9 Ghz</option>' + 
+                                '<option value="2.0" '+ (entry.cpu_speed == 2.0 ? 'selected' : '') +' >2.0 Ghz</option>' + 
+                                '<option value="2.1" '+ (entry.cpu_speed == 2.1 ? 'selected' : '') +' >2.1 Ghz</option>' + 
+                                '<option value="2.2" '+ (entry.cpu_speed == 2.2 ? 'selected' : '') +' >2.2 Ghz</option>' + 
+                                '<option value="2.3" '+ (entry.cpu_speed == 2.3 ? 'selected' : '') +' >2.3 Ghz</option>' + 
+                                '<option value="2.4" '+ (entry.cpu_speed == 2.4 ? 'selected' : '') +' >2.4 Ghz</option>' + 
+                                '<option value="2.5" '+ (entry.cpu_speed == 2.5 ? 'selected' : '') +' >2.5 Ghz</option>' + 
+                                '<option value="2.6" '+ (entry.cpu_speed == 2.6 ? 'selected' : '') +' >2.6 Ghz</option>' + 
+                                '<option value="2.7" '+ (entry.cpu_speed == 2.7 ? 'selected' : '') +' >2.7 Ghz</option>' + 
+                                '<option value="2.8" '+ (entry.cpu_speed == 2.8 ? 'selected' : '') +' >2.8 Ghz</option>' + 
+                                '<option value="2.9" '+ (entry.cpu_speed == 2.9 ? 'selected' : '') +' >2.9 Ghz</option>' + 
+                                '<option value="3.0" '+ (entry.cpu_speed == 3.0 ? 'selected' : '') +' >3.0 Ghz</option>' + 
+                                '<option value="3.1" '+ (entry.cpu_speed == 3.1 ? 'selected' : '') +' >3.1 Ghz</option>' + 
+                                '<option value="3.2" '+ (entry.cpu_speed == 3.2 ? 'selected' : '') +' >3.2 Ghz</option>' + 
+                                '<option value="3.3" '+ (entry.cpu_speed == 3.3 ? 'selected' : '') +' >3.3 Ghz</option>' + 
+                                '<option value="3.4" '+ (entry.cpu_speed == 3.4 ? 'selected' : '') +' >3.4 Ghz</option>' + 
+                                '<option value="3.5" '+ (entry.cpu_speed == 3.5 ? 'selected' : '') +' >3.5 Ghz</option>' + 
+                                '<option value="3.6" '+ (entry.cpu_speed == 3.6 ? 'selected' : '') +' >3.6 Ghz</option>' + 
+                                '<option value="3.7" '+ (entry.cpu_speed == 3.7 ? 'selected' : '') +' >3.7 Ghz</option>' + 
+                                '<option value="3.8" '+ (entry.cpu_speed == 3.8 ? 'selected' : '') +' >3.8 Ghz</option>' + 
+                                '<option value="3.9" '+ (entry.cpu_speed == 3.9 ? 'selected' : '') +' >3.9 Ghz</option>' + 
+                                '<option value="4.0" '+ (entry.cpu_speed == 4.0 ? 'selected' : '') +' >4.0 Ghz</option>' + 
+                                '<option value="4.1" '+ (entry.cpu_speed == 4.1 ? 'selected' : '') +' >4.1 Ghz</option>' + 
+                                '<option value="4.2" '+ (entry.cpu_speed == 4.2 ? 'selected' : '') +' >4.2 Ghz</option>' + 
+                                '<option value="4.3" '+ (entry.cpu_speed == 4.3 ? 'selected' : '') +' >4.3 Ghz</option>' + 
+                                '<option value="4.4" '+ (entry.cpu_speed == 4.4 ? 'selected' : '') +' >4.4 Ghz</option>' + 
+                                '<option value="4.5" '+ (entry.cpu_speed == 4.5 ? 'selected' : '') +' >4.5 Ghz</option>' + 
+                                '<option value="4.6" '+ (entry.cpu_speed == 4.6 ? 'selected' : '') +' >4.6 Ghz</option>' + 
+                                '<option value="4.7" '+ (entry.cpu_speed == 4.7 ? 'selected' : '') +' >4.7 Ghz</option>' + 
+                                '<option value="4.8" '+ (entry.cpu_speed == 4.8 ? 'selected' : '') +' >4.8 Ghz</option>' + 
+                                '<option value="4.9" '+ (entry.cpu_speed == 4.9 ? 'selected' : '') +' >4.9 Ghz</option>' + 
+                                '<option value="5.0" '+ (entry.cpu_speed == 5.0 ? 'selected' : '') +' >5.0 Ghz</option>' + 
+                            '</select>' +
+                        '</p>'+
+                        '<p><b>RAM Amount: </b>' + 
+                            '<select name="edit-ram-'+entry._id+'type="text" required>'+
+                                '<option value="N/A" '+(entry.ram === 'N/A' ? 'selected' : '')+'>N/A</option>' + 
+                                '<option value="less than 1GB" '+(entry.ram === 'less than 1GB' ? 'selected' : '')+'>less than 1GB</option>' + 
+                                '<option value="1GB" '+(entry.ram === '1GB' ? 'selected' : '')+'>1GB</option>' + 
+                                '<option value="2GB" '+(entry.ram === '2GB' ? 'selected' : '')+'>2GB</option>' + 
+                                '<option value="3GB" '+(entry.ram === '3GB' ? 'selected' : '')+'>3GB</option>' + 
+                                '<option value="4GB" '+(entry.ram === '4GB' ? 'selected' : '')+'>4GB</option>' + 
+                                '<option value="6GB" '+(entry.ram === '6GB' ? 'selected' : '')+'>6GB</option>' + 
+                                '<option value="8GB" '+(entry.ram === '8GB' ? 'selected' : '')+'>8GB</option>' + 
+                                '<option value="12GB" '+(entry.ram === '12GB' ? 'selected' : '')+'>12GB</option>' + 
+                                '<option value="16GB" '+(entry.ram === '16GB' ? 'selected' : '')+'>16GB</option>' + 
+                                '<option value="24GB" '+(entry.ram === '24GB' ? 'selected' : '')+'>24GB</option>' + 
+                                '<option value="32GB" '+(entry.ram === '32GB' ? 'selected' : '')+'>32GB</option>' + 
+                            '</select>' + 
+                        '</p>' +
+                        '<p><b>Hard Drive: </b>'+
+                            '<select name="edit-hdd-'+entry._id+'type="text" value="' + entry.hdd + '" required>'+
+                                '<option value="N/A">N/A</option>' + 
+                                '<option value="80GB">80GB</option>' + 
+                                '<option value="120GB">120GB</option>' + 
+                                '<option value="160GB">160GB</option>' + 
+                                '<option value="250GB">250GB</option>' + 
+                                '<option value="320GB">320GB</option>' + 
+                                '<option value="500GB">500GB</option>' + 
+                                '<option value="640GB">640GB</option>' + 
+                                '<option value="750GB">750GB</option>' + 
+                                '<option value="1.0TB">1.0TB</option>' + 
+                                '<option value="1.5TB">1.5TB</option>' + 
+                                '<option value="2.0TB">2.0TB</option>' + 
+                                '<option value="3.0TB">3.0TB</option>' + 
+                                '<option value="4.0TB">4.0TB</option>' + 
+                            '</select>' + 
+                        '</p>' +
+                        '<p><b>HDD Type: </b>'+
+                            '<select name="edit-hdd-type-'+entry._id+'type="text" required>'+
+                                '<option value="HDD" '+(entry.hdd_type == 'HDD' ? 'selected' : '')+'>HDD</option>' + 
+                                '<option value="SSD" '+(entry.hdd_type == 'SSD' ? 'selected' : '')+'>SSD</option>' + 
+                                '<option value="M.2 SSD" '+(entry.hdd_type == 'M.2 SSD' || entry.hdd_type == 'M.2 SATA' ? 'selected' : '')+'>M.2 SSD</option>' + 
+                                '<option value="NVME" '+(entry.hdd_type == 'NVME' ? 'selected' : '')+'>NVME</option>' + 
+                                '<option value="Embedded" '+(entry.hdd_type == 'Embedded' ? 'selected' : '')+'>Embedded</option>' + 
+                            '</select>' + 
+                        '</p>' +
                     '</div>' + 
                     '<br><br><p><b>Tech: </b><br><input name="edit-tech-'+entry._id+'" type="text" value="' + entry.tech + '" required></p>' +
                 '</div>' +
-                //'<br><br><p><b>Tech: </b><input name="edit-old-coa-'+entry._id+'type="text" value="' + entry.tech + '" required></p>' + 
+                //'<br><br><p><b>Tech: </b><input name="edit-tech-'+entry._id+'type="text" value="' + entry.tech + '" required></p>' + 
             '</div>' + 
             '<button type="submit" id="edit-button-submit-trigger-'+entry._id+'" style="visibility: hidden;">' + 
         '</form>';
