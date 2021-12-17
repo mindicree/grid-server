@@ -1007,7 +1007,7 @@ G-COMM | GRID Server
                             '</select>' +
                         '</p>'+
                         '<p><b>RAM Amount: </b>' + 
-                            '<select name="edit-ram-'+entry._id+'type="text" required>'+
+                            '<select name="edit-ram-'+entry._id+' type="text" required>'+
                                 '<option value="N/A" '+(entry.ram === 'N/A' ? 'selected' : '')+'>N/A</option>' + 
                                 '<option value="less than 1GB" '+(entry.ram === 'less than 1GB' ? 'selected' : '')+'>less than 1GB</option>' + 
                                 '<option value="1GB" '+(entry.ram === '1GB' ? 'selected' : '')+'>1GB</option>' + 
@@ -1023,7 +1023,7 @@ G-COMM | GRID Server
                             '</select>' + 
                         '</p>' +
                         '<p><b>Hard Drive: </b>'+
-                            '<select name="edit-hdd-'+entry._id+'type="text" value="' + entry.hdd + '" required>'+
+                            '<select name="edit-hdd-'+entry._id+' type="text" value="' + entry.hdd + '" required>'+
                                 '<option value="N/A">N/A</option>' + 
                                 '<option value="80GB">80GB</option>' + 
                                 '<option value="120GB">120GB</option>' + 
@@ -1041,7 +1041,7 @@ G-COMM | GRID Server
                             '</select>' + 
                         '</p>' +
                         '<p><b>HDD Type: </b>'+
-                            '<select name="edit-hdd-type-'+entry._id+'type="text" required>'+
+                            '<select name="edit-hdd-type-'+entry._id+' type="text" required>'+
                                 '<option value="HDD" '+(entry.hdd_type == 'HDD' ? 'selected' : '')+'>HDD</option>' + 
                                 '<option value="SSD" '+(entry.hdd_type == 'SSD' ? 'selected' : '')+'>SSD</option>' + 
                                 '<option value="M.2 SSD" '+(entry.hdd_type == 'M.2 SSD' || entry.hdd_type == 'M.2 SATA' ? 'selected' : '')+'>M.2 SSD</option>' + 
@@ -1050,7 +1050,8 @@ G-COMM | GRID Server
                             '</select>' + 
                         '</p>' +
                     '</div>' + 
-                    '<br><br><p><b>Tech: </b><br><input name="edit-tech-'+entry._id+'" type="text" value="' + entry.tech + '" required></p>' +
+                    '<p><b>Notes: </b><input name="edit-notes-'+entry._id+'" type="text" value="' + (!entry.notes ? '' : entry.notes) + '" placeholder="Bad Battery, Cracked Frame, etc"></p>' +
+                    '<br><br><p><b>Tech: </b><input name="edit-tech-'+entry._id+'" type="text" value="' + entry.tech + '" required></p>' +
                 '</div>' +
                 //'<br><br><p><b>Tech: </b><input name="edit-tech-'+entry._id+'type="text" value="' + entry.tech + '" required></p>' + 
             '</div>' + 
@@ -1092,5 +1093,79 @@ G-COMM | GRID Server
         }
     }
 
+</script>
+
+<!--EDIT SUBMISSION SCRIPT-->
+<script>
+    //submit edit function
+    function submitEdit(formContainer) {
+        //console.log('What is this? \n' + formContainer + '\n' + formContainer.id);
+        //console.log('What is this? \n' + formContainer[0] + '\n' + formContainer[0].name);
+        // for (let i = 0; i < formContainer.length; i++) {
+        //     console.log('Element at ' + i + ': ' + formContainer[i].name);
+        // }
+        //return false;
+        //get ID
+        let systemId = formContainer.id.replace('system-edit-form-', "");
+        let apiURL = 'http://localhost:5000/gcommlogs/' + systemId;
+        // console.log('ID recieved: ' + systemId);
+        // console.log('URL for PUT: ' + apiURL);
+
+        //get display ports and store in array
+        let displayPorts = [];
+        formContainer[7].value
+        .split(",")
+        .forEach(element => displayPorts.push(element.trim()));
+
+        //computer type
+        let type = formContainer[3].value;
+
+        //create submission JSON object
+        let submission = {
+            'brand': formContainer[0].value,
+            'model': formContainer[1].value,
+            'condition': formContainer[2].value,
+            'computer_type': formContainer[3].value,
+            'laptop_screen_size': (type != 'Laptop' ? 'N/A' : formContainer[4].value),
+            'laptop_screen_condition': (type != 'Laptop' ? -1 : formContainer[5].value),
+            'desktop_gpu_type': (type != 'Desktop' ? 'N/A' : formContainer[6].value),
+            'desktop_display_ports': (type != 'Desktop' ? [] : displayPorts),
+            'aio_screen_condition': (type != 'All-In-One' ? 'N/A' : formContainer[8].value),
+            'aio_screen_size': (type != 'All-In-One' ? -1 : formContainer[9].value),
+            'os': formContainer[10].value,
+            'cpu_brand': formContainer[11].value,
+            'cpu_model': formContainer[12].value,
+            'cpu_speed': formContainer[13].value,
+            'ram': formContainer[14].value,
+            'hdd': formContainer[15].value,
+            'hdd_type': formContainer[16].value,
+            'notes': formContainer[17].value,
+            'tech': formContainer[18].value
+        }
+        
+        try {
+            console.log('JSON Object: \n' + JSON.stringify(submission));
+        } catch (error) {
+            console.log('Could not create JSON object.');
+            return false;
+        } finally {
+            return false;
+        }
+
+        //API call to update
+        fetch(apiURL, {method: 'PUT', body: JSON.stringify(submission)})
+        .then(response => response.json())
+        .then(data => {
+            alert('Data updated successfully!');
+            window.location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+            alert(error);
+        });
+
+        //return false to prevent form post
+        return false;
+    }
 </script>
 {% endblock %}
