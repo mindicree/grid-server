@@ -1168,4 +1168,26 @@ G-COMM | GRID Server
         return false;
     }
 </script>
+
+<!--DELETE SYSTEM SCRIPT-->
+<script>
+    function deleteSystemLog(delete_btn) {
+        let system_id = delete_btn.id.replace('edit-btn-delete-', "");
+        //console.log('Delete Button Clicked. \nSystem ID: ' + system_id);
+        if (confirm('Are you SURE you want to delete this log? This cannot be undone.')) {
+            let system_id = delete_btn.id.replace('edit-btn-delete-', "");
+            let apiURL = 'http://localhost:5000/gcommlogs/' + system_id;
+            fetch(apiURL, {method: 'DELETE'})
+            .then(response => {
+                alert('Log deleted successfully');
+                window.location.reload();
+            })
+            .catch(error => {
+                alert(error)
+            });
+        } else {
+            console.log('No!');
+        }
+    }
+</script>
 {% endblock %}
