@@ -5,6 +5,7 @@ from flask_cors import CORS
 from datetime import datetime, timedelta
 from models import *
 from functions import *
+import config
 
 #App Initialization
 app = Flask(__name__)
@@ -895,4 +896,5 @@ def prices_date_after_inc(date_one):
 
 #RUN APPLICATION
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    setup = config.Config()
+    app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
