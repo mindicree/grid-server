@@ -826,39 +826,45 @@ System Logs | GRID Server
         //add prev to pagination if not available
         pagination.innerHTML += '<li class="page-item '+(num == 1 ? 'disabled' : '') +'"><a id="system-log-page-prev" onclick="changePage(this)"class="page-link"'+(num != 1 ? 'style="background-color: var(--green); border: solid 1px var(--green);"' : '')+'>Prev</a></li>'
         //add pagination
-        if (num <= 4 || num >= numTotalPages - 3) {
-            // 1 2 3 ... 98 99 100 N
-            for (let i = 1; i <=4; i++) {
-                try {
-                    pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>'; 
-                } catch (error) {
-                    console.log(error);
-                }  
-            }
-            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses" onclick="changePage(this)">...</a></li>';   
-            for (let i = numTotalPages - 3; i <=numTotalPages; i++) {
-                try {
-                    pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';   
-                } catch (error) {
-                    console.log(error);
-                }
+        if (numTotalPages <= 8) {
+            for (let i = 1; i <= numTotalPages; i++) {
+                pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>'; 
             }
         } else {
-            //P 1 ... 49 50 51 ... 100
-            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-1" onclick="changePage(this)">1</a></li>'; 
-            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-left" onclick="changePage(this)">...</a></li>'; 
-            //console.log('Num given: ' + num);
-            //console.log('Num range: (' + (num-2) + ', ' + (num+2) + ')')
-            for (let i = Number.parseInt(num)-2; i <= Number.parseInt(num)+2; i++) {
-                //console.log('Current Value of i: ' + i)
-                pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';
+            if (num <= 4 || num >= numTotalPages - 3) {
+                // 1 2 3 ... 98 99 100 N
+                for (let i = 1; i <=4; i++) {
+                    try {
+                        pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>'; 
+                    } catch (error) {
+                        console.log(error);
+                    }  
+                }
+                pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses" onclick="changePage(this)">...</a></li>';   
+                for (let i = numTotalPages - 3; i <=numTotalPages; i++) {
+                    try {
+                        pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';   
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            } else {
+                //P 1 ... 49 50 51 ... 100
+                pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-1" onclick="changePage(this)">1</a></li>'; 
+                pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-left" onclick="changePage(this)">...</a></li>'; 
+                //console.log('Num given: ' + num);
+                //console.log('Num range: (' + (num-2) + ', ' + (num+2) + ')')
+                for (let i = Number.parseInt(num)-2; i <= Number.parseInt(num)+2; i++) {
+                    //console.log('Current Value of i: ' + i)
+                    pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';
+                }
+                pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-right" onclick="changePage(this)">...</a></li>';   
+                pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-1" onclick="changePage(this)">'+numTotalPages+'</a></li>';
             }
-            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-right" onclick="changePage(this)">...</a></li>';   
-            pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-1" onclick="changePage(this)">'+numTotalPages+'</a></li>';
         }
         
         //add next
-        pagination.innerHTML += '<li class="page-item '+(num == numTotalPages ? 'disabled' : '') +'"><a id="system-log-page-next" onclick="changePage(this)"class="page-link"'+(num != numTotalPages ? 'style="background-color: var(--green); border: solid 1px var(--green);"' : '')+'>Next</a></li>'
+        pagination.innerHTML += '<li class="page-item '+(num == numTotalPages || numTotalPages <= 1 ? 'disabled' : '') +'"><a id="system-log-page-next" onclick="changePage(this)"class="page-link"'+(num != numTotalPages ? 'style="background-color: var(--green); border: solid 1px var(--green);"' : '')+'>Next</a></li>'
     }
 
     //function to format date for data
