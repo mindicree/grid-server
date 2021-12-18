@@ -529,7 +529,7 @@ G-COMM | GRID Server
                         this.style.display = "none";
                         document.querySelector("#loading-gif").style.display = "initial";
                         submission.tech = techInitials;
-                        fetch('http://localhost:5000/gcommlogs', {method: 'POST', body: JSON.stringify(submission)})
+                        fetch('http://{{ host_ip }}:5000/gcommlogs', {method: 'POST', body: JSON.stringify(submission)})
                         .then(response => response.json())
                         .then(data => {
                             window.location.assign('gcomm');
@@ -840,7 +840,7 @@ G-COMM | GRID Server
     }
 
     //fetch system log data from backend API
-    fetch('http://localhost:5000/gcommlogs')
+    fetch('http://{{ host_ip }}:5000/gcommlogs')
     .then(response => response.json())
     .then(data => {
         //assign data to global variable
@@ -1114,7 +1114,7 @@ G-COMM | GRID Server
         //return false;
         //get ID
         let systemId = formContainer.id.replace('system-edit-form-', "");
-        let apiURL = 'http://localhost:5000/gcommlogs/' + systemId;
+        let apiURL = 'http://{{ host_ip }}:5000/gcommlogs/' + systemId;
         // console.log('ID recieved: ' + systemId);
         // console.log('URL for PUT: ' + apiURL);
 
@@ -1183,7 +1183,7 @@ G-COMM | GRID Server
         //console.log('Delete Button Clicked. \nSystem ID: ' + system_id);
         if (confirm('Are you SURE you want to delete this log? This cannot be undone.')) {
             let system_id = delete_btn.id.replace('edit-btn-delete-', "");
-            let apiURL = 'http://localhost:5000/gcommlogs/' + system_id;
+            let apiURL = 'http://{{ host_ip }}:5000/gcommlogs/' + system_id;
             fetch(apiURL, {method: 'DELETE'})
             .then(response => {
                 alert('Log deleted successfully');
