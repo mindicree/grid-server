@@ -896,5 +896,5 @@ def prices_date_after_inc(date_one):
 
 #RUN APPLICATION
 if __name__ == '__main__':
-    setup = config.Config()
+    setup = config.DeployConfig()
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
