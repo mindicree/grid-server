@@ -20,6 +20,9 @@ db.init_app(app)
 #CORS app setup
 CORS(app)
 
+#Config stuff
+setup = config.DeployConfig()
+
 #TODO change error return to objects with status, title, message
 #TODO make above into a function that returns a response
 
@@ -896,5 +899,4 @@ def prices_date_after_inc(date_one):
 
 #RUN APPLICATION
 if __name__ == '__main__':
-    setup = config.DeployConfig()
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)

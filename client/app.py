@@ -5,6 +5,9 @@ import config
 app = Flask(__name__)
 CORS(app)
 
+#config stuff
+setup = config.Config()
+
 #HOME
 @app.route('/')
 def index():
@@ -22,5 +25,4 @@ def gcomm():
 
 #RUN APPLICATION
 if __name__ == '__main__':
-    setup = config.Config()
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
