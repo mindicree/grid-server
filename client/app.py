@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 #config stuff
-setup = config.TestConfig()
+setup = config.Config()
 
 #HOME
 @app.route('/')

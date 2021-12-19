@@ -21,7 +21,7 @@ db.init_app(app)
 CORS(app)
 
 #Config stuff
-setup = config.DeployConfig()
+setup = config.Config()
 
 #TODO change error return to objects with status, title, message
 #TODO make above into a function that returns a response
