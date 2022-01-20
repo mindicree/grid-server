@@ -2,6 +2,57 @@ from app import db
 from datetime import datetime
 import json
 
+class WorkOrder (db.Document):
+    fname = db.StringField(required=True)
+    lname = db.StringField(required=True)
+    phone1 = db.StringField(required=True)
+    phone2 = db.StringField()
+    computer_type = db.StringField(required=True)
+    model = db.StringField(required=True)
+    password = db.StringField()
+    isPurchasedFromUs = db.BooleanField()
+    isUnderWarranty = db.BooleanField()
+    isWithPowerSupply = db.BooleanField()
+    isWithOtherItems = db.BooleanField()
+    issue_category = db.StringField(required=True)
+    issue_description = db.StringField()
+    cashier = db.StringField(required=True)
+    status = db.StringField()
+    starting_tech = db.StringField()
+    finishing_tech = db.StringField()
+    notes = db.StringField()
+    dt_recieved = db.DateTimeField(default = datetime.utcnow())
+    dt_last_updated = db.DateTimeField(default = datetime.utcnow())
+    dt_completed = db.DateTimeField(default = datetime.utcnow())
+    dt_picked_up = db.DateTimeField(default = datetime.utcnow())
+
+    def get_json(self):
+        return {
+            "_id": str(self.id),
+            "fname": self.fname,
+            "lname": self.lname,
+            "phone1": self.phone1,
+            "phone2": self.phone2,
+            "computer_type": self.computer_type,
+            "model": self.model,
+            "password": self.password,
+            "isPurchasedFromUs": self.isPurchasedFromUs,
+            "isUnderWarranty": self.isUnderWarranty,
+            "isWithPowerSupply": self.isWithPowerSupply,
+            "isWithOtherItems": self.isWithOtherItems,
+            "issue_category": self.issue_category,
+            "issue_description": self.issue_description,
+            "cashier": self.cashier,
+            "status": self.status,
+            "starting_tech": self.starting_tech,
+            "finishing_tech": self.finishing_tech,
+            "notes": self.notes, 
+            "dt_recieved": self.dt_recieved, 
+            "dt_last_updated": self.dt_last_updated, 
+            "dt_completed": self.dt_completed, 
+            "dt_picked_up": self.dt_picked_up
+        }
+
 class GCommLog (db.Document):
     brand = db.StringField(required=True)
     model = db.StringField(required=True)
