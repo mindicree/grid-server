@@ -925,6 +925,34 @@ def work_orders():
 
     return make_response(jsonify({'error': 'Bad request'}), 400)
 
+@app.route('/work-orders/current', methods=['GET'])
+def work_orders_current():
+    if request.method == 'GET':
+        logs = WorkOrder.objects()
+        log_data = []
+        for log in logs:
+            if (log.status != 'Picked Up' and log.status != 'Donated'):
+                log_data.append(log.get_json())
+        response = make_response(jsonify(log_data), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
+
+@app.route('/work-orders/archive', methods=['GET'])
+def work_orders_archive():
+    if request.method == 'GET':
+        logs = WorkOrder.objects()
+        log_data = []
+        for log in logs:
+            if (log.status == 'Picked Up' or log.status == 'Donated'):
+                log_data.append(log.get_json())
+        response = make_response(jsonify(log_data), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
+
 #SYSTEM LOG BY ID
 @app.route('/work-orders/<log_id>', methods=['GET', 'PUT', 'DELETE'])
 def work_order(log_id):
