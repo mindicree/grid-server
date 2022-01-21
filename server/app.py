@@ -25,6 +25,7 @@ setup = config.Config()
 
 #TODO change error return to objects with status, title, message
 #TODO make above into a function that returns a response
+#TODO try except around all searches by ID
 
 ### ROUTES ###
 ######################################################################
@@ -537,6 +538,7 @@ def gcommlog(log_id):
             return make_response(jsonify({'message': 'GCOMM log not found'}), 404)
         log.delete()
         return make_response(jsonify({'message': 'GCOMM log [' + str(log_id) + '] deleted successfully'}), 200)
+
 ######################################################################
 ### ITEM/PRICING ROUTES ##############################################
 ######################################################################
@@ -896,6 +898,83 @@ def prices_date_after_inc(date_one):
 
     return make_response(jsonify({'error': 'Bad request'}), 400)
 
+######################################################################
+### WORK ORDERS ROUTES ###############################################
+######################################################################
+@app.route('/work-orders', methods=['POST', 'GET'])
+def work_orders():
+    if request.method == 'GET':
+        logs = WorkOrder.objects()
+        log_data = []
+        for log in logs:
+            log_data.append(log.get_json())
+        response = make_response(jsonify(log_data), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.data)
+            log = WorkOrder(fname=data['fname'], lname=data['lname'], phone1=data['phone1'], phone2=data['phone2'], computer_type=data['computer_type'], model=data['model'], password=data['password'], isPurchasedFromUs=data['isPurchasedFromUs'], isUnderWarranty=data['isUnderWarranty'], isWithPowerSupply=data['isWithPowerSupply'], isWithOtherItems=data['isWithOtherItems'], issue_category=data['issue_category'], issue_description=data['issue_description'], cashier=data['cashier'])
+            log.save()
+            response = make_response(jsonify(log.get_json()), 201)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+        except ValueError:
+            return make_response(jsonify({'error': 'Failed to decode JSON properly'}), 400)
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
+
+#SYSTEM LOG BY ID
+@app.route('/work-orders/<log_id>', methods=['GET', 'PUT', 'DELETE'])
+def work_order(log_id):
+    if request.method == 'GET':
+        try:
+            log = WorkOrder.objects(id=log_id).first()
+        except:
+            return make_response(jsonify({'error': 'Invalid ID provided. Please check URI'}), 404)
+        if not log:
+            return make_response(jsonify({'error': 'Work Order with ID [' + log_id + '] not found.'}), 404)
+        response = make_response(jsonify(log.get_json()), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+
+    if request.method == 'PUT':
+        try:
+            log = WorkOrder.objects(id=log_id).first()
+        except:
+            return make_response(jsonify({'error': 'Invalid ID provided. Please check URI'}), 404)
+        if not log:
+            response = make_response(jsonify({'error': 'GCOMM log with ID [' + log_id + '] not found.'}), 404)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+        data = json.loads(request.data)
+        if not data:
+            response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+
+        log.update(fname=data['fname'], lname=data['lname'], phone1=data['phone1'], phone2=data['phone2'], computer_type=data['computer_type'], model=data['model'], password=data['password'], isPurchasedFromUs=data['isPurchasedFromUs'], isUnderWarranty=data['isUnderWarranty'], isWithPowerSupply=data['isWithPowerSupply'], isWithOtherItems=data['isWithOtherItems'], issue_category=data['issue_category'], issue_description=data['issue_description'], cashier=data['cashier'], status=data['status'], starting_tech=data['starting_tech'], finishing_tech=data['finishing_tech'], notes=data['notes'], price=data['price'], dt_last_updated=datetime.utcnow())
+        #status list
+        #Dropped Off, In Progress, Awaiting Part, Completed, Picked Up, Donated
+        if data['status'] == 'Completed' or data['status'] == 'Donated':
+            log.update(dt_completed=datetime.utcnow())
+        if data['status'] == 'Picked Up':
+            log.update(dt_picked_up=datetime.utcnow())
+        response = make_response(jsonify({'message': 'Work Order ['+str(log_id)+'] updated successfully'}), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+    if request.method == 'DELETE':
+        try:
+            log = WorkOrder.objects(id=log_id).first()
+        except:
+            return make_response(jsonify({'error': 'Invalid ID provided. Please check URI'}), 404)
+        if not log:
+            return make_response(jsonify({'message': 'Work Order not found'}), 404)
+        log.delete()
+        return make_response(jsonify({'message': 'Work Order [' + str(log_id) + '] deleted successfully'}), 200)
 
 #RUN APPLICATION
 if __name__ == '__main__':
