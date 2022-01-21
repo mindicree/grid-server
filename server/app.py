@@ -960,8 +960,14 @@ def work_order(log_id):
         #Dropped Off, In Progress, Awaiting Part, Completed, Picked Up, Donated
         if data['status'] == 'Completed' or data['status'] == 'Donated':
             log.update(dt_completed=datetime.utcnow())
+            if len(data['finishing_tech']) < 1 or not data['finishing_tech']:
+                log.update(finishing_tech = log.starting_tech)
         if data['status'] == 'Picked Up':
             log.update(dt_picked_up=datetime.utcnow())
+            if not log.dt_completed:
+                log.update(dt_completed=datetime.utcnow())
+            if len(data['finishing_tech']) < 1 or not data['finishing_tech']:
+                log.update(finishing_tech = log.starting_tech)
         response = make_response(jsonify({'message': 'Work Order ['+str(log_id)+'] updated successfully'}), 200)
         response.headers.add("Access-Control-Allow-Origin", "*")
         return response
