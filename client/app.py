@@ -23,6 +23,11 @@ def syslogs():
 def gcomm():
     return render_template('gcomm.html', host_ip=setup.HOST)
 
+#G-COMM Logs Page
+@app.route('/work-orders')
+def gcomm():
+    return render_template('work-orders.html', host_ip=setup.HOST)
+
 #RUN APPLICATION
 if __name__ == '__main__':
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
