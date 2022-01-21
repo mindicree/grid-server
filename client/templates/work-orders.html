@@ -5,5 +5,23 @@ Work Orders | GRID Server
 {% endblock %}
 
 {% block body %}
-    
+<div id='wot-container' style='width: 100%; max-width: 1366px; margin: auto; padding-top: 50px; min-height: 500px;'>
+    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="wotrfp-tab" data-bs-toggle="tab" data-bs-target="#wotrfp" type="button" role="tab" aria-controls="home" aria-selected="true">Ready</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="wotip-tab" data-bs-toggle="tab" data-bs-target="#wotip" type="button" role="tab" aria-controls="profile" aria-selected="false">In Progress</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="wotdo-tab" data-bs-toggle="tab" data-bs-target="#wotdo" type="button" role="tab" aria-controls="contact" aria-selected="false">Intake</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="wotrfp" role="tabpanel" aria-labelledby="home-tab">...</div>
+        <div class="tab-pane fade" id="wotip" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        <div class="tab-pane fade" id="wotdo" role="tabpanel" aria-labelledby="contact-tab">...</div>
+    </div>
+</div>
+  
 {% endblock %}
