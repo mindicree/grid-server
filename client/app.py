@@ -25,7 +25,7 @@ def gcomm():
 
 #G-COMM Logs Page
 @app.route('/work-orders')
-def gcomm():
+def work_orders():
     return render_template('work-orders.html', host_ip=setup.HOST)
 
 #RUN APPLICATION
