@@ -9,13 +9,13 @@ Work Orders | GRID Server
 <div id='wot-container' style='width: 100%; max-width: 1366px; margin: auto; padding-top: 50px; min-height: 500px;'>
     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="wotrfp-tab" data-bs-toggle="tab" data-bs-target="#wotrfp" type="button" role="tab" aria-controls="home" aria-selected="true">Ready</button>
+            <button class="nav-link active" id="wotrfp-tab" data-bs-toggle="tab" data-bs-target="#wotrfp" type="button" role="tab" aria-controls="home" aria-selected="true">Ready <span id='ready_badge' class="badge bg-success">4</span></button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="wotip-tab" data-bs-toggle="tab" data-bs-target="#wotip" type="button" role="tab" aria-controls="profile" aria-selected="false">In Progress</button>
+            <button class="nav-link" id="wotip-tab" data-bs-toggle="tab" data-bs-target="#wotip" type="button" role="tab" aria-controls="profile" aria-selected="false">In Progress <span id='progress_badge' class="badge bg-success">4</span></button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="wotdo-tab" data-bs-toggle="tab" data-bs-target="#wotdo" type="button" role="tab" aria-controls="contact" aria-selected="false">Intake</button>
+            <button class="nav-link" id="wotdo-tab" data-bs-toggle="tab" data-bs-target="#wotdo" type="button" role="tab" aria-controls="contact" aria-selected="false">Intake <span id='intake_badge' class="badge bg-success">4</span></button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -27,9 +27,9 @@ Work Orders | GRID Server
 
 <!-- Button container to trigger new work order modal and go to archive-->
 <div id='wo-btn-container' style='width: 100%; max-width: 600px; margin: auto;'>
-    <button class='btn' style='width: 100%; margin: auto; background-color: green; color: white; font-size: 24px;'>+</button>
+    <button class='btn' data-bs-toggle='modal' data-bs-target='#new_wt_modal'  style='width: 100%; margin: auto; background-color: green; color: white; font-size: 24px;'>+</button>
     <span style="color: white;">|</span>
-    <button class='btn' data-bs-toggle='modal' data-bs-target='#new_wt_modal' style='width: 100%; margin: auto; background-color: gray; color: white; font-size: 24px;'><span style="font-size: 16px;">Archive</span></button>
+    <a href="#"><button class='btn' style='width: 100%; margin: auto; background-color: gray; color: white; font-size: 24px;'><span style="font-size: 16px;">Archive</span></button></a>
 
     <!-- new work order modal -->
     <div class="modal fade" id="new_wt_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
