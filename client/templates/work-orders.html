@@ -97,12 +97,12 @@ Work Orders | GRID Server
                         <div class="radio-group radio-group-wo">
                             <!-- Corporate -->
                             <div class="radio-group-item">
-                                <input type="radio" id="isPurchasedFromUsYes" name="isPurchasedFromUs" value="Yes" required>
+                                <input type="radio" id="isPurchasedFromUsYes" name="isPurchasedFromUs" value='true' required>
                                 <label for="isPurchasedFromUsYes">Yes</label>
                             </div>
                             <!-- Charlotte -->
                             <div class="radio-group-item">
-                                <input type="radio" id="isPurchasedFromUsNo" name="isPurchasedFromUs" value="No" required>
+                                <input type="radio" id="isPurchasedFromUsNo" name="isPurchasedFromUs" value='false' required>
                                 <label for="isPurchasedFromUsNo">No</label>
                             </div>
                         </div>
@@ -112,12 +112,12 @@ Work Orders | GRID Server
                         <div class="radio-group radio-group-wo">
                             <!-- Corporate -->
                             <div class="radio-group-item">
-                                <input type="radio" id="isUnderWarrantyYes" name="isUnderWarranty" value="Yes" required>
+                                <input type="radio" id="isUnderWarrantyYes" name="isUnderWarranty" value='true' required>
                                 <label for="isUnderWarrantyYes">Yes</label>
                             </div>
                             <!-- Charlotte -->
                             <div class="radio-group-item">
-                                <input type="radio" id="isUnderWarrantyNo" name="isUnderWarranty" value="No" required>
+                                <input type="radio" id="isUnderWarrantyNo" name="isUnderWarranty" value='false' required>
                                 <label for="isUnderWarrantyNo">No</label>
                             </div>
                         </div>
@@ -127,12 +127,12 @@ Work Orders | GRID Server
                         <div class="radio-group radio-group-wo">
                             <!-- Corporate -->
                             <div class="radio-group-item">
-                                <input type="radio" id="isWithPowerSupplyYes" name="isWithPowerSupply" value="Yes" required>
+                                <input type="radio" id="isWithPowerSupplyYes" name="isWithPowerSupply" value='true' required>
                                 <label for="isWithPowerSupplyYes">Yes</label>
                             </div>
                             <!-- Charlotte -->
                             <div class="radio-group-item">
-                                <input type="radio" id="isWithPowerSupplyNo" name="isWithPowerSupply" value="No" required>
+                                <input type="radio" id="isWithPowerSupplyNo" name="isWithPowerSupply" value='false' required>
                                 <label for="isWithPowerSupplyNo">No</label>
                             </div>
                         </div>
@@ -211,29 +211,42 @@ Work Orders | GRID Server
         .then(data => {
             console.log(JSON.stringify(data));
             alert('Work Order Submitted Successfully');
-            window.location.reload();
+            window.location.replace('work-orders');
         })
 
         //default return false;
         return false;
     }
+
+    function getBooleanValue(x) {
+        switch(x.toLowerCase()) {
+            case 'true':
+                return true;
+                break;
+            case 'false':
+                return false;
+                break;
+            default:
+                return new Error('Something went wrong');
+        }
+    }
     function renderSubmission() {
         let isPFU;
         document.getElementsByName('isPurchasedFromUs').forEach((item) => {
             if (item.checked) {
-                isPFU = item.value;
+                isPFU = getBooleanValue(item.value);
             }
         });
         let isUW;
         document.getElementsByName('isUnderWarranty').forEach((item) => {
             if (item.checked) {
-                isUW = item.value;
+                isUW = getBooleanValue(item.value);
             }
         });
         let isWPS;
         document.getElementsByName('isWithPowerSupply').forEach((item) => {
             if (item.checked) {
-                isWPS = item.value;
+                isWPS = getBooleanValue(item.value);
             }
         });
         let workOrder = {
