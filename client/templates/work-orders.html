@@ -6,7 +6,7 @@ Work Orders | GRID Server
 
 {% block body %}
 <!-- Container for Work Order Tabs and Content -->
-<div id='wot-container' style='width: 100%; max-width: 1366px; margin: auto; padding-top: 50px; min-height: 500px;'>
+<div id='wot-container' style='width: 100%; max-width: 1366px; margin: auto; padding-top: 50px; min-height: 70vh; max-height: 800px;'>
     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="wotrfp-tab" data-bs-toggle="tab" data-bs-target="#wotrfp" type="button" role="tab" aria-controls="home" aria-selected="true">Ready <span id='ready_badge' class="badge bg-success">4</span></button>
@@ -41,7 +41,116 @@ Work Orders | GRID Server
             </div>
             <div id="submission-modal-body" class="modal-body">
               <form onsubmit="return renderSubmission()">
-
+                <div class="data-entry-label-and-input">
+                    <p>First Name: </p>
+                    <input type="text" name="brand" value="" required>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Last Name: </p>
+                    <input type="text" name="brand" value="" required>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Phone No.: </p>
+                    <input type="text" name="brand" value="" required>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Phone No. 2: </p>
+                    <input type="text" name="brand" value="" required>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Computer: </p>
+                    <select name="computer-type" id="computer_type_selector" required>
+                        <option value="" selected disabled hidden>Select One...</option>
+                        <option value="Desktop">Desktop</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="All-In-One">All-In-One</option>
+                    </select>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Model: </p>
+                    <input type="text" name="brand" value="" required>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Password: </p>
+                    <input type="text" name="brand" value="" placeholder='Leave blank if none' required>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Bought From Us: </p>
+                    <div class="radio-group">
+                        <!-- Corporate -->
+                        <div class="radio-group-item">
+                            <input type="radio" id="sourceChoice1" name="source" value="Corporate" required>
+                            <label for="contactChoice1">Yes</label>
+                        </div>
+                        <!-- Charlotte -->
+                        <div class="radio-group-item">
+                            <input type="radio" id="sourceChoice2" name="source" value="Charlotte" required>
+                            <label for="contactChoice1">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Under Warranty: </p>
+                    <div class="radio-group">
+                        <!-- Corporate -->
+                        <div class="radio-group-item">
+                            <input type="radio" id="sourceChoice1" name="source" value="Corporate" required>
+                            <label for="contactChoice1">Yes</label>
+                        </div>
+                        <!-- Charlotte -->
+                        <div class="radio-group-item">
+                            <input type="radio" id="sourceChoice2" name="source" value="Charlotte" required>
+                            <label for="contactChoice1">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Power Supply: </p>
+                    <div class="radio-group">
+                        <!-- Corporate -->
+                        <div class="radio-group-item">
+                            <input type="radio" id="sourceChoice1" name="source" value="Corporate" required>
+                            <label for="contactChoice1">Yes</label>
+                        </div>
+                        <!-- Charlotte -->
+                        <div class="radio-group-item">
+                            <input type="radio" id="sourceChoice2" name="source" value="Charlotte" required>
+                            <label for="contactChoice1">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Other Items: </p>
+                    <input type="text" name="brand" value="" required>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Issue Type: </p>
+                    <select name="computer-type" id="computer_type_selector" required>
+                        <option value="" selected disabled hidden>Select One...</option>
+                        <option value="Power">Power</option>
+                        <option value="VideoScreen">Video/Screen</option>
+                        <option value="Speed">Speed</option>
+                        <option value="Virus">Virus</option>
+                        <option value="Internet">Internet</option>
+                        <option value="Freezing">Freezing/BlueScreen</option>
+                        <option value="CD">CD/DVD Drive</option>
+                        <option value="Password">Password</option>
+                        <option value="Fans">Fans</option>
+                        <option value="Upgrade">Upgrade</option>
+                        <option value="Camera">Camera</option>
+                        <option value="Software">Software</option>
+                        <option value="KeyboardMouse">Keyboard/Mouse</option>
+                        <option value="Other">Other (please specify)</option>
+                    </select>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Description: </p>
+                    <textarea rows='3' required></textarea>
+                </div>
+                <div class="data-entry-label-and-input">
+                    <p>Cashier: </p>
+                    <input type="text" name="brand" value="" required>
+                </div>
               </form>
             </div>
             <div id="submission-modal-footer" class="modal-footer">
