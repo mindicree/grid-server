@@ -21,6 +21,12 @@
   padding: 10px 0px;
 }
 
+.data-entry-wo {
+  grid-template-columns: auto 60%;
+  max-width: 900px;
+  margin: auto;
+}
+
 .data-entry-label-and-input-double {
   display: grid;
   grid-template-columns: 30% auto 30% auto;
@@ -44,6 +50,16 @@
   grid-template-columns: 1fr;
   margin: auto;
 }
+
+.radio-group-wo {
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.radio-group-wo .radio-group-item{
+  margin: auto;
+}
+
 
 .data-submission-container {
   display: grid;
@@ -154,6 +170,11 @@ table {
   .radio-group {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .radio-group-wo {
+    grid-template-columns: 1fr 1fr;
+    width: 60%;
   }
 
   .tableStockListButtonContainer {
