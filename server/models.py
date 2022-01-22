@@ -5,8 +5,8 @@ import json
 class WorkOrder (db.Document):
     fname = db.StringField(required=True)
     lname = db.StringField(required=True)
-    phone1 = db.IntField(required=True)
-    phone2 = db.IntField()
+    phone1 = db.StringField(required=True)
+    phone2 = db.StringField()
     computer_type = db.StringField(required=True)
     model = db.StringField(required=True)
     password = db.StringField()
