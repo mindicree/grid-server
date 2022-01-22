@@ -58,137 +58,194 @@ Work Orders | GRID Server
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="submission-modal-body" class="modal-body">
-              <form onsubmit="return renderSubmission()">
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>First Name: </p>
-                    <input type="text" name="fname" value="" required>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Last Name: </p>
-                    <input type="text" name="lname" value="" required>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Phone No.: </p>
-                    <input type="text" name="phone1" value="" required>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Phone No. 2: </p>
-                    <input type="text" name="phone2" value="">
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Computer: </p>
-                    <select name="computer-type" id="computer_type_selector" required>
-                        <option value="" selected disabled hidden>Select One...</option>
-                        <option value="Desktop">Desktop</option>
-                        <option value="Laptop">Laptop</option>
-                        <option value="All-In-One">All-In-One</option>
-                    </select>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Model: </p>
-                    <input type="text" name="model" value="" required>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Password: </p>
-                    <input type="text" name="password" value="" placeholder='Leave blank if none'>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Bought From Us: </p>
-                    <div class="radio-group radio-group-wo">
-                        <!-- Corporate -->
-                        <div class="radio-group-item">
-                            <input type="radio" id="isBoughtFromUsYes" name="isBoughtFromUs" value="Yes" style='margin: auto;' required>
-                            <label for="isBoughtFromUsYes">Yes</label>
-                        </div>
-                        <!-- Charlotte -->
-                        <div class="radio-group-item">
-                            <input type="radio" id="isBoughtFromUsYes" name="isBoughtFromUs" value="No" required>
-                            <label for="isBoughtFromUsNo">No</label>
+              <form id='new_wo_form' onsubmit="return submitNewWorkOrder()">
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>First Name: </p>
+                        <input type="text" name="fname" value="" required>
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Last Name: </p>
+                        <input type="text" name="lname" value="" required>
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Phone No.: </p>
+                        <input type="text" name="phone1" value="" required>
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Phone No. 2: </p>
+                        <input type="text" name="phone2" value="">
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Computer: </p>
+                        <select name="computer-type" id="computer_type_selector" required>
+                            <option value="" selected disabled hidden>Select One...</option>
+                            <option value="Desktop">Desktop</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="All-In-One">All-In-One</option>
+                        </select>
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Model: </p>
+                        <input type="text" name="model" value="" required>
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Password: </p>
+                        <input type="text" name="password" value="" placeholder='Leave blank if none'>
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Bought From Us: </p>
+                        <div class="radio-group radio-group-wo">
+                            <!-- Corporate -->
+                            <div class="radio-group-item">
+                                <input type="radio" id="isPurchasedFromUsYes" name="isPurchasedFromUs" value="Yes" required>
+                                <label for="isPurchasedFromUsYes">Yes</label>
+                            </div>
+                            <!-- Charlotte -->
+                            <div class="radio-group-item">
+                                <input type="radio" id="isPurchasedFromUsNo" name="isPurchasedFromUs" value="No" required>
+                                <label for="isPurchasedFromUsNo">No</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Under Warranty: </p>
-                    <div class="radio-group radio-group-wo">
-                        <!-- Corporate -->
-                        <div class="radio-group-item">
-                            <input type="radio" id="isUnderWarrantyYes" name="isUnderWarranty" value="Yes" required>
-                            <label for="isUnderWarrantyYes">Yes</label>
-                        </div>
-                        <!-- Charlotte -->
-                        <div class="radio-group-item">
-                            <input type="radio" id="isUnderWarrantyNo" name="isUnderWarranty" value="No" required>
-                            <label for="isUnderWarrantyNo">No</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Power Supply: </p>
-                    <div class="radio-group radio-group-wo">
-                        <!-- Corporate -->
-                        <div class="radio-group-item">
-                            <input type="radio" id="isWithPowerSupplyYes" name="isWithPowerSupply" value="Yes" required>
-                            <label for="isWithPowerSupplyYes">Yes</label>
-                        </div>
-                        <!-- Charlotte -->
-                        <div class="radio-group-item">
-                            <input type="radio" id="isWithPowerSupplyNo" name="isWithPowerSupply" value="No" required>
-                            <label for="isWithPowerSupplyNo">No</label>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Under Warranty: </p>
+                        <div class="radio-group radio-group-wo">
+                            <!-- Corporate -->
+                            <div class="radio-group-item">
+                                <input type="radio" id="isUnderWarrantyYes" name="isUnderWarranty" value="Yes" required>
+                                <label for="isUnderWarrantyYes">Yes</label>
+                            </div>
+                            <!-- Charlotte -->
+                            <div class="radio-group-item">
+                                <input type="radio" id="isUnderWarrantyNo" name="isUnderWarranty" value="No" required>
+                                <label for="isUnderWarrantyNo">No</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Other Items: </p>
-                    <input type="text" name="other_items" value="" placeholder="Leave blank if none">
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Issue Type: </p>
-                    <select name="issue-type" id="issue_type_selector" required>
-                        <option value="" selected disabled hidden>Select One...</option>
-                        <option value="Power">Power</option>
-                        <option value="VideoScreen">Video/Screen</option>
-                        <option value="Speed">Speed</option>
-                        <option value="Virus">Virus</option>
-                        <option value="Internet">Internet</option>
-                        <option value="Freezing">Freezing/BlueScreen</option>
-                        <option value="CD">CD/DVD Drive</option>
-                        <option value="Password">Password</option>
-                        <option value="Fans">Fans</option>
-                        <option value="Upgrade">Upgrade</option>
-                        <option value="Camera">Camera</option>
-                        <option value="Software">Software</option>
-                        <option value="KeyboardMouse">Keyboard/Mouse</option>
-                        <option value="Other">Other (please specify)</option>
-                    </select>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Description: </p>
-                    <textarea name='issue-description' rows='1' required></textarea>
-                </div>
-                <div class="data-entry-label-and-input data-entry-wo">
-                    <p>Cashier: </p>
-                    <input type="text" name="cashier" value="" required>
-                </div>
-                <hr>
-                <div id='disclaimer-container' style="display: grid; width: 80%; margin: auto;">
-                    <p style="font-size: 12px; text-align: justify;">Every effort will be taken to insure that all components and devices perform as they did prior to services rendered. However, The GRID technicians and staff are not responsible for any loss of personal data or software in the performance of their duties. Items left over sixty (60) days will be considered donations to The GRID Powered By Goodwill. I, <span style="font-weight: bold; font-style: italic; text-decoration: underline;">[John Smith]</span>, have read and agreed to the terms.</p>
-                    <input type="checkbox" id="disclaimer-radio" name="source" value="Corporate" style='margin: auto;' required>
-                </div>
-                </div>
-                <div id="submission-modal-footer" class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" id="submission-modal-button" class="btn btn-primary">Submit</button>
-                    <img id="loading-gif" src="static/img/loading.gif" style="display: none; width: 32px; height: 32px;"></img>
-                </div>
-              </form>
-          </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Power Supply: </p>
+                        <div class="radio-group radio-group-wo">
+                            <!-- Corporate -->
+                            <div class="radio-group-item">
+                                <input type="radio" id="isWithPowerSupplyYes" name="isWithPowerSupply" value="Yes" required>
+                                <label for="isWithPowerSupplyYes">Yes</label>
+                            </div>
+                            <!-- Charlotte -->
+                            <div class="radio-group-item">
+                                <input type="radio" id="isWithPowerSupplyNo" name="isWithPowerSupply" value="No" required>
+                                <label for="isWithPowerSupplyNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Other Items: </p>
+                        <input type="text" name="other_items" value="" placeholder="Leave blank if none">
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Issue Type: </p>
+                        <select name="issue-type" id="issue_type_selector" required>
+                            <option value="" selected disabled hidden>Select One...</option>
+                            <option value="Power">Power</option>
+                            <option value="VideoScreen">Video/Screen</option>
+                            <option value="Speed">Speed</option>
+                            <option value="Virus">Virus</option>
+                            <option value="Internet">Internet</option>
+                            <option value="Freezing">Freezing/BlueScreen</option>
+                            <option value="CD">CD/DVD Drive</option>
+                            <option value="Password">Password</option>
+                            <option value="Fans">Fans</option>
+                            <option value="Upgrade">Upgrade</option>
+                            <option value="Camera">Camera</option>
+                            <option value="Software">Software</option>
+                            <option value="KeyboardMouse">Keyboard/Mouse</option>
+                            <option value="Other">Other (please specify)</option>
+                        </select>
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Description: </p>
+                        <textarea name='issue-description' rows='1' required></textarea>
+                    </div>
+                    <div class="data-entry-label-and-input data-entry-wo">
+                        <p>Cashier: </p>
+                        <input type="text" name="cashier" value="" required>
+                    </div>
+                    <hr>
+                    <div id='disclaimer-container' style="display: grid; width: 80%; margin: auto;">
+                        <p style="font-size: 12px; text-align: justify;">Every effort will be taken to insure that all components and devices perform as they did prior to services rendered. However, The GRID technicians and staff are not responsible for any loss of personal data or software in the performance of their duties. Items left over sixty (60) days will be considered donations to The GRID Powered By Goodwill. I, <span style="font-weight: bold; font-style: italic; text-decoration: underline;">[John Smith]</span>, have read and agreed to the terms.</p>
+                        <input type="checkbox" id="disclaimer-radio" name="source" value="Corporate" style='margin: auto;' required>
+                    </div>
+                    </div>
+                    <div id="submission-modal-footer" class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" id="submission-modal-button" class="btn btn-primary">Submit</button>
+                        <img id="loading-gif" src="static/img/loading.gif" style="display: none; width: 32px; height: 32px;"></img>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- LOAD WORK ORDERS SCRIPT -->
 <script>
-    function renderSubmission() {
+    
+</script>
+
+<!-- SUBMIT NEW WORK ORDER SCRIPT -->
+<script>
+    function submitNewWorkOrder() {
+        //render JSON for submission
+        try {
+            let workOrderJSON = renderSubmission();
+            console.log(JSON.stringify(workOrderJSON));
+            return false;
+        } catch (error) {
+            console.log('Error in creating JSON for submission.\nError: ' + error);
+            return false;
+        }
+        //create URL for POST call
+
+        //make POST call and reload
+
+        //default return false;
         return false;
+    }
+    function renderSubmission() {
+        let isPFU;
+        document.getElementsByName('isPurchasedFromUs').forEach((item) => {
+            if (item.checked) {
+                isPFU = item.value;
+            }
+        });
+        let isUW;
+        document.getElementsByName('isUnderWarranty').forEach((item) => {
+            if (item.checked) {
+                isUW = item.value;
+            }
+        });
+        let isWPS;
+        document.getElementsByName('isWithPowerSupply').forEach((item) => {
+            if (item.checked) {
+                isWPS = item.value;
+            }
+        });
+        let workOrder = {
+            'fname': document.getElementsByName('fname')[0].value,
+            'lname': document.getElementsByName('lname')[0].value,
+            'phone1': document.getElementsByName('phone1')[0].value,
+            'phone2': document.getElementsByName('phone2')[0].value,
+            'computer_type': document.getElementsByName('computer-type')[0].value,
+            'model': document.getElementsByName('model')[0].value,
+            'password': document.getElementsByName('password')[0].value,
+            'isPurchasedFromUs': isPFU,
+            'isUnderWarranty': isUW,
+            'isWithPowerSupply': isWPS,
+            'isWithOtherItems': document.getElementsByName('other_items')[0].value,
+            'issue_category': document.getElementsByName('issue-type')[0].value,
+            'issue_description': document.getElementsByName('issue-description')[0].value,
+            'cashier': document.getElementsByName('cashier')[0].value
+        }
+        return workOrder;
     }
 </script>
 

@@ -13,7 +13,7 @@ class WorkOrder (db.Document):
     isPurchasedFromUs = db.BooleanField()
     isUnderWarranty = db.BooleanField()
     isWithPowerSupply = db.BooleanField()
-    isWithOtherItems = db.BooleanField()
+    isWithOtherItems = db.StringField()
     issue_category = db.StringField(required=True)
     issue_description = db.StringField()
     cashier = db.StringField(required=True)
