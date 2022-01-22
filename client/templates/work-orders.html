@@ -9,19 +9,37 @@ Work Orders | GRID Server
 <div id='wot-container' style='width: 100%; max-width: 1366px; margin: auto; padding-top: 50px; min-height: 70vh; max-height: 800px;'>
     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="wotrfp-tab" data-bs-toggle="tab" data-bs-target="#wotrfp" type="button" role="tab" aria-controls="home" aria-selected="true">Ready <span id='ready_badge' class="badge bg-success">4</span></button>
+            <button class="nav-link active" id="wotrfp-tab" data-bs-toggle="tab" data-bs-target="#wotrfp" type="button" role="tab" aria-controls="home" aria-selected="true">Ready <span id='ready_badge' class="badge bg-success">0</span></button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="wotip-tab" data-bs-toggle="tab" data-bs-target="#wotip" type="button" role="tab" aria-controls="profile" aria-selected="false">In Progress <span id='progress_badge' class="badge bg-success">4</span></button>
+            <button class="nav-link" id="wotip-tab" data-bs-toggle="tab" data-bs-target="#wotip" type="button" role="tab" aria-controls="profile" aria-selected="false">In Progress <span id='progress_badge' class="badge bg-success">0</span></button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="wotdo-tab" data-bs-toggle="tab" data-bs-target="#wotdo" type="button" role="tab" aria-controls="contact" aria-selected="false">Intake <span id='intake_badge' class="badge bg-success">4</span></button>
+            <button class="nav-link" id="wotdo-tab" data-bs-toggle="tab" data-bs-target="#wotdo" type="button" role="tab" aria-controls="contact" aria-selected="false">Intake <span id='intake_badge' class="badge bg-success">0</span></button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="wotrfp" role="tabpanel" aria-labelledby="home-tab">...</div>
-        <div class="tab-pane fade" id="wotip" role="tabpanel" aria-labelledby="profile-tab">...</div>
-        <div class="tab-pane fade" id="wotdo" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        <div class="tab-pane fade show active" id="wotrfp" role="tabpanel" aria-labelledby="home-tab">
+            <!--Loading Thing-->
+            <div id='table-loading-indicator' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
+                <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+                <h4 style="color: #aaa; margin: auto;">Loading</h4>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="wotip" role="tabpanel" aria-labelledby="profile-tab">
+            <!--Loading Thing-->
+            <div id='table-loading-indicator' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
+                <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+                <h4 style="color: #aaa; margin: auto;">Loading</h4>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="wotdo" role="tabpanel" aria-labelledby="contact-tab">
+            <!--Loading Thing-->
+            <div id='table-loading-indicator' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
+                <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+                <h4 style="color: #aaa; margin: auto;">Loading</h4>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -43,19 +61,19 @@ Work Orders | GRID Server
               <form onsubmit="return renderSubmission()">
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>First Name: </p>
-                    <input type="text" name="brand" value="" required>
+                    <input type="text" name="fname" value="" required>
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Last Name: </p>
-                    <input type="text" name="brand" value="" required>
+                    <input type="text" name="lname" value="" required>
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Phone No.: </p>
-                    <input type="text" name="brand" value="" required>
+                    <input type="text" name="phone1" value="" required>
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Phone No. 2: </p>
-                    <input type="text" name="brand" value="" required>
+                    <input type="text" name="phone2" value="">
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Computer: </p>
@@ -68,24 +86,24 @@ Work Orders | GRID Server
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Model: </p>
-                    <input type="text" name="brand" value="" required>
+                    <input type="text" name="model" value="" required>
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Password: </p>
-                    <input type="text" name="brand" value="" placeholder='Leave blank if none' required>
+                    <input type="text" name="password" value="" placeholder='Leave blank if none'>
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Bought From Us: </p>
                     <div class="radio-group radio-group-wo">
                         <!-- Corporate -->
                         <div class="radio-group-item">
-                            <input type="radio" id="sourceChoice1" name="source" value="Corporate" style='margin: auto;' required>
-                            <label for="contactChoice1">Yes</label>
+                            <input type="radio" id="isBoughtFromUsYes" name="isBoughtFromUs" value="Yes" style='margin: auto;' required>
+                            <label for="isBoughtFromUsYes">Yes</label>
                         </div>
                         <!-- Charlotte -->
                         <div class="radio-group-item">
-                            <input type="radio" id="sourceChoice2" name="source" value="Charlotte" required>
-                            <label for="contactChoice1">No</label>
+                            <input type="radio" id="isBoughtFromUsYes" name="isBoughtFromUs" value="No" required>
+                            <label for="isBoughtFromUsNo">No</label>
                         </div>
                     </div>
                 </div>
@@ -94,13 +112,13 @@ Work Orders | GRID Server
                     <div class="radio-group radio-group-wo">
                         <!-- Corporate -->
                         <div class="radio-group-item">
-                            <input type="radio" id="sourceChoice1" name="source" value="Corporate" required>
-                            <label for="contactChoice1">Yes</label>
+                            <input type="radio" id="isUnderWarrantyYes" name="isUnderWarranty" value="Yes" required>
+                            <label for="isUnderWarrantyYes">Yes</label>
                         </div>
                         <!-- Charlotte -->
                         <div class="radio-group-item">
-                            <input type="radio" id="sourceChoice2" name="source" value="Charlotte" required>
-                            <label for="contactChoice1">No</label>
+                            <input type="radio" id="isUnderWarrantyNo" name="isUnderWarranty" value="No" required>
+                            <label for="isUnderWarrantyNo">No</label>
                         </div>
                     </div>
                 </div>
@@ -109,23 +127,23 @@ Work Orders | GRID Server
                     <div class="radio-group radio-group-wo">
                         <!-- Corporate -->
                         <div class="radio-group-item">
-                            <input type="radio" id="sourceChoice1" name="source" value="Corporate" required>
-                            <label for="contactChoice1">Yes</label>
+                            <input type="radio" id="isWithPowerSupplyYes" name="isWithPowerSupply" value="Yes" required>
+                            <label for="isWithPowerSupplyYes">Yes</label>
                         </div>
                         <!-- Charlotte -->
                         <div class="radio-group-item">
-                            <input type="radio" id="sourceChoice2" name="source" value="Charlotte" required>
-                            <label for="contactChoice1">No</label>
+                            <input type="radio" id="isWithPowerSupplyNo" name="isWithPowerSupply" value="No" required>
+                            <label for="isWithPowerSupplyNo">No</label>
                         </div>
                     </div>
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Other Items: </p>
-                    <input type="text" name="brand" value="" required>
+                    <input type="text" name="other_items" value="" placeholder="Leave blank if none">
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Issue Type: </p>
-                    <select name="computer-type" id="computer_type_selector" required>
+                    <select name="issue-type" id="issue_type_selector" required>
                         <option value="" selected disabled hidden>Select One...</option>
                         <option value="Power">Power</option>
                         <option value="VideoScreen">Video/Screen</option>
@@ -145,19 +163,24 @@ Work Orders | GRID Server
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Description: </p>
-                    <textarea rows='3' required></textarea>
+                    <textarea name='issue-description' rows='1' required></textarea>
                 </div>
                 <div class="data-entry-label-and-input data-entry-wo">
                     <p>Cashier: </p>
-                    <input type="text" name="brand" value="" required>
+                    <input type="text" name="cashier" value="" required>
+                </div>
+                <hr>
+                <div id='disclaimer-container' style="display: grid; width: 80%; margin: auto;">
+                    <p style="font-size: 12px; text-align: justify;">Every effort will be taken to insure that all components and devices perform as they did prior to services rendered. However, The GRID technicians and staff are not responsible for any loss of personal data or software in the performance of their duties. Items left over sixty (60) days will be considered donations to The GRID Powered By Goodwill. I, <span style="font-weight: bold; font-style: italic; text-decoration: underline;">[John Smith]</span>, have read and agreed to the terms.</p>
+                    <input type="checkbox" id="disclaimer-radio" name="source" value="Corporate" style='margin: auto;' required>
+                </div>
+                </div>
+                <div id="submission-modal-footer" class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" id="submission-modal-button" class="btn btn-primary">Submit</button>
+                    <img id="loading-gif" src="static/img/loading.gif" style="display: none; width: 32px; height: 32px;"></img>
                 </div>
               </form>
-            </div>
-            <div id="submission-modal-footer" class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" id="submission-modal-button" class="btn btn-primary">Submit</button>
-                <img id="loading-gif" src="static/img/loading.gif" style="display: none; width: 32px; height: 32px;"></img>
-            </div>
           </div>
         </div>
     </div>
