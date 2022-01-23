@@ -60,6 +60,11 @@
   margin: auto;
 }
 
+.imgNTHE {
+  align-self: center;
+  margin: auto;
+  max-width: 450px;
+}
 
 .data-submission-container {
   display: grid;
@@ -80,7 +85,7 @@
   margin-top: 20px;
 }
 
-table {
+#tableStockList,  #tableGCommList{
   max-width: 1200px;
   margin: 20px auto;
 }
