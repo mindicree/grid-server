@@ -121,11 +121,11 @@ Work Orders | GRID Server
                     </div>
                     <div class="data-entry-label-and-input data-entry-wo">
                         <p>Phone No.: </p>
-                        <input type="text" name="phone1" value="" required>
+                        <input type="tel" name="phone1" value="" placeholder="###-###-####" required>
                     </div>
                     <div class="data-entry-label-and-input data-entry-wo">
                         <p>Phone No. 2: </p>
-                        <input type="text" name="phone2" value="">
+                        <input type="tel" name="phone2" value="" placeholder="###-###-####">
                     </div>
                     <div class="data-entry-label-and-input data-entry-wo">
                         <p>Computer: </p>
@@ -250,11 +250,22 @@ Work Orders | GRID Server
         let workOrderJSON
         try {
             workOrderJSON = renderSubmission();
-            console.log(JSON.stringify(workOrderJSON));
+            //console.log(JSON.stringify(workOrderJSON));
         } catch (error) {
             console.log('Error in creating JSON for submission.\nError: ' + error);
             return false;
         }
+
+        //validate data
+        let isValidWorkOrder = validateNewWorkOrder(workOrderJSON);
+        console.log(isValidWorkOrder['error']);
+        if (isValidWorkOrder.err) {
+            console.log('in error field');
+            alert('Error: ' + isValidWorkOrder['msg']);
+            return false;
+        }
+        console.log('after');
+
         //create URL for POST call
         let apiURL = 'http://{{ host_ip }}:5000/work-orders';
         //make POST call and reload
@@ -268,6 +279,21 @@ Work Orders | GRID Server
 
         //default return false;
         return false;
+    }
+
+    function validateNewWorkOrder(wo) {
+        let val = {};
+        //phone number 1
+        if(wo.phone1 == null || wo.phone1.length < 10) {
+            val.err = true;
+            val.msg = 'Invalid Phone #';
+        }
+        //phone number 2
+        if(wo.phone2 == null || wo.phone1.length < 10) {
+            val.err = true;
+            val.msg = 'Invalid Phone #';
+        }
+        return val;
     }
 
     function getBooleanValue(x) {
@@ -304,8 +330,8 @@ Work Orders | GRID Server
         let workOrder = {
             'fname': document.getElementsByName('fname')[0].value,
             'lname': document.getElementsByName('lname')[0].value,
-            'phone1': document.getElementsByName('phone1')[0].value,
-            'phone2': document.getElementsByName('phone2')[0].value,
+            'phone1': formatPhoneNumberToDigits(document.getElementsByName('phone1')[0].value),
+            'phone2': formatPhoneNumberToDigits(document.getElementsByName('phone2')[0].value),
             'computer_type': document.getElementsByName('computer-type')[0].value,
             'model': document.getElementsByName('model')[0].value,
             'password': document.getElementsByName('password')[0].value,
@@ -318,6 +344,24 @@ Work Orders | GRID Server
             'cashier': document.getElementsByName('cashier')[0].value
         }
         return workOrder;
+    }
+
+    //from stackoverflow
+    //https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
+    function formatPhoneNumberToDigits(phoneNumberString) {
+        var cleaned = phoneNumberString.replace(/\D/g, '');
+        if (cleaned.length == 10) {
+            return cleaned;
+        }
+        return null;
+    }
+    function formatPhoneNumberToView(phoneNumberString) {
+        var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        if (match) {
+            return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+        }
+        return null;
     }
 </script>
 
