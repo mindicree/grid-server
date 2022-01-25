@@ -101,7 +101,7 @@ Work Orders | GRID Server
 <div id='wo-btn-container' style='width: 100%; max-width: 600px; margin: auto;'>
     <button class='btn' data-bs-toggle='modal' data-bs-target='#new_wt_modal'  style='width: 100%; margin: auto; background-color: green; color: white; font-size: 24px;'>+</button>
     <span style="color: white;">|</span>
-    <a href="#"><button class='btn' style='width: 100%; margin: auto; background-color: gray; color: white; font-size: 24px;'><span style="font-size: 16px;">Archive</span></button></a>
+    <a href="work-orders-archive"><button class='btn' style='width: 100%; margin: auto; background-color: gray; color: white; font-size: 24px;'><span style="font-size: 16px;">Archive</span></button></a>
 
     <!-- new work order modal -->
     <div class="modal fade" id="new_wt_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -297,11 +297,6 @@ Work Orders | GRID Server
             val.err = true;
             val.msg = 'Invalid Phone #';
         }
-        //phone number 2
-        if(wo.phone2 == null || wo.phone1.length < 10) {
-            val.err = true;
-            val.msg = 'Invalid Phone #';
-        }
         return val;
     }
 
@@ -460,7 +455,7 @@ Work Orders | GRID Server
                     '<td><div style="display: grid; grid-template-columns: 80% auto;">' + formatDateString(woData.dt_recieved) + generateDateBox(woData) + '</div></td>' +
                     '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
                     '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
-                    '<td>' + (woData.price == null || woData.price <= 0 ? '$0.00': Intl.NumberFormat.format(woData.price)) + '</td>' +
+                    '<td>' + (woData.price == null || woData.price <= 0 ? '$0.00': Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(wo.price)) + '</td>' +
                     '<td><div style="display: grid; margin: auto;"><button id="btn_pickup_'+woData._id+'" onclick="pickupWorkOrder(this)" class="btn" style="margin: auto;">Pickup</button></div></td>' +
                 '</tr>' + 
                 '';
@@ -666,7 +661,7 @@ Work Orders | GRID Server
                     '<hr>' + 
                     (wo.starting_tech == wo.finishing_tech ? '<p><b>Tech: </b>' + wo.starting_tech + '</p>' : '<p><b>Techs: </b>' + wo.starting_tech + ', ' + wo.finishing_tech + '</p>') + 
                     '<p><b>Date of Completion: </b>' + formatDateString(wo.dt_completed) + '</p>' +
-                    '<p><b>Price: </b>' + (wo.price == null || wo.price <= 0 ? '$0.00': Intl.NumberFormat.format(wo.price)) + '</p>' +
+                    '<p><b>Price: </b>' + (wo.price == null || wo.price <= 0 ? '$0.00': Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(wo.price)) + '</p>' +
                     '<p><b>Notes: </b></p><br>' +
                     '<p>'+wo.notes+'</p>' +
                 '</div>';

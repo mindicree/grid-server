@@ -23,10 +23,15 @@ def syslogs():
 def gcomm():
     return render_template('gcomm.html', host_ip=setup.HOST)
 
-#G-COMM Logs Page
+#Work Orders Page
 @app.route('/work-orders')
 def work_orders():
     return render_template('work-orders.html', host_ip=setup.HOST)
+
+#Work Orders Archive Page
+@app.route('/work-orders-archive')
+def work_orders_archive():
+    return render_template('work-orders-archive.html', host_ip=setup.HOST)
 
 #RUN APPLICATION
 if __name__ == '__main__':
