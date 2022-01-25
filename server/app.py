@@ -1012,6 +1012,63 @@ def work_order(log_id):
         log.delete()
         return make_response(jsonify({'message': 'Work Order [' + str(log_id) + '] deleted successfully'}), 200)
 
+
+@app.route('/work-orders/claim', methods=['POST', 'PUT'])
+def work_orders_claim():
+    if request.method == 'POST' or request.method == 'PUT':
+        # check if argument provided
+        if not request.args.get('id') or not request.args.get('tech'):
+                return make_response(jsonify({'error': 'Bad request - missing arguments'}), 400)
+
+        # check id if available
+        log = WorkOrder.objects(id=request.args.get('id')).first()
+        if not log:
+            return make_response(jsonify({'message': 'Work Order not found'}), 404)
+
+        # update work order to in progress
+        log.update(status='In Progress', starting_tech=request.args.get('tech'), dt_last_updated=datetime.utcnow())
+
+        return make_response(jsonify({'message': 'Work Order [' + str(log.id) + '] claimed by ' + request.args.get('tech')}), 200)
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
+
+@app.route('/work-orders/complete', methods=['POST', 'PUT'])
+def work_orders_complete():
+    if request.method == 'POST' or request.method == 'PUT':
+        # check if argument provided
+        if not request.args.get('id') or not request.args.get('tech'):
+                return make_response(jsonify({'error': 'Bad request - missing arguments'}), 400)
+
+        # check id if available
+        log = WorkOrder.objects(id=request.args.get('id')).first()
+        if not log:
+            return make_response(jsonify({'message': 'Work Order not found'}), 404)
+
+        # update work order to in progress
+        log.update(status='Completed', finishing_tech=request.args.get('tech'), dt_last_updated=datetime.utcnow(), dt_completed=datetime.utcnow())
+
+        return make_response(jsonify({'message': 'Work Order [' + str(log.id) + '] completed by ' + request.args.get('tech')}), 200)
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
+
+@app.route('/work-orders/pickup', methods=['POST', 'PUT'])
+def work_orders_pickup():
+    if request.method == 'POST' or request.method == 'PUT':
+        # check if argument provided
+        if not request.args.get('id'):
+                return make_response(jsonify({'error': 'Bad request - missing arguments'}), 400)
+
+        # check id if available
+        log = WorkOrder.objects(id=request.args.get('id')).first()
+        if not log:
+            return make_response(jsonify({'message': 'Work Order not found'}), 404)
+
+        # update work order to in progress
+        log.update(status='Picked Up', dt_last_updated=datetime.utcnow(), dt_picked_up=datetime.utcnow())
+
+        return make_response(jsonify({'message': 'Work Order [' + str(log.id) + '] picked up and archived.'}), 200)
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
 #RUN APPLICATION
 if __name__ == '__main__':
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)

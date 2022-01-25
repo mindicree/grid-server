@@ -51,7 +51,8 @@ Work Orders | GRID Server
                             <th>Date</th>
                             <th>Name</th>
                             <th>Computer</th>
-                            <th>Phone No.</th>
+                            <th>Tech</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody id='tableBodyWorkOrdersInProgress'>
@@ -308,6 +309,7 @@ Work Orders | GRID Server
                 return new Error('Something went wrong');
         }
     }
+
     function renderSubmission() {
         let isPFU;
         document.getElementsByName('isPurchasedFromUs').forEach((item) => {
@@ -345,6 +347,7 @@ Work Orders | GRID Server
         }
         return workOrder;
     }
+
 
     //from stackoverflow
     //https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
@@ -446,9 +449,19 @@ Work Orders | GRID Server
             case 'Ready':
                 break;
             case 'In Progress':
+            case 'Awaiting Part':
+            rowString =
+                '<tr>' + 
+                    '<td><div style="display: grid; grid-template-columns: 80% auto;">' + formatDateString(woData.dt_recieved) + generateDateBox(woData) + '</div></td>' +
+                    '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
+                    '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
+                    '<td>' + (woData.starting_tech.length <= 0 ? 'N/A' : woData.starting_tech) + '</td>' +
+                    '<td><div style="display: grid; margin: auto;"><button class="btn" style="margin: auto;">Edit</button></div></td>' +
+                '</tr>' + 
+                '';
                 break;
             case 'Dropped Off': 
-                rowString = '' + 
+                rowString =
                 '<tr>' + 
                     '<td><div style="display: grid; grid-template-columns: 80% auto;">' + formatDateString(woData.dt_recieved) + generateDateBox(woData) + '</div></td>' +
                     '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
