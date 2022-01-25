@@ -267,13 +267,11 @@ Work Orders | GRID Server
 
         //validate data
         let isValidWorkOrder = validateNewWorkOrder(workOrderJSON);
-        console.log(isValidWorkOrder['error']);
         if (isValidWorkOrder.err) {
             console.log('in error field');
             alert('Error: ' + isValidWorkOrder['msg']);
             return false;
         }
-        console.log('after');
 
         //create URL for POST call
         let apiURL = 'http://{{ host_ip }}:5000/work-orders';
@@ -281,7 +279,6 @@ Work Orders | GRID Server
         fetch(apiURL, {method: 'POST', body: JSON.stringify(workOrderJSON)})
         .then(response => response.json())
         .then(data => {
-            console.log(JSON.stringify(data));
             alert('Work Order Submitted Successfully');
             window.location.replace('work-orders');
         })
@@ -585,7 +582,6 @@ Work Orders | GRID Server
         let workOrderForDisplay;
         workOrders.forEach(item => {
             if (item._id == woId) {
-                //console.log(JSON.stringify(item));
                 workOrderForDisplay = item;
             }
         })
