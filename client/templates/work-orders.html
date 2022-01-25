@@ -240,6 +240,13 @@ Work Orders | GRID Server
     </div>
 </div>
 
+<!--Entry Modal-->
+<div class="" id='tableModalContainer'>
+    <div class="modal fade" id="modal-intake-viewer">
+
+    </div>
+</div>
+
 <!-- LOAD WORK ORDERS SCRIPT -->
 <script>
     
@@ -449,7 +456,7 @@ Work Orders | GRID Server
         switch (woData.status) {
             case 'Completed':
             rowString = 
-                '<tr class="align-middle">' + 
+                '<tr id="tr_'+woData._id+'" class="align-middle" onclick="displayWorkOrder(this)">' + 
                     '<td><div style="display: grid; grid-template-columns: 80% auto;">' + formatDateString(woData.dt_recieved) + generateDateBox(woData) + '</div></td>' +
                     '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
                     '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
@@ -461,7 +468,7 @@ Work Orders | GRID Server
             case 'In Progress':
             case 'Awaiting Part':
             rowString =
-                '<tr class="align-middle">' + 
+                '<tr id="tr_'+woData._id+'" class="align-middle" onclick="displayWorkOrder(this)">' + 
                     '<td><div style="display: grid; grid-template-columns: 80% auto;">' + formatDateString(woData.dt_recieved) + generateDateBox(woData) + '</div></td>' +
                     '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
                     '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
@@ -472,7 +479,7 @@ Work Orders | GRID Server
                 break;
             case 'Dropped Off': 
                 rowString =
-                '<tr class="align-middle">' + 
+                '<tr id="tr_'+woData._id+'" class="align-middle" onclick="displayWorkOrder(this)">' + 
                     '<td><div style="display: grid; grid-template-columns: 80% auto;">' + formatDateString(woData.dt_recieved) + generateDateBox(woData) + '</div></td>' +
                     '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
                     '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
@@ -507,16 +514,39 @@ Work Orders | GRID Server
                 console.log(error)
             })
         }
+
+        //stops row click from happening
+        event.stopPropagation();
     }
 
     function editWorkOrder(btn) {
         let id = btn.id.replace('btn_edit_', '');
         alert('Edit ID found: ' + id);
+
+        //stops row click from happening
+        event.stopPropagation();
     }
 
     function pickupWorkOrder(btn) {
         let id = btn.id.replace('btn_pickup_', '');
         alert('Pickup ID found: ' + id);
+
+        //stops row click from happening
+        event.stopPropagation();
+    }
+
+    function displayWorkOrder(row_id) {
+        let woId = row_id.id.replace('tr_', '');
+        //alert('Row with ID ' + woId);
+        let workOrderForDisplay;
+        workOrders.forEach(item => {
+            if (item._id == woId) {
+                console.log(JSON.stringify(item));
+                workOrderForDisplay = item;
+            }
+        })
+
+
     }
 
     function generateDateBox (woData) {
