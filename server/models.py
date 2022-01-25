@@ -26,6 +26,7 @@ class WorkOrder (db.Document):
     dt_completed = db.DateTimeField()
     dt_picked_up = db.DateTimeField()
     price = db.FloatField()
+    signature = db.StringField()
 
     def get_json(self):
         return {
@@ -52,7 +53,8 @@ class WorkOrder (db.Document):
             "dt_last_updated": self.dt_last_updated, 
             "dt_completed": self.dt_completed, 
             "dt_picked_up": self.dt_picked_up,
-            "price": self.price
+            "price": self.price,
+            "signature": self.signature
         }
 
 class GCommLog (db.Document):

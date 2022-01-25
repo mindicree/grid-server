@@ -242,7 +242,7 @@ Work Orders | GRID Server
 
 <!--Entry Modal-->
 <div class="" id='tableModalContainer'>
-    <div class="modal fade" id="modal-intake-viewer">
+    <div class="modal fade" id="modal-wo-viewer">
 
     </div>
 </div>
@@ -473,7 +473,7 @@ Work Orders | GRID Server
                     '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
                     '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
                     '<td>' + (woData.starting_tech.length <= 0 ? 'N/A' : woData.starting_tech) + '</td>' +
-                    '<td><div style="display: grid; margin: auto;"><button id="btn_edit_'+woData._id+'" onclick="editWorkOrder(this)" class="btn" style="margin: auto;">Edit</button></div></td>' +
+                    '<td><div style="display: grid; margin: auto;"><button id="btn_edit_'+woData._id+'" onclick="editWorkOrder(this)" class="btn" style="margin: auto;">Edit</button><button id="btn_complete_'+woData._id+'" onclick="completeWorkOrder(this)" class="btn" style="margin: auto;">Complete</button></div></td>' +
                 '</tr>' + 
                 '';
                 break;
@@ -519,6 +519,34 @@ Work Orders | GRID Server
         event.stopPropagation();
     }
 
+    function completeWorkOrder(btn) {
+        let id = btn.id.replace('btn_complete_', '');
+        //alert('Claim ID found: ' + id);
+        let tech_entry = prompt('Please enter tech initials');
+        if (!tech_entry) {
+            alert('Error: No tech');
+        } else {
+            //alert('Tech ' + tech_entry + ' chosen');
+            let claimURL = 'http://{{ host_ip }}:5000/work-orders/complete?id=' + id + '&tech=' + tech_entry;
+            fetch(claimURL, {method: 'POST'})
+            .then(response => response.json())
+            .then(data => {
+                if (!data.error) {
+                    alert(data.message);
+                    window.location.reload();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
+
+        //stops row click from happening
+        event.stopPropagation();
+    }
+
     function editWorkOrder(btn) {
         let id = btn.id.replace('btn_edit_', '');
         alert('Edit ID found: ' + id);
@@ -541,11 +569,92 @@ Work Orders | GRID Server
         let workOrderForDisplay;
         workOrders.forEach(item => {
             if (item._id == woId) {
-                console.log(JSON.stringify(item));
+                //console.log(JSON.stringify(item));
                 workOrderForDisplay = item;
             }
         })
 
+        let modalString = getModalString(workOrderForDisplay);
+        document.querySelector('#modal-wo-viewer').innerHTML = modalString;
+        new bootstrap.Modal(document.querySelector('#modal-wo-viewer')).toggle();
+
+    }
+
+    function getModalString(wo) {
+         return '' +
+         '<div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">' +
+            '<div class="modal-content">' +
+                '<div class="modal-header">' + 
+                    '<h5 class="modal-title">Work Order</h5>' + 
+                    '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +                
+                '</div>' + 
+                '<div class="modal-body">' +
+                    getModalBodyString(wo) + 
+                '</div>' + 
+                '<div class="modal-footer">' + 
+                    getModalFooterString(wo) + 
+                '</div>' + 
+            '</div>' + 
+        '</div>';
+    }
+
+    function getModalBodyString(wo) {
+        let bodyString;
+        switch(wo.status) {
+            case 'Dropped Off':
+                bodyString = 
+                '<div>' +
+                    '<p><b>Name: </b>' + wo.fname + ' ' + wo.lname + '</p>' +
+                    '<p><b>Computer: </b>' + wo.model + ' (' + wo.computer_type + ')</p>' +
+                    '<p><b>Issue: </b>' + wo.issue_category + ' - ' + wo.issue_description + '</p>' +
+                    '<p><b>Cashier: </b>' + wo.cashier + '</p>' +
+                    '<hr>' + 
+                    '<p><b>Bought From Us: </b>' + (wo.isPurchasedFromUs ? 'Yes' : 'No') + '</p>' +
+                    '<p><b>Under Warranty: </b>' + (wo.isUnderWarranty ? 'Yes' : 'No') + '</p>' +
+                    '<p><b>Other Items: </b>' + (wo.isWithOtherItems.length > 0 ? wo.isWithOtherItems : 'No') + '</p>' +
+                '</div>';
+                break;
+            case 'In Progress':
+            case 'Awaiting Part':
+                bodyString = 
+                '<div>' +
+                    '<p><b>Name: </b>' + wo.fname + ' ' + wo.lname + '</p>' +
+                    '<p><b>Computer: </b>' + wo.model + ' (' + wo.computer_type + ')</p>' +
+                    '<p><b>Issue: </b>' + wo.issue_category + ' - ' + wo.issue_description + '</p>' +
+                    '<p><b>Bought From Us: </b>' + (wo.isPurchasedFromUs ? 'Yes' : 'No') + '</p>' +
+                    '<p><b>Under Warranty: </b>' + (wo.isUnderWarranty ? 'Yes' : 'No') + '</p>' +
+                    '<p><b>Other Items: </b>' + (wo.isWithOtherItems.length > 0 ? wo.isWithOtherItems : 'No') + '</p>' +
+                    '<p><b>Cashier: </b>' + wo.cashier + '</p>' +
+                    '<hr>' + 
+                    '<p><b>Tech: </b>' + wo.starting_tech + '</p>' +
+                    '<p><b>Last Update: </b>' + formatDateString(wo.dt_last_updated) + '</p>' +
+                    '<p><b>Needs Parts: </b>' + (wo.status == 'Awaiting Part' ? 'Yes' : 'No') + '</p>' +
+                    '<p><b>Notes: </b></p><br>' +
+                    '<p>'+wo.notes+'</p>' +
+                '</div>';
+                break;
+            case 'Completed':
+                bodyString = 
+                '<div>' +
+                    '<p><b>Name: </b>' + wo.fname + ' ' + wo.lname + '</p>' +
+                    '<p><b>Computer: </b>' + wo.model + ' (' + wo.computer_type + ')</p>' +
+                    '<p><b>Issue: </b>' + wo.issue_category + ' - ' + wo.issue_description + '</p>' +
+                    '<p><b>Bought From Us: </b>' + (wo.isPurchasedFromUs ? 'Yes' : 'No') + '</p>' +
+                    '<p><b>Under Warranty: </b>' + (wo.isUnderWarranty ? 'Yes' : 'No') + '</p>' +
+                    '<p><b>Other Items: </b>' + (wo.isWithOtherItems.length > 0 ? wo.isWithOtherItems : 'No') + '</p>' +
+                    '<hr>' + 
+                    (wo.starting_tech == wo.finishing_tech ? '<p><b>Tech: </b>' + wo.starting_tech + '</p>' : '<p><b>Techs: </b>' + wo.starting_tech + ', ' + wo.finishing_tech + '</p>') + 
+                    '<p><b>Date of Completion: </b>' + formatDateString(wo.dt_completed) + '</p>' +
+                    '<p><b>Price: </b>' + (wo.price == null || wo.price <= 0 ? '$0.00': Intl.NumberFormat.format(wo.price)) + '</p>' +
+                    '<p><b>Notes: </b></p><br>' +
+                    '<p>'+wo.notes+'</p>' +
+                '</div>';
+                break;
+        }
+        return bodyString;
+    }
+
+    function getModalFooterString(wo) {
 
     }
 
