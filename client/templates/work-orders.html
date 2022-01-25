@@ -22,63 +22,69 @@ Work Orders | GRID Server
     <!-- Tab Content -->
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="wotrfp" role="tabpanel" aria-labelledby="home-tab">
-            <table class="table table-striped table-hover table-bordered" id='tableWorkOrdersReady' >
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Name</th>
-                        <th>Computer</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody id='tableBodyWorkOrdersReady'>
-            
-                </tbody>
-            </table>
-            <!--Loading Thing-->
-            <div id='table-loading-indicator-re' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
-                <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
-                <h4 style="color: #aaa; margin: auto;">Loading</h4>
+            <div class='inner_tab_container'>
+                <table class="table table-striped table-hover table-bordered" id='tableWorkOrdersReady' >
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Computer</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id='tableBodyWorkOrdersReady'>
+                
+                    </tbody>
+                </table>
+                <!--Loading Thing-->
+                <div id='table-loading-indicator-re' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
+                    <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+                    <h4 style="color: #aaa; margin: auto;">Loading</h4>
+                </div>
             </div>
         </div>
         <div class="tab-pane fade" id="wotip" role="tabpanel" aria-labelledby="profile-tab">
-            <table class="table table-striped table-hover table-bordered" id='tableWorkOrdersInProgress' >
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Name</th>
-                        <th>Computer</th>
-                        <th>Phone No.</th>
-                    </tr>
-                </thead>
-                <tbody id='tableBodyWorkOrdersInProgress'>
-            
-                </tbody>
-            </table>
-            <!--Loading Thing-->
-            <div id='table-loading-indicator-ip' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
-                <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
-                <h4 style="color: #aaa; margin: auto;">Loading</h4>
+            <div class=inner_tab_container>
+                <table class="table table-striped table-hover table-bordered" id='tableWorkOrdersInProgress' >
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Computer</th>
+                            <th>Phone No.</th>
+                        </tr>
+                    </thead>
+                    <tbody id='tableBodyWorkOrdersInProgress'>
+                
+                    </tbody>
+                </table>
+                <!--Loading Thing-->
+                <div id='table-loading-indicator-ip' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
+                    <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+                    <h4 style="color: #aaa; margin: auto;">Loading</h4>
+                </div>
             </div>
         </div>
         <div class="tab-pane fade" id="wotdo" role="tabpanel" aria-labelledby="contact-tab">
-            <table class="table table-striped table-hover table-bordered" id='tableWorkOrdersIntake' >
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Name</th>
-                        <th>Computer</th>
-                        <th>Options</th>
-                    </tr>
-                </thead>
-                <tbody id='tableBodyWorkOrdersIntake'>
-            
-                </tbody>
-            </table>
-            <!--Loading Thing-->
-            <div id='table-loading-indicator-it' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
-                <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
-                <h4 style="color: #aaa; margin: auto;">Loading</h4>
+            <div class='inner_tab_container'>
+                <table class="table table-striped table-hover table-bordered" id='tableWorkOrdersIntake' >
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Computer</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody id='tableBodyWorkOrdersIntake'>
+                
+                    </tbody>
+                </table>
+                <!--Loading Thing-->
+                <div id='table-loading-indicator-it' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
+                    <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+                    <h4 style="color: #aaa; margin: auto;">Loading</h4>
+                </div>
             </div>
         </div>
     </div>
@@ -350,8 +356,9 @@ Work Orders | GRID Server
 
         //load ready work orders into ready tab
         if (workOrdersReady.length <= 0) {
-            document.querySelector('#wotrfp').innerHTML = '';
-            //document.querySelector('#wotrfp').appendChild(no_thoughts_head_empty.cloneNode());
+            document.querySelector('#wotrfp .inner_tab_container').innerHTML = '';
+            document.querySelector('#wotrfp .inner_tab_container').appendChild(no_thoughts_head_empty.cloneNode());
+            document.querySelector('#wotrfp .inner_tab_container').style.overflow = 'hidden';
         } else {
             document.querySelector('#ready_badge').innerHTML = workOrdersReady.length;
             document.querySelector('#table-loading-indicator-re').style = 'display: none';
@@ -361,8 +368,9 @@ Work Orders | GRID Server
         }
         //load in progress work orders into in progress tab
         if (workOrdersInProgress.length <= 0) {
-            document.querySelector('#wotip').innerHTML = '';
-            //document.querySelector('#wotip').appendChild(no_thoughts_head_empty.cloneNode());
+            document.querySelector('#wotip .inner_tab_container').innerHTML = '';
+            document.querySelector('#wotip .inner_tab_container').appendChild(no_thoughts_head_empty.cloneNode());
+            document.querySelector('#wotip .inner_tab_container').style.overflow = 'hidden';
         } else {
             document.querySelector('#progress_badge').innerHTML = workOrdersInProgress.length;
             document.querySelector('#table-loading-indicator-ip').style = 'display: none';
@@ -373,8 +381,9 @@ Work Orders | GRID Server
         //load intake work orders into intake tab
         //load ready work orders into ready tab
         if (workOrdersIntake.length <= 0) {
-            document.querySelector('#wotip').innerHTML = '';
-            //document.querySelector('#wotip').appendChild(no_thoughts_head_empty.cloneNode());
+            document.querySelector('#wotdo .inner_tab_container').innerHTML = '';
+            document.querySelector('#wotdo .inner_tab_container').appendChild(no_thoughts_head_empty.cloneNode());
+            document.querySelector('#wotdo .inner_tab_container').style.overflow = 'hidden';
         } else {
             document.querySelector('#intake_badge').innerHTML = workOrdersIntake.length;
             document.querySelector('#table-loading-indicator-it').style = 'display: none';
@@ -397,15 +406,47 @@ Work Orders | GRID Server
             case 'Dropped Off': 
                 rowString = '' + 
                 '<tr>' + 
-                    '<td>' + formatDateString(woData.dt_recieved) + '</td>' +
+                    '<td><div style="display: grid; grid-template-columns: 80% auto;">' + formatDateString(woData.dt_recieved) + generateDateBox(woData) + '</div></td>' +
                     '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
                     '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
-                    '<td><button>Claim</button><td>' +
+                    '<td><button>Claim</button></td>' +
                 '</tr>' + 
                 '';
                 break;
         }
         return rowString
+    }
+
+    function generateDateBox (woData) {
+        let now = new Date();
+        let takeIn = new Date(woData.dt_recieved);
+        let deltaTimeMilliseconds = now - takeIn; //date subtraction returns milliseconds
+        let deltaTimeHours = deltaTimeMilliseconds / 1000 / 3600;
+        console.log('Name: ' + woData.fname + ' ' + woData.lname + '\nNow: ' + now + '\nDT_Recieved: ' + takeIn + '\ndeltaTimeMilliseconds: ' + deltaTimeMilliseconds + '\ndeltaTimeHours: ' + deltaTimeHours + '\n')
+        let colorBoxString, colorRed, colorGreen;
+
+        if (deltaTimeHours <= 24) {
+            //10.625 RGB per hour up to 255 at 24 hours
+            colorRed = (deltaTimeHours * 10.625);
+            colorGreen = 255; 
+            colorBoxString = 
+            '<div class="date_color_box" style="background-color: rgb('+colorRed+', 255, 0);">' + 
+            '</div>';
+        } else if (deltaTimeHours <= 48) {
+            //10.625 RGB per hour up to 255 at 24 hours
+            colorRed = 255;
+            colorGreen = 255 - ((deltaTimeHours - 24) * 10.625); 
+            colorBoxString = 
+            '<div class="date_color_box" style="background-color: rgb(255, '+colorGreen+', 0);">' + 
+            '</div>';
+        } else {
+            colorBoxString = 
+            '<div class="date_color_box" style="background-color: rgb(255, 0, 0);">' + 
+            '</div>';
+        }
+
+        return colorBoxString;
+
     }
 
     function formatDateString(dateString) {
@@ -414,7 +455,9 @@ Work Orders | GRID Server
             weekday: 'short',
             day: 'numeric',
             month: 'short',
-            year: 'numeric'
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
         }
         return date.toLocaleDateString('en-UK', dateFormat);
     }

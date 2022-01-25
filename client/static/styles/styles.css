@@ -61,9 +61,22 @@
 }
 
 .imgNTHE {
-  align-self: center;
   margin: auto;
-  max-width: 450px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.inner_tab_container {
+  display: grid;
+  overflow: scroll;
+  max-height: 60vh;
+}
+
+.date_color_box {
+  width: 16px;
+  height: 16px;
+  margin: auto;
+  border: 1px solid #999;
 }
 
 .data-submission-container {
