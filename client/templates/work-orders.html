@@ -30,6 +30,7 @@ Work Orders | GRID Server
                             <th>Name</th>
                             <th>Computer</th>
                             <th>Price</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody id='tableBodyWorkOrdersReady'>
@@ -446,7 +447,16 @@ Work Orders | GRID Server
     function generateTableRow (woData) {
         let rowString = '';
         switch (woData.status) {
-            case 'Ready':
+            case 'Completed':
+            rowString = 
+                '<tr>' + 
+                    '<td><div style="display: grid; grid-template-columns: 80% auto;">' + formatDateString(woData.dt_recieved) + generateDateBox(woData) + '</div></td>' +
+                    '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
+                    '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
+                    '<td>' + (woData.price == null || woData.price <= 0 ? '$0.00': Intl.NumberFormat.format(woData.price)) + '</td>' +
+                    '<td><div style="display: grid; margin: auto;"><button class="btn" style="margin: auto;">Pickup</button></div></td>' +
+                '</tr>' + 
+                '';
                 break;
             case 'In Progress':
             case 'Awaiting Part':
