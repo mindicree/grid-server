@@ -1055,7 +1055,7 @@ def work_orders_complete():
 def work_orders_pickup():
     if request.method == 'POST' or request.method == 'PUT':
         # check if argument provided
-        if not request.args.get('id'):
+        if not request.args.get('id') or not request.args.get('sig'):
                 return make_response(jsonify({'error': 'Bad request - missing arguments'}), 400)
 
         # check id if available
@@ -1064,7 +1064,7 @@ def work_orders_pickup():
             return make_response(jsonify({'message': 'Work Order not found'}), 404)
 
         # update work order to in progress
-        log.update(status='Picked Up', dt_last_updated=datetime.utcnow(), dt_picked_up=datetime.utcnow())
+        log.update(status='Picked Up', dt_last_updated=datetime.utcnow(), dt_picked_up=datetime.utcnow(), signature=request.args.get('sig'))
 
         return make_response(jsonify({'message': 'Work Order [' + str(log.id) + '] picked up and archived.'}), 200)
 
