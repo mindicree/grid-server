@@ -39,7 +39,7 @@ def work_orders_edit():
     if not request.args.get('id'):
         return redirect(url_for('work_orders'))
     else:
-        return render_template('work-orders-edit.html', host_ip=setup.HOST, system_id=request.args.get('id'))
+        return render_template('work-orders-edit.html', host_ip=setup.HOST, wo_id=request.args.get('id'))
 
 #RUN APPLICATION
 if __name__ == '__main__':

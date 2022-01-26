@@ -6,30 +6,12 @@ Work Orders | GRID Server
 
 {% block body %}
 
-<table class="table table-striped table-hover table-bordered" id='tableWorkOrdersArchive' style='max-width: 1024px; margin: auto;'>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Computer</th>
-            <th>Tech(s)</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody id='tableBodyWorkOrdersArchive'>
+<div id='workOrderEditContainer'>
 
-    </tbody>
-</table>
-
-<!--Entry Modal-->
-<div class="" id='tableModalContainer'>
-    <div class="modal fade" id="modal-wo-viewer">
-
-    </div>
 </div>
 
 <!-- Phone No Format SCRIPT -->
 <script>
-
     //from stackoverflow
     //https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
     function formatPhoneNumberToDigits(phoneNumberString) {
@@ -47,81 +29,35 @@ Work Orders | GRID Server
         }
         return null;
     }
+
+    //my format date function
+    function formatDateString(dateString) {
+        date = new Date(dateString);
+        dateFormat = {
+            weekday: 'short',
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        }
+        return date.toLocaleDateString('en-UK', dateFormat);
+    }
 </script>
 
-<!-- LOAD TABLES -->
+<!-- GET WORK ORDER -->
 <script>
-    let workOrdersArchive = [];
-    fetch('http://{{ host_ip }}:5000/work-orders/archive')
+    let workOrderOriginal, workOrderEdit;
+    fetch('http://{{ host_ip }}:5000/work-orders/{{ wo_id }}')
     .then(response => response.json())
     .then(data => {
-        workOrdersArchive = data;
-
-        //new image for empty tab
-        let no_thoughts_head_empty = document.createElement('img');
-        no_thoughts_head_empty.setAttribute('src', 'static/img/nthe.png');
-        no_thoughts_head_empty.setAttribute('class', 'imgNTHE');
-
-        //load ready work orders into ready tab
-        if (workOrdersArchive.length <= 0) {
-            document.querySelector('body').appendChild(no_thoughts_head_empty.cloneNode());
-        } else {
-            workOrdersArchive.forEach(item => {
-                document.querySelector('#tableBodyWorkOrdersArchive').innerHTML += generateTableRow(item);
-            })
-        }
-
+        workOrderOriginal = data;
+        worOrderEdit = data;
     })
     .catch(error => {
+        document.querySelector('body').innerHTML += error;
         console.log(error);
     });
-
-    function generateTableRow (woData) {
-        let rowString = 
-            '<tr id="tr_'+woData._id+'" class="align-middle" onclick="displayWorkOrder(this)">' + 
-                '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
-                '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
-                '<td>' + woData.starting_tech + (woData.starting_tech != woData.finishing_tech ? ', ' + woData.finishing_tech : '') + '</td>' +
-                '<td>' + woData.status + '</td>' +
-            '</tr>' + 
-            '';
-        return rowString
-    }
-
-    function displayWorkOrder(row_id) {
-        let woId = row_id.id.replace('tr_', '');
-        //alert('Row with ID ' + woId);
-        let workOrderForDisplay;
-        workOrdersArchive.forEach(item => {
-            if (item._id == woId) {
-                //console.log(JSON.stringify(item));
-                workOrderForDisplay = item;
-            }
-        })
-
-        let modalString = getModalString(workOrderForDisplay);
-        document.querySelector('#modal-wo-viewer').innerHTML = modalString;
-        new bootstrap.Modal(document.querySelector('#modal-wo-viewer')).toggle();
-
-    }
-
-    function getModalString(wo) {
-         return '' +
-         '<div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">' +
-            '<div class="modal-content">' +
-                '<div class="modal-header">' + 
-                    '<h5 class="modal-title">Work Order</h5>' + 
-                    '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +                
-                '</div>' + 
-                '<div class="modal-body">' +
-                    getModalBodyString(wo) + 
-                '</div>' + 
-                '<div class="modal-footer">' + 
-                    getModalFooterString(wo) + 
-                '</div>' + 
-            '</div>' + 
-        '</div>';
-    }
 
     function getModalBodyString(wo) {
         let bodyString = 
@@ -141,10 +77,6 @@ Work Orders | GRID Server
                 '</div>';
         
         return bodyString;
-    }
-
-    function getModalFooterString(wo) {
-
     }
 
     function generateDateBox (woData) {
@@ -174,22 +106,7 @@ Work Orders | GRID Server
             '<div class="date_color_box" style="background-color: rgb(255, 0, 0);">' + 
             '</div>';
         }
-
         return colorBoxString;
-
-    }
-
-    function formatDateString(dateString) {
-        date = new Date(dateString);
-        dateFormat = {
-            weekday: 'short',
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric'
-        }
-        return date.toLocaleDateString('en-UK', dateFormat);
     }
 </script>
 
