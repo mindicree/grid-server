@@ -120,7 +120,7 @@ Work Orders | GRID Server
 
             //load data into HTML
             document.querySelector('#workOrderInfoName').innerHTML += workOrderOriginal.fname + ' ' + workOrderOriginal.lname;
-            document.querySelector('#workOrderInfoPhone').innerHTML += workOrderOriginal.phone1 + (workOrderOriginal.phone2 > 0 ? ', ' + workOrderOriginal.phone2 : '');
+            document.querySelector('#workOrderInfoPhone').innerHTML += formatPhoneNumberToView(workOrderOriginal.phone1) + (formatPhoneNumberToView(workOrderOriginal.phone2) > 0 ? ', ' + workOrderOriginal.phone2 : '');
             document.querySelector('#workOrderInfoIntake').innerHTML += formatDateString(workOrderOriginal.dt_recieved);
             document.querySelector('#workOrderInfoCashier').innerHTML += workOrderOriginal.cashier;
             document.querySelector('#workOrderInfoTech').innerHTML += workOrderOriginal.starting_tech;

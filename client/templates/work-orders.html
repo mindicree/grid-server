@@ -543,7 +543,9 @@ Work Orders | GRID Server
 
     function editWorkOrder(btn) {
         let id = btn.id.replace('btn_edit_', '');
-        alert('Edit ID found: ' + id);
+        //alert('Edit ID found: ' + id);
+
+        window.location.replace('work-orders-edit?id=' + id);
 
         //stops row click from happening
         event.stopPropagation();
