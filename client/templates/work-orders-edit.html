@@ -35,9 +35,10 @@ Work Orders | GRID Server
                                 <p id='workOrderInfoPowerSupply'><b>Power Supply: </b></p>
                                 <p id='workOrderInfoOtherItems'><b>Other Items: </b></p>
                             </div>
-                            <div>
-                                <p id='workOrderInfoIssue'><b>Issue: </b></p>
-                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <p id='workOrderInfoIssue'><b>Issue: </b></p>
                         </div>
                     </div>
                 </div>
@@ -68,7 +69,7 @@ Work Orders | GRID Server
     <div id='workOrderEditNotesContainer' style='display: grid; width: 90%; margin: auto;'>
         <span style="color: white;">|</span>
         <h4>Notes:</h4>
-        <textarea name="notes" id="" cols="30" rows="10" style="width: 100%; margin: auto;" disabled></textarea>
+        <textarea name="notes" id="" rows="10" style="width: 100%; margin: auto;" disabled></textarea>
         <span style="color: white;">|</span>
         <button class="btn btn-success" style='margin: auto; width: 90%; max-width: 500px;'>Save</button>
     </div>
@@ -116,6 +117,19 @@ Work Orders | GRID Server
         .then(data => {
             workOrderOriginal = data;
             worOrderEdit = data;
+
+            //load data into HTML
+            document.querySelector('#workOrderInfoName').innerHTML += workOrderOriginal.fname + ' ' + workOrderOriginal.lname;
+            document.querySelector('#workOrderInfoPhone').innerHTML += workOrderOriginal.phone1 + (workOrderOriginal.phone2 > 0 ? ', ' + workOrderOriginal.phone2 : '');
+            document.querySelector('#workOrderInfoIntake').innerHTML += formatDateString(workOrderOriginal.dt_recieved);
+            document.querySelector('#workOrderInfoCashier').innerHTML += workOrderOriginal.cashier;
+            document.querySelector('#workOrderInfoTech').innerHTML += workOrderOriginal.starting_tech;
+            document.querySelector('#workOrderInfoComputer').innerHTML += workOrderOriginal.model + '(' + workOrderOriginal.computer_type + ')';
+            document.querySelector('#workOrderInfoPassword').innerHTML += (workOrderOriginal.password ? workOrderOriginal.password : 'N/A');
+            document.querySelector('#workOrderInfoWarranty').innerHTML += (workOrderOriginal.isUnderWarranty ? 'Yes' : 'No');
+            document.querySelector('#workOrderInfoPowerSupply').innerHTML += (workOrderOriginal.isPurchasedFromUs ? 'Yes' : 'No');
+            document.querySelector('#workOrderInfoOtherItems').innerHTML += (workOrderOriginal.isWithOtherItems.length > 0 ? workOrderOriginal.isWithOtherItems : 'No');
+            document.querySelector('#workOrderInfoIssue').innerHTML += workOrderOriginal.issue_category + ' - ' + workOrderOriginal.issue_description;
         })
         .catch(error => {
             document.querySelector('body').innerHTML += error;
