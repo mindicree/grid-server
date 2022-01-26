@@ -72,6 +72,16 @@ Work Orders | GRID Server
         <textarea name="notes" id="" rows="10" style="width: 100%; margin: auto;" disabled></textarea>
         <span style="color: white;">|</span>
         <button class="btn btn-success" style='margin: auto; width: 90%; max-width: 500px;'>Save</button>
+        <span style="color: white;">|</span>
+        <button class="btn btn-secondary" style='margin: auto; width: 90%; max-width: 500px;' onclick="cancelWorkOrderEdit()">Cancel</button>
+        <script>
+            function cancelWorkOrderEdit() {
+                let isLeaving = confirm('Are you sure you want to leave this page without saving (any changes made will be lost)?')
+                if (isLeaving) {
+                    window.location.replace('work-orders');
+                }
+            }
+        </script>
     </div>
 </div>
 
