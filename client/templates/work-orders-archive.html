@@ -56,9 +56,20 @@ Work Orders | GRID Server
     .then(response => response.json())
     .then(data => {
         workOrdersArchive = data;
-        workOrdersArchive.forEach(item => {
-            document.querySelector('#tableBodyWorkOrdersArchive').innerHTML += generateTableRow(item);
-        })
+
+        //new image for empty tab
+        let no_thoughts_head_empty = document.createElement('img');
+        no_thoughts_head_empty.setAttribute('src', 'static/img/nthe.png');
+        no_thoughts_head_empty.setAttribute('class', 'imgNTHE');
+
+        //load ready work orders into ready tab
+        if (workOrdersArchive.length <= 0) {
+            document.querySelector('body').appendChild(no_thoughts_head_empty.cloneNode());
+        } else {
+            workOrdersArchive.forEach(item => {
+                document.querySelector('#tableBodyWorkOrdersArchive').innerHTML += generateTableRow(item);
+            })
+        }
 
     })
     .catch(error => {

@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_cors import CORS
 import config
 
@@ -32,6 +32,14 @@ def work_orders():
 @app.route('/work-orders-archive')
 def work_orders_archive():
     return render_template('work-orders-archive.html', host_ip=setup.HOST)
+
+#Work Orders Edit Page
+@app.route('/work-orders-edit')
+def work_orders_edit():
+    if not request.args.get('id'):
+        return redirect(url_for('work-orders'))
+    else:
+        return render_template('work-orders-archive.html', host_ip=setup.HOST, system_id=request.args.get('id'))
 
 #RUN APPLICATION
 if __name__ == '__main__':
