@@ -7,7 +7,71 @@ Work Orders | GRID Server
 {% block body %}
 
 <div id='workOrderEditContainer'>
+    <!-- Info and Options -->
+    <div id='workOrderEditFunctionContainer' style='width: 90%; margin: 0px auto;'>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Info
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div id='workOrderInfoContainer'>
+                            <div>
+                                <p id='workOrderInfoName'><b>Name: </b></p>
+                                <p id='workOrderInfoPhone'><b>Phone: </b></p>
+                                <p id='workOrderInfoIntake'><b>Intake: </b></p>
+                                <p id='workOrderInfoCashier'><b>Cashier: </b></p>
+                                <p id='workOrderInfoTech'><b>Tech: </b></p>
+                            </div>
+                            <div>
+                                <p id='workOrderInfoComputer'><b>Computer: </b></p>
+                                <p id='workOrderInfoPassword'><b>Password: </b></p>
+                                <p id='workOrderInfoWarranty'><b>Warranty: </b></p>
+                                <p id='workOrderInfoPowerSupply'><b>Power Supply: </b></p>
+                                <p id='workOrderInfoOtherItems'><b>Other Items: </b></p>
+                            </div>
+                            <div>
+                                <p id='workOrderInfoIssue'><b>Issue: </b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Options
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div id='workOrderOptionContainer'>
+                            <button class="btn btn-success">Status</button>
+                            <button class="btn btn-success">Price</button>
+                            <button class="btn btn-success">Call</button>
+                            <button class="btn btn-success">Note</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+
+    <div id='workOrderEditNotesContainer' style='display: grid; width: 90%; margin: auto;'>
+        <span style="color: white;">|</span>
+        <h4>Notes:</h4>
+        <textarea name="notes" id="" cols="30" rows="10" style="width: 100%; margin: auto;" disabled></textarea>
+        <span style="color: white;">|</span>
+        <button class="btn btn-success" style='margin: auto; width: 90%; max-width: 500px;'>Save</button>
+    </div>
 </div>
 
 <!-- Phone No Format SCRIPT -->
@@ -22,8 +86,7 @@ Work Orders | GRID Server
         return null;
     }
     function formatPhoneNumberToView(phoneNumberString) {
-        var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
-        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        var match = phoneNumberString.match(/^(\d{3})(\d{3})(\d{4})$/);
         if (match) {
             return '(' + match[1] + ') ' + match[2] + '-' + match[3];
         }
@@ -49,37 +112,37 @@ Work Orders | GRID Server
 <script>
     let workOrderOriginal, workOrderEdit;
     fetch('http://{{ host_ip }}:5000/work-orders/{{ wo_id }}')
-    .then(response => response.json())
-    .then(data => {
-        workOrderOriginal = data;
-        worOrderEdit = data;
-    })
-    .catch(error => {
-        document.querySelector('body').innerHTML += error;
-        console.log(error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            workOrderOriginal = data;
+            worOrderEdit = data;
+        })
+        .catch(error => {
+            document.querySelector('body').innerHTML += error;
+            console.log(error);
+        });
 
     function getModalBodyString(wo) {
-        let bodyString = 
-                '<div>' +
-                    '<p><b>Name: </b>' + wo.fname + ' ' + wo.lname + '</p>' +
-                    '<p><b>Computer: </b>' + wo.model + ' (' + wo.computer_type + ')</p>' +
-                    '<p><b>Issue: </b>' + wo.issue_category + ' - ' + wo.issue_description + '</p>' +
-                    '<p><b>Bought From Us: </b>' + (wo.isPurchasedFromUs ? 'Yes' : 'No') + '</p>' +
-                    '<p><b>Under Warranty: </b>' + (wo.isUnderWarranty ? 'Yes' : 'No') + '</p>' +
-                    '<p><b>Other Items: </b>' + (wo.isWithOtherItems.length > 0 ? wo.isWithOtherItems : 'No') + '</p>' +
-                    '<hr>' + 
-                    (wo.starting_tech == wo.finishing_tech ? '<p><b>Tech: </b>' + wo.starting_tech + '</p>' : '<p><b>Techs: </b>' + wo.starting_tech + ', ' + wo.finishing_tech + '</p>') + 
-                    '<p><b>Date of Completion: </b>' + formatDateString(wo.dt_completed) + '</p>' +
-                    '<p><b>Price: </b>' + (wo.price == null || wo.price <= 0 ? '$0.00': Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(wo.price)) + '</p>' +
-                    '<p><b>Notes: </b></p><br>' +
-                    '<p>'+wo.notes+'</p>' +
-                '</div>';
-        
+        let bodyString =
+            '<div>' +
+            '<p><b>Name: </b>' + wo.fname + ' ' + wo.lname + '</p>' +
+            '<p><b>Computer: </b>' + wo.model + ' (' + wo.computer_type + ')</p>' +
+            '<p><b>Issue: </b>' + wo.issue_category + ' - ' + wo.issue_description + '</p>' +
+            '<p><b>Bought From Us: </b>' + (wo.isPurchasedFromUs ? 'Yes' : 'No') + '</p>' +
+            '<p><b>Under Warranty: </b>' + (wo.isUnderWarranty ? 'Yes' : 'No') + '</p>' +
+            '<p><b>Other Items: </b>' + (wo.isWithOtherItems.length > 0 ? wo.isWithOtherItems : 'No') + '</p>' +
+            '<hr>' +
+            (wo.starting_tech == wo.finishing_tech ? '<p><b>Tech: </b>' + wo.starting_tech + '</p>' : '<p><b>Techs: </b>' + wo.starting_tech + ', ' + wo.finishing_tech + '</p>') +
+            '<p><b>Date of Completion: </b>' + formatDateString(wo.dt_completed) + '</p>' +
+            '<p><b>Price: </b>' + (wo.price == null || wo.price <= 0 ? '$0.00' : Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(wo.price)) + '</p>' +
+            '<p><b>Notes: </b></p><br>' +
+            '<p>' + wo.notes + '</p>' +
+            '</div>';
+
         return bodyString;
     }
 
-    function generateDateBox (woData) {
+    function generateDateBox(woData) {
         let now = new Date();
         let takeIn = new Date(woData.dt_recieved);
         let deltaTimeMilliseconds = now - takeIn; //date subtraction returns milliseconds
@@ -90,25 +153,25 @@ Work Orders | GRID Server
         if (deltaTimeHours <= 24) {
             //10.625 RGB per hour up to 255 at 24 hours
             colorRed = (deltaTimeHours * 10.625);
-            colorGreen = 255; 
-            colorBoxString = 
-            '<div class="date_color_box" style="background-color: rgb('+colorRed+', 255, 0);">' + 
-            '</div>';
+            colorGreen = 255;
+            colorBoxString =
+                '<div class="date_color_box" style="background-color: rgb(' + colorRed + ', 255, 0);">' +
+                '</div>';
         } else if (deltaTimeHours <= 48) {
             //10.625 RGB per hour up to 255 at 24 hours
             colorRed = 255;
-            colorGreen = 255 - ((deltaTimeHours - 24) * 10.625); 
-            colorBoxString = 
-            '<div class="date_color_box" style="background-color: rgb(255, '+colorGreen+', 0);">' + 
-            '</div>';
+            colorGreen = 255 - ((deltaTimeHours - 24) * 10.625);
+            colorBoxString =
+                '<div class="date_color_box" style="background-color: rgb(255, ' + colorGreen + ', 0);">' +
+                '</div>';
         } else {
-            colorBoxString = 
-            '<div class="date_color_box" style="background-color: rgb(255, 0, 0);">' + 
-            '</div>';
+            colorBoxString =
+                '<div class="date_color_box" style="background-color: rgb(255, 0, 0);">' +
+                '</div>';
         }
         return colorBoxString;
     }
 </script>
 
-  
+
 {% endblock %}

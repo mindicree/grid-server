@@ -80,6 +80,34 @@
   border: 1px solid #999;
 }
 
+#workOrderEditContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 1500px;
+  margin: auto;
+}
+
+#workOrderInfoContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: auto;
+}
+
+#workOrderOptionContainer {
+  display: grid;
+  margin: auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px;
+  width: 80%;
+  max-width: 400px;
+}
+
+#workOrderOptionContainer button{
+  margin: auto;
+  width: 60%;
+}
+
 .data-submission-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -168,6 +196,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  #workOrderInfoContainer {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -210,5 +242,9 @@
 
   .system-modal-data-edit-right {
     padding-top: 0px;
+  }
+
+  #workOrderEditContainer {
+    grid-template-columns: 1fr 1fr;
   }
 }
