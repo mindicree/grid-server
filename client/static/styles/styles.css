@@ -75,6 +75,7 @@
 .date_color_box {
   width: 16px;
   height: 16px;
+  border-radius: 16px;
   margin: auto;
   border: 1px solid #999;
 }
