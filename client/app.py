@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for
 from flask_cors import CORS
 import config
 
@@ -37,7 +37,7 @@ def work_orders_archive():
 @app.route('/work-orders-edit')
 def work_orders_edit():
     if not request.args.get('id'):
-        return redirect(url_for('work-orders'))
+        return redirect(url_for('work_orders'))
     else:
         return render_template('work-orders-edit.html', host_ip=setup.HOST, system_id=request.args.get('id'))
 
