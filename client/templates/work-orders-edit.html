@@ -70,7 +70,7 @@ Work Orders | GRID Server
     <div id='workOrderEditNotesContainer' style='display: grid; width: 90%; margin: auto;'>
         <span style="color: white;">|</span>
         <h4>Notes:</h4>
-        <textarea name="notes" id="" rows="10" style="width: 100%; margin: auto;" disabled></textarea>
+        <textarea id='textareaNotes' name="notes" id="" rows="10" style="width: 100%; margin: auto;" disabled></textarea>
         <span style="color: white;">|</span>
         <button class="btn btn-success" style='margin: auto; width: 90%; max-width: 500px;'>Save</button>
         <span style="color: white;">|</span>
@@ -151,14 +151,26 @@ Work Orders | GRID Server
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id='modal-body-note'>
-                    <p>Modal body text goes here.</p>
+                    <p><b>Note: </b> <input id='inputNewNote' type="text" style='width: 85%; float: right;' placeholder="i.e. Ran Memtest86; Passed"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" onclick="submitNewNote()">Submit</button>
                 </div>
             </div>
         </div>
+        <script>
+            function submitNewNote() {
+                let noteText = document.querySelector('#inputNewNote').value;
+                if (noteText.replace(' ', '').length > 0) {
+                    completeNote = '<b>' + formatDateString(new Date()) + ' - </b>' + noteText + '<br>';
+                    workOrderEdit.notes += completeNote;
+                    document.querySelector('#textareaNotes').innerHTML += completeNote;
+                    let mod = new bootstrap.Modal(document.querySelector('#modal-note'));
+                    mod.hide();
+                }
+            }
+        </script>
     </div>
 </div>
 
@@ -198,12 +210,13 @@ Work Orders | GRID Server
 
 <!-- GET WORK ORDER -->
 <script>
-    let workOrderOriginal, workOrderEdit;
+    let workOrderOriginal;
+    let workOrderEdit;
     fetch('http://{{ host_ip }}:5000/work-orders/{{ wo_id }}')
         .then(response => response.json())
         .then(data => {
             workOrderOriginal = data;
-            worOrderEdit = data;
+            workOrderEdit = data;
 
             //load data into HTML
             document.querySelector('#workOrderInfoName').innerHTML += workOrderOriginal.fname + ' ' + workOrderOriginal.lname;
@@ -256,6 +269,7 @@ Work Orders | GRID Server
 </script>
 
 <!-- EDIT SCRIPTS -->
+
 
 
 {% endblock %}
