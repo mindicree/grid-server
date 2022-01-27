@@ -10,6 +10,7 @@ Work Orders | GRID Server
     <!-- Info and Options -->
     <div id='workOrderEditFunctionContainer' style='width: 90%; margin: 0px auto;'>
         <div class="accordion accordion-flush" id="accordionFlushExample">
+            <!-- Info Accordian -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -43,6 +44,7 @@ Work Orders | GRID Server
                     </div>
                 </div>
             </div>
+            <!-- Options Accordian -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -54,18 +56,17 @@ Work Orders | GRID Server
                     data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <div id='workOrderOptionContainer'>
-                            <button class="btn btn-success">Status</button>
-                            <button class="btn btn-success">Price</button>
-                            <button class="btn btn-success">Call</button>
-                            <button class="btn btn-success">Note</button>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-status">Status</button>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-price">Price</button>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-call">Call</button>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-note">Note</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
+    <!-- Notes and Save/Cancel -->
     <div id='workOrderEditNotesContainer' style='display: grid; width: 90%; margin: auto;'>
         <span style="color: white;">|</span>
         <h4>Notes:</h4>
@@ -82,6 +83,82 @@ Work Orders | GRID Server
                 }
             }
         </script>
+    </div>
+</div>
+
+<!-- Functional Modals -->
+<div>
+    <!-- Status Modal -->
+    <div class="modal fade" tabindex="-1" id='modal-status'>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id='modal-body-status'>
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Price Modal -->
+    <div class="modal fade" tabindex="-1" id='modal-price'>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Price</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id='modal-body-price'>
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Call Modal -->
+    <div class="modal fade" tabindex="-1" id='modal-call'>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Call</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id='modal-body-call'>
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Note Modal -->
+    <div class="modal fade" tabindex="-1" id='modal-note'>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Note</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id='modal-body-note'>
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -134,7 +211,7 @@ Work Orders | GRID Server
             document.querySelector('#workOrderInfoIntake').innerHTML += formatDateString(workOrderOriginal.dt_recieved);
             document.querySelector('#workOrderInfoCashier').innerHTML += workOrderOriginal.cashier;
             document.querySelector('#workOrderInfoTech').innerHTML += workOrderOriginal.starting_tech;
-            document.querySelector('#workOrderInfoComputer').innerHTML += workOrderOriginal.model + '(' + workOrderOriginal.computer_type + ')';
+            document.querySelector('#workOrderInfoComputer').innerHTML += workOrderOriginal.model + ' (' + workOrderOriginal.computer_type + ')';
             document.querySelector('#workOrderInfoPassword').innerHTML += (workOrderOriginal.password ? workOrderOriginal.password : 'N/A');
             document.querySelector('#workOrderInfoWarranty').innerHTML += (workOrderOriginal.isUnderWarranty ? 'Yes' : 'No');
             document.querySelector('#workOrderInfoPowerSupply').innerHTML += (workOrderOriginal.isPurchasedFromUs ? 'Yes' : 'No');
@@ -146,25 +223,6 @@ Work Orders | GRID Server
             console.log(error);
         });
 
-    function getModalBodyString(wo) {
-        let bodyString =
-            '<div>' +
-            '<p><b>Name: </b>' + wo.fname + ' ' + wo.lname + '</p>' +
-            '<p><b>Computer: </b>' + wo.model + ' (' + wo.computer_type + ')</p>' +
-            '<p><b>Issue: </b>' + wo.issue_category + ' - ' + wo.issue_description + '</p>' +
-            '<p><b>Bought From Us: </b>' + (wo.isPurchasedFromUs ? 'Yes' : 'No') + '</p>' +
-            '<p><b>Under Warranty: </b>' + (wo.isUnderWarranty ? 'Yes' : 'No') + '</p>' +
-            '<p><b>Other Items: </b>' + (wo.isWithOtherItems.length > 0 ? wo.isWithOtherItems : 'No') + '</p>' +
-            '<hr>' +
-            (wo.starting_tech == wo.finishing_tech ? '<p><b>Tech: </b>' + wo.starting_tech + '</p>' : '<p><b>Techs: </b>' + wo.starting_tech + ', ' + wo.finishing_tech + '</p>') +
-            '<p><b>Date of Completion: </b>' + formatDateString(wo.dt_completed) + '</p>' +
-            '<p><b>Price: </b>' + (wo.price == null || wo.price <= 0 ? '$0.00' : Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(wo.price)) + '</p>' +
-            '<p><b>Notes: </b></p><br>' +
-            '<p>' + wo.notes + '</p>' +
-            '</div>';
-
-        return bodyString;
-    }
 
     function generateDateBox(woData) {
         let now = new Date();
@@ -196,6 +254,8 @@ Work Orders | GRID Server
         return colorBoxString;
     }
 </script>
+
+<!-- EDIT SCRIPTS -->
 
 
 {% endblock %}
