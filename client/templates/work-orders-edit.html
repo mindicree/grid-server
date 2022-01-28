@@ -251,6 +251,7 @@ Work Orders | GRID Server
             document.querySelector('#workOrderInfoPowerSupply').innerHTML += (workOrderOriginal.isPurchasedFromUs ? 'Yes' : 'No');
             document.querySelector('#workOrderInfoOtherItems').innerHTML += (workOrderOriginal.isWithOtherItems.length > 0 ? workOrderOriginal.isWithOtherItems : 'No');
             document.querySelector('#workOrderInfoIssue').innerHTML += workOrderOriginal.issue_category + ' - ' + workOrderOriginal.issue_description;
+            document.querySelector('#textareaNotes').innerHTML += workOrderOriginal.notes;
         })
         .catch(error => {
             document.querySelector('body').innerHTML += error;
