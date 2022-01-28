@@ -72,9 +72,13 @@ Work Orders | GRID Server
         <h4>Notes:</h4>
         <div id='textareaNotes' rows="10" style="width: 100%; margin: auto; min-height: 300px; max-height: 300px; border: 1px solid #bbb; overflow: scroll;" disabled></div>
         <span style="color: white;">|</span>
-        <button class="btn btn-success" style='margin: auto; width: 90%; max-width: 500px;'>Save</button>
+        <button class="btn btn-success" style='margin: auto; width: 90%; max-width: 500px;' onclick="saveWorkOrder(this)">Save</button>
+        <img id='saveNoteLoad' src='static/img/loading.gif' style='width: 32px; height: 32px; margin: auto; display: none;'>
         <script>
-
+            function saveWorkOrder (btn) {
+                document.querySelector('#saveNoteLoad').style.display = 'initial';
+                btn.style.display = 'none';
+            }
         </script>
         <span style="color: white;">|</span>
         <button class="btn btn-secondary" style='margin: auto; width: 90%; max-width: 500px;' onclick="cancelWorkOrderEdit()">Cancel</button>
