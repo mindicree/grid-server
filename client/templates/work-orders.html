@@ -454,7 +454,7 @@ Work Orders | GRID Server
                     '<td><div style="display: grid; grid-template-columns: 80% auto;">' + formatDateString(woData.dt_recieved) + generateDateBox(woData) + '</div></td>' +
                     '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
                     '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
-                    '<td>' + (woData.price == null || woData.price <= 0 ? '$0.00': Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(wo.price)) + '</td>' +
+                    '<td>' + (woData.price == null || woData.price <= 0 ? '$0.00': Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(woData.price)) + '</td>' +
                     '<td><div style="display: grid; margin: auto;"><button id="btn_pickup_'+woData._id+'" onclick="pickupWorkOrder(this)" class="btn" style="margin: auto;">Pickup</button></div></td>' +
                 '</tr>' + 
                 '';
@@ -664,7 +664,7 @@ Work Orders | GRID Server
                     '<p><b>Date of Completion: </b>' + formatDateString(wo.dt_completed) + '</p>' +
                     '<p><b>Price: </b>' + (wo.price == null || wo.price <= 0 ? '$0.00': Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(wo.price)) + '</p>' +
                     '<hr>' + 
-                    '<p><b>Notes: </b></p><br>' +
+                    '<p><b>Notes: </b></p>' +
                     '<p>'+wo.notes+'</p>' +
                 '</div>';
                 break;
