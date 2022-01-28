@@ -155,14 +155,27 @@ Work Orders | GRID Server
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id='modal-body-call'>
-                    <p>Modal body text goes here.</p>
+                    <p><b>Purpose: </b> <input id='inputCallNotePurpose' type="text" style='width: 75%; float: right;' placeholder="i.e. Work order is finished"></p>
+                    <p><b>Response: </b> <input id='inputCallNoteResponse' type="text" style='width: 75%; float: right;' placeholder="i.e. Will pick up on Saturday"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick='submitNewCallNote()'>Submit</button>
                 </div>
             </div>
         </div>
+        <script>
+            function submitNewCallNote() {
+                let noteText = document.querySelector('#inputCallNotePurpose').value;
+                let noteText2 = document.querySelector('#inputCallNoteResponse').value;
+                if (noteText.replace(/\s/g, '').length > 0) {
+                    completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b> Called Customer <br>Purpose: ' + noteText + '<br>Response: ' + noteText2 + '</p>';
+                    workOrderEdit.notes = completeNote + workOrderEdit.notes;
+                    document.querySelector('#inputNewNote').value = '';
+                    document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+                }
+            }
+        </script>
     </div>
     <!-- Note Modal -->
     <div class="modal fade" tabindex="-1" id='modal-note'>
