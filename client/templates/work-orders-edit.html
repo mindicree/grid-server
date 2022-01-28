@@ -70,9 +70,12 @@ Work Orders | GRID Server
     <div id='workOrderEditNotesContainer' style='display: grid; width: 90%; margin: auto;'>
         <span style="color: white;">|</span>
         <h4>Notes:</h4>
-        <textarea id='textareaNotes' name="notes" id="" rows="10" style="width: 100%; margin: auto;" disabled></textarea>
+        <div id='textareaNotes' rows="10" style="width: 100%; margin: auto; min-height: 300px; max-height: 300px; border: 1px solid #bbb; overflow: scroll;" disabled></div>
         <span style="color: white;">|</span>
         <button class="btn btn-success" style='margin: auto; width: 90%; max-width: 500px;'>Save</button>
+        <script>
+
+        </script>
         <span style="color: white;">|</span>
         <button class="btn btn-secondary" style='margin: auto; width: 90%; max-width: 500px;' onclick="cancelWorkOrderEdit()">Cancel</button>
         <script>
@@ -155,19 +158,18 @@ Work Orders | GRID Server
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="submitNewNote()">Submit</button>
+                    <button type="button" class="btn btn-primary" onclick="submitNewNote()" data-bs-dismiss="modal">Submit</button>
                 </div>
             </div>
         </div>
         <script>
             function submitNewNote() {
                 let noteText = document.querySelector('#inputNewNote').value;
-                if (noteText.replace(' ', '').length > 0) {
-                    completeNote = '<b>' + formatDateString(new Date()) + ' - </b>' + noteText + '<br>';
-                    workOrderEdit.notes += completeNote;
-                    document.querySelector('#textareaNotes').innerHTML += completeNote;
-                    let mod = new bootstrap.Modal(document.querySelector('#modal-note'));
-                    mod.hide();
+                if (noteText.replace(/\s/g, '').length > 0) {
+                    completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>' + noteText + '</p>';
+                    workOrderEdit.notes = completeNote + workOrderEdit.notes;
+                    document.querySelector('#inputNewNote').value = '';
+                    document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
                 }
             }
         </script>
