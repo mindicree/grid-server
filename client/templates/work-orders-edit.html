@@ -78,8 +78,8 @@ Work Orders | GRID Server
             function saveWorkOrder (btn) {
                 document.querySelector('#saveNoteLoad').style.display = 'initial';
                 btn.style.display = 'none';
-                console.log(workOrderEdit);
-                console.log(JSON.stringify(workOrderEdit));
+                //console.log(workOrderEdit);
+                //console.log(JSON.stringify(workOrderEdit));
                 let apiURL = 'http://{{ host_ip }}:5000/work-orders/' + workOrderEdit._id;
                 //make POST call and reload
                 fetch(apiURL, {method: 'PUT', body: JSON.stringify(workOrderEdit)})
@@ -137,14 +137,30 @@ Work Orders | GRID Server
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id='modal-body-price'>
-                    <p>Modal body text goes here.</p>
+                    <p><b>Price: $</b> <input id='inputPriceNote' type="text" style='width: 50%;' placeholder="9.99"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary"data-bs-dismiss="modal" onclick="submitNewPriceNote()">Submit</button>
                 </div>
             </div>
         </div>
+        <script>
+            function submitNewPriceNote() {
+                let noteText = document.querySelector('#inputPriceNote').value;
+                if (noteText.replace(/\s/g, '').length > 0) {
+                    let price = new Number(noteText).toFixed(2);
+                    if (price >= 0) {
+                        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b> New Price - $' + price + '</p>';
+                        workOrderEdit.price = price;
+                        document.querySelector('#inputPriceNote').value = '';
+                        document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+                    } else {
+                        alert('Invalid number');
+                    }
+                }
+            }
+        </script>
     </div>
     <!-- Call Modal -->
     <div class="modal fade" tabindex="-1" id='modal-call'>
@@ -171,7 +187,8 @@ Work Orders | GRID Server
                 if (noteText.replace(/\s/g, '').length > 0) {
                     completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b> Called Customer <br>Purpose: ' + noteText + '<br>Response: ' + noteText2 + '</p>';
                     workOrderEdit.notes = completeNote + workOrderEdit.notes;
-                    document.querySelector('#inputNewNote').value = '';
+                    document.querySelector('#inputCallNotePurpose').value = '';
+                    document.querySelector('#inputCallNoteResponse').value = '';
                     document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
                 }
             }
