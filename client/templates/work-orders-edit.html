@@ -177,12 +177,12 @@ Work Orders | GRID Server
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="submitNewNote()" data-bs-dismiss="modal">Submit</button>
+                    <button type="button" class="btn btn-primary" onclick="submitNewGenericNote()" data-bs-dismiss="modal">Submit</button>
                 </div>
             </div>
         </div>
         <script>
-            function submitNewNote() {
+            function submitNewGenericNote() {
                 let noteText = document.querySelector('#inputNewNote').value;
                 if (noteText.replace(/\s/g, '').length > 0) {
                     completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>' + noteText + '</p>';
