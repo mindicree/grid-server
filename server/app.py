@@ -985,7 +985,7 @@ def work_order(log_id):
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
 
-        log.update(fname=data['fname'], lname=data['lname'], phone1=data['phone1'], phone2=data['phone2'], computer_type=data['computer_type'], model=data['model'], password=data['password'], isPurchasedFromUs=data['isPurchasedFromUs'], isUnderWarranty=data['isUnderWarranty'], isWithPowerSupply=data['isWithPowerSupply'], isWithOtherItems=data['isWithOtherItems'], issue_category=data['issue_category'], issue_description=data['issue_description'], cashier=data['cashier'], status=data['status'], starting_tech=data['starting_tech'], finishing_tech=data['finishing_tech'], notes=data['notes'], price=data['price'], dt_last_updated=datetime.utcnow())
+        log.update(fname=data['fname'], lname=data['lname'], phone1=data['phone1'], phone2=data['phone2'], computer_type=data['computer_type'], model=data['model'], password=data['password'], isPurchasedFromUs=data['isPurchasedFromUs'], isUnderWarranty=data['isUnderWarranty'], isWithPowerSupply=data['isWithPowerSupply'], issue_category=data['issue_category'], issue_description=data['issue_description'], cashier=data['cashier'], status=data['status'], starting_tech=data['starting_tech'], finishing_tech=data['finishing_tech'], notes=data['notes'], price=data['price'], dt_last_updated=datetime.utcnow())
         #status list
         #Dropped Off, In Progress, Awaiting Part, Completed, Picked Up, Donated
         if data['status'] == 'Completed' or data['status'] == 'Donated':

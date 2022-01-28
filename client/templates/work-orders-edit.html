@@ -78,6 +78,21 @@ Work Orders | GRID Server
             function saveWorkOrder (btn) {
                 document.querySelector('#saveNoteLoad').style.display = 'initial';
                 btn.style.display = 'none';
+                console.log(workOrderEdit);
+                console.log(JSON.stringify(workOrderEdit));
+                let apiURL = 'http://{{ host_ip }}:5000/work-orders/' + workOrderEdit._id;
+                //make POST call and reload
+                fetch(apiURL, {method: 'PUT', body: JSON.stringify(workOrderEdit)})
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    alert('Work Order Saved Successfully');
+                    window.location.replace('work-orders');
+                })
+                .catch(error => {
+                    console.log(error);
+                    alert(error);
+                })
             }
         </script>
         <span style="color: white;">|</span>
