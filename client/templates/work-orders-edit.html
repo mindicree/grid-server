@@ -153,6 +153,7 @@ Work Orders | GRID Server
                     if (price >= 0) {
                         completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b> New Price - $' + price + '</p>';
                         workOrderEdit.price = price;
+                        workOrderEdit.notes = completeNote + workOrderEdit.notes;
                         document.querySelector('#inputPriceNote').value = '';
                         document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
                     } else {
