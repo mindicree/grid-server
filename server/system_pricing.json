@@ -1,3 +1,23 @@
 {
-    
+    "computer_type": {
+        "Desktop": 50,
+        "Laptop": 100,
+        "All-In-One": 100
+    },
+    "cpu_model": {
+        "Pentium": 10, 
+        "Celeron": 10, 
+        "Core Duo": 10, 
+        "Core 2 Duo": 10, 
+        "Core Quad": 10, 
+        "Core 2 Quad": 10, 
+        "Core i3": 15, 
+        "Core i5": 20, 
+        "Core i7": 25, 
+        "K10": 10, 
+        "Bulldozer": 10, 
+        "Ryzen 3": 10, 
+        "Ryzen 5": 10, 
+        "Ryzen 7": 10
+    }
 }
