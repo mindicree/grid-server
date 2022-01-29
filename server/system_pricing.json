@@ -1,23 +1,105 @@
 {
+    "brand": {
+        "Apple": 50,
+        "Alienware": 50,
+        "Custom": 50
+    },
     "computer_type": {
         "Desktop": 50,
-        "Laptop": 100,
+        "Laptop": 75,
         "All-In-One": 100
     },
+    "source": {
+        "Corporate": 10,
+        "Charlotte": 10,
+        "Residential": 0
+    },
+    "cpu_brand": {
+        "Intel": 20,
+        "AMD": 0
+    },
     "cpu_model": {
-        "Pentium": 10, 
-        "Celeron": 10, 
-        "Core Duo": 10, 
+        "Pentium": 5, 
+        "Celeron": 5, 
+        "Core Duo": 5, 
         "Core 2 Duo": 10, 
-        "Core Quad": 10, 
+        "Core Quad": 5, 
         "Core 2 Quad": 10, 
         "Core i3": 15, 
         "Core i5": 20, 
         "Core i7": 25, 
         "K10": 10, 
         "Bulldozer": 10, 
-        "Ryzen 3": 10, 
-        "Ryzen 5": 10, 
-        "Ryzen 7": 10
+        "Ryzen 3": 15, 
+        "Ryzen 5": 20, 
+        "Ryzen 7": 25
+    },
+    "cpu_gen": {
+        "Gen 1": 5,
+        "Gen 2": 10,
+        "Gen 3": 15,
+        "Gen 4": 20,
+        "Gen 5": 25,
+        "Gen 6": 30,
+        "Gen 7": 35,
+        "Gen 8": 40,
+        "Gen 9": 45,
+        "Gen 10": 50,
+        "Gen 11": 55,
+        "Gen 12": 60,
+        "1000 Series": 25,
+        "2000 Series": 30,
+        "3000 Series": 35,
+        "4000 Series": 40,
+        "5000 Series": 45
+    },
+    "cpu_speed": {
+        "base_speed": 1.0,
+        "base_price": 0,
+        "increment_speed": 0.1,
+        "increment_price": 1
+    },
+    "ram": {
+        "1GB": 1,
+        "2GB": 2.5,
+        "3GB": 5,
+        "4GB": 10,
+        "6GB": 15,
+        "8GB": 20,
+        "10GB": 22.5,
+        "12GB": 25,
+        "16GB": 30,
+        "24GB": 35,
+        "32GB": 40
+    }, 
+    "hdd": {
+        "80GB": 0,
+        "120GB": 5,
+        "160GB": 7.5,
+        "250GB": 10,
+        "320GB": 15,
+        "500GB": 20,
+        "640GB": 22.5,
+        "750GB": 30,
+        "1.0TB": 35,
+        "1.5TB": 40,
+        "2.0TB": 50,
+        "3.0TB": 60,
+        "4.0TB": 70
+    },
+    "disk_drive": {
+        "None": 0,
+        "CD-ROM": 1,
+        "CD-RW": 5,
+        "DVD-ROM": 5,
+        "DVD-RW": 10,
+        "BLU-RAY": 20
+    },
+    "tags": {
+        "Webcam": 10,
+        "HDMI": 10,
+        "Touchscreen": 30,
+        "SSD": 2.0,
+        "2nd Drive - ": 0
     }
 }
