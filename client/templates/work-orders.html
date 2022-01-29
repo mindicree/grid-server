@@ -261,7 +261,7 @@ Work Orders | GRID Server
         let workOrderJSON
         try {
             workOrderJSON = renderSubmission();
-            //console.log(JSON.stringify(workOrderJSON));
+            console.log(JSON.stringify(workOrderJSON));
         } catch (error) {
             console.log('Error in creating JSON for submission.\nError: ' + error);
             return false;
@@ -342,7 +342,8 @@ Work Orders | GRID Server
             'isPurchasedFromUs': isPFU,
             'isUnderWarranty': isUW,
             'isWithPowerSupply': isWPS,
-            'isWithOtherItems': document.getElementsByName('other_items')[0].value,
+            'isWithOtherItems': (document.getElementsByName('other_items')[0].value.replace(/\s/g, '').length > 0 ? true : false),
+            'other_items': document.getElementsByName('other_items')[0].value,
             'issue_category': document.getElementsByName('issue-type')[0].value,
             'issue_description': document.getElementsByName('issue-description')[0].value,
             'cashier': document.getElementsByName('cashier')[0].value
@@ -627,7 +628,7 @@ Work Orders | GRID Server
                     '<hr>' + 
                     '<p><b>Bought From Us: </b>' + (wo.isPurchasedFromUs ? 'Yes' : 'No') + '</p>' +
                     '<p><b>Under Warranty: </b>' + (wo.isUnderWarranty ? 'Yes' : 'No') + '</p>' +
-                    '<p><b>Other Items: </b>' + (wo.isWithOtherItems.length > 0 ? wo.isWithOtherItems : 'No') + '</p>' +
+                    '<p><b>Other Items: </b>' + (wo.isWithOtherItems ? 'Yes - ' + wo.other_items : 'No') + '</p>' +
                 '</div>';
                 break;
             case 'In Progress':
@@ -639,7 +640,7 @@ Work Orders | GRID Server
                     '<p><b>Issue: </b>' + wo.issue_category + ' - ' + wo.issue_description + '</p>' +
                     '<p><b>Bought From Us: </b>' + (wo.isPurchasedFromUs ? 'Yes' : 'No') + '</p>' +
                     '<p><b>Under Warranty: </b>' + (wo.isUnderWarranty ? 'Yes' : 'No') + '</p>' +
-                    '<p><b>Other Items: </b>' + (wo.isWithOtherItems.length > 0 ? wo.isWithOtherItems : 'No') + '</p>' +
+                    '<p><b>Other Items: </b>' + (wo.isWithOtherItems ? 'Yes - ' + wo.other_items : 'No') + '</p>' +
                     '<p><b>Cashier: </b>' + wo.cashier + '</p>' +
                     '<hr>' + 
                     '<p><b>Tech: </b>' + wo.starting_tech + '</p>' +
@@ -658,7 +659,7 @@ Work Orders | GRID Server
                     '<p><b>Issue: </b>' + wo.issue_category + ' - ' + wo.issue_description + '</p>' +
                     '<p><b>Bought From Us: </b>' + (wo.isPurchasedFromUs ? 'Yes' : 'No') + '</p>' +
                     '<p><b>Under Warranty: </b>' + (wo.isUnderWarranty ? 'Yes' : 'No') + '</p>' +
-                    '<p><b>Other Items: </b>' + (wo.isWithOtherItems.length > 0 ? wo.isWithOtherItems : 'No') + '</p>' +
+                    '<p><b>Other Items: </b>' + (wo.isWithOtherItems ? 'Yes - ' + wo.other_items : 'No') + '</p>' +
                     '<hr>' + 
                     (wo.starting_tech == wo.finishing_tech ? '<p><b>Tech: </b>' + wo.starting_tech + '</p>' : '<p><b>Techs: </b>' + wo.starting_tech + ', ' + wo.finishing_tech + '</p>') + 
                     '<p><b>Date of Completion: </b>' + formatDateString(wo.dt_completed) + '</p>' +

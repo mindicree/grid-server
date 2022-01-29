@@ -185,7 +185,7 @@ Work Orders | GRID Server
                         document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
                         break;
                     case 'Completed':
-                        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Completed By ' + fTech + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + '</p>';
+                        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Completed By ' + fTech + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + (workOrderEdit.isWithOtherItems ? '<br>&nbsp;- Return Item(s): ' + workOrderEdit.other_items : '') + '</p>';
                         workOrderEdit.finishing_tech = fTech;
                         workOrderEdit.notes = completeNote + workOrderEdit.notes;
                         document.querySelector('#statusAPInput input').value = '';
@@ -319,7 +319,12 @@ Work Orders | GRID Server
         return null;
     }
     function formatPhoneNumberToView(phoneNumberString) {
-        var match = phoneNumberString.match(/^(\d{3})(\d{3})(\d{4})$/);
+        try {
+            console.log('Phone to convert: ' + phoneNumberString);
+            var match = phoneNumberString.match(/^(\d{3})(\d{3})(\d{4})$/);
+        } catch (error) {
+            //console.log(error);
+        }
         if (match) {
             return '(' + match[1] + ') ' + match[2] + '-' + match[3];
         }
