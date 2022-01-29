@@ -4,7 +4,7 @@ from flask_mongoengine import MongoEngine
 from flask_cors import CORS
 from datetime import datetime, timedelta
 from models import *
-from functions import *
+from pricing_functions import *
 import config
 
 #App Initialization
