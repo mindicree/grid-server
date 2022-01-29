@@ -58,6 +58,8 @@ def syslogs():
             log = SystemLog(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'])
             log.price = calc_price(log)
             log.save()
+            if log.brand == 'Apple':
+                playsound('sounds/kanye_sucks.mp3', block=False)
             response = make_response(jsonify(log.get_json()), 201)
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
@@ -915,6 +917,7 @@ def work_orders():
         return response
 
     if request.method == 'POST':
+        playsound('sounds/you\'ve_got_mail.mp3')
         try:
             data = json.loads(request.data)
             log = WorkOrder(fname=data['fname'], lname=data['lname'], phone1=data['phone1'], phone2=data['phone2'], computer_type=data['computer_type'], model=data['model'], password=data['password'], isPurchasedFromUs=data['isPurchasedFromUs'], isUnderWarranty=data['isUnderWarranty'], isWithPowerSupply=data['isWithPowerSupply'], isWithOtherItems=data['isWithOtherItems'], other_items=data['other_items'], issue_category=data['issue_category'], issue_description=data['issue_description'], cashier=data['cashier'], dt_recieved=datetime.utcnow(), dt_last_updated=datetime.utcnow())
@@ -1072,4 +1075,5 @@ def work_orders_pickup():
     return make_response(jsonify({'error': 'Bad request'}), 400)
 #RUN APPLICATION
 if __name__ == '__main__':
+    playsound('sounds/halo_inf_intro.mp3', block=False)
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
