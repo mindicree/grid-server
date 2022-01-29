@@ -119,14 +119,95 @@ Work Orders | GRID Server
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id='modal-body-status'>
-                    <p>Modal body text goes here.</p>
+                    <p><b>Status: </b> 
+                        <select id='inputStatus' style='width: 75%; float: right;' onchange="changeStatusInput(this)">
+                            <option value="" hidden selected disabled>Select One...</option>
+                            <option value="Awaiting Part">Awaiting Part</option>
+                            <option value="Completed">Complete</option>
+                            <option value="Donated">Donated</option>
+                        </select>
+                        <script>
+                            function changeStatusInput(dropdown) {
+                                switch (dropdown.value) {
+                                    case 'Awaiting Part':
+                                        //console.log('Selected Awaiting Part');
+                                        document.querySelector('#statusAPInput').style.display = 'initial';
+                                        document.querySelector('#statusTechInput').style.display = 'none';
+                                        document.querySelector('#statusNoteInput').style.display = 'initial';
+                                        break;
+                                    case 'Completed':
+                                        //console.log('Selected Completed');
+                                        document.querySelector('#statusAPInput').style.display = 'none';
+                                        document.querySelector('#statusTechInput').style.display = 'initial';
+                                        document.querySelector('#statusNoteInput').style.display = 'initial';
+                                        break;
+                                    case 'Donated':
+                                        // console.log('Selected Donated');
+                                        document.querySelector('#statusAPInput').style.display = 'none';
+                                        document.querySelector('#statusTechInput').style.display = 'initial';
+                                        document.querySelector('#statusNoteInput').style.display = 'initial';
+                                        break;
+                                    default:
+                                        document.querySelector('#statusAPInput').style.display = 'none';
+                                        document.querySelector('#statusTechInput').style.display = 'none';
+                                        document.querySelector('#statusNoteInput').style.display = 'none';
+                                        // console.log('Error in inputStatus selection function');
+                                }
+                            }
+                        </script>
+                    </p>
+                    <p id='statusAPInput' style="display: none;"><b>Part: </b> <input type="text" style='width: 75%; float: right;'></p>
+                    <p id='statusTechInput' style="display: none;"><b>Tech: </b> <input  type="text" style='width: 75%; float: right;'></p>
+                    <p></p>
+                    <p id='statusNoteInput' style="display: none;"><b>Note: </b> <input type="text" style='width: 75%; float: right;'></p>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss='modal' onclick="submitNewStatus()">Submit</button>
                 </div>
             </div>
         </div>
+        <script>
+            function submitNewStatus() {
+                let newStatus = document.querySelector('#inputStatus').value;
+                let statusNote = document.querySelector('#statusNoteInput input').value;
+                let fTech = document.querySelector('#statusTechInput input').value;
+                let awPart = document.querySelector('#statusAPInput input').value;
+                workOrderEdit.status = newStatus;
+                switch (newStatus) {
+                    case 'Awaiting Part':
+                        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Awaiting Part - ' + awPart + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + '</p>';
+                        workOrderEdit.notes = completeNote + workOrderEdit.notes;
+                        document.querySelector('#statusAPInput input').value = '';
+                        document.querySelector('#statusNoteInput input').value = '';
+                        document.querySelector('#statusTechInput input').value = '';
+                        document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+                        break;
+                    case 'Completed':
+                        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Completed By ' + fTech + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + '</p>';
+                        workOrderEdit.finishing_tech = fTech;
+                        workOrderEdit.notes = completeNote + workOrderEdit.notes;
+                        document.querySelector('#statusAPInput input').value = '';
+                        document.querySelector('#statusNoteInput input').value = '';
+                        document.querySelector('#statusTechInput input').value = '';
+                        document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+                        break;
+                    case 'Donated':
+                        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Donated' + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + '</p>';
+                        workOrderEdit.finishing_tech = fTech;
+                        workOrderEdit.notes = completeNote + workOrderEdit.notes;
+                        document.querySelector('#statusAPInput input').value = '';
+                        document.querySelector('#statusNoteInput input').value = '';
+                        document.querySelector('#statusTechInput input').value = '';
+                        document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+                        break;
+                    default:
+                        alert('Something went wrong in status selection. Please contact support.');
+
+                }
+            }
+        </script>
     </div>
     <!-- Price Modal -->
     <div class="modal fade" tabindex="-1" id='modal-price'>
@@ -186,7 +267,7 @@ Work Orders | GRID Server
                 let noteText = document.querySelector('#inputCallNotePurpose').value;
                 let noteText2 = document.querySelector('#inputCallNoteResponse').value;
                 if (noteText.replace(/\s/g, '').length > 0) {
-                    completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b> Called Customer <br>Purpose: ' + noteText + '<br>Response: ' + noteText2 + '</p>';
+                    completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b> Called Customer <br>&nbsp;- Purpose: ' + noteText + '<br>&nbsp;- Response: ' + noteText2 + '</p>';
                     workOrderEdit.notes = completeNote + workOrderEdit.notes;
                     document.querySelector('#inputCallNotePurpose').value = '';
                     document.querySelector('#inputCallNoteResponse').value = '';
