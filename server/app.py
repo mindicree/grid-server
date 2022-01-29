@@ -5,6 +5,7 @@ from flask_cors import CORS
 from datetime import datetime, timedelta
 from models import *
 from pricing_functions import *
+from playsound import playsound
 import config
 
 #App Initialization
