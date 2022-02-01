@@ -1,0 +1,76 @@
+function submitNewStatus() {
+    let newStatus = document.querySelector('#inputStatus').value;
+    let statusNote = document.querySelector('#statusNoteInput input').value;
+    let fTech = document.querySelector('#statusTechInput input').value;
+    let awPart = document.querySelector('#statusAPInput input').value;
+    workOrderEdit.status = newStatus;
+    switch (newStatus) {
+        case 'Awaiting Part':
+            completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Awaiting Part - ' + awPart + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + '</p>';
+            workOrderEdit.notes = completeNote + workOrderEdit.notes;
+            document.querySelector('#statusAPInput input').value = '';
+            document.querySelector('#statusNoteInput input').value = '';
+            document.querySelector('#statusTechInput input').value = '';
+            document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+            break;
+        case 'Completed':
+            completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Completed By ' + fTech + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + (workOrderEdit.isWithOtherItems ? '<br>&nbsp;- Return Item(s): ' + workOrderEdit.other_items : '') + '</p>';
+            workOrderEdit.finishing_tech = fTech;
+            workOrderEdit.notes = completeNote + workOrderEdit.notes;
+            document.querySelector('#statusAPInput input').value = '';
+            document.querySelector('#statusNoteInput input').value = '';
+            document.querySelector('#statusTechInput input').value = '';
+            document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+            break;
+        case 'Donated':
+            completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Donated' + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + '</p>';
+            workOrderEdit.finishing_tech = fTech;
+            workOrderEdit.notes = completeNote + workOrderEdit.notes;
+            document.querySelector('#statusAPInput input').value = '';
+            document.querySelector('#statusNoteInput input').value = '';
+            document.querySelector('#statusTechInput input').value = '';
+            document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+            break;
+        default:
+            alert('Something went wrong in status selection. Please contact support.');
+
+    }
+}
+
+function submitNewPriceNote() {
+    let noteText = document.querySelector('#inputPriceNote').value;
+    if (noteText.replace(/\s/g, '').length > 0) {
+        let price = new Number(noteText).toFixed(2);
+        if (price >= 0) {
+            completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b> New Price - $' + price + '</p>';
+            workOrderEdit.price = price;
+            workOrderEdit.notes = completeNote + workOrderEdit.notes;
+            document.querySelector('#inputPriceNote').value = '';
+            document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+        } else {
+            alert('Invalid number');
+        }
+    }
+}
+
+function submitNewCallNote() {
+    let noteText = document.querySelector('#inputCallNotePurpose').value;
+    let noteText2 = document.querySelector('#inputCallNoteResponse').value;
+    if (noteText.replace(/\s/g, '').length > 0) {
+        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b> Called Customer <br>&nbsp;- Purpose: ' + noteText + '<br>&nbsp;- Response: ' + noteText2 + '</p>';
+        workOrderEdit.notes = completeNote + workOrderEdit.notes;
+        document.querySelector('#inputCallNotePurpose').value = '';
+        document.querySelector('#inputCallNoteResponse').value = '';
+        document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+    }
+}
+
+function submitNewGenericNote() {
+    let noteText = document.querySelector('#inputNewNote').value;
+    if (noteText.replace(/\s/g, '').length > 0) {
+        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>' + noteText + '</p>';
+        workOrderEdit.notes = completeNote + workOrderEdit.notes;
+        document.querySelector('#inputNewNote').value = '';
+        document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
+    }
+}
