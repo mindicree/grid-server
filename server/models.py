@@ -115,7 +115,6 @@ class Price(db.Document):
     type_0 = db.StringField()
     type_1 = db.StringField()
     name = db.StringField()
-    price = db.FloatField()
     price_history = db.ListField()
 
     def get_json(self):
@@ -124,7 +123,6 @@ class Price(db.Document):
             'name': self.name,
             'type_0': self.type_0,
             'type_1': self.type_1,
-            'price': self.price,
             'price_history': self.price_history
         }
 
