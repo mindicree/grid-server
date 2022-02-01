@@ -307,45 +307,6 @@ Work Orders | GRID Server
     </div>
 </div>
 
-<!-- Phone No Format SCRIPT -->
-<script>
-    //from stackoverflow
-    //https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
-    function formatPhoneNumberToDigits(phoneNumberString) {
-        var cleaned = phoneNumberString.replace(/\D/g, '');
-        if (cleaned.length == 10) {
-            return cleaned;
-        }
-        return null;
-    }
-    function formatPhoneNumberToView(phoneNumberString) {
-        try {
-            console.log('Phone to convert: ' + phoneNumberString);
-            var match = phoneNumberString.match(/^(\d{3})(\d{3})(\d{4})$/);
-        } catch (error) {
-            //console.log(error);
-        }
-        if (match) {
-            return '(' + match[1] + ') ' + match[2] + '-' + match[3];
-        }
-        return null;
-    }
-
-    //my format date function
-    function formatDateString(dateString) {
-        date = new Date(dateString);
-        dateFormat = {
-            weekday: 'short',
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric'
-        }
-        return date.toLocaleDateString('en-UK', dateFormat);
-    }
-</script>
-
 <!-- GET WORK ORDER -->
 <script>
     let workOrderOriginal;
