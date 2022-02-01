@@ -118,7 +118,7 @@ class Price(db.Document):
     name = db.StringField()
     price = db.FloatField()
     price_history = db.ListField()
-    dt_last_update = db.DateTimeField(default = datetime.utcnow())
+    dt_last_update = db.DateTimeField()
 
     def get_json(self):
         return {
