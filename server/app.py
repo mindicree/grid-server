@@ -4,7 +4,7 @@ from flask_mongoengine import MongoEngine
 from flask_cors import CORS
 from datetime import datetime, timedelta
 from models import *
-from pricing_functions import *
+from system_pricing_functions import *
 from playsound import playsound
 import config
 
@@ -1109,7 +1109,6 @@ def system_prices():
             print('Writing data...')
             with open('system_pricing.json', 'w') as file:
                 json.dump(data, file, indent = 4)
-
 
         except:
             response = make_response(jsonify({'error': 'Server error - could not read data'}), 500)
