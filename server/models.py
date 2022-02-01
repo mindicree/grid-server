@@ -114,11 +114,9 @@ class GCommLog (db.Document):
 class Price(db.Document):
     type_0 = db.StringField()
     type_1 = db.StringField()
-    type_2 = db.StringField()
     name = db.StringField()
     price = db.FloatField()
     price_history = db.ListField()
-    dt_last_update = db.DateTimeField()
 
     def get_json(self):
         return {
@@ -126,9 +124,7 @@ class Price(db.Document):
             'name': self.name,
             'type_0': self.type_0,
             'type_1': self.type_1,
-            'type_2': self.type_2,
             'price': self.price,
-            'dt_last_update': self.dt_last_update,
             'price_history': self.price_history
         }
 
