@@ -1073,7 +1073,53 @@ def work_orders_pickup():
         return make_response(jsonify({'message': 'Work Order [' + str(log.id) + '] picked up and archived.'}), 200)
 
     return make_response(jsonify({'error': 'Bad request'}), 400)
+
+######################################################################
+### SYSTEM PRICES ROUTES #############################################
+######################################################################
+@app.route('/system-prices', methods=['GET', 'PUT'])
+def system_prices():
+    if request.method == 'GET':
+        # open file, read, data, and close back
+        try:    
+            file = open('system_pricing.json')
+            pricings = json.load(file)
+            file.close()
+        except:
+            response = make_response(jsonify({'error': 'Server error - could not read data'}), 500)
+        return make_response(jsonify(pricings), 200)
+    
+    if request.method == 'PUT':
+        # check if body provided
+        try:
+            data = json.loads(request.data)
+            #print('Data recieved: \n' + str(data) + '\n\n')
+        except:
+            response = make_response(jsonify({'error': 'Server error - could not interpret request recieved'}), 500)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+        if not data:
+                response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
+                response.headers.add("Access-Control-Allow-Origin", "*")
+                return response
+
+        #TODO add validation function here
+
+        try:    
+            print('Writing data...')
+            with open('system_pricing.json', 'w') as file:
+                json.dump(data, file, indent = 4)
+
+
+        except:
+            response = make_response(jsonify({'error': 'Server error - could not read data'}), 500)
+
+        return make_response(jsonify({'message': 'System Prices successfully updated'}), 200)
+
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
+
 #RUN APPLICATION
 if __name__ == '__main__':
-    playsound('sounds/halo_inf_intro.mp3', block=False)
+    #playsound('sounds/halo_inf_intro.mp3', block=False)
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
