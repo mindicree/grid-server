@@ -5,6 +5,7 @@ Work Orders | GRID Server
 {% endblock %}
 
 {% block body %}
+<script src="{{ url_for('static', filename='js/work_orders_edit') }}"></script>
 
 <div id='workOrderEditContainer'>
     <!-- Info and Options -->
@@ -168,46 +169,6 @@ Work Orders | GRID Server
                 </div>
             </div>
         </div>
-        <script>
-            function submitNewStatus() {
-                let newStatus = document.querySelector('#inputStatus').value;
-                let statusNote = document.querySelector('#statusNoteInput input').value;
-                let fTech = document.querySelector('#statusTechInput input').value;
-                let awPart = document.querySelector('#statusAPInput input').value;
-                workOrderEdit.status = newStatus;
-                switch (newStatus) {
-                    case 'Awaiting Part':
-                        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Awaiting Part - ' + awPart + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + '</p>';
-                        workOrderEdit.notes = completeNote + workOrderEdit.notes;
-                        document.querySelector('#statusAPInput input').value = '';
-                        document.querySelector('#statusNoteInput input').value = '';
-                        document.querySelector('#statusTechInput input').value = '';
-                        document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
-                        break;
-                    case 'Completed':
-                        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Completed By ' + fTech + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + (workOrderEdit.isWithOtherItems ? '<br>&nbsp;- Return Item(s): ' + workOrderEdit.other_items : '') + '</p>';
-                        workOrderEdit.finishing_tech = fTech;
-                        workOrderEdit.notes = completeNote + workOrderEdit.notes;
-                        document.querySelector('#statusAPInput input').value = '';
-                        document.querySelector('#statusNoteInput input').value = '';
-                        document.querySelector('#statusTechInput input').value = '';
-                        document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
-                        break;
-                    case 'Donated':
-                        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>Donated' + (statusNote.replace(/\s/g, '').length > 0 ? '<br>&nbsp;- Note: ' + statusNote : '') + '</p>';
-                        workOrderEdit.finishing_tech = fTech;
-                        workOrderEdit.notes = completeNote + workOrderEdit.notes;
-                        document.querySelector('#statusAPInput input').value = '';
-                        document.querySelector('#statusNoteInput input').value = '';
-                        document.querySelector('#statusTechInput input').value = '';
-                        document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
-                        break;
-                    default:
-                        alert('Something went wrong in status selection. Please contact support.');
-
-                }
-            }
-        </script>
     </div>
     <!-- Price Modal -->
     <div class="modal fade" tabindex="-1" id='modal-price'>
@@ -226,23 +187,6 @@ Work Orders | GRID Server
                 </div>
             </div>
         </div>
-        <script>
-            function submitNewPriceNote() {
-                let noteText = document.querySelector('#inputPriceNote').value;
-                if (noteText.replace(/\s/g, '').length > 0) {
-                    let price = new Number(noteText).toFixed(2);
-                    if (price >= 0) {
-                        completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b> New Price - $' + price + '</p>';
-                        workOrderEdit.price = price;
-                        workOrderEdit.notes = completeNote + workOrderEdit.notes;
-                        document.querySelector('#inputPriceNote').value = '';
-                        document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
-                    } else {
-                        alert('Invalid number');
-                    }
-                }
-            }
-        </script>
     </div>
     <!-- Call Modal -->
     <div class="modal fade" tabindex="-1" id='modal-call'>
@@ -262,19 +206,6 @@ Work Orders | GRID Server
                 </div>
             </div>
         </div>
-        <script>
-            function submitNewCallNote() {
-                let noteText = document.querySelector('#inputCallNotePurpose').value;
-                let noteText2 = document.querySelector('#inputCallNoteResponse').value;
-                if (noteText.replace(/\s/g, '').length > 0) {
-                    completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b> Called Customer <br>&nbsp;- Purpose: ' + noteText + '<br>&nbsp;- Response: ' + noteText2 + '</p>';
-                    workOrderEdit.notes = completeNote + workOrderEdit.notes;
-                    document.querySelector('#inputCallNotePurpose').value = '';
-                    document.querySelector('#inputCallNoteResponse').value = '';
-                    document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
-                }
-            }
-        </script>
     </div>
     <!-- Note Modal -->
     <div class="modal fade" tabindex="-1" id='modal-note'>
@@ -293,17 +224,6 @@ Work Orders | GRID Server
                 </div>
             </div>
         </div>
-        <script>
-            function submitNewGenericNote() {
-                let noteText = document.querySelector('#inputNewNote').value;
-                if (noteText.replace(/\s/g, '').length > 0) {
-                    completeNote = '<p><b>' + formatDateString(new Date()) + ' - </b>' + noteText + '</p>';
-                    workOrderEdit.notes = completeNote + workOrderEdit.notes;
-                    document.querySelector('#inputNewNote').value = '';
-                    document.querySelector('#textareaNotes').innerHTML = completeNote + document.querySelector('#textareaNotes').innerHTML;
-                }
-            }
-        </script>
     </div>
 </div>
 
@@ -335,41 +255,6 @@ Work Orders | GRID Server
             document.querySelector('body').innerHTML += error;
             console.log(error);
         });
-
-
-    function generateDateBox(woData) {
-        let now = new Date();
-        let takeIn = new Date(woData.dt_recieved);
-        let deltaTimeMilliseconds = now - takeIn; //date subtraction returns milliseconds
-        let deltaTimeHours = deltaTimeMilliseconds / 1000 / 3600;
-        //console.log('Name: ' + woData.fname + ' ' + woData.lname + '\nNow: ' + now + '\nDT_Recieved: ' + takeIn + '\ndeltaTimeMilliseconds: ' + deltaTimeMilliseconds + '\ndeltaTimeHours: ' + deltaTimeHours + '\n')
-        let colorBoxString, colorRed, colorGreen;
-
-        if (deltaTimeHours <= 24) {
-            //10.625 RGB per hour up to 255 at 24 hours
-            colorRed = (deltaTimeHours * 10.625);
-            colorGreen = 255;
-            colorBoxString =
-                '<div class="date_color_box" style="background-color: rgb(' + colorRed + ', 255, 0);">' +
-                '</div>';
-        } else if (deltaTimeHours <= 48) {
-            //10.625 RGB per hour up to 255 at 24 hours
-            colorRed = 255;
-            colorGreen = 255 - ((deltaTimeHours - 24) * 10.625);
-            colorBoxString =
-                '<div class="date_color_box" style="background-color: rgb(255, ' + colorGreen + ', 0);">' +
-                '</div>';
-        } else {
-            colorBoxString =
-                '<div class="date_color_box" style="background-color: rgb(255, 0, 0);">' +
-                '</div>';
-        }
-        return colorBoxString;
-    }
 </script>
-
-<!-- EDIT SCRIPTS -->
-
-
 
 {% endblock %}
