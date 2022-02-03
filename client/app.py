@@ -41,6 +41,11 @@ def work_orders_edit():
     else:
         return render_template('work-orders-edit.html', host_ip=setup.HOST, wo_id=request.args.get('id'))
 
+#General Prices Page
+@app.route('/prices')
+def prices():
+    return render_template('prices.html', host_ip=setup.HOST, wo_id=request.args.get('id'))
+
 #RUN APPLICATION
 if __name__ == '__main__':
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
