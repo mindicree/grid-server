@@ -187,6 +187,45 @@
   grid-template-columns: 1fr 1fr;
 }
 
+#priceTableFilterComboContainer {
+  display: grid;
+  max-width: 1300px;
+  margin: auto;
+  padding-top: 20px;
+  grid-template-columns: 1fr;
+}
+
+#tablePriceList {
+  margin: auto;
+}
+
+#priceListFilterDivider,
+#priceFilterContainer,
+#btnPriceSearch {
+  display: none;
+}
+
+#mobileFilterBtn {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 64px;
+  height: 64px;
+  border: 1px solid black;
+  border-radius: 32px;
+  position: fixed;
+  top: 60px;
+  right: -32px;
+  opacity: .3;
+}
+
+#mobileFilterBtn img{
+  width: 32px;
+  height: 32px;
+  margin: auto;
+}
+
+
+
 @media only screen and (min-width: 600px) {
   .data-entry-part {
     width: 80%;
@@ -246,5 +285,19 @@
 
   #workOrderEditContainer {
     grid-template-columns: 1fr 1fr;
+  }
+
+  #priceTableFilterComboContainer {
+    grid-template-columns: auto 50px 25%;
+  }
+
+  #priceListFilterDivider,
+  #priceFilterContainer,
+  #btnPriceSearch {
+    display: initial;
+  }
+
+  #mobileFilterBtn {
+    display: none;
   }
 }
