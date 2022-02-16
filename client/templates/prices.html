@@ -37,65 +37,20 @@ G-COMM | GRID Server
     </div>
     <div id='priceListFilterDivider' style='width: 1px; position: relative; left: 50%; background-color: #ccc;'></div>
     <div id='priceFilterContainer'>
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                  Accordion Item #1
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                <div class="accordion-body">
-                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                  Accordion Item #2
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                <div class="accordion-body">
-                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                  Accordion Item #3
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                <div class="accordion-body">
-                  <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="accordion" id="accordianFull">
+
+        </div>
     </div>
     <!-- Mobile off canvas for filters -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFilter" aria-labelledby="offcanvasFilterLabel">
         <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Filters</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-        <div>
-            Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-        </div>
-        <div class="dropdown mt-3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-            Dropdown button
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-        </div>
+            <div class="accordion" id="accordianMobile">
+
+            </div>
         </div>
     </div>
 </div>
@@ -109,7 +64,8 @@ G-COMM | GRID Server
 <!-- LOAD Table with data -->
 <script>
     let price_list;
-    let price_list_filter;
+    let price_list_filter = [];
+    let filter_list = [];
     let categories;
     fetch('http://{{ host_ip }}:5000/prices')
     .then(response => response.json())
@@ -121,14 +77,17 @@ G-COMM | GRID Server
         price_list.sort((a, b) => {
             return a.name > b.name;
         })
-        //console.log("Price List: \n" + JSON.stringify(price_list))
-        //console.log("Categories: \n" + JSON.stringify(categories))
 
         // Load price items into table
         price_list.forEach(element => {
             document.querySelector('#tablePriceListBody').innerHTML += generateTableRow(element)
         });
+
         // Load categories into side and mobile filters
+        for (let c in categories) {
+            document.querySelector('#accordianFull').innerHTML += getCategoryAccordian(categories[c], c)
+            document.querySelector('#accordianMobile').innerHTML += getCategoryAccordian(categories[c], c)
+        }
 
         //hide loading thing
         document.querySelector('#table_loading_indicator').style.display = 'none';
@@ -136,6 +95,47 @@ G-COMM | GRID Server
     .catch(error => {
         console.log(error)
     })
+
+    function getCategoryAccordian(item, itemName) {
+        if (itemName != 'price_code') {
+            return '' +  
+            '<div class="accordion-item">' + 
+                '<h2 class="accordion-header" id="categoryFullHeader'+itemName+'">' +
+    '                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#categoryFullBody'+itemName+'" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">'+itemName.replace('_', ' ')+'</button>' + 
+                '</h2>' +
+                '<div id="categoryFullBody'+itemName+'" class="accordion-collapse collapse" aria-labelledby="categoryFullHeader'+itemName+'">' +
+                    '<div class="accordion-body">' +
+                        getCategoryCheckList(item, itemName) + 
+                    '</div>' + 
+                '</div>' + 
+            '</div>';
+        }
+        return ''
+    }
+
+    function getCategoryCheckList(item, itemName) {
+        let checkList = '';
+        for (let i = 0; i < item.length; i++) {
+            checkList += 
+            '<div style="display: grid; grid-template-columns:  20% auto; width: 100%; padding-bottom: 10px;">' + 
+                '<input type="checkbox" name="checkbox_'+itemName+'_'+item[i]+'" onclick="toggleFilter(this)">' +
+                '<label for="checkbox_'+itemName+'_'+item[i]+'" >'+item[i]+'</label>' + 
+            '</div>';
+        }
+        return checkList;
+    }
+
+    function toggleFilter(checkbox) {
+        console.log((checkbox.checked ? 'Checked ' : 'Unchecked ') + checkbox.name);
+        document.getElementsByName(checkbox.name).forEach(element => {
+            element.checked = checkbox.checked;
+        })
+        if (checkbox.checked) {
+
+        } else {
+
+        }
+    }
 
     function generateTableRow(item) {
         let currentPrice = getCurrentPrice(item);
