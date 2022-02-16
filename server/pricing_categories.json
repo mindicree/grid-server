@@ -1,14 +1,14 @@
 {
     "Cables": ["Power", "Video", "Audio", "Computer", "Data", "Other"], 
     "Adapters": ["Power", "Video", "Audio", "Other"],
-    "Video": ["Monitor (4:3)", "Monitor (16:9)", "Monitor (Ultrawide)", "Television (Good)", "Television (Better)", "Television (Best)", "Projector", "Other"], 
+    "Video": ["Monitor (4:3)", "Monitor (16:9)", "Monitor (Other)", "Television (Good)", "Television (Better)", "Television (Best)", "Projector", "Other"], 
     "Audio": ["Earbuds", "Headphones", "Speaker (Passive)", "Speaker (Active)", "Reciever (Stereo)", "Reciever (5.1 Surround)", "Reciever (7.1 Surround)", "Reciever (9.1 Surround)", "Reciever (> 9.1 Surround)", "Other"], 
-    "Apple_Devices": ["iPod", "iPad", "iPhone", "Apple TV", "Keyboard/Mouse", "Accessories", "Other"], 
+    "Apple_Devices": ["Audio", "Monitor (16:9)", "Monitor (4:3)", "iPod", "iPad", "iPhone", "Apple TV", "Keyboard/Mouse", "Accessories", "Other"], 
     "Components": ["SATA HDD", "SATA SSD", "Power Supply (PSU)", "RAM (DDR)", "RAM (DDR2)", "RAM (DDR3)", "RAM (DDR4)", "Graphics Card (GPU)", "Wi-Fi Card", "Other"], 
     "Electronics": ["Phone", "Tablet", "GPS", "SBC/SBM (Rasberry Pi's)", "Other"], 
-    "Networking": ["Router", "Switch (10/100)", "Switch (10/100 w/ Gigabit)", "Switch (Full Gigabit)"],
+    "Networking": ["Router", "Switch (10/100)", "Switch (10/100 w/ Gigabit)", "Switch (Full Gigabit)", "Other"],
     "Accessories": ["Laptop Bag", "Other"],
-    "Other": [],
+    "Other": ["Keyboard/Mouse", "Other"],
     "price_code": {
         "_1": "Ask Manager",
         "_2": "Check Ebay",
