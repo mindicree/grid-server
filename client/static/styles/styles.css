@@ -189,6 +189,7 @@
 
 #priceTableFilterComboContainer {
   display: grid;
+  width: 90%;
   max-width: 1300px;
   margin: auto;
   padding-top: 20px;
