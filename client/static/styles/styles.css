@@ -212,6 +212,7 @@
   width: 64px;
   height: 64px;
   border: 1px solid black;
+  background-color: var(--green);
   border-radius: 32px;
   position: fixed;
   top: 60px;
