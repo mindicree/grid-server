@@ -554,7 +554,11 @@ def prices():
         price_data = []
         for p in price:
             price_data.append(p.get_json())
-        return make_response(jsonify(price_data), 200)
+
+        # add price_categories to end of array
+        file = open('pricing_categories.json')
+        categories = json.load(file)
+        return make_response(jsonify({'price_list': price_data, 'categories': categories}), 200)
 
     if request.method == 'POST':
         try:
