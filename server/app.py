@@ -562,9 +562,9 @@ def prices():
             current_list = Price.objects(type_0__icontains=data['type_0'], type_1__icontains=data['type_1'], name__icontains=data['name'])
             if len(current_list) > 0:
                 return make_response(jsonify({'error': str(data['type_0']).title() + ' with name [' + data['name'] + '] already exists.'}), 409)
-            price = Price(type_0=data['type_0'], type_1=data['type_1'], type_2=data['type_2'], name=data['name'], price=data['price'])
+            price = Price(type_0=data['type_0'], type_1=data['type_1'], name=data['name'])
             price.price_history.append({
-                'price': price.price,
+                'price': data['price'],
                 'date': datetime.utcnow()
             })
             price.save()
@@ -594,7 +594,7 @@ def prices_by_id(price_id):
         #print('History before:\n' + str(history))
         history.append({'price': data['price'],'date': datetime.utcnow()})
         #print('History after:\n' + str(history))
-        price.update(type_0=data['type_0'], type_1=data['type_1'], type_2=data['type_2'], name=data['name'], price=data['price'], dt_last_update = datetime.utcnow(), price_history = history)
+        price.update(type_0=data['type_0'], type_1=data['type_1'], name=data['name'], price_history=history)
         #print('History stored:\n' + str(price.price_history))
         return make_response(jsonify({'message': 'System log ['+str(price_id)+'] updated successfully'}), 200)
 
