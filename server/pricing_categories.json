@@ -1,3 +1,9 @@
 {
-    
+    "Components": ["SATA HDD", "SATA SSD", "Power Supply (PSU)", "RAM (DDR)", "RAM (DDR2)", "RAM (DDR3)", "RAM (DDR4)", "Other"], 
+    "Video": ["Monitor (4:3)", "Monitor (16:9)", "Monitor (Ultrawide)", "Television (Good)", "Television (Better)", "Television (Best)", "Other"], 
+    "Cables": ["Power", "Video", "Audio", "Computer", "Data", "Other"], 
+    "Apple_Devices": ["iPod", "iPad", "iPhone", "Apple TV", "Keyboard/Mouse", "Other"], 
+    "Electronics": ["Phone", "Tablet", "GPS", "SBC/SBM (Rasberry Pi's)", "Other"], 
+    "Audio": ["Speaker (Passive)", "Speaker (Active)", "Reciever (Stereo)", "Reciever (5.1 Surround)", "Reciever (7.1 Surround)", "Reciever (9.1 Surround)", "Reciever (> 9.1 Surround)", "Other"], 
+    "Adapters": ["Power", "Video", "Audio", "Other"]
 }
