@@ -87,34 +87,6 @@ function generateTableRow (woData) {
     return rowString
 }
 
-function claimWorkOrder(btn) {
-    let id = btn.id.replace('btn_claim_', '');
-    //alert('Claim ID found: ' + id);
-    let tech_entry = prompt('Please enter tech initials');
-    if (!tech_entry) {
-        alert('Error: No tech');
-    } else {
-        //alert('Tech ' + tech_entry + ' chosen');
-        let claimURL = 'http://{{ host_ip }}:5000/work-orders/claim?id=' + id + '&tech=' + tech_entry;
-        fetch(claimURL, {method: 'POST'})
-        .then(response => response.json())
-        .then(data => {
-            if (!data.error) {
-                alert(data.message);
-                window.location.reload();
-            } else {
-                alert('Error: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
-
-    //stops row click from happening
-    event.stopPropagation();
-}
-
 function editWorkOrder(btn) {
     let id = btn.id.replace('btn_edit_', '');
     //alert('Edit ID found: ' + id);
