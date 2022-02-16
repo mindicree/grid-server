@@ -1,9 +1,19 @@
 {
-    "Components": ["SATA HDD", "SATA SSD", "Power Supply (PSU)", "RAM (DDR)", "RAM (DDR2)", "RAM (DDR3)", "RAM (DDR4)", "Other"], 
-    "Video": ["Monitor (4:3)", "Monitor (16:9)", "Monitor (Ultrawide)", "Television (Good)", "Television (Better)", "Television (Best)", "Other"], 
     "Cables": ["Power", "Video", "Audio", "Computer", "Data", "Other"], 
-    "Apple_Devices": ["iPod", "iPad", "iPhone", "Apple TV", "Keyboard/Mouse", "Other"], 
+    "Adapters": ["Power", "Video", "Audio", "Other"],
+    "Video": ["Monitor (4:3)", "Monitor (16:9)", "Monitor (Ultrawide)", "Television (Good)", "Television (Better)", "Television (Best)", "Projector", "Other"], 
+    "Audio": ["Earbuds", "Headphones", "Speaker (Passive)", "Speaker (Active)", "Reciever (Stereo)", "Reciever (5.1 Surround)", "Reciever (7.1 Surround)", "Reciever (9.1 Surround)", "Reciever (> 9.1 Surround)", "Other"], 
+    "Apple_Devices": ["iPod", "iPad", "iPhone", "Apple TV", "Keyboard/Mouse", "Accessories", "Other"], 
+    "Components": ["SATA HDD", "SATA SSD", "Power Supply (PSU)", "RAM (DDR)", "RAM (DDR2)", "RAM (DDR3)", "RAM (DDR4)", "Graphics Card (GPU)", "Wi-Fi Card", "Other"], 
     "Electronics": ["Phone", "Tablet", "GPS", "SBC/SBM (Rasberry Pi's)", "Other"], 
-    "Audio": ["Speaker (Passive)", "Speaker (Active)", "Reciever (Stereo)", "Reciever (5.1 Surround)", "Reciever (7.1 Surround)", "Reciever (9.1 Surround)", "Reciever (> 9.1 Surround)", "Other"], 
-    "Adapters": ["Power", "Video", "Audio", "Other"]
+    "Networking": ["Router", "Switch (10/100)", "Switch (10/100 w/ Gigabit)", "Switch (Full Gigabit)"],
+    "Accessories": ["Laptop Bag", "Other"],
+    "Other": [],
+    "price_code": {
+        "_1": "Ask Manager",
+        "_2": "Check Ebay",
+        "_3": "Ask Tech",
+        "_4": "Use Sticker Price",
+        "_100": "Do NOT Sell" 
+    }
 }
