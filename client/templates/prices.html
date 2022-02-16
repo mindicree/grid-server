@@ -100,6 +100,12 @@ G-COMM | GRID Server
     </div>
 </div>
 
+<!--Loading Thing-->
+<div id='table_loading_indicator' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
+    <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+    <h4 style="color: #aaa; margin: auto;">Loading</h4>
+</div>
+
 <!-- LOAD Table with data -->
 <script>
     let price_list;
@@ -123,6 +129,9 @@ G-COMM | GRID Server
             document.querySelector('#tablePriceListBody').innerHTML += generateTableRow(element)
         });
         // Load categories into side and mobile filters
+
+        //hide loading thing
+        document.querySelector('#table_loading_indicator').style.display = 'none';
     })
     .catch(error => {
         console.log(error)
