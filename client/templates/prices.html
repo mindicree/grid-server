@@ -100,5 +100,61 @@ G-COMM | GRID Server
     </div>
 </div>
 
+<!-- LOAD Table with data -->
+<script>
+    let price_list;
+    let price_list_filter;
+    let categories;
+    fetch('http://{{ host_ip }}:5000/prices')
+    .then(response => response.json())
+    .then(data => {
+        price_list = data['price_list']
+        categories = data['categories']
+
+        // Sort price list by name
+        price_list.sort((a, b) => {
+            return a.name > b.name;
+        })
+        //console.log("Price List: \n" + JSON.stringify(price_list))
+        //console.log("Categories: \n" + JSON.stringify(categories))
+
+        // Load price items into table
+        price_list.forEach(element => {
+            document.querySelector('#tablePriceListBody').innerHTML += generateTableRow(element)
+        });
+        // Load categories into side and mobile filters
+    })
+    .catch(error => {
+        console.log(error)
+    })
+
+    function generateTableRow(item) {
+        let currentPrice = getCurrentPrice(item);
+        return '' +
+        '<tr id="tr_'+item._id+'"onclick="displayPriceInfo(this)">' +
+            '<td>' + item.name +'</td>' + 
+            '<td>$' + currentPrice + '</td>' + 
+        '</tr>'; 
+    }
+
+    function getCurrentPrice(item) {
+        let price = 0;
+        let price_history = item.price_history;
+        let latestDate = new Date('1970-01-01');
+        let elementDate;
+        price_history.forEach(element => {
+            elementDate = new Date(element.date)
+            if (elementDate > latestDate) {
+                price = element.price
+            }
+        })
+        return price
+    } 
+
+    function displayPriceInfo(table_row) {
+        alert(table_row.id)
+    }
+</script>
+
 
 {% endblock %}
