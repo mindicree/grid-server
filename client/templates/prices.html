@@ -8,7 +8,7 @@ G-COMM | GRID Server
 <!-- Search Tool -->
 <div class="search-tools-container">
     <div class="input-group" style="width: 70%; margin: auto;">
-        <input id='inputFilterByName' type="text" class="form-control" placeholder="Search by Name">
+        <input id='inputFilterByName' type="text" class="form-control" placeholder="Search by Name" oninput="filterPriceList()">
         <button id='btnPriceSearch' type="button" name="button"><img src="https://cdn.onlinewebfonts.com/svg/img_588.png" width="24px" height="24px" style="margin: auto 20px;" onclick="alert('search')"></img></button>
     </div>
 </div>
@@ -22,7 +22,7 @@ G-COMM | GRID Server
 
 <!-- Table And Flter Tabs -->
 <div id='priceTableFilterComboContainer'>
-    <div id='priceTableContainer'>
+    <div id='priceTableContainer' style="display: grid;">
         <table class='table table-striped table-hover table-bordered' id='tablePriceList'>
             <thead>
                 <tr>
@@ -63,7 +63,6 @@ G-COMM | GRID Server
 <!-- LOAD Table with data -->
 <script>
     let price_list;
-    let price_list_filter = [];
     let filter_list = [];
     let categories;
     fetch('http://{{ host_ip }}:5000/prices')
@@ -125,12 +124,10 @@ G-COMM | GRID Server
     }
 
     function toggleFilter(checkbox) {
-        console.log((checkbox.checked ? 'Checked ' : 'Unchecked ') + checkbox.name);
+        //checks/unchecks both desktop and mobile versions
         document.getElementsByName(checkbox.name).forEach(element => {
             element.checked = checkbox.checked;
         })
-        //clear table
-        clearTable()
 
         //get full filter in array
         let stringSplit = checkbox.name.split('_')
@@ -139,18 +136,12 @@ G-COMM | GRID Server
         if (checkbox.checked) {
             //add to filter list
             filter_list.push([stringSplit[1], stringSplit[2]])
-            console.log(filter_list)
-
-            //update table tag section
 
             //filter through list
-            searchByTagAndName()
-
-            //reload table
-            loadTable(price_list_filter);
+            filterPriceList()
 
         } else {
-            if (filter_list.length <= 1) {
+            if (filter_list.length <= 1 && document.querySelector('#inputFilterByName').value.length <= 0) {
                 filter_list = [];
                 loadTable(price_list)
             } else {
@@ -167,11 +158,55 @@ G-COMM | GRID Server
                     filter_list.splice(filter_index, 1)
                 }
 
-                searchByTagAndName()
-                //reload table
-                loadTable(price_list_filter);
+                //filter
+                filterPriceList()
             }
         }
+
+        //update table tag section
+        updateTagList()
+    }
+
+    function updateTagList() {
+
+    }
+
+    function filterPriceList() {
+        //clear table
+        clearTable()
+
+        //get name
+        let nameString = document.querySelector('#inputFilterByName').value.toLowerCase()
+
+        //filter by name
+        let name_filter = []
+        if (nameString.length > 0) {
+            price_list.forEach(element => {
+                if (element.name.toLowerCase().includes(nameString)) {
+                    name_filter.push(element)
+                }
+            })
+        } else {
+            name_filter = price_list.map(x => x)
+        }
+
+
+        //filter by tag
+        let tag_filter = []
+        if (filter_list.length > 0) {
+            name_filter.forEach(element => {
+                filter_list.forEach(filter => {
+                    if (element.type_0 === filter[0] && element.type_1 === filter[1]) {
+                        tag_filter.push(element)
+                    }
+                })
+            })
+        } else {
+            tag_filter = name_filter.map(x => x)
+        }
+
+        //load table with filtered table
+        loadTable(tag_filter)
     }
 
     function clearTable() {
@@ -186,31 +221,32 @@ G-COMM | GRID Server
             data.forEach(element => {
                 document.querySelector('#tablePriceListBody').innerHTML += generateTableRow(element)
             });
+            toggleNTHE(false);
         } else {
-
+            toggleNTHE(true);
         }
         //remove loading thing
         document.querySelector('#table_loading_indicator').style.display = "none";
     }
 
-    function searchByTagAndName() {
-        price_list_filter = []
-        let nameString = document.querySelector('#inputFilterByName').value;
-        price_list.forEach(element => {
-            let isValidFilter = false;
-            filter_list.forEach(filter => {
-                console.log(' --- Comparisons --- ');
-                console.log('Type0: ' + element.type_0 + ' - ' + filter[0]);
-                console.log('Type1: ' + element.type_1 + ' - ' + filter[1]);
-                console.log('Name: ' + element.name + ' - ' + nameString + '\n');
-                if (element.type_0 === filter[0] && element.type_1 === filter[1] && element.name.includes(nameString)) {
-                    isValidFilter = true;
-                }
-            })
-            if (isValidFilter) {
-                price_list_filter.push(element)
+    function toggleNTHE(isSet) {
+        if (isSet) {
+            try {
+                document.querySelector('.imgNTHE').style.display = 'initial'
+            } catch (error) {
+                document.querySelector('#priceTableContainer').appendChild(no_thoughts_head_empty)
             }
-        })
+        } else {
+            try {
+                document.querySelector('.imgNTHE').style.display = 'none'
+            } catch (error) {
+                //console.log(error);
+            }
+        }
+    }
+
+    function searchByTagAndName() {
+        
     }
 
     function generateTableRow(item) {
