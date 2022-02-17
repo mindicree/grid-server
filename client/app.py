@@ -44,8 +44,12 @@ def work_orders_edit():
 #General Prices Page
 @app.route('/prices')
 def prices():
-    return render_template('prices.html', host_ip=setup.HOST, wo_id=request.args.get('id'))
+    return render_template('prices.html', host_ip=setup.HOST)
 
+#Game Prices Page
+@app.route('/game-prices')
+def game_prices():
+    return render_template('game_prices.html', host_ip=setup.HOST)
 #RUN APPLICATION
 if __name__ == '__main__':
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
