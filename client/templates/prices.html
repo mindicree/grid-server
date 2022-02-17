@@ -8,7 +8,7 @@ G-COMM | GRID Server
 <!-- Search Tool -->
 <div class="search-tools-container">
     <div class="input-group" style="width: 70%; margin: auto;">
-        <input type="text" class="form-control" placeholder="Search by Name">
+        <input id='inputFilterByName' type="text" class="form-control" placeholder="Search by Name">
         <button id='btnPriceSearch' type="button" name="button"><img src="https://cdn.onlinewebfonts.com/svg/img_588.png" width="24px" height="24px" style="margin: auto 20px;" onclick="alert('search')"></img></button>
     </div>
 </div>
@@ -34,6 +34,11 @@ G-COMM | GRID Server
         
             </tbody>
         </table>
+        <!--Loading Thing-->
+        <div id='table_loading_indicator' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
+            <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+            <h4 style="color: #aaa; margin: auto;">Loading</h4>
+        </div>
     </div>
     <div id='priceListFilterDivider' style='width: 1px; position: relative; left: 50%; background-color: #ccc;'></div>
     <div id='priceFilterContainer'>
@@ -53,12 +58,6 @@ G-COMM | GRID Server
             </div>
         </div>
     </div>
-</div>
-
-<!--Loading Thing-->
-<div id='table_loading_indicator' style='display: grid; width: 100%; margin: auto; padding-top: 50px;'>
-    <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
-    <h4 style="color: #aaa; margin: auto;">Loading</h4>
 </div>
 
 <!-- LOAD Table with data -->
@@ -101,7 +100,7 @@ G-COMM | GRID Server
             return '' +  
             '<div class="accordion-item">' + 
                 '<h2 class="accordion-header" id="categoryFullHeader'+itemName+'">' +
-    '                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#categoryFullBody'+itemName+'" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">'+itemName.replace('_', ' ')+'</button>' + 
+    '                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#categoryFullBody'+itemName+'" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">'+itemName.replace('-20', ' ')+'</button>' + 
                 '</h2>' +
                 '<div id="categoryFullBody'+itemName+'" class="accordion-collapse collapse" aria-labelledby="categoryFullHeader'+itemName+'">' +
                     '<div class="accordion-body">' +
@@ -130,11 +129,88 @@ G-COMM | GRID Server
         document.getElementsByName(checkbox.name).forEach(element => {
             element.checked = checkbox.checked;
         })
-        if (checkbox.checked) {
+        //clear table
+        clearTable()
 
+        //get full filter in array
+        let stringSplit = checkbox.name.split('_')
+
+        //if checked, add filter, else remove filter
+        if (checkbox.checked) {
+            //add to filter list
+            filter_list.push([stringSplit[1], stringSplit[2]])
+            console.log(filter_list)
+
+            //update table tag section
+
+            //filter through list
+            searchByTagAndName()
+
+            //reload table
+            loadTable(price_list_filter);
+
+        } else {
+            if (filter_list.length <= 1) {
+                filter_list = [];
+                loadTable(price_list)
+            } else {
+                //remove from filter list
+                let filter_index = -1;
+                filter_list.forEach((element, index) => {
+                    if (element[0] === stringSplit[1] && element[1] === stringSplit[2]) {
+                        filter_index = index;
+                    }
+                })
+                if (filter_index == -1) {
+                    alert('Sorting error. Please consult developer')
+                } else {
+                    filter_list.splice(filter_index, 1)
+                }
+
+                searchByTagAndName()
+                //reload table
+                loadTable(price_list_filter);
+            }
+        }
+    }
+
+    function clearTable() {
+        //clear table
+        document.querySelector('#tablePriceListBody').innerHTML = ''
+        //show loading thing
+        document.querySelector('#table_loading_indicator').style.display = "grid";
+    }
+
+    function loadTable(data) {
+        if (data.length > 0) {
+            data.forEach(element => {
+                document.querySelector('#tablePriceListBody').innerHTML += generateTableRow(element)
+            });
         } else {
 
         }
+        //remove loading thing
+        document.querySelector('#table_loading_indicator').style.display = "none";
+    }
+
+    function searchByTagAndName() {
+        price_list_filter = []
+        let nameString = document.querySelector('#inputFilterByName').value;
+        price_list.forEach(element => {
+            let isValidFilter = false;
+            filter_list.forEach(filter => {
+                console.log(' --- Comparisons --- ');
+                console.log('Type0: ' + element.type_0 + ' - ' + filter[0]);
+                console.log('Type1: ' + element.type_1 + ' - ' + filter[1]);
+                console.log('Name: ' + element.name + ' - ' + nameString + '\n');
+                if (element.type_0 === filter[0] && element.type_1 === filter[1] && element.name.includes(nameString)) {
+                    isValidFilter = true;
+                }
+            })
+            if (isValidFilter) {
+                price_list_filter.push(element)
+            }
+        })
     }
 
     function generateTableRow(item) {
