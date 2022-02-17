@@ -98,10 +98,10 @@ G-COMM | GRID Server
         if (itemName != 'price_code') {
             return '' +  
             '<div class="accordion-item">' + 
-                '<h2 class="accordion-header" id="categoryFullHeader'+itemName+'">' +
-    '                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#categoryFullBody'+itemName+'" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">'+itemName.replace('-20', ' ')+'</button>' + 
+                '<h2 class="accordion-header" id="categoryFullHeader'+itemName.replace(' ', '')+'">' +
+    '                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#categoryFullBody'+itemName.replace(' ', '')+'" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">'+itemName+'</button>' + 
                 '</h2>' +
-                '<div id="categoryFullBody'+itemName+'" class="accordion-collapse collapse" aria-labelledby="categoryFullHeader'+itemName+'">' +
+                '<div id="categoryFullBody'+itemName.replace(' ', '')+'" class="accordion-collapse collapse" aria-labelledby="categoryFullHeader'+itemName.replace(' ', '')+'">' +
                     '<div class="accordion-body">' +
                         getCategoryCheckList(item, itemName) + 
                     '</div>' + 
@@ -116,8 +116,8 @@ G-COMM | GRID Server
         for (let i = 0; i < item.length; i++) {
             checkList += 
             '<div style="display: grid; grid-template-columns:  20% auto; width: 100%; padding-bottom: 10px;">' + 
-                '<input type="checkbox" name="checkbox_'+itemName+'_'+item[i]+'" onclick="toggleFilter(this)">' +
-                '<label for="checkbox_'+itemName+'_'+item[i]+'" >'+item[i]+'</label>' + 
+                '<input type="checkbox" name="checkbox_'+itemName.replace(' ', '')+'_'+item[i]+'" onclick="toggleFilter(this)">' +
+                '<label for="checkbox_'+itemName.replace(' ', '')+'_'+item[i]+'" >'+item[i]+'</label>' + 
             '</div>';
         }
         return checkList;
@@ -196,7 +196,12 @@ G-COMM | GRID Server
         if (filter_list.length > 0) {
             name_filter.forEach(element => {
                 filter_list.forEach(filter => {
-                    if (element.type_0 === filter[0] && element.type_1 === filter[1]) {
+                    console.log('----------------------------------------')
+                    console.log('Filter ' + filter[0] + ' ' + filter[1])
+                    console.log('Element ' + element.type_0 + ' ' + element.type_1)
+                    console.log('----------------------------------------')
+                    if ((element.type_0 == filter[0] && element.type_1 == filter[1])) {
+                        console.log('Match Found!')
                         tag_filter.push(element)
                     }
                 })
