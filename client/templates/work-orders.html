@@ -409,10 +409,6 @@ Work Orders | GRID Server
                     console.log('Status \'' + item.status + '\' unknown or uninterpretted');
             }
         })
-        //new image for empty tab
-        let no_thoughts_head_empty = document.createElement('img');
-        no_thoughts_head_empty.setAttribute('src', 'static/img/nthe.png');
-        no_thoughts_head_empty.setAttribute('class', 'imgNTHE');
 
         //load ready work orders into ready tab
         if (workOrdersReady.length <= 0) {
