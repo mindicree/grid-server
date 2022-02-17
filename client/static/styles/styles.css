@@ -198,6 +198,7 @@
 
 #tablePriceList {
   margin: auto;
+  margin-top: 0px;
 }
 
 #priceListFilterDivider,
