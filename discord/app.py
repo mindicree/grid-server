@@ -12,6 +12,6 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    await message.channel.send('I am the GRIDBot!')
+    await message.channel.send('Hello! I am the GRIDBot!')
 
 client.run(os.getenv['TOKEN'])
