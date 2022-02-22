@@ -14,4 +14,6 @@ async def on_message(message):
 
     await message.channel.send('Hello! I am the GRIDBot!')
 
-client.run(os.getenv['TOKEN'])
+with open('token.txt') as file:
+    TOKEN = str(file.read())
+client.run(TOKEN)
