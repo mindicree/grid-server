@@ -1,5 +1,6 @@
 import discord
 import os
+import playsound
 
 client = discord.Client()
 
@@ -12,6 +13,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    
     await message.channel.send('Hello! I am the GRIDBot!')
 
 with open('token.txt') as file:
