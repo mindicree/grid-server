@@ -1,5 +1,6 @@
 {
     "Cables": ["Power", "Video", "Audio", "Computer", "Data", "Other"], 
+    "Consoles": ["Mintendo", "Microsoft", "Sony", "Sega", "Atari", "Other"],
     "Adapters": ["Power", "Video", "Audio", "Other"],
     "Video": ["Monitor (4:3)", "Monitor (16:9)", "Monitor (Other)", "Television (Good)", "Television (Better)", "Television (Best)", "Projector", "Other"], 
     "Audio": ["Earbuds", "Headphones", "Speaker (Passive)", "Speaker (Active)", "Reciever (Stereo)", "Reciever (5.1 Surround)", "Reciever (7.1 Surround)", "Reciever (9.1 Surround)", "Reciever (> 9.1 Surround)", "Other"], 
