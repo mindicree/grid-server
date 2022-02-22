@@ -13,4 +13,4 @@ server/__pycache__/app.cpython-39.pyc
 server/__pycache__/functions.cpython-39.pyc
 server/__pycache__/models.cpython-39.pyc
 server/__pycache__/*
-discord/.env
+discord/token.txt
