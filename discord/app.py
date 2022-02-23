@@ -19,7 +19,23 @@ async def on_message(message):
 
     if message.content.upper().replace(' ','').find('CODE1') >= 0:
         playsoundrand('code_1')
-        await message.channel.send('Code 1 Recieved!')
+        await message.channel.send('**Code 1 Recieved!**')
+
+    if message.content.upper().replace(' ','').find('CODE2') >= 0:
+        playsoundrand('code_1')
+        await message.channel.send('**Code 2 Recieved!**')
+
+    if message.content.upper().replace(' ','').find('CODE3') >= 0:
+        playsoundrand('code_1')
+        await message.channel.send('**Code 3 Recieved!**')
+
+    if message.content.upper().replace(' ','').find('CODE4') >= 0:
+        playsoundrand('code_1')
+        await message.channel.send('**Code 4 Recieved!**')
+
+    if message.content.upper().replace(' ','').find('CODE5') >= 0:
+        playsoundrand('code_1')
+        await message.channel.send('**Code 5 Recieved!**')
 
 
 def playsoundrand(folder):
