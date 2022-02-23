@@ -9,7 +9,7 @@ rand = random.Random(str(datetime.utcnow()))
 
 @client.event
 async def on_ready():
-    play_random_sound('grid_bot_ready')
+    playsoundrand('grid_bot_ready')
     print('GRIDBot ready!')
 
 @client.event
@@ -17,13 +17,14 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    if message.content.upper().replace(' ','').find('CODE1') >= 0:
+        playsoundrand('code_1')
+        await message.channel.send('Code 1 Recieved!')
 
-    await message.channel.send('Hello! I am the GRIDBot!')
 
-
-def play_random_sound(folder):
+def playsoundrand(folder):
     num_files = len(os.listdir(f'sfx/{folder}'))
-    if num_files != 1:
+    if num_files > 1:
         filename = rand.randrange(1, num_files)
         playsound(f'sfx/{folder}/{filename}.mp3', block=False)
     else:
