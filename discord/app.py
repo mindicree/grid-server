@@ -14,28 +14,33 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    msg = message.content
+
     if message.author == client.user:
         return
 
-    if message.content.upper().replace(' ','').find('CODE1') >= 0:
+    if messageHas(msg, 'CODE1'):
         playsoundrand('code_1')
         await message.channel.send('**Code 1 Recieved!**')
 
-    if message.content.upper().replace(' ','').find('CODE2') >= 0:
-        playsoundrand('code_1')
+    if messageHas(msg, 'CODE2') >= 0:
+        playsoundrand('code_2')
         await message.channel.send('**Code 2 Recieved!**')
 
-    if message.content.upper().replace(' ','').find('CODE3') >= 0:
-        playsoundrand('code_1')
+    if messageHas(msg, 'CODE3') >= 0:
+        playsoundrand('code_3')
         await message.channel.send('**Code 3 Recieved!**')
 
-    if message.content.upper().replace(' ','').find('CODE4') >= 0:
-        playsoundrand('code_1')
+    if messageHas(msg, 'CODE4') >= 0:
+        playsoundrand('code_4')
         await message.channel.send('**Code 4 Recieved!**')
 
-    if message.content.upper().replace(' ','').find('CODE5') >= 0:
-        playsoundrand('code_1')
+    if messageHas(msg, 'CODE5') >= 0:
+        playsoundrand('code_5')
         await message.channel.send('**Code 5 Recieved!**')
+
+def messageHas(m, s):
+    return m.upper().replace(' ', '').find(s) >= 0
 
 
 def playsoundrand(folder):
