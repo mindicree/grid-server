@@ -1,5 +1,6 @@
 import discord
 import os
+from os import walk
 from playsound import playsound
 import random
 from datetime import datetime
@@ -44,12 +45,33 @@ def messageHas(m, s):
 
 
 def playsoundrand(folder):
-    num_files = len(os.listdir(f'sfx/{folder}'))
-    if num_files > 1:
-        filename = rand.randrange(1, num_files)
-        playsound(f'sfx/{folder}/{filename}.mp3', block=False)
+    # try:
+    #     num_files = len(os.listdir(f'sfx/{folder}'))
+    # except:
+    #     print(f'No folder with directory {folder} found')
+
+    # if num_files > 1:
+    #     filename = rand.randrange(1, num_files)
+    #     playsound(f'sfx/{folder}/{filename}.mp3', block=False)
+    # else:
+    #     playsound(f'sfx/{folder}/1.mp3', block=False)
+
+    file_list = []
+    try:
+        for (dirpath, dirnames, filenames) in walk(f'sfx/{folder}'):
+            file_list.extend(filenames)
+            break
+    except:
+        pass
+
+    if len(file_list) <= 0:
+        print(f'Error: no files in directory {folder}')
+        raise FileNotFoundError
+    elif len(file_list) == 1:
+        playsound(f'sfx/{folder}/{file_list[0]}', block=False)
     else:
-        playsound(f'sfx/{folder}/1.mp3', block=False)
+        index = rand.randrange(0, len(file_list))
+        playsound(f'sfx/{folder}/{file_list[index]}', block=False)
 
 
 with open('token.txt') as file:
