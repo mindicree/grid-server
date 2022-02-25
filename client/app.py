@@ -50,6 +50,12 @@ def prices():
 @app.route('/game-prices')
 def game_prices():
     return render_template('game_prices.html', host_ip=setup.HOST)
+
+#Console Log Prices Page
+@app.route('/consolelog')
+def consolelog():
+    return render_template('consolelog.html', host_ip=setup.HOST)
+
 #RUN APPLICATION
 if __name__ == '__main__':
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
