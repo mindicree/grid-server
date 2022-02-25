@@ -22,23 +22,23 @@ async def on_message(message):
 
     if messageHas(msg, 'CODE1'):
         playsoundrand('code_1')
-        await message.channel.send('**Code 1 Recieved!**')
+        # await message.channel.send('**Code 1 Recieved!**')
 
-    if messageHas(msg, 'CODE2') >= 0:
+    if messageHas(msg, 'CODE2'):
         playsoundrand('code_2')
-        await message.channel.send('**Code 2 Recieved!**')
+        # await message.channel.send('**Code 2 Recieved!**')
 
-    if messageHas(msg, 'CODE3') >= 0:
+    if messageHas(msg, 'CODE3'):
         playsoundrand('code_3')
-        await message.channel.send('**Code 3 Recieved!**')
+        # await message.channel.send('**Code 3 Recieved!**')
 
-    if messageHas(msg, 'CODE4') >= 0:
+    if messageHas(msg, 'CODE4'):
         playsoundrand('code_4')
-        await message.channel.send('**Code 4 Recieved!**')
+        # await message.channel.send('**Code 4 Recieved!**')
 
-    if messageHas(msg, 'CODE5') >= 0:
+    if messageHas(msg, 'CODE5'):
         playsoundrand('code_5')
-        await message.channel.send('**Code 5 Recieved!**')
+        # await message.channel.send('**Code 5 Recieved!**')
 
 def messageHas(m, s):
     return m.upper().replace(' ', '').find(s) >= 0
