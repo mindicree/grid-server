@@ -8,6 +8,8 @@ CORS(app)
 #config stuff
 setup = config.Config()
 
+# TODO add validation functions to all resources
+
 #HOME
 @app.route('/')
 def index():
@@ -52,7 +54,7 @@ def game_prices():
     return render_template('game_prices.html', host_ip=setup.HOST)
 
 #Console Log Prices Page
-@app.route('/consolelog')
+@app.route('/consolelogs')
 def consolelog():
     return render_template('consolelog.html', host_ip=setup.HOST)
 
