@@ -5,5 +5,214 @@ G-COMM | GRID Server
 {% endblock %}
 
 {% block body %}
+<script src='static/js/consolelog.js'></script>
 
+<!--Data Entry-->
+<form onsubmit="return renderSubmission()">
+    <input type="text" name="initials" value="" id='initialsSubmit' style="display: none"/>
+    <!--Data Entry Table-->
+    <div class="data-entry-container" style='grid-template-columns: 1fr;'>
+        <!-- LEFT SIDE -->
+        <div class="data-entry-part" style="max-width: 800px;">
+            <!-- Console Brand -->
+            <div class="data-entry-label-and-input">
+                <p>Brand: </p>
+                <select name="brand" id="select_console_brand" required>
+                    <option value="" selected disabled hidden>Select One...</option>
+                    <option value="Nintendo">Nintendo</option>
+                    <option value="Sony">Sony</option>
+                    <option value="Microsoft">Microsoft</option>
+                    <option value="Sega">Sega</option>
+                    <option value="Atari">Atari</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <!-- Console -->
+            <div class="data-entry-label-and-input">
+                <p>Console: </p>
+                <select name="console" id="select_console_model" disabled required>
+                    <option value="" selected disabled hidden>Select One...</option>
+                </select>
+            </div>
+            <!-- Special Model -->
+            <div class="data-entry-label-and-input">
+                <p>Sp. Model: </p>
+                <input type="text" id="select_console_special_model" required>
+            </div>
+            <!-- Special Model -->
+            <div class="data-entry-label-and-input-double">
+                <p>Color: </p>
+                <input type="text" id="input_console_color" required>
+                <p>HDD (GB): </p>
+                <input type="text" id="input_console_hdd_size" placeholder='leave blank if none'>
+            </div>
+            <!-- Special Model -->
+            <div class="data-entry-label-and-input-double">
+                <p>Price: </p>
+                <input type="text" id="input_console_price" required>
+                <p>Tech: </p>
+                <input type="text" id="input_console_tech" required>
+            </div>
+        </div>
+    </div>
+
+    <!--Submission Section-->
+    <div class="data-submission-container">
+        <button name="button" class="btn" style="background-color: #aea;" id='submitButton'>Submit</button>
+    </div>
+    <!-- Submission modal container-->
+    <div id='submission-modal-container'> 
+        <div class="modal fade" id="submission_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="submission-modal-title"></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="submission-modal-body" class="modal-body">
+                  
+                </div>
+                <div id="submission-modal-footer" class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" id="submission-modal-button" class="btn btn-primary">Submit</button>
+                    <img id="loading-gif" src="static/img/loading.gif" style="display: none; width: 32px; height: 32px;"></img>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!--Submission Script-->
+    <script>
+        function renderSubmission() {
+            console.log('Button Clicked!');
+            //get selected computer type
+            let computer_type;
+            document.getElementsByName('computer_type').forEach((item) => {
+                if (item.checked) {
+                    computer_type = item.value;
+                }
+            });
+            //get selected computer type
+            let computer_source;
+            document.getElementsByName('source').forEach((item) => {
+                if (item.checked) {
+                    computer_source = item.value;
+                }
+            });
+            //get tags
+            let computer_tags = [];
+            document.querySelectorAll('.form-check-input').forEach((item) => {
+                //console.log(item)
+                if (item.checked && item.type=="checkbox") {
+                    if (item.id == "tag-second-drive") {
+                        let drive_value = document.querySelector('#second-hdd-selector').value;
+                        computer_tags.push(item.value + drive_value);
+                    } else {
+                        computer_tags.push(item.value);
+                    }
+                }
+            });
+
+            try {
+                let submission = {
+                    'old_coa': document.getElementsByName('old_coa')[0].value,
+                    'new_coa': document.getElementsByName('new_coa')[0].value,
+                    'serial_no': document.getElementsByName('serial_no')[0].value,
+                    'brand': document.getElementsByName('brand')[0].value,
+                    'model': document.getElementsByName('model')[0].value,
+                    'os': document.getElementsByName('os')[0].value,
+                    //computer_type
+                    'computer_type': computer_type,
+                    //computer_source
+                    'source': computer_source,
+                    'cpu_brand': document.getElementsByName('cpu-brand')[0].value,
+                    'cpu_model': document.getElementsByName('cpu-type')[0].value,
+                    'cpu_gen': document.getElementsByName('cpu-gen')[0].value,
+                    'cpu_speed': document.getElementsByName('cpu-speed')[0].value,
+                    'ram': document.getElementsByName('ram')[0].value,
+                    'hdd': document.getElementsByName('hdd')[0].value,
+                    'disk_drive': document.getElementsByName('disk-drive')[0].value,
+                    //computer_tags
+                    'tags': computer_tags
+                };
+                //console.log('JSON Data Rendered:\n' + JSON.stringify(submission));
+
+                document.querySelector("#submission-modal-title").innerHTML = submission.brand + ' ' + submission.model + ' - Serial No.#'+submission.serial_no;
+                document.querySelector("#submission-modal-body").innerHTML = submissionStringGenerator(submission);
+                let submissionModalElement = document.getElementById('submission_modal');
+                let submissionModal = new bootstrap.Modal(submissionModalElement);
+                submissionModal.toggle();
+
+                document.querySelector("#submission-modal-button").addEventListener('click', function() {
+                    let techInitials = document.querySelector("#submission-modal-tech-input").value;
+                    if (techInitials.length < 2)  {
+                        document.querySelector("#tech-confirmer").style = "color: #f00; visibility: visible;";
+                    } else {
+                        this.style.display = "none";
+                        document.querySelector("#loading-gif").style.display = "initial";
+                        submission.tech = techInitials;
+                        fetch('http://{{ host_ip }}:5000/syslogs', {method: 'POST', body: JSON.stringify(submission)})
+                        .then(response => response.json())
+                        .then(data => {
+                            window.location.assign('syslogs');
+                        })
+                        .catch (error => {
+                            this.style.display = "initial";
+                            document.querySelector("#loading-gif").style.display = "none";
+                            alert('An error occured.\n\nDetails: ' + error);
+                            console.log(error);
+                        });
+                    }
+                });
+                //return false to cancel default form submission
+                //instead relying on API call from submission modal
+                return false;
+            } catch (error) {
+                console.log(error);
+                return false;
+            }
+            return false;
+        }
+    
+        //string generator for bootstrap modals
+        function submissionStringGenerator(entry) {
+            return '<p><b>Old COA: </b>' + entry.old_coa + '</p>' +
+            '<p><b>New COA: </b>' + entry.new_coa + '</p>' +
+            '<p><b>Serial No.: </b>' + entry.serial_no + '</p>' +
+            '<p><b>Operating System: </b>' + entry.os + '</p>' +
+            '<p><b>Computer Type: </b>' + entry.computer_type + '</p>' +
+            '<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
+            '<p><b>RAM Amount: </b>' + entry.ram + '</p>' +
+            '<p><b>Hard Drive: </b>' + entry.hdd + '</p>' +
+            '<p><b>Disk Drive: </b>' + entry.disk_drive + '</p>' +
+            '<p><b>Other Information: </b>' + entry.tags + '</p>' +
+            '<p><b>Tech: </b> <input id="submission-modal-tech-input" type="text" placeholder="Initials here..."><span id="tech-confirmer" style="color: #f00; visibility: hidden;">&emsp;Please enter your initials</span></p>' +
+            '';
+        }
+    </script>
+
+    <!-- Console Selection Script -->
+    <script>
+        let console_brand_selector = document.querySelector('#select_console_brand')
+        let console_selector = document.querySelector('#select_console_model')
+        console_brand_selector.addEventListener('change', () => {
+            switch(console_brand_selector.value) {
+                case 'Nintendo':
+                    break
+                case 'Sony':
+                    break
+                case 'Microsoft':
+                    break
+                case 'Sega':
+                    break
+                case 'Atari':
+                    break
+                case 'Other':
+                    break
+                defaultr4:
+                    break
+            }
+        })
+    </script>
+</form>
 {% endblock %}
