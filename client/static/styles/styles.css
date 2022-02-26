@@ -37,7 +37,8 @@
   margin: auto;
 }
 
-.data-entry-label-and-input-double select {
+.data-entry-label-and-input-double select,
+.data-entry-label-and-input-double input {
   width: 100%;
 }
 
