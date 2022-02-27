@@ -29,6 +29,7 @@ setup = config.Config()
 #TODO try except around all searches by ID
 #TODO default time does not work; manually enter time on ORM creation
 #TODO replace all file opens with with open file as f
+#TODO separate data saves into individual lines and surround in try-catch
 
 ### ROUTES ###
 ######################################################################
@@ -562,13 +563,26 @@ def consolelogs():
     if request.method == 'POST':
         try:
             data = json.loads(request.data)
-            log = ConsoleLog(brand=data['brand'], console=data['console'], model=data['model'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], price=data['price'], tech=data['tech'], dt_initial_system_log=datetime.utcnow(), dt_initial_irl_log=datetime.utcnow(), dt_last_update=datetime.utcnow())
+            # log = ConsoleLog(brand=data['brand'], console=data['console'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], price=data['price'], tech=data['tech'], dt_initial_system_log=datetime.utcnow(), dt_initial_irl_log=datetime.utcnow(), dt_last_update=datetime.utcnow())
+            log = ConsoleLog()
+            log.brand = data['brand']
+            log.console = data['console']
+            log.special_color = data['special_color']
+            log.special_model = data['special_model']
+            log.hdd_size = data['hdd_size']
+            log.price = data['price']
+            log.tech = data['tech']
+            log.dt_initial_system_log = datetime.utcnow()
+            log.dt_initial_irl_log = datetime.utcnow()
+            log.dt_last_update = datetime.utcnow()
+            
             log.save()
             response = make_response(jsonify(log.get_json()), 201)
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
-        except ValueError:
-            return make_response(jsonify({'error': 'Failed to decode JSON properly'}), 400)
+        except ValueError as error:
+            print(error)
+            return make_response(jsonify({'error': f'Failed to decode JSON properly.\nMessage: {error}'}), 400)
 
     return make_response(jsonify({'error': 'Bad request'}), 400)
 
@@ -579,7 +593,7 @@ def consolelogs_mass():
         try:
             data = json.loads(request.data)
             for l in data:
-                log = ConsoleLog(brand=l['brand'], console=l['console'], model=l['model'], special_color=l['special_color'], special_model=l['special_model'], hdd_size=l['hdd_size'], price=l['price'], tech=l['tech'], dt_initial_system_log=datetime.utcnow(), dt_initial_irl_log=datetime.utcnow(), dt_last_update=datetime.utcnow())
+                log = ConsoleLog(brand=l['brand'], console=l['console'], special_color=l['special_color'], special_model=l['special_model'], hdd_size=l['hdd_size'], price=l['price'], tech=l['tech'], dt_initial_system_log=datetime.utcnow(), dt_initial_irl_log=datetime.utcnow(), dt_last_update=datetime.utcnow())
                 log.save()
             return make_response(jsonify({"message": "ConsoleLog entries submitted."}), 201)
         except ValueError:
