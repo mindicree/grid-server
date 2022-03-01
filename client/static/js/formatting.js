@@ -28,3 +28,11 @@ function formatPhoneNumberToView(phoneNumberString) {
     }
     return null;
 }
+///////////////////////////////////////////////////////////////////////////////////////////////
+function formatPriceToPlainNumber(num) {
+    return new Number(num.replace(',', '').replace('$', ''))
+}
+
+function formatPriceToView(num) {
+    return `$${num.toFixed(2)}`
+}
