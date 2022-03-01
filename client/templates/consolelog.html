@@ -146,6 +146,10 @@ G-COMM | GRID Server
     <script>
         let console_brand_selector = document.querySelector('#select_console_brand')
         console_brand_selector.addEventListener('change', () => {
+            loadConsoleList()
+        })
+
+        function loadConsoleList() {
             let console_selector = document.querySelector('#select_console_model')
             let selection = console_brand_selector.options[console_brand_selector.selectedIndex].value
             console_selector.innerHTML = ''
@@ -187,17 +191,19 @@ G-COMM | GRID Server
                         console_selector.appendChild(new_option)
                     } else {
                         alert('Process aborted')
+                        console_selector.setAttribute('disabled',true)
                         return
                     }  
                 } else {
                     alert('Process aborted')
+                    console_selector.setAttribute('disabled',true)
                     return
                 }
 
             } else {
-
+                console_selector.setAttribute('disabled',true)
             }
-        })
+        }
     </script>
 </form>
 
@@ -250,6 +256,7 @@ G-COMM | GRID Server
         numTotalPages = Math.ceil(numItems/itemsPerPage)
         //load into table
         loadTable(currentPage)
+        loadConsoleList()
     })
     .catch(error => console.log(error))
 
