@@ -569,8 +569,9 @@ def consolelogs():
             log.console = data['console']
             log.special_color = data['special_color']
             log.special_model = data['special_model']
-            log.hdd_size = data['hdd_size']
-            log.price = data['price']
+            if data['hdd_size']:
+                log.hdd_size = data['hdd_size']
+            log.price = float(data['price'])
             log.tech = data['tech']
             log.dt_initial_system_log = datetime.utcnow()
             log.dt_initial_irl_log = datetime.utcnow()
