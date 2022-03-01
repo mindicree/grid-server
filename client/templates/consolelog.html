@@ -85,84 +85,41 @@ G-COMM | GRID Server
     <script>
         function renderSubmission() {
             console.log('Button Clicked!');
-            //get selected computer type
-            let computer_type;
-            document.getElementsByName('computer_type').forEach((item) => {
-                if (item.checked) {
-                    computer_type = item.value;
-                }
-            });
-            //get selected computer type
-            let computer_source;
-            document.getElementsByName('source').forEach((item) => {
-                if (item.checked) {
-                    computer_source = item.value;
-                }
-            });
-            //get tags
-            let computer_tags = [];
-            document.querySelectorAll('.form-check-input').forEach((item) => {
-                //console.log(item)
-                if (item.checked && item.type=="checkbox") {
-                    if (item.id == "tag-second-drive") {
-                        let drive_value = document.querySelector('#second-hdd-selector').value;
-                        computer_tags.push(item.value + drive_value);
-                    } else {
-                        computer_tags.push(item.value);
-                    }
-                }
-            });
 
             try {
                 let submission = {
-                    'old_coa': document.getElementsByName('old_coa')[0].value,
-                    'new_coa': document.getElementsByName('new_coa')[0].value,
-                    'serial_no': document.getElementsByName('serial_no')[0].value,
-                    'brand': document.getElementsByName('brand')[0].value,
-                    'model': document.getElementsByName('model')[0].value,
-                    'os': document.getElementsByName('os')[0].value,
-                    //computer_type
-                    'computer_type': computer_type,
-                    //computer_source
-                    'source': computer_source,
-                    'cpu_brand': document.getElementsByName('cpu-brand')[0].value,
-                    'cpu_model': document.getElementsByName('cpu-type')[0].value,
-                    'cpu_gen': document.getElementsByName('cpu-gen')[0].value,
-                    'cpu_speed': document.getElementsByName('cpu-speed')[0].value,
-                    'ram': document.getElementsByName('ram')[0].value,
-                    'hdd': document.getElementsByName('hdd')[0].value,
-                    'disk_drive': document.getElementsByName('disk-drive')[0].value,
-                    //computer_tags
-                    'tags': computer_tags
+                    'brand': document.querySelector('#select_console_brand').value,
+                    'console': document.querySelector('#select_console_model').value,
+                    'special_color': document.querySelector('#input_console_color').value,
+                    'special_model': document.querySelector('#select_console_special_model').value,
+                    'hdd_size': document.querySelector('#input_console_hdd_size').value,
+                    'price': document.querySelector('#input_console_price').value,
+                    'tech': document.querySelector('#input_console_tech').value
                 };
                 //console.log('JSON Data Rendered:\n' + JSON.stringify(submission));
 
-                document.querySelector("#submission-modal-title").innerHTML = submission.brand + ' ' + submission.model + ' - Serial No.#'+submission.serial_no;
+                document.querySelector("#submission-modal-title").innerHTML = 'New Console';
                 document.querySelector("#submission-modal-body").innerHTML = submissionStringGenerator(submission);
                 let submissionModalElement = document.getElementById('submission_modal');
                 let submissionModal = new bootstrap.Modal(submissionModalElement);
                 submissionModal.toggle();
 
                 document.querySelector("#submission-modal-button").addEventListener('click', function() {
-                    let techInitials = document.querySelector("#submission-modal-tech-input").value;
-                    if (techInitials.length < 2)  {
-                        document.querySelector("#tech-confirmer").style = "color: #f00; visibility: visible;";
-                    } else {
-                        this.style.display = "none";
-                        document.querySelector("#loading-gif").style.display = "initial";
-                        submission.tech = techInitials;
-                        fetch('http://{{ host_ip }}:5000/syslogs', {method: 'POST', body: JSON.stringify(submission)})
-                        .then(response => response.json())
-                        .then(data => {
-                            window.location.assign('syslogs');
-                        })
-                        .catch (error => {
-                            this.style.display = "initial";
-                            document.querySelector("#loading-gif").style.display = "none";
-                            alert('An error occured.\n\nDetails: ' + error);
-                            console.log(error);
-                        });
-                    }
+                    this.style.display = "none";
+                    document.querySelector("#loading-gif").style.display = "initial";
+                    fetch('http://{{ host_ip }}:5000/consolelogs', {method: 'POST', body: JSON.stringify(submission)})
+                    .then(response => response.json())
+                    .then(data => {
+                        alert('Submission Successful!')
+                        window.location.assign('syslogs');
+                    })
+                    .catch (error => {
+                        this.style.display = "initial";
+                        document.querySelector("#loading-gif").style.display = "none";
+                        alert('An error occured.\n\nDetails: ' + error);
+                        console.log(error);
+                    });
+                    
                 });
                 //return false to cancel default form submission
                 //instead relying on API call from submission modal
@@ -176,18 +133,12 @@ G-COMM | GRID Server
     
         //string generator for bootstrap modals
         function submissionStringGenerator(entry) {
-            return '<p><b>Old COA: </b>' + entry.old_coa + '</p>' +
-            '<p><b>New COA: </b>' + entry.new_coa + '</p>' +
-            '<p><b>Serial No.: </b>' + entry.serial_no + '</p>' +
-            '<p><b>Operating System: </b>' + entry.os + '</p>' +
-            '<p><b>Computer Type: </b>' + entry.computer_type + '</p>' +
-            '<p><b>Processor: </b>' + entry.cpu_brand + ' ' + entry.cpu_model + (entry.cpu_gen != null ? ' ' + entry.cpu_gen + ' - ' : ' - ') + entry.cpu_speed + 'Ghz' + '</p>' +
-            '<p><b>RAM Amount: </b>' + entry.ram + '</p>' +
-            '<p><b>Hard Drive: </b>' + entry.hdd + '</p>' +
-            '<p><b>Disk Drive: </b>' + entry.disk_drive + '</p>' +
-            '<p><b>Other Information: </b>' + entry.tags + '</p>' +
-            '<p><b>Tech: </b> <input id="submission-modal-tech-input" type="text" placeholder="Initials here..."><span id="tech-confirmer" style="color: #f00; visibility: hidden;">&emsp;Please enter your initials</span></p>' +
-            '';
+            return `` +
+            `<p><b>Console</b>: ${entry.console} ${(entry.special_color ? `(${entry.special_color})` : '')} ${(entry.special_model ? `[${entry.special_model}]` : '')}</p>` + 
+            `${(entry.hdd_size ? `<p><b>HDD Size</b>: ${entry.hdd_size}GB` : '')}` + 
+            `<p><b>Price</b>: $${entry.price}</p>` + 
+            `<p><b>Tech</b>: ${entry.tech}</p>` + 
+            ``;
         }
     </script>
 
