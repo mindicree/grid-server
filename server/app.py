@@ -587,7 +587,7 @@ def consolelogs():
 
     return make_response(jsonify({'error': 'Bad request'}), 400)
 
-#SYSTEM LOG MASS LOAD (FOR TESTING ONLY)
+#CONSOLE LOG MASS LOAD (FOR TESTING ONLY)
 @app.route('/consolelogs/mass-data-entry/1', methods=['POST'])
 def consolelogs_mass():
     if request.method == 'POST':
@@ -602,7 +602,7 @@ def consolelogs_mass():
 
     return make_response(jsonify({'error': 'Bad request'}), 400)
 
-#SYSTEM LOG BY ID
+#CONSOLE LOG BY ID
 @app.route('/consolelogs/<log_id>', methods=['GET', 'PUT', 'DELETE'])
 def consolelog(log_id):
     if request.method == 'GET':
@@ -626,9 +626,9 @@ def consolelog(log_id):
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
         try:
-            log.update(brand=data['brand'], console=data['console'], model=data['model'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], price=data['price'], tech=data['tech'], dt_initial_irl_log=data['dt_initial_irl_log'], dt_last_update=datetime.utcnow())
+            log.update(brand=data['brand'], console=data['console'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], price=float(data['price']), tech=data['tech'], dt_initial_irl_log=data['dt_initial_irl_log'], dt_last_update=datetime.utcnow())
         except:
-            log.update(brand=data['brand'], console=data['console'], model=data['model'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], price=data['price'], tech=data['tech'], dt_last_update=datetime.utcnow())
+            log.update(brand=data['brand'], console=data['console'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], price=float(data['price']), tech=data['tech'], dt_last_update=datetime.utcnow())
         response = make_response(jsonify({'message': 'Console log ['+str(log_id)+'] updated successfully'}), 200)
         response.headers.add("Access-Control-Allow-Origin", "*")
         return response

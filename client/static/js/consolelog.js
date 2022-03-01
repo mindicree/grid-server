@@ -8,7 +8,7 @@ let consoleList = {
         "Handhelds": ["Playstation Portable (PSP)", "Playstation Portable (PSP) [2000]", "Playstation Portable (PSP) [3000]","Playstation Portable Go (PSP Go) [N1000]", "Playstation Portable Street (PSP Street) [E1000]", "Playstation Vita (PS Vita)", "Playstation Vita Slim (PS Vita Slim)"]
     },
     "Microsoft": {
-        "Consoles": ["XBOX", "XBOX 360", "XBOX 360 S", "XBOX 360 E", "XBOX One", "XBOX One S", "XBOX One X", "XBOX Series X", "XBOX Series S"],
+        "Consoles": ["Xbox", "Xbox 360", "Xbox 360 S", "Xbox 360 E", "Xbox One", "Xbox One S", "Xbox One X", "Xbox Series X", "Xbox Series S"],
         "Handhelds": ["lol u thought"]
     },
     "Sega": {

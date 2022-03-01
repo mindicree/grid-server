@@ -9,6 +9,7 @@ CORS(app)
 setup = config.Config()
 
 # TODO add validation functions to all resources
+# TODO replace all forEach calls with every calls
 
 #HOME
 @app.route('/')
