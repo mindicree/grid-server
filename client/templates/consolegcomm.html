@@ -453,10 +453,29 @@ Home | GRID Server
                 '<div class="system-modal-data-edit-left">' + 
                     '<p><b>Brand: </b><input id="edit-brand-'+entry._id+'" type="text" value="' + entry.brand + '" required></p>' +
                     '<p><b>Console: </b><input id="edit-console-'+entry._id+'" type="text" value="' + entry.console + '" required></p>' +
-                    '<p><b>Special Model: </b><input placeholder="leave blank if N/A" id="edit-special-model-'+entry._id+'" type="text" value="' + entry.special_model + '" ></p>' +
-                    '<p><b>Color: </b><input placeholder="leave blank if base" id="edit-color-'+entry._id+'" type="text" value="' + entry.special_color + '" ></p>' +
-                    '<p><b>HDD Size (GB): </b><input placeholder="leave blank if N/A" id="edit-hdd-'+entry._id+'" type="text" value="' + entry.hdd_size + '" ></p>' +
-                    '<p><b>Price: </b><input id="edit-price-'+entry._id+'" type="text" value="' + entry.price + '" required></p>' +
+                    '<p><b>Special Model: </b><input placeholder="leave blank if N/A" id="edit-special-model-'+entry._id+'" type="text" value="' + (entry.special_model ? entry.special_model : '') + '" ></p>' +
+                    '<p><b>Color: </b><input placeholder="leave blank if base" id="edit-color-'+entry._id+'" type="text" value="' + (entry.special_color ? entry.special_color : '')  + '" ></p>' +
+                    '<p><b>HDD Size (GB): </b><input placeholder="leave blank if N/A" id="edit-hdd-'+entry._id+'" type="text" value="' + (entry.hdd_size ? entry.hdd_size : '') + '" ></p>' +
+                    '<p><b>Condition: </b>' +
+                        '<select name="brand" id="edit-condition-'+entry._id+'" required>' +
+                            '<optgroup label="Working">' +
+                                '<option value="Working" '+(entry.condition === 'Working' ? 'selected' : '')+'>Decent</option>' +
+                                '<option value="Working With Light Cosmetic Damage" '+(entry.condition === 'Working With Light Cosmetic Damage' ? 'selected' : '')+'>Light Cosmetic Damage</option>' +
+                                '<option value="Working With Heavy Cosmetic Damage" '+(entry.condition === 'Working With Heavy Cosmetic Damage' ? 'selected' : '')+'>Heavy Cosmetic Damage</option>' +
+                            '</optgroup>' +
+                            '<optgroup label="Malfunctioning">' +
+                                '<option value="Malfunctioning" '+(entry.condition === 'Malfunctioning' ? 'selected' : '')+'>Decent</option>' +
+                                '<option value="Malfunctioning With Light Cosmetic Damage" '+(entry.condition === 'Malfunctioning With Light Cosmetic Damage' ? 'selected' : '')+'>Light Cosmetic Damage</option>' +
+                                '<option value="Malfunctioning With Heavy Cosmetic Damage" '+(entry.condition === 'Malfunctioning With Heavy Cosmetic Damage' ? 'selected' : '')+'>Heavy Cosmetic Damage</option>' +
+                            '</optgroup>' +
+                            '<optgroup label="Not Working">' +
+                                '<option value="Not Working" '+(entry.condition === 'Not Working' ? 'selected' : '')+'>Not Working</option>' +
+                                '<option value="Not Working With Light Cosmetic Damage" '+(entry.condition === 'Not Working With Light Cosmetic Damage' ? 'selected' : '')+'>Light Cosmetic Damage</option>' +
+                                '<option value="Not Working With Heavy Cosmetic Damage" '+(entry.condition === 'Not Working With Heavy Cosmetic Damage' ? 'selected' : '')+'>Heavy Cosmetic Damage</option>' +
+                            '</optgroup>' +
+                        '</select>' +
+                    '</p>' +
+                    '<p><b>Notes: </b><input id="edit-notes-'+entry._id+'" type="text" value="' + entry.notes + '"></p>' +
                     '<p><b>Tech: </b><input id="edit-tech-'+entry._id+'" type="text" value="' + entry.tech + '" required></p>' +
                 '</div>' + 
             '</div>' + 
@@ -522,6 +541,61 @@ Home | GRID Server
             loadPagination(currentPage)
         } catch (error) {
             console.log(error)
+        }
+    }
+</script>
+
+<!-- SUBMIT EDIT -->
+<script>
+    function submitEdit(form) {
+        let console_edit_id = form.id.replace('system-edit-form-', '')
+        let edit_submission
+        try {
+            edit_submission = {
+                'brand': form.querySelector(`#edit-brand-${console_edit_id}`).value,
+                'console': form.querySelector(`#edit-console-${console_edit_id}`).value,
+                'special_model': form.querySelector(`#edit-special-model-${console_edit_id}`).value,
+                'special_color': form.querySelector(`#edit-color-${console_edit_id}`).value,
+                'hdd_size': form.querySelector(`#edit-hdd-${console_edit_id}`).value,
+                'tech': form.querySelector(`#edit-tech-${console_edit_id}`).value,
+                'condition': form.querySelector(`#edit-condition-${console_edit_id}`).value,
+                'notes': form.querySelector(`#edit-notes-${console_edit_id}`).value,
+            }
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+        fetch(`http://{{ host_ip }}:5000/consolegcomms/${console_edit_id}`, {method: 'PUT', body: JSON.stringify(edit_submission)})
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            alert('Console information updated successfully')
+            window.location.reload()
+        })
+        .catch(error => {
+            alert(error)
+            console.log(error)
+        })
+        return false
+    }
+</script>
+
+<!-- DELETE CONSOLE SCRIPT -->
+<script>
+    function deleteConsoleLog(delete_btn) {
+        let system_id = delete_btn.id.replace('edit-btn-delete-', "");
+        if (confirm('Are you SURE you want to delete this log? This cannot be undone.')) {
+            let apiURL = 'http://{{ host_ip }}:5000/consolegcomms/' + system_id;
+            fetch(apiURL, {method: 'DELETE'})
+            .then(response => {
+                alert('Log deleted successfully');
+                window.location.reload();
+            })
+            .catch(error => {
+                alert(error)
+            });
+        } else {
+            console.log('No!');
         }
     }
 </script>

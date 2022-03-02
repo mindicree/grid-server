@@ -31,6 +31,7 @@ setup = config.Config()
 #TODO replace all file opens with with open file as f
 #TODO separate data saves into individual lines and surround in try-catch
 #TODO implement playrandsound from discord bot
+#TODO create tech association json
 
 ### ROUTES ###
 ######################################################################
@@ -723,7 +724,24 @@ def consolegcomm(log_id):
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
         try:
-            log.update(brand=data['brand'], console=data['console'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], tech=data['tech'], condition=data['condition'], notes=data['notes'], dt_initial_irl_log=data['dt_initial_irl_log'], dt_last_update=datetime.utcnow())
+            log.update(brand=data['brand'])
+            log.update(console=data['console'])
+            if data['special_color']:
+                log.update(special_color=data['special_color'])
+            if data['special_model']:
+                log.update(special_model=data['special_model'])
+            if data['hdd_size']:
+                log.update(hdd_size=data['hdd_size'])
+            log.update(tech=data['tech'])
+            log.update(condition=data['condition'])
+            if data['notes']:
+                log.update(notes=data['notes'])
+            try:
+                if data['dt_initial_irl_log']:
+                    log.update(dt_initial_irl_log=data['dt_initial_irl_log'])
+            except:
+                print('Skipping IRL date log')
+            log.update(dt_last_update=datetime.utcnow())
         except:
             log.update(brand=data['brand'], console=data['console'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], tech=data['tech'], dt_last_update=datetime.utcnow())
         response = make_response(jsonify({'message': 'Console log ['+str(log_id)+'] updated successfully'}), 200)
