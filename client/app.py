@@ -11,6 +11,9 @@ setup = config.Config()
 # TODO add validation functions to all resources
 # TODO replace all forEach calls with every calls
 # TODO remove instances of bootstrap and just use link
+# TODO make sure datetimes are local
+# TODO convert all tech initials to capital upon entry
+
 
 #HOME
 @app.route('/')

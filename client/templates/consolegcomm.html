@@ -236,4 +236,293 @@ Home | GRID Server
         }
     </script>
 </form>
+
+<!--Information Table-->
+<table class="table table-striped table-hover table-bordered" id='tableConsoleLog' >
+    <thead>
+        <tr>
+        <th>Date</th>
+        <th>Console</th>
+        <th>Options</th>
+        </tr>
+    </thead>
+    <tbody id='tableConsoleLogBody'>
+
+    </tbody>
+</table>
+
+<!--Loading Thing-->
+<div id='table-loading-indicator' style='display: grid; width: 100%; margin: auto;'>
+    <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+    <h4 style="color: #aaa; margin: auto;">Loading</h4>
+</div>
+
+<!--Entry Modal-->
+<div class="" id='tableModalContainer'>
+    <div class="modal fade" id="modal-system-viewer">
+
+    </div>
+</div>
+
+<!--Pagination-->
+<nav style="width: 50%; margin: auto;">
+    <ul id='console_log_pagination' class="pagination pagination-sm justify-content-center">
+    </ul>
+</nav>
+
+<!-- LOAD TABLE -->
+<script>
+    let consoles;
+    let currentPage = 1;
+    let itemsPerPage = 100;
+    let numItems, numTotalPages;
+    let tableBodyId = 'tableConsoleLogBody';
+    fetch('http://{{ host_ip }}:5000/consolegcomms')
+    .then(response => response.json())
+    .then(data => {
+        consoles = data.reverse()
+        numItems = consoles.length
+        numTotalPages = Math.ceil(numItems/itemsPerPage)
+        //load into table
+        loadTable(currentPage)
+        loadConsoleList()
+    })
+    .catch(error => console.log(error))
+
+    function loadTable(selectedPage) {
+        //show loading thing
+        document.querySelector('#table-loading-indicator').style.display = 'grid';
+        let tableBody = document.querySelector(`#${tableBodyId}`)
+        tableBody.innerHTML = ''
+        let indexMul = selectedPage - 1
+
+        // selected page range check
+        if (selectedPage > numTotalPages || selectedPage < 0) {
+            console.log('Error: selected page is out of range')
+            alert('Error in pagination. Contact developer')
+            return -1;
+        }
+
+        try {
+            for (let i = indexMul*itemsPerPage; i < selectedPage*itemsPerPage; i++) {
+                //replace this list with appropriate data names in other instances
+                let row_data = {
+                    "_id": consoles[i]['_id'],
+                    "console": consoles[i]['console'],
+                    "special_color": consoles[i]['special_color'],
+                    "special_model": consoles[i]['special_model'],
+                    "hdd_size": consoles[i]['hdd_size'],
+                    "dt": consoles[i]['dt_initial_irl_log'],
+                    "tech": consoles[i]['tech'],
+                    "condition": consoles[i]['condition'],
+                    "notes": consoles[i]['notes']
+                }
+                
+                //create new table row
+                let new_row = document.createElement('tr')
+                let tdata;
+
+                tdata = document.createElement('th')
+                tdata.appendChild(document.createTextNode(`${formatDateString(row_data['dt'])}`))
+                new_row.appendChild(tdata)
+
+                tdata = document.createElement('th')
+                tdata.appendChild(document.createTextNode(`${row_data['console']} ${(row_data['color'] && row_data['color'] != 'None' ? `(${row_data['color']})` : '')} ${(row_data['special_model'] && row_data['special_model'] != 'None' ? `[${row_data['special_model']}]` : '')}`))
+                new_row.appendChild(tdata)
+
+                //print btn
+                let btnContainer = document.createElement('div')
+                btnContainer.setAttribute('class', 'tableStockListButtonContainer')
+                btnContainer.style = 'grid-template-columns: 1fr'
+                let btn = document.createElement('button')
+                btn.setAttribute('id', `print_${row_data['_id']}`)
+                btn.setAttribute('class', 'btn')
+                btn.addEventListener('click', function() {
+                    alert(`Print click! ID: ${row_data['_id']}`)
+                    //stops row click from happening
+                    event.stopPropagation();   
+                })
+                btn.appendChild(document.createTextNode('Print'))
+                btnContainer.appendChild(btn)
+                new_row.appendChild(btnContainer)
+
+                new_row.setAttribute('id', `console_row_${row_data['_id']}`)
+                new_row.setAttribute('class', 'align-middle')
+
+                //add modal review function to row
+                new_row.addEventListener('click', () => {
+                    renderSystemModal(new_row.id)
+                })
+
+                //add row to table body
+                tableBody.appendChild(new_row)
+            }
+        } catch(error) {
+            console.log(error)
+        }
+    
+        //hide loading thing
+        document.querySelector('#table-loading-indicator').style.display = 'none';
+
+        //load pagination
+        loadPagination(currentPage)
+    }
+
+
+    //render system modal
+    function renderSystemModal(id) {
+        let console_id = id.replace('console_row_', '')
+        let console_info;
+        consoles.every(e => {
+            console.log(`Comparison: \n${e._id}\n${console_id}`)
+            if (e._id.localeCompare(console_id) == 0) {
+                console.log('Console found')
+                console_info = e
+                console.log(console_info)
+                return false
+            }
+            return true
+        })
+
+        tableModal = document.querySelector('#modal-system-viewer');
+        tableModal.innerHTML =
+        '<div class="modal-dialog modal-xl">' +
+            '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                    `<h5 class="modal-title"> ${console_info.brand} ${console_info.console} - ${formatDateString(console_info.dt_initial_irl_log)}</h5>` +
+                    '<button id="system-modal-close-'+console_info._id+'" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
+                '</div>' +
+                '<div class="modal-body">' +
+                        entryStringGenerator(console_info) +
+                '</div>' +
+                '<div class="modal-footer justify-content-between">' +
+                    '<button id="edit-btn-delete-'+console_info._id+'"type="button" class="btn btn-danger" style="visibility: hidden;" onclick="deleteConsoleLog(this)">Delete</button>' +
+                    '<div>' + 
+                        '<button id="edit-btn-close-'+console_info._id+'"type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
+                        '<button id="edit-btn-'+console_info._id+'" type="button" class="btn btn-primary" style="margin-left: 10px;">Edit</button>' +
+                        '<button id="edit-btn-cancel-'+console_info._id+'"type="button" class="btn btn-secondary" style="display: none;">Cancel</button>' +
+                        '<button id="edit-btn-submit-'+console_info._id+'" type="button" class="btn btn-primary" style="display: none; margin-left: 10px;">Submit</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</div>' +
+        '';
+
+        //add edit button functionalities
+        document.querySelector('#edit-btn-'+console_info._id).addEventListener('click', function() {
+            this.style.display = "none";
+            document.querySelector('#edit-btn-close-'+console_info._id).style.display = "none";
+            document.querySelector('#system-modal-data-'+console_info._id).style.display = "none";
+            document.querySelector('#edit-btn-cancel-'+console_info._id).style.display = "initial";
+            document.querySelector('#edit-btn-submit-'+console_info._id).style.display = "initial";
+            document.querySelector('#edit-btn-delete-'+console_info._id).style.visibility = "visible";
+            document.querySelector('#system-modal-data-edit-'+console_info._id).style.display = "grid";
+        });
+        document.querySelector('#edit-btn-cancel-'+console_info._id).addEventListener('click', function() {
+            this.style.display = "none";
+            document.querySelector('#edit-btn-close-'+console_info._id).style.display = "initial";
+            document.querySelector('#system-modal-data-'+console_info._id).style.display = "grid";
+            document.querySelector('#edit-btn-cancel-'+console_info._id).style.display = "none";
+            document.querySelector('#edit-btn-submit-'+console_info._id).style.display = "none";
+            document.querySelector('#edit-btn-delete-'+console_info._id).style.visibility = "hidden";
+            document.querySelector('#system-modal-data-edit-'+console_info._id).style.display = "none";
+            document.querySelector('#edit-btn-'+console_info._id).style.display = "initial";
+        });
+        document.querySelector('#edit-btn-submit-'+console_info._id).addEventListener('click', function() {
+            //console.log('TODO: complete U functionality');
+            document.querySelector('#edit-button-submit-trigger-'+console_info._id).click();
+        });
+
+        let myModal = new bootstrap.Modal(document.getElementById('modal-system-viewer'))
+        myModal.toggle();
+    }
+
+    //string generator for bootstrap modals
+    function entryStringGenerator(entry) {
+        let static_data= 
+        '<div id="system-modal-data-'+entry._id+'"class="system-modal-data">' + 
+            `<p><b>Console: </b>${entry.brand} ${entry.console} ${(entry.special_color && entry.special_color.localeCompare('None') != 0 ? `(${entry.special_color})` : ``)} ${entry.special_model && entry.special_model.localeCompare('None') != 0  ? `[${entry.special_model}]` : ``}</p>` +
+            `${(entry.hdd_size && entry.hdd_size > 0 ? `<p><b>HDD Size: </b> ${entry.hdd_size}GB` : ``)}` +
+            `<p><b>Condition: </b>${entry.condition}</p>` +
+            `${entry.notes && entry.notes.length > 0 ? `<p><b>Notes: </b>${entry.notes}</p>` : ``}` +
+            `<p><b>Tech: </b>${entry.tech}</p>` +
+        '</div>';
+        let edit_data = 
+        '<form id="system-edit-form-'+entry._id+'" onsubmit="return submitEdit(this)">' + 
+            '<div id="system-modal-data-edit-'+entry._id+'" class="system-modal-data-edit" style="display: none;">' + 
+                '<div class="system-modal-data-edit-left">' + 
+                    '<p><b>Brand: </b><input id="edit-brand-'+entry._id+'" type="text" value="' + entry.brand + '" required></p>' +
+                    '<p><b>Console: </b><input id="edit-console-'+entry._id+'" type="text" value="' + entry.console + '" required></p>' +
+                    '<p><b>Special Model: </b><input placeholder="leave blank if N/A" id="edit-special-model-'+entry._id+'" type="text" value="' + entry.special_model + '" ></p>' +
+                    '<p><b>Color: </b><input placeholder="leave blank if base" id="edit-color-'+entry._id+'" type="text" value="' + entry.special_color + '" ></p>' +
+                    '<p><b>HDD Size (GB): </b><input placeholder="leave blank if N/A" id="edit-hdd-'+entry._id+'" type="text" value="' + entry.hdd_size + '" ></p>' +
+                    '<p><b>Price: </b><input id="edit-price-'+entry._id+'" type="text" value="' + entry.price + '" required></p>' +
+                    '<p><b>Tech: </b><input id="edit-tech-'+entry._id+'" type="text" value="' + entry.tech + '" required></p>' +
+                '</div>' + 
+            '</div>' + 
+            '<button type="submit" id="edit-button-submit-trigger-'+entry._id+'" style="visibility: hidden;">' + 
+        '</form>';
+
+        return static_data + edit_data;
+    }
+    //function to render pagination
+    function loadPagination(num) {
+        //get pagination
+        let pagination = document.querySelector('#console_log_pagination');
+        //clear pagination
+        pagination.innerHTML = "";
+        //add prev to pagination if not available
+        pagination.innerHTML += '<li class="page-item '+(num == 1 ? 'disabled' : '') +'"><a id="system-log-page-prev" onclick="changePage(this)"class="page-link"'+(num != 1 ? 'style="background-color: var(--green); border: solid 1px var(--green);"' : '')+'>Prev</a></li>'
+        //add pagination
+        if (numTotalPages <= 8) {
+            for (let i = 1; i <= numTotalPages; i++) {
+                pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>'; 
+            }
+        } else {
+            if (num <= 4 || num >= numTotalPages - 3) {
+                // 1 2 3 ... 98 99 100 N
+                for (let i = 1; i <=4; i++) {
+                    try {
+                        pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>'; 
+                    } catch (error) {
+                        console.log(error);
+                    }  
+                }
+                pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses" onclick="changePage(this)">...</a></li>';   
+                for (let i = numTotalPages - 3; i <=numTotalPages; i++) {
+                    try {
+                        pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';   
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            } else {
+                //P 1 ... 49 50 51 ... 100
+                pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-1" onclick="changePage(this)">1</a></li>'; 
+                pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-left" onclick="changePage(this)">...</a></li>'; 
+                //console.log('Num given: ' + num);
+                //console.log('Num range: (' + (num-2) + ', ' + (num+2) + ')')
+                for (let i = Number.parseInt(num)-2; i <= Number.parseInt(num)+2; i++) {
+                    //console.log('Current Value of i: ' + i)
+                    pagination.innerHTML += '<li class="page-item '+(num == i ? 'active' : '')+'" ><a class="page-link" id="system-log-page-'+i+'" onclick="changePage(this)">'+i+'</a></li>';
+                }
+                pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-elipses-right" onclick="changePage(this)">...</a></li>';   
+                pagination.innerHTML += '<li class="page-item" ><a class="page-link" id="system-log-page-1" onclick="changePage(this)">'+numTotalPages+'</a></li>';
+            }
+        }
+        
+        //add next
+        pagination.innerHTML += '<li class="page-item '+(num == numTotalPages || numTotalPages <= 1 ? 'disabled' : '') +'"><a id="system-log-page-next" onclick="changePage(this)"class="page-link"'+(num != numTotalPages ? 'style="background-color: var(--green); border: solid 1px var(--green);"' : '')+'>Next</a></li>'
+    }
+
+    function changePage(pageItem) {
+        try {
+            currentPage = Number.parseInt(pageItem.id.replace('console_log_page_', ''))
+            loadTable(currentPage)
+            loadPagination(currentPage)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+</script>
 {% endblock %}
