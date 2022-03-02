@@ -32,6 +32,7 @@ setup = config.Config()
 #TODO separate data saves into individual lines and surround in try-catch
 #TODO implement playrandsound from discord bot
 #TODO create tech association json
+#TODO add tech validator before all posts and puts
 
 ### ROUTES ###
 ######################################################################
@@ -1334,6 +1335,76 @@ def system_prices():
 
 
     return make_response(jsonify({'error': 'Bad request'}), 400)
+
+######################################################################
+### Tech ROUTES #############################################
+######################################################################
+@app.route('/techs', methods=['GET', 'PUT'])
+def tech():
+    if request.method == 'GET':
+        # open file, read, data, and close back
+        try:    
+            file = open('techs.json')
+            techs = json.load(file)
+            file.close()
+        except:
+            response = make_response(jsonify({'error': 'Server error - could not read data'}), 500)
+        return make_response(jsonify(techs), 200)
+    
+    if request.method == 'PUT':
+        # check if body provided
+        try:
+            data = json.loads(request.data)
+            #print('Data recieved: \n' + str(data) + '\n\n')
+        except:
+            response = make_response(jsonify({'error': 'Server error - could not interpret request recieved'}), 500)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+        if not data:
+                response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
+                response.headers.add("Access-Control-Allow-Origin", "*")
+                return response
+
+        #TODO add validation function here
+
+        try:    
+            print('Writing data...')
+            with open('techs.json', 'w') as file:
+                json.dump(data, file, indent = 4)
+
+        except:
+            response = make_response(jsonify({'error': 'Server error - could not read data'}), 500)
+
+        return make_response(jsonify({'message': 'Tech data successfully updated'}), 200)
+
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
+
+@app.route('/techs/reports', methods=['GET'])
+def tech_reports():
+    if request.method == 'GET':
+        # check for date arguments
+        try:
+            start_date = datetime.strptime(request.args['start'], '%Y-%m-%d')
+            end_date = datetime.strptime(request.args['end'], '%Y-%m-%d').replace(hour=23, minute=59, second=59)
+            if not start_date or not end_date:
+                return make_response(jsonify({'error': 'Missing or invalid date arguments'}), 200)
+        except KeyError:
+            return make_response(jsonify({'error': 'Missing date arguments'}), 400)
+        except ValueError:
+            return make_response(jsonify({'error': 'Invalid date arguments'}), 400)
+
+        # check for tech
+        try:
+            tech_id = request.args['tech_id']
+        except KeyError:
+            tech_id = None
+
+
+        if tech_id:
+            return make_response(jsonify({'message': f'Tech report endpoint with id {tech_id} and dates [{start_date}] and [{end_date}]'}), 200)
+        else:
+            return make_response(jsonify({'message': f'Tech report endpoint with dates [{start_date}] and [{end_date}])'}), 200)
 
 #RUN APPLICATION
 if __name__ == '__main__':
