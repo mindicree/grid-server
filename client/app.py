@@ -10,6 +10,7 @@ setup = config.Config()
 
 # TODO add validation functions to all resources
 # TODO replace all forEach calls with every calls
+# TODO remove instances of bootstrap and just use link
 
 #HOME
 @app.route('/')
@@ -58,6 +59,11 @@ def game_prices():
 @app.route('/consolelogs')
 def consolelog():
     return render_template('consolelog.html', host_ip=setup.HOST)
+
+#Console Log Prices Page
+@app.route('/console-gcomm')
+def console_gcomm():
+    return render_template('consolegcomm.html', host_ip=setup.HOST)
 
 #RUN APPLICATION
 if __name__ == '__main__':
