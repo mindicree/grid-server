@@ -1397,12 +1397,42 @@ def tech_reports():
         # check for tech
         try:
             tech_id = request.args['tech_id']
+            file = open('techs.json')
+            tech_list = json.load(file)
+            file.close()
         except KeyError:
             tech_id = None
+        except:
+            return make_response(jsonify({'error': f'Could not load tech info by id [{tech_id}] when opening file'}), 200)
 
 
+        # if has tech_id, generate single report
+        # else, generate mass report
         if tech_id:
-            return make_response(jsonify({'message': f'Tech report endpoint with id {tech_id} and dates [{start_date}] and [{end_date}]'}), 200)
+            # check if the tech id is within the list of techs
+            tech_info = None
+            for tech in tech_list:
+                # print(f'Comparing {tech["id"]} with {tech_id}')
+                if tech['id'] == tech_id:
+                    tech_info = tech
+
+            if not tech_info:
+                return make_response(jsonify({'error': f'Could not load tech info by id [{tech_id}]'}), 200)
+
+            raw_query = {'dt_initial_irl_log': {'$gte': start_date, '$lte': end_date}}
+            system_log_list = SystemLog.objects(__raw__=raw_query, tech=tech_id)
+            system_gcomm_list = GCommLog.objects(__raw__=raw_query, tech=tech_id)
+            console_log_list = ConsoleLog.objects(__raw__=raw_query, tech=tech_id)
+            console_gcomm_list = ConsoleGCommLog.objects(__raw__=raw_query, tech=tech_id)
+            return make_response(jsonify({
+                'first_name': tech_info['first_name'],
+                'last_name': tech_info['last_name'],
+                'report_system_log_list': system_log_list,
+                'report_system_gcomm_list': system_gcomm_list,
+                'report_console_log_list': console_log_list,
+                'report_console_gcomm_list': console_gcomm_list
+            }))
+
         else:
             return make_response(jsonify({'message': f'Tech report endpoint with dates [{start_date}] and [{end_date}])'}), 200)
 
