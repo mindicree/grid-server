@@ -2,6 +2,36 @@ from app import db
 from datetime import datetime
 import json
 
+class ConsoleGCommLog(db.Document):
+    brand = db.StringField(required=True) 
+    console = db.StringField(required=True)
+    model = db.StringField()
+    special_color = db.StringField()
+    special_model = db.StringField()
+    hdd_size = db.IntField()
+    tech = db.StringField()
+    condition = db.StringField()
+    notes = db.StringField()
+    dt_initial_system_log = db.DateTimeField()
+    dt_initial_irl_log = db.DateTimeField()
+    dt_last_update = db.DateTimeField()
+
+    def get_json(self):
+        return {
+            "_id": str(self.id),
+            "brand": str(self.brand),
+            "console": str(self.console),
+            "special_color": self.special_color,
+            "special_model": self.special_model,
+            "hdd_size": self.hdd_size,
+            "tech": self.tech,
+            "condition": self.condition,
+            "notes": self.notes,
+            "dt_initial_system_log": str(self.dt_initial_system_log),
+            "dt_initial_irl_log": str(self.dt_initial_irl_log),
+            "dt_last_update": str(self.dt_last_update)
+        }
+
 class ConsoleLog(db.Document):
     # Nintendo, Microsoft, Sony, Sega, Atari
     brand = db.StringField(required=True) 
@@ -24,8 +54,8 @@ class ConsoleLog(db.Document):
             "model": str(self.model),
             "special_color": str(self.special_color),
             "special_model": str(self.special_model),
-            "hdd_size": str(self.hdd_size),
-            "price": str(self.price),
+            "hdd_size": self.hdd_size,
+            "price": self.price,
             "tech": str(self.tech),
             "dt_initial_system_log": str(self.dt_initial_system_log),
             "dt_initial_irl_log": str(self.dt_initial_irl_log),

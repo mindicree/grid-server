@@ -30,6 +30,7 @@ setup = config.Config()
 #TODO default time does not work; manually enter time on ORM creation
 #TODO replace all file opens with with open file as f
 #TODO separate data saves into individual lines and surround in try-catch
+#TODO implement playrandsound from discord bot
 
 ### ROUTES ###
 ######################################################################
@@ -639,6 +640,103 @@ def consolelog(log_id):
             return make_response(jsonify({'message': f'Console log with id [{log_id}]not found'}), 404)
         log.delete()
         return make_response(jsonify({'message': 'Console log [' + str(log_id) + '] deleted successfully'}), 200)
+
+######################################################################
+### CONSOLEGCommLog ROUTES ################################################
+######################################################################
+#CONSOLE LOGS
+@app.route('/consolegcomms', methods=['POST', 'GET'])
+def consolegcomms():
+    if request.method == 'GET':
+        logs = ConsoleGCommLog.objects()
+        log_data = []
+        for log in logs:
+            log_data.append(log.get_json())
+        response = make_response(jsonify(log_data), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.data)
+            # log = ConsoleLog(brand=data['brand'], console=data['console'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], price=data['price'], tech=data['tech'], dt_initial_system_log=datetime.utcnow(), dt_initial_irl_log=datetime.utcnow(), dt_last_update=datetime.utcnow())
+            log = ConsoleGCommLog()
+            log.brand = data['brand']
+            log.console = data['console']
+            log.special_color = data['special_color']
+            log.special_model = data['special_model']
+            if data['hdd_size']:
+                log.hdd_size = data['hdd_size']
+            log.tech = data['tech']
+            log.condition = data['condition']
+            log.notes = data['notes']
+            log.dt_initial_system_log = datetime.utcnow()
+            log.dt_initial_irl_log = datetime.utcnow()
+            log.dt_last_update = datetime.utcnow()
+            
+            log.save()
+            response = make_response(jsonify(log.get_json()), 201)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+        except ValueError as error:
+            print(error)
+            return make_response(jsonify({'error': f'Failed to decode JSON properly.\nMessage: {error}'}), 400)
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
+
+#CONSOLE LOG MASS LOAD (FOR TESTING ONLY)
+@app.route('/consolegcomms/mass-data-entry/1', methods=['POST'])
+def consolegcomms_mass():
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.data)
+            for l in data:
+                log = ConsoleGCommLog(brand=l['brand'], console=l['console'], special_color=l['special_color'], special_model=l['special_model'], hdd_size=l['hdd_size'], tech=l['tech'], condition=l['condition'], notes=l['notes'], dt_initial_system_log=datetime.utcnow(), dt_initial_irl_log=datetime.utcnow(), dt_last_update=datetime.utcnow())
+                log.save()
+            return make_response(jsonify({"message": "ConsoleLog entries submitted."}), 201)
+        except ValueError:
+            return make_response(jsonify({'error': 'Failed to decode JSON properly'}), 400)
+
+    return make_response(jsonify({'error': 'Bad request'}), 400)
+
+#CONSOLE LOG BY ID
+@app.route('/consolegcomms/<log_id>', methods=['GET', 'PUT', 'DELETE'])
+def consolegcomm(log_id):
+    if request.method == 'GET':
+        log = ConsoleGCommLog.objects(id=log_id).first()
+        if not log:
+            return make_response(jsonify({'error': 'Console log with ID [' + log_id + '] not found.'}), 404)
+        response = make_response(jsonify(log.get_json()), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+
+    if request.method == 'PUT':
+        log = ConsoleGCommLog.objects(id=log_id).first()
+        if not log:
+            reponse = make_response(jsonify({'error': 'Console log with ID [' + log_id + '] not found.'}), 404)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+        data = json.loads(request.data)
+        if not data:
+            response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+        try:
+            log.update(brand=data['brand'], console=data['console'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], tech=data['tech'], condition=data['condition'], notes=data['notes'], dt_initial_irl_log=data['dt_initial_irl_log'], dt_last_update=datetime.utcnow())
+        except:
+            log.update(brand=data['brand'], console=data['console'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], tech=data['tech'], dt_last_update=datetime.utcnow())
+        response = make_response(jsonify({'message': 'Console log ['+str(log_id)+'] updated successfully'}), 200)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+    if request.method == 'DELETE':
+        log = ConsoleGCommLog.objects(id=log_id).first()
+        if not log:
+            return make_response(jsonify({'message': f'Console log with id [{log_id}]not found'}), 404)
+        log.delete()
+        return make_response(jsonify({'message': 'Console log [' + str(log_id) + '] deleted successfully'}), 200)
+
 
 ######################################################################
 ### ITEM/PRICING ROUTES ##############################################

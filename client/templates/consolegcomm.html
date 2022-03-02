@@ -5,5 +5,235 @@ Home | GRID Server
 {% endblock %}
 
 {% block body %}
+<script src='static/js/consolelog.js'></script>
 
+<!--Data Entry-->
+<form onsubmit="return renderSubmission()">
+    <input type="text" name="initials" value="" id='initialsSubmit' style="display: none"/>
+    <!--Data Entry Table-->
+    <div class="data-entry-container" style='grid-template-columns: 1fr;'>
+        <!-- LEFT SIDE -->
+        <div class="data-entry-part" style="max-width: 800px;">
+            <!-- Console Brand -->
+            <div class="data-entry-label-and-input">
+                <p>Brand: </p>
+                <select name="brand" id="select_console_brand" required>
+                    <option value="" selected disabled hidden>Select One...</option>
+                    <option value="Nintendo">Nintendo</option>
+                    <option value="Sony">Sony</option>
+                    <option value="Microsoft">Microsoft</option>
+                    <option value="Sega">Sega</option>
+                    <option value="Atari">Atari</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <!-- Console -->
+            <div class="data-entry-label-and-input">
+                <p>Console: </p>
+                <select name="console" id="select_console_model" disabled required>
+                    <option value="" selected disabled hidden>Select One...</option>
+                </select>
+            </div>
+            <!-- Special Model -->
+            <div class="data-entry-label-and-input">
+                <p>Sp. Model: </p>
+                <input type="text" id="select_console_special_model" placeholder="leave blank is n/a">
+            </div>
+            <!-- Special Model -->
+            <div class="data-entry-label-and-input-double">
+                <p>Color: </p>
+                <input type="text" id="input_console_color" placeholder="leave blank if base">
+                <p>HDD (GB): </p>
+                <input type="text" id="input_console_hdd_size" placeholder='leave blank if none'>
+            </div>
+        </div>
+        <hr style="background-color: gray; width: 50%; margin: 20px auto;">
+        <div class="data-entry-part" style="max-width: 800px;">
+            <!-- Condition -->
+            <div class="data-entry-label-and-input">
+                <p>Condition: </p>
+                <select name="brand" id="select_console_condition" required>
+                    <option value="" selected disabled hidden>Select One...</option>
+                    <optgroup label='Working'>
+                        <option value="Working">Decent</option>
+                        <option value="Working With Light Cosmetic Damage">Light Cosmetic Damage</option>
+                        <option value="Working With Heavy Cosmetic Damage">Heavy Cosmetic Damage</option>
+                    </optgroup>
+                    <optgroup label='Malfunctioning'>
+                        <option value="Malfunctioning">Decent</option>
+                        <option value="Malfunctioning With Light Cosmetic Damage">Light Cosmetic Damage</option>
+                        <option value="Malfunctioning With Heavy Cosmetic Damage">Heavy Cosmetic Damage</option>
+                    </optgroup>
+                    <optgroup label="Not Working">
+                        <option value="Not Working">Not Working</option>
+                        <option value="Not Working With Light Cosmetic Damage">Light Cosmetic Damage</option>
+                        <option value="Not Working With Heavy Cosmetic Damage">Heavy Cosmetic Damage</option>
+                    </optgroup>
+                </select>
+            </div>
+            <!-- Notes -->
+            <div class="data-entry-label-and-input">
+                <p>Notes: </p>
+                <input type="text" id="input_console_notes">
+            </div>
+            <!-- Tech -->
+            <div class="data-entry-label-and-input">
+                <p>Tech: </p>
+                <input type="text" id="input_console_tech" required>
+            </div>
+        </div>
+    </div>
+
+    <!--Submission Section-->
+    <div class="data-submission-container">
+        <button name="button" class="btn" style="background-color: #aea;" id='submitButton'>Submit</button>
+    </div>
+    <!-- Submission modal container-->
+    <div id='submission-modal-container'> 
+        <div class="modal fade" id="submission_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="submission-modal-title"></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="submission-modal-body" class="modal-body">
+                  
+                </div>
+                <div id="submission-modal-footer" class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" id="submission-modal-button" class="btn btn-primary">Submit</button>
+                    <img id="loading-gif" src="static/img/loading.gif" style="display: none; width: 32px; height: 32px;"></img>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!--Submission Script-->
+    <script>
+        function renderSubmission() {
+            console.log('Button Clicked!');
+
+            try {
+                let submission = {
+                    'brand': document.querySelector('#select_console_brand').value,
+                    'console': document.querySelector('#select_console_model').value,
+                    'special_color': document.querySelector('#input_console_color').value,
+                    'special_model': document.querySelector('#select_console_special_model').value,
+                    'hdd_size': document.querySelector('#input_console_hdd_size').value,
+                    'tech': document.querySelector('#input_console_tech').value,
+                    'condition': document.querySelector('#select_console_condition').value,
+                    'notes': document.querySelector('#input_console_notes').value
+                };
+                //console.log('JSON Data Rendered:\n' + JSON.stringify(submission));
+
+                document.querySelector("#submission-modal-title").innerHTML = 'New Console';
+                document.querySelector("#submission-modal-body").innerHTML = submissionStringGenerator(submission);
+                let submissionModalElement = document.getElementById('submission_modal');
+                let submissionModal = new bootstrap.Modal(submissionModalElement);
+                submissionModal.toggle();
+
+                document.querySelector("#submission-modal-button").addEventListener('click', function() {
+                    this.style.display = "none";
+                    document.querySelector("#loading-gif").style.display = "initial";
+                    fetch('http://{{ host_ip }}:5000/consolegcomms', {method: 'POST', body: JSON.stringify(submission)})
+                    .then(response => response.json())
+                    .then(data => {
+                        alert('Submission Successful!')
+                        window.location.reload()
+                    })
+                    .catch (error => {
+                        this.style.display = "initial";
+                        document.querySelector("#loading-gif").style.display = "none";
+                        alert('An error occured.\n\nDetails: ' + error);
+                        console.log(error);
+                    });
+                    
+                });
+                //return false to cancel default form submission
+                //instead relying on API call from submission modal
+                return false;
+            } catch (error) {
+                console.log(error);
+                return false;
+            }
+            return false;
+        }
+    
+        //string generator for bootstrap modals
+        function submissionStringGenerator(entry) {
+            return `` +
+            `<p><b>Console</b>: ${entry.console} ${(entry.special_color ? `(${entry.special_color})` : '')} ${(entry.special_model ? `[${entry.special_model}]` : '')}</p>` + 
+            `${(entry.hdd_size ? `<p><b>HDD Size</b>: ${entry.hdd_size}GB` : '')}` + 
+            `<p><b>Condition</b>: ${entry.condition}</p>` + 
+            `${(entry.notes ? `<p><b>Notes</b>: ${entry.notes}` : ``)}` + 
+            `<p><b>Tech</b>: ${entry.tech}</p>` + 
+            ``;
+        }
+    </script>
+
+    <!-- Console Selection Script -->
+    <script>
+        let console_brand_selector = document.querySelector('#select_console_brand')
+        console_brand_selector.addEventListener('change', () => {
+            loadConsoleList()
+        })
+
+        function loadConsoleList() {
+            let console_selector = document.querySelector('#select_console_model')
+            let selection = console_brand_selector.options[console_brand_selector.selectedIndex].value
+            console_selector.innerHTML = ''
+            console_selector.removeAttribute('disabled')
+            if (consoleList[selection]) {
+                    // create initial console option
+                    let consoleOption = document.createElement("optgroup")
+                    consoleOption.setAttribute('label', 'Consoles')
+                    //loop through console options and add
+                    consoleList[selection]['Consoles'].forEach((item) => {
+                        let new_option = document.createElement("option")
+                        new_option.innerHTML += item
+                        consoleOption.appendChild(new_option)
+                    })
+                    console_selector.appendChild(consoleOption)
+
+
+                    // create initial console option
+                    let handheldOption = document.createElement("optgroup")
+                    handheldOption.setAttribute('label', 'Handhelds')
+                    //loop through console options and add
+                    consoleList[selection]['Handhelds'].forEach((item) => {
+                        let new_option = document.createElement("option")
+                        new_option.innerHTML += item
+                        handheldOption.appendChild(new_option)
+                    })
+                    console_selector.appendChild(handheldOption)
+            } else if (selection === 'Other') {
+                let other_brand = prompt('Please enter Brand name')
+                if (other_brand) {
+                    let other_console = prompt('Please enter console name')
+                    if (other_console) {
+                        console_brand_selector.options[console_brand_selector.selectedIndex].value = other_brand
+                        console_brand_selector.options[console_brand_selector.selectedIndex].innerHTML = `Other - ${other_brand}`
+                        console_selector.innerHTML = ''
+                        let new_option = document.createElement("option")
+                        new_option.innerHTML += other_console
+                        new_option.value = other_console
+                        console_selector.appendChild(new_option)
+                    } else {
+                        alert('Process aborted')
+                        console_selector.setAttribute('disabled',true)
+                        return
+                    }  
+                } else {
+                    alert('Process aborted')
+                    console_selector.setAttribute('disabled',true)
+                    return
+                }
+
+            } else {
+                console_selector.setAttribute('disabled',true)
+            }
+        }
+    </script>
+</form>
 {% endblock %}
