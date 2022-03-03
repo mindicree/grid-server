@@ -68,6 +68,11 @@ def consolelog():
 def console_gcomm():
     return render_template('consolegcomm.html', host_ip=setup.HOST)
 
+#Console Log Prices Page
+@app.route('/techs')
+def techs():
+    return render_template('techs.html', host_ip=setup.HOST)
+
 #RUN APPLICATION
 if __name__ == '__main__':
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
