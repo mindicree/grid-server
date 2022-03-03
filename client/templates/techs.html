@@ -1,9 +1,60 @@
 {% extends 'template.html' %}
 
 {% block page_title %}
-Home | GRID Server
+Techs | GRID Server
 {% endblock %}
 
 {% block body %}
+<table class="table table-striped table-hover table-bordered" id="tableTechList">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Identifier</th>
+            <th style="max-width: 50px;">Options</th>
+        </tr>
+    </thead>
+    <tbody id="tableBodyTechList">
 
+    </tbody>
+</table>
+
+<!--Loading Thing-->
+<div id='table-loading-indicator' style='display: grid; width: 100%; margin: auto;'>
+    <img src='static/img/loading.gif' style='width: 64px; height: 64px; margin: auto;'>
+    <h4 style="color: #aaa; margin: auto;">Loading</h4>
+</div>
+
+<script>
+    let original_data, new_data
+    fetch('http://{{ host_ip }}:5000/techs')
+    .then(response => response.json())
+    .then(data => {
+        original_data = data.sort((a, b) => {
+            if (a.last_name > b.last_name) {
+                return 1
+            } else {
+                return 0
+            }
+        })
+        new_data = original_data
+        original_data.forEach(e => {
+            document.querySelector('#tableBodyTechList').innerHTML += createTableRow(e)
+        })
+        document.querySelector('#table-loading-indicator').style.display = 'none';
+    })
+    .catch(error => {
+        alert(error)
+        console.log(error)
+    })
+
+    function createTableRow(tech) {
+        return `` +
+        `<tr>` +
+            `<td>${tech.first_name} ${tech.last_name}</td>` +
+            `<td>${tech.id}</td>` +
+            `<td><div class='tableStockListButtonContainer'><button id='tech_report_${tech.id}' class='btn'>Report</button><button id='tech_edit_${tech.id}' class='btn'>Edit</button></div></td>` +
+        `</tr>` +
+        ``;
+    }
+</script>
 {% endblock %}
