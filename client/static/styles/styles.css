@@ -128,7 +128,10 @@
   margin-top: 20px;
 }
 
-#tableStockList,  #tableGCommList, #tableConsoleLog{
+#tableStockList,  
+#tableGCommList, 
+#tableConsoleLog, 
+#tableTechList{
   max-width: 1200px;
   margin: 20px auto;
 }
