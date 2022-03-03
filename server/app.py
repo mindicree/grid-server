@@ -1,5 +1,5 @@
 import json, time
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, render_template
 from flask_mongoengine import MongoEngine
 from flask_cors import CORS
 from datetime import datetime, timedelta
@@ -1424,15 +1424,34 @@ def tech_reports():
             system_gcomm_list = GCommLog.objects(__raw__=raw_query, tech=tech_id)
             console_log_list = ConsoleLog.objects(__raw__=raw_query, tech=tech_id)
             console_gcomm_list = ConsoleGCommLog.objects(__raw__=raw_query, tech=tech_id)
-            return make_response(jsonify({
-                'first_name': tech_info['first_name'],
-                'last_name': tech_info['last_name'],
-                'report_system_log_list': system_log_list,
-                'report_system_gcomm_list': system_gcomm_list,
-                'report_console_log_list': console_log_list,
-                'report_console_gcomm_list': console_gcomm_list
-            }))
+            raw_query = {'dt_completed': {'$gte': start_date, '$lte': end_date}}
+            work_order_list = WorkOrder.objects(__raw__=raw_query, finishing_tech=tech_id)
+            # return make_response(jsonify({
+            #     'first_name': tech_info['first_name'],
+            #     'last_name': tech_info['last_name'],
+            #     'report_system_log_list': system_log_list,
+            #     'report_system_gcomm_list': system_gcomm_list,
+            #     'report_console_log_list': console_log_list,
+            #     'report_console_gcomm_list': console_gcomm_list,
+            #     'report_work_orders': work_order_list
+            # }))
+            system_log_count, system_gcomm_count, system_gcomm_c_count, console_log_count, console_gcomm_count, work_order_count = [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]
 
+            for log in system_log_list:
+                system_log_count[log.dt_initial_irl_log.weekday()] = system_log_count[log.dt_initial_irl_log.weekday()] + 1
+            for log in system_gcomm_list:
+                if log.os == 'N/A':
+                    system_gcomm_count[log.dt_initial_irl_log.weekday()] = system_gcomm_count[log.dt_initial_irl_log.weekday()] + 1
+                else:
+                    system_gcomm_c_count[log.dt_initial_irl_log.weekday()] = system_gcomm_c_count[log.dt_initial_irl_log.weekday()] + 1
+            for log in console_log_list:
+                console_log_count[log.dt_initial_irl_log.weekday()] = console_log_count[log.dt_initial_irl_log.weekday()] + 1
+            for log in console_gcomm_list:
+                console_gcomm_count[log.dt_initial_irl_log.weekday()] = console_gcomm_count[log.dt_initial_irl_log.weekday()] + 1
+            for log in work_order_list:
+                work_order_count[log.dt_completed.weekday()] = console_gcomm_count[log.dt_completed.weekday()] + 1
+
+            return render_template('report_template.html', t=tech_info, sd=start_date.date(), ed=end_date.date(), sll=system_log_list, slc=system_log_count, sgl=system_gcomm_list, sgc=system_gcomm_count, sgcc=system_gcomm_c_count, sgt=sum(system_gcomm_count), sgct=sum(system_gcomm_c_count), cll=console_log_list, clc=console_log_count, cgl=console_gcomm_list, cgc=console_gcomm_count, wol=work_order_list, woc=work_order_count, wot=sum(work_order_count))
         else:
             return make_response(jsonify({'message': f'Tech report endpoint with dates [{start_date}] and [{end_date}])'}), 200)
 
