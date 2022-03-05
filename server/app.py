@@ -1451,7 +1451,7 @@ def tech_reports():
             for log in work_order_list:
                 work_order_count[log.dt_completed.weekday()] = console_gcomm_count[log.dt_completed.weekday()] + 1
 
-            return render_template('report_template.html', t=tech_info, sd=start_date.date(), ed=end_date.date(), sll=system_log_list, slc=system_log_count, sgl=system_gcomm_list, sgc=system_gcomm_count, sgcc=system_gcomm_c_count, sgt=sum(system_gcomm_count), sgct=sum(system_gcomm_c_count), cll=console_log_list, clc=console_log_count, cgl=console_gcomm_list, cgc=console_gcomm_count, wol=work_order_list, woc=work_order_count, wot=sum(work_order_count))
+            return render_template('report_template_2.html', t=tech_info, sd=start_date.date(), ed=end_date.date(), sll=system_log_list, slc=system_log_count, sgl=system_gcomm_list, sgc=system_gcomm_count, sgcc=system_gcomm_c_count, sgt=sum(system_gcomm_count), sgct=sum(system_gcomm_c_count), cll=console_log_list, clc=console_log_count, cgl=console_gcomm_list, cgc=console_gcomm_count, wol=work_order_list, woc=work_order_count, wot=sum(work_order_count))
         else:
             return make_response(jsonify({'message': f'Tech report endpoint with dates [{start_date}] and [{end_date}])'}), 200)
 
