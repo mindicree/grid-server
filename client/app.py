@@ -1,6 +1,8 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, send_file
 from flask_cors import CORS
 import config
+import requests
+import pdfkit
 
 app = Flask(__name__)
 CORS(app)
@@ -72,6 +74,46 @@ def console_gcomm():
 @app.route('/techs')
 def techs():
     return render_template('techs.html', host_ip=setup.HOST)
+
+#Console Log Prices Page
+@app.route('/generate-report')
+def generate_report():
+    if not request.args:
+        return redirect('techs')
+    try:
+        start = request.args['start']
+        end = request.args['end']
+        tech_id = request.args['tech_id']
+    except KeyError:
+        return 'Missing or invalid arguments'
+
+    request_headers = {
+        'content-type': 'text/html'
+    }
+    html_info = requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech_id}', headers=request_headers)
+    file_name = f'report_{tech_id}_{start}_{end}'
+
+    # html_string = ''
+    # with open(f'reports/{file_name}.html', 'w') as file:
+    #     file.write(html_info.text)
+    # with open(f'reports/{file_name}.html') as file:
+    #     html_string = file.read()
+    #     print(html_string)
+
+    pdf_options = {
+        'page-size': 'Letter',
+        'margin-top': '0.5in',
+        'margin-right': '0.5in',
+        'margin-bottom': '0.5in',
+        'margin-left': '0.5in',
+        'encoding': 'UTF-8'
+    }
+    pdfkit.from_string(str(html_info.content).replace('b\'', '').replace('\'', ''), f'reports/{file_name}.pdf', options=pdf_options)
+    # pdfkit.from_url(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech_id}', f'reports/{file_name}.pdf', options=pdf_options)
+    # pdfkit.from_file(f'reports/{file_name}.html', f'reports/{file_name}.pdf', options=pdf_options)
+    # pdfkit.from_string(html_string, f'reports/{file_name}.pdf', options=pdf_options)
+
+    return send_file(f'reports/{file_name}.pdf', download_name=f'{file_name}.pdf')
 
 #RUN APPLICATION
 if __name__ == '__main__':
