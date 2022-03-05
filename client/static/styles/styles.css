@@ -61,6 +61,16 @@
   margin: auto;
 }
 
+.parin_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-bottom: 10px;
+}
+
+.parin_container p {
+  font-weight: bold;
+}
+
 .imgNTHE {
   margin: auto;
   width: 100%;
