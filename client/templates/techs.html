@@ -24,6 +24,17 @@ Techs | GRID Server
     <h4 style="color: #aaa; margin: auto;">Loading</h4>
 </div>
 
+<!--edit Modal-->
+<div class="modal fade" id="modal_tech_edit">
+
+</div>
+
+<!--report Modal-->
+<div class="modal fade" id="modal_tech_report">
+
+</div>
+
+
 <script>
     let original_data, new_data
     fetch('http://{{ host_ip }}:5000/techs')
@@ -41,11 +52,68 @@ Techs | GRID Server
             document.querySelector('#tableBodyTechList').innerHTML += createTableRow(e)
         })
         document.querySelector('#table-loading-indicator').style.display = 'none';
+        
+        // Add click functions to buttons
+        original_data.forEach(e => {
+            let report_btn = document.querySelector(`#tech_report_${e.id}`)
+            report_btn.addEventListener('click', () => {
+                // generate modal information
+                let report_modal = document.querySelector('#modal_tech_report')
+                report_modal.innerHTML = generateReportModal(e)
+                report_modal = new bootstrap.Modal(document.getElementById('modal_tech_report'))
+                report_modal.toggle()
+            })
+            document.querySelector(`#tech_edit_${e.id}`).addEventListener('click', () => {
+                // generate modal informaiton
+                console.log('World')
+            })
+        })
     })
     .catch(error => {
         alert(error)
         console.log(error)
     })
+
+    function generateReportModal(tech) {
+        return '' +
+        '<div class="modal-dialog modal-l modal-dialog-centered">' +
+            '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                    `<h5 class="modal-title">${tech.first_name} ${tech.last_name}</h5>` +
+                    '<button id="system-modal-close-'+tech.id+'" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
+                '</div>' +
+                '<div class="modal-body">' +
+                    '<div class="parin_container">' +
+                        '<p>Start Date</p>' +
+                        '<input type="date" id="report_start_date">' +  
+                    '</div>' + 
+                    '<div class="parin_container">' +
+                        '<p>End Date</p>' +
+                        '<input type="date" id="report_end_date">' +  
+                    '</div>' + 
+                '</div>' +
+                '<div class="modal-footer justify-content-between">' +
+                    '<button id="edit-btn-close"type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
+                    `<button id="edit-btn" type="button" class="btn btn-primary" style="margin-left: 10px;" onclick="generateReport('${tech.id}')">Submit</button>` +
+                '</div>' +
+            '</div>' +
+        '</div>' +
+        '';
+    }
+
+    function generateReport(tech_id) {
+        console.log('Clicked report!')
+        // validate information
+        let sd = document.querySelector('#report_start_date').value
+        let ed = document.querySelector('#report_end_date').value
+        if (!sd || !ed) {
+            alert('Please select a date range')
+            return
+        }
+        let destination = `generate-report?start=${sd}&end=${ed}&tech_id=${tech_id}`
+        console.log(destination)
+        window.open(destination, '_blank')
+    }
 
     function createTableRow(tech) {
         return `` +
