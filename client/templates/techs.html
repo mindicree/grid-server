@@ -65,7 +65,10 @@ Techs | GRID Server
             })
             document.querySelector(`#tech_edit_${e.id}`).addEventListener('click', () => {
                 // generate modal informaiton
-                console.log('World')
+                let edit_modal = document.querySelector('#modal_tech_edit')
+                edit_modal.innerHTML = generateEditModal(e)
+                edit_modal = new bootstrap.Modal(document.getElementById('modal_tech_edit'))
+                edit_modal.toggle()
             })
         })
     })
@@ -99,6 +102,68 @@ Techs | GRID Server
             '</div>' +
         '</div>' +
         '';
+    }
+
+    function generateEditModal(tech) {
+        return '' +
+        '<div class="modal-dialog modal-l modal-dialog-centered">' +
+            '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                    `<h5 class="modal-title">${tech.first_name} ${tech.last_name}</h5>` +
+                    '<button id="system-modal-close-'+tech.id+'" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
+                '</div>' +
+                '<div class="modal-body">' +
+                    '<div class="parin_container">' +
+                        '<p>First Name</p>' +
+                        `<input type="text" id="edit_tech_fn" value="${tech.first_name}">` +  
+                    '</div>' + 
+                    '<div class="parin_container">' +
+                        '<p>Last Name</p>' +
+                        `<input type="text" id="edit_tech_ln" value="${tech.last_name}">` +  
+                    '</div>' + 
+                    '<div class="parin_container">' +
+                        '<p>Tech ID</p>' +
+                        `<input type="text" id="edit_tech_id" value="${tech.id}">` +  
+                    '</div>' + 
+                '</div>' +
+                '<div class="modal-footer justify-content-between">' +
+                    '<button id="edit-btn-close"type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
+                    `<button id="edit-btn" type="button" class="btn btn-primary" style="margin-left: 10px;" onclick="editTech('${tech.id}')">Submit</button>` +
+                '</div>' +
+            '</div>' +
+        '</div>' +
+        '';
+    }
+
+    function editTech(tech_id) {
+        let new_fname = document.querySelector('#edit_tech_fn').value
+        let new_lname = document.querySelector('#edit_tech_ln').value
+        let new_id = document.querySelector('#edit_tech_id').value
+        new_data.every(e => {
+            if (e.id === tech_id) {
+                console.log(`Tech found with ID ${tech_id}`)
+                console.log(`Old: \n${JSON.stringify(e)}`)
+                e.first_name = new_fname
+                e.last_name = new_lname
+                e.id = new_id
+                console.log(`New: \n${JSON.stringify(e)}`)
+                return false
+            }
+            return true
+        })
+
+        fetch(`http://{{ host_ip }}:5000/techs?old=${tech_id}&new=${new_id}`, {method: 'PUT', body: JSON.stringify(new_data)})
+        .then(response => response.json())
+        .then(data => {
+            try {
+                alert(JSON.stringify(data))
+                window.location.reload()
+            } catch (error) {
+                alert(error)
+                console.log(error)
+            }
+        })
+        .catch(error => console.log(error))
     }
 
     function generateReport(tech_id) {
