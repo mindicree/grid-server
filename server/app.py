@@ -1352,6 +1352,15 @@ def tech():
         return make_response(jsonify(techs), 200)
     
     if request.method == 'PUT':
+        # check if arguments are provided
+        try:
+            old_id = request.args['old']
+            new_id = request.args['new']
+        except KeyError:
+            response = make_response(jsonify({'error': 'Arguments for new and old id not provided'}), 400)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response
+
         # check if body provided
         try:
             data = json.loads(request.data)
@@ -1366,6 +1375,17 @@ def tech():
                 return response
 
         #TODO add validation function here
+
+
+        #edit system logs
+
+        #edit system gcomm
+
+        #edit console logs
+
+        #edit console gcomms
+        
+        #edit work orders
 
         try:    
             print('Writing data...')
