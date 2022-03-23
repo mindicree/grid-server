@@ -147,6 +147,13 @@ def syslogs():
                 return make_response(jsonify({'error': 'Server encountered error saving cpu_model'}), 500)
 
             try:
+                log.cpu_speed = data['cpu_speed']
+            except KeyError:
+                return make_response(jsonify({'error': 'cpu_speed not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving cpu_speed'}), 500)
+
+            try:
                 log.cpu_gen = data['cpu_gen']
             except KeyError:
                 return make_response(jsonify({'error': 'cpu_gen not provided'}), 400)
