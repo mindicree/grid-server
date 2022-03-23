@@ -237,6 +237,13 @@ def syslog(log_id):
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
         data = json.loads(request.data)
+        try:
+            if not isValidTechId(data['tech']):
+                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+        except KeyError:
+            return make_response(jsonify({'error': 'Tech ID not provided'}), 404)
+
+
         if not data:
             response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
             response.headers.add("Access-Control-Allow-Origin", "*")
@@ -629,6 +636,11 @@ def gcommlogs():
     if request.method == 'POST':
         try:
             data = json.loads(request.data)
+            try:
+                if not isValidTechId(data['tech']):
+                    return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+            except KeyError:
+                return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
             log = GCommLog(brand=data['brand'], model=data['model'], condition=data['condition'], os=data['os'], computer_type=data['computer_type'], laptop_screen_condition=data['laptop_screen_condition'], laptop_screen_size=data['laptop_screen_size'], desktop_gpu_type=data['desktop_gpu_type'], desktop_display_ports=data['desktop_display_ports'], aio_screen_condition=data['aio_screen_condition'], aio_screen_size=data['aio_screen_size'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], hdd_type = data['hdd_type'], tech=data['tech'])
             log.save()
             response = make_response(jsonify(log.get_json()), 201)
@@ -658,6 +670,11 @@ def gcommlog(log_id):
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
         data = json.loads(request.data)
+        try:
+            if not isValidTechId(data['tech']):
+                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+        except KeyError:
+            return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
         if not data:
             response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
             response.headers.add("Access-Control-Allow-Origin", "*")
@@ -790,6 +807,11 @@ def consolegcomms():
     if request.method == 'POST':
         try:
             data = json.loads(request.data)
+            try:
+                if not isValidTechId(data['tech']):
+                    return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+            except KeyError:
+                return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
             # log = ConsoleLog(brand=data['brand'], console=data['console'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], price=data['price'], tech=data['tech'], dt_initial_system_log=datetime.utcnow(), dt_initial_irl_log=datetime.utcnow(), dt_last_update=datetime.utcnow())
             log = ConsoleGCommLog()
             log.brand = data['brand']
@@ -849,6 +871,11 @@ def consolegcomm(log_id):
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
         data = json.loads(request.data)
+        try:
+            if not isValidTechId(data['tech']):
+                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+        except KeyError:
+            return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
         if not data:
             response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
             response.headers.add("Access-Control-Allow-Origin", "*")
@@ -1267,6 +1294,11 @@ def work_orders():
         playsound('sounds/you\'ve_got_mail.mp3')
         try:
             data = json.loads(request.data)
+            try:
+                if not isValidTechId(data['tech']):
+                    return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+            except KeyError:
+                return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
             log = WorkOrder(fname=data['fname'], lname=data['lname'], phone1=data['phone1'], phone2=data['phone2'], computer_type=data['computer_type'], model=data['model'], password=data['password'], isPurchasedFromUs=data['isPurchasedFromUs'], isUnderWarranty=data['isUnderWarranty'], isWithPowerSupply=data['isWithPowerSupply'], isWithOtherItems=data['isWithOtherItems'], other_items=data['other_items'], issue_category=data['issue_category'], issue_description=data['issue_description'], cashier=data['cashier'], dt_recieved=datetime.utcnow(), dt_last_updated=datetime.utcnow())
             print(log.dt_recieved)
             log.save()
@@ -1331,6 +1363,11 @@ def work_order(log_id):
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
         data = json.loads(request.data)
+        try:
+            if not isValidTechId(data['tech']):
+                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+        except KeyError:
+            return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
         if not data:
             response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
             response.headers.add("Access-Control-Allow-Origin", "*")
@@ -1370,7 +1407,11 @@ def work_orders_claim():
         # check if argument provided
         if not request.args.get('id') or not request.args.get('tech'):
                 return make_response(jsonify({'error': 'Bad request - missing arguments'}), 400)
-
+        try:
+            if not isValidTechId(request.args.get('tech')):
+                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+        except KeyError:
+            return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
         # check id if available
         log = WorkOrder.objects(id=request.args.get('id')).first()
         if not log:
@@ -1390,6 +1431,12 @@ def work_orders_complete():
         if not request.args.get('id') or not request.args.get('tech'):
                 return make_response(jsonify({'error': 'Bad request - missing arguments'}), 400)
 
+        try:
+            if not isValidTechId(request.args.get('tech')):
+                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+        except KeyError:
+            return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
+
         # check id if available
         log = WorkOrder.objects(id=request.args.get('id')).first()
         if not log:
@@ -1408,6 +1455,12 @@ def work_orders_pickup():
         # check if argument provided
         if not request.args.get('id') or not request.args.get('sig'):
                 return make_response(jsonify({'error': 'Bad request - missing arguments'}), 400)
+        
+        try:
+            if not isValidTechId(request.args.get('tech')):
+                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+        except KeyError:
+            return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
 
         # check id if available
         log = WorkOrder.objects(id=request.args.get('id')).first()
