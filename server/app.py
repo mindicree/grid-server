@@ -42,6 +42,17 @@ from routes.routes import generic_routes
 app.register_blueprint(generic_routes)
 
 
+# function to check if tech identifier is valid
+def isValidTechId(tech_id):
+    with open('techs.json') as file:
+        tech_data = json.load(file)
+        for tech in tech_data:
+            if tech_id == tech['id']:
+                print(f'Tech ID [{tech_id}] matches [{tech["id"]}]')
+                return True
+
+    return False
+
 ######################################################################
 ### SYSTEM LOG ROUTES ################################################
 ######################################################################
@@ -60,6 +71,9 @@ def syslogs():
     if request.method == 'POST':
         try:
             data = json.loads(request.data)
+            if not isValidTechId(data['tech']):
+                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+
             # log = SystemLog(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'])
             log = SystemLog()
             try:
