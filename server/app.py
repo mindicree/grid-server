@@ -60,11 +60,119 @@ def syslogs():
     if request.method == 'POST':
         try:
             data = json.loads(request.data)
-            log = SystemLog(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'])
-            log.price = calc_price(log)
+            # log = SystemLog(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'])
+            log = SystemLog()
+            try:
+                log.old_coa = data['old_coa']
+            except KeyError:
+                return make_response(jsonify({'error': 'old_coa not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving old_coa'}), 500)
+
+            try:
+                log.new_coa = data['new_coa']
+            except KeyError:
+                return make_response(jsonify({'error': 'new_coa not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving new_coa'}), 500)
+
+            try:
+                log.serial_no = data['serial_no']
+            except KeyError:
+                return make_response(jsonify({'error': 'serial_no not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving serial_no'}), 500)
+
+            try:
+                log.brand = data['brand']
+            except KeyError:
+                return make_response(jsonify({'error': 'brand not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving brand'}), 500)
+
+            try:
+                log.model = data['model']
+            except KeyError:
+                return make_response(jsonify({'error': 'model not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving model'}), 500)
+
+            try:
+                log.os = data['os']
+            except KeyError:
+                return make_response(jsonify({'error': 'os not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving os'}), 500)
+
+            try:
+                log.computer_type = data['computer_type']
+            except KeyError:
+                return make_response(jsonify({'error': 'computer_type not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving computer_type'}), 500)
+
+            try:
+                log.source = data['source']
+            except KeyError:
+                return make_response(jsonify({'error': 'source not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving source'}), 500)
+
+            try:
+                log.cpu_brand = data['cpu_brand']
+            except KeyError:
+                return make_response(jsonify({'error': 'cpu_brand not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving cpu_brand'}), 500)
+
+            try:
+                log.cpu_model = data['cpu_model']
+            except KeyError:
+                return make_response(jsonify({'error': 'cpu_model not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving cpu_model'}), 500)
+
+            try:
+                log.cpu_gen = data['cpu_gen']
+            except KeyError:
+                return make_response(jsonify({'error': 'cpu_gen not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving cpu_gen'}), 500)
+
+            try:
+                log.ram = data['ram']
+            except KeyError:
+                return make_response(jsonify({'error': 'ram not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving ram'}), 500)
+
+            try:
+                log.hdd = data['hdd']
+            except KeyError:
+                return make_response(jsonify({'error': 'hdd not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving hdd'}), 500)
+
+            try:
+                log.disk_drive = data['disk_drive']
+            except KeyError:
+                return make_response(jsonify({'error': 'disk_drive not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving disk_drive'}), 500)
+
+            try:
+                log.tags = data['tags']
+            except KeyError:
+                return make_response(jsonify({'error': 'tags not provided'}), 400)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving tags'}), 500)
+
+            try:
+                log.price = calc_price(log)
+            except:
+                return make_response(jsonify({'error': 'Server encountered error generating price for new system'}), 500)
+
             log.save()
-            if log.brand == 'Apple':
-                playsound('sounds/kanye_sucks.mp3', block=False)
             response = make_response(jsonify(log.get_json()), 201)
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
