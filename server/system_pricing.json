@@ -16,7 +16,8 @@
     },
     "cpu_brand": {
         "Intel": 20,
-        "AMD": 0
+        "AMD": 0,
+        "Other": 0
     },
     "cpu_model": {
         "Pentium": 5,
