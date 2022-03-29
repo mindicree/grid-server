@@ -1587,15 +1587,19 @@ def tech():
             log.save()
         
         #edit work orders
-        logs = WorkOrder.objects(tech=old_id)
+        logs = WorkOrder.objects(starting_tech=old_id)
         for log in logs:
-            log.tech = new_id
+            log.starting_tech = new_id
+            log.save()
+        logs = WorkOrder.objects(finishing_tech=old_id)
+        for log in logs:
+            log.finishing_tech = new_id
             log.save()
 
 
         # reload tech info with new data
         with open('techs.json', 'w') as file:
-            file.write(str(data))
+            json.dump(data, file, indent=4)
 
         return make_response(jsonify({'message': 'Tech data successfully updated'}), 200)
 
