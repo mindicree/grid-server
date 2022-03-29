@@ -1557,25 +1557,45 @@ def tech():
                 return response
 
         #TODO add validation function here
+        if not isValidTechId(old_id):
+            return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
 
-
+        #TODO surround all edits with try except
+        #where the except rewrites old id
         #edit system logs
+        logs = SystemLog.objects(tech=old_id)
+        for log in logs:
+            log.tech = new_id
+            log.save()
 
         #edit system gcomm
+        logs = GCommLog.objects(tech=old_id)
+        for log in logs:
+            log.tech = new_id
+            log.save()
 
         #edit console logs
+        logs = ConsoleLog.objects(tech=old_id)
+        for log in logs:
+            log.tech = new_id
+            log.save()
 
         #edit console gcomms
+        logs = ConsoleGCommLog.objects(tech=old_id)
+        for log in logs:
+            log.tech = new_id
+            log.save()
         
         #edit work orders
+        logs = WorkOrder.objects(tech=old_id)
+        for log in logs:
+            log.tech = new_id
+            log.save()
 
-        try:    
-            print('Writing data...')
-            with open('techs.json', 'w') as file:
-                json.dump(data, file, indent = 4)
 
-        except:
-            response = make_response(jsonify({'error': 'Server error - could not read data'}), 500)
+        # reload tech info with new data
+        with open('techs.json', 'w') as file:
+            file.write(str(data))
 
         return make_response(jsonify({'message': 'Tech data successfully updated'}), 200)
 
