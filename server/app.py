@@ -1636,14 +1636,15 @@ def tech_reports():
         # check for tech
         try:
             tech_id = request.args['tech_id']
-            file = open('techs.json')
-            tech_list = json.load(file)
-            file.close()
+            if not isValidTechId(tech_id):
+                return make_response(jsonify({'error': f'Tech with id {tech_id} not found'}), 400)
         except KeyError:
             tech_id = None
         except:
             return make_response(jsonify({'error': f'Could not load tech info by id [{tech_id}] when opening file'}), 200)
 
+        with open('techs.json') as file:
+            tech_list = json.load(file)
 
         # if has tech_id, generate single report
         # else, generate mass report
@@ -1692,6 +1693,42 @@ def tech_reports():
 
             return render_template('report_template_2.html', t=tech_info, sd=start_date.date(), ed=end_date.date(), sll=system_log_list, slc=system_log_count, sgl=system_gcomm_list, sgc=system_gcomm_count, sgcc=system_gcomm_c_count, sgt=sum(system_gcomm_count), sgct=sum(system_gcomm_c_count), cll=console_log_list, clc=console_log_count, cgl=console_gcomm_list, cgc=console_gcomm_count, wol=work_order_list, woc=work_order_count, wot=sum(work_order_count))
         else:
+            # raw date query
+            raw_query = {'dt_initial_irl_log': {'$gte': start_date, '$lte': end_date}}
+
+            # SystemLog data
+            system_log_list = SystemLog.objects(__raw__=raw_query)
+            system_log_count, system_log_rev = len(system_log_list), 0
+            for log in system_log_list:
+                system_log_rev += log.price
+            
+            #GCOMMLog data
+            system_gcomm_list = GCommLog.objects(__raw__=raw_query)
+            system_gcomm_count, system_gcomm_c_count = 0, 0
+            for log in system_gcomm_list:
+                if log.os == 'N/A':
+                    system_gcomm_count = system_gcomm_count + 1
+                else:
+                    system_gcomm_c_count = system_gcomm_c_count + 1
+
+            #COnsoleLog data
+            console_log_list = ConsoleLog.objects(__raw__=raw_query)
+            console_log_count, console_log_rev = len(console_log_list), 0
+            for log in console_log_list:
+                console_log_rev += log.price
+
+            # ConsoleGCOMM data
+            console_gcomm_list = ConsoleGCommLog.objects(__raw__=raw_query)
+            console_gcomm_count = len(console_gcomm_list)
+
+            # WorkOrder data
+            raw_query = {'dt_completed': {'$gte': start_date, '$lte': end_date}}
+            work_order_list = WorkOrder.objects(__raw__=raw_query)
+            work_order_count, work_order_rev = len(work_order_list), 0
+            for log in work_order_list:
+                work_order_rev += log.price
+
+            return render_template('report_mass_template.html', sd=start_date.date(), ed=end_date.date(), sll=system_log_list, slc=system_log_count, slr=system_log_rev, sgl=system_gcomm_list, sgc=system_gcomm_count, sgcc=system_gcomm_c_count, cll=console_log_list, clc=console_log_count, clr=console_log_rev, cgl=console_gcomm_list, cgc=console_gcomm_count, wol=work_order_list, woc=work_order_count, wor=work_order_rev)
             return make_response(jsonify({'message': f'Tech report endpoint with dates [{start_date}] and [{end_date}])'}), 200)
 
 #RUN APPLICATION
