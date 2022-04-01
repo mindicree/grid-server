@@ -147,7 +147,7 @@ def syslogs():
                 return make_response(jsonify({'error': 'Server encountered error saving cpu_model'}), 500)
 
             try:
-                log.cpu_speed = data['cpu_speed']
+                log.cpu_speed = float(data['cpu_speed'])
             except KeyError:
                 return make_response(jsonify({'error': 'cpu_speed not provided'}), 400)
             except:
@@ -187,6 +187,19 @@ def syslogs():
                 return make_response(jsonify({'error': 'tags not provided'}), 400)
             except:
                 return make_response(jsonify({'error': 'Server encountered error saving tags'}), 500)
+
+            try:
+                log.tech = data['tech']
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving tech'}), 500)
+
+            try:
+                log.dt_initial_system_log = datetime.utcnow()
+                log.dt_initial_irl_log = datetime.utcnow()
+                log.dt_last_update = datetime.utcnow()
+            except:
+                return make_response(jsonify({'error': 'Server encountered error saving dates'}), 500)
+
 
             try:
                 log.price = calc_price(log)
