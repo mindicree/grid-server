@@ -88,7 +88,7 @@ def generate_report():
     try:
         tech_id = request.args['tech_id']
     except KeyError:
-        pass
+        tech_id = None
 
     request_headers = {
         'content-type': 'text/html'
@@ -100,7 +100,6 @@ def generate_report():
     else:
         html_info = requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}', headers=request_headers)
         file_name = f'report_all_{start}_{end}'
-        pass
     
 
     # html_string = ''
