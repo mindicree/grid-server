@@ -14,7 +14,11 @@ Techs | GRID Server
         </tr>
     </thead>
     <tbody id="tableBodyTechList">
-
+        <tr style="background-color: var(--green);">
+            <td><b>All</b></td>
+            <td>--</td>
+            <td><div style="display: grid;"><button id='tech_report_all' class='btn' style='margin: auto;' onclick="showReportModal('ALL')">Report</button></div></td>
+        </tr>
     </tbody>
 </table>
 
@@ -58,17 +62,11 @@ Techs | GRID Server
             let report_btn = document.querySelector(`#tech_report_${e.id}`)
             report_btn.addEventListener('click', () => {
                 // generate modal information
-                let report_modal = document.querySelector('#modal_tech_report')
-                report_modal.innerHTML = generateReportModal(e)
-                report_modal = new bootstrap.Modal(document.getElementById('modal_tech_report'))
-                report_modal.toggle()
+                showReportModal(e)
             })
             document.querySelector(`#tech_edit_${e.id}`).addEventListener('click', () => {
                 // generate modal informaiton
-                let edit_modal = document.querySelector('#modal_tech_edit')
-                edit_modal.innerHTML = generateEditModal(e)
-                edit_modal = new bootstrap.Modal(document.getElementById('modal_tech_edit'))
-                edit_modal.toggle()
+                showEditModal(e)
             })
         })
     })
@@ -77,12 +75,26 @@ Techs | GRID Server
         console.log(error)
     })
 
+    function showReportModal(data) {
+        let report_modal = document.querySelector('#modal_tech_report')
+        report_modal.innerHTML = generateReportModal(data)
+        report_modal = new bootstrap.Modal(document.getElementById('modal_tech_report'))
+        report_modal.toggle()
+    }
+
+    function showEditModal(data) {
+        let edit_modal = document.querySelector('#modal_tech_edit')
+        edit_modal.innerHTML = generateEditModal(data)
+        edit_modal = new bootstrap.Modal(document.getElementById('modal_tech_edit'))
+        edit_modal.toggle()
+    }
+
     function generateReportModal(tech) {
         return '' +
         '<div class="modal-dialog modal-l modal-dialog-centered">' +
             '<div class="modal-content">' +
                 '<div class="modal-header">' +
-                    `<h5 class="modal-title">${tech.first_name} ${tech.last_name}</h5>` +
+                    `<h5 class="modal-title">${(tech.first_name ? tech.first_name : 'ALL TECHS')} ${(tech.last_name ? tech.last_name : '')}</h5>` +
                     '<button id="system-modal-close-'+tech.id+'" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
                 '</div>' +
                 '<div class="modal-body">' +
@@ -97,7 +109,7 @@ Techs | GRID Server
                 '</div>' +
                 '<div class="modal-footer justify-content-between">' +
                     '<button id="edit-btn-close"type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>' +
-                    `<button id="edit-btn" type="button" class="btn btn-primary" style="margin-left: 10px;" onclick="generateReport('${tech.id}')">Submit</button>` +
+                    `<button id="edit-btn" type="button" class="btn btn-primary" style="margin-left: 10px;" onclick="generateReport('${(tech.id ? tech.id : 'ALL')}')">Submit</button>` +
                 '</div>' +
             '</div>' +
         '</div>' +
@@ -175,7 +187,7 @@ Techs | GRID Server
             alert('Please select a date range')
             return
         }
-        let destination = `generate-report?start=${sd}&end=${ed}&tech_id=${tech_id}`
+        let destination = `generate-report?start=${sd}&end=${ed}${(tech_id === 'ALL' ? '' : `&tech_id=${tech_id}`)}`
         console.log(destination)
         window.open(destination, '_blank')
     }
