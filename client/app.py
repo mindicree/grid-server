@@ -83,15 +83,25 @@ def generate_report():
     try:
         start = request.args['start']
         end = request.args['end']
-        tech_id = request.args['tech_id']
     except KeyError:
         return 'Missing or invalid arguments'
+    try:
+        tech_id = request.args['tech_id']
+    except KeyError:
+        pass
 
     request_headers = {
         'content-type': 'text/html'
     }
-    html_info = requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech_id}', headers=request_headers)
-    file_name = f'report_{tech_id}_{start}_{end}'
+
+    if tech_id:
+        html_info = requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech_id}', headers=request_headers)
+        file_name = f'report_{tech_id}_{start}_{end}'
+    else:
+        html_info = requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}', headers=request_headers)
+        file_name = f'report_all_{start}_{end}'
+        pass
+    
 
     # html_string = ''
     # with open(f'reports/{file_name}.html', 'w') as file:
