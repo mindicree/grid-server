@@ -241,6 +241,16 @@
   margin: auto;
 }
 
+#admin_btn_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 8px;
+  margin: auto;
+  width: 90%;
+  max-width: 1024px;
+  padding-top: 50px;
+}
+
 
 
 @media only screen and (min-width: 600px) {
@@ -254,6 +264,10 @@
   }
 
   #workOrderInfoContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #admin_btn_container {
     grid-template-columns: 1fr 1fr;
   }
 }
