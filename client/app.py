@@ -153,6 +153,11 @@ def generate_report():
     #     html_string = file.read()
     #     print(html_string)
 
+# ADMIN
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
 #RUN APPLICATION
 if __name__ == '__main__':
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
