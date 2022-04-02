@@ -12,9 +12,9 @@
 
     <!-- MY STUFF -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
-    <script src="static/js/general_functions.js"></script>
-    <script src="static/js/general_globals.js"></script>
-    <script src="static/js/formatting.js"></script>
+    <script src="{{ url_for('static', filename='js/general_functions.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/general_globals.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/formatting.js') }}"></script>
 
     <title>{% block page_title %}{% endblock %}</title>
 </head>
