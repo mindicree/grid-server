@@ -3,6 +3,8 @@ from flask_cors import CORS
 import config
 import requests
 import pdfkit
+from PyPDF2 import PdfFileMerger
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -94,21 +96,6 @@ def generate_report():
         'content-type': 'text/html'
     }
 
-    if tech_id:
-        html_info = requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech_id}', headers=request_headers)
-        file_name = f'report_{tech_id}_{start}_{end}'
-    else:
-        html_info = requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}', headers=request_headers)
-        file_name = f'report_all_{start}_{end}'
-    
-
-    # html_string = ''
-    # with open(f'reports/{file_name}.html', 'w') as file:
-    #     file.write(html_info.text)
-    # with open(f'reports/{file_name}.html') as file:
-    #     html_string = file.read()
-    #     print(html_string)
-
     pdf_options = {
         'page-size': 'Letter',
         'margin-top': '0.5in',
@@ -117,12 +104,54 @@ def generate_report():
         'margin-left': '0.5in',
         'encoding': 'UTF-8'
     }
-    pdfkit.from_string(str(html_info.content).replace('b\'', '').replace('\'', ''), f'reports/{file_name}.pdf', options=pdf_options)
-    # pdfkit.from_url(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech_id}', f'reports/{file_name}.pdf', options=pdf_options)
-    # pdfkit.from_file(f'reports/{file_name}.html', f'reports/{file_name}.pdf', options=pdf_options)
-    # pdfkit.from_string(html_string, f'reports/{file_name}.pdf', options=pdf_options)
 
-    return send_file(f'reports/{file_name}.pdf', download_name=f'{file_name}.pdf')
+    if tech_id:
+        html_info = requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech_id}', headers=request_headers)
+        file_name = f'report_{tech_id}_{start}_{end}'
+        pdfkit.from_string(str(html_info.content).replace('b\'', '').replace('\'', ''), f'reports/{file_name}.pdf', options=pdf_options)
+        # pdfkit.from_url(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech_id}', f'reports/{file_name}.pdf', options=pdf_options)
+        # pdfkit.from_file(f'reports/{file_name}.html', f'reports/{file_name}.pdf', options=pdf_options)
+        # pdfkit.from_string(html_string, f'reports/{file_name}.pdf', options=pdf_options)
+        return send_file(f'reports/{file_name}.pdf', download_name=f'{file_name}.pdf')
+    else:
+        # delete all files in the mass directory if any
+        for file in os.listdir('reports/mass'):
+            os.remove(os.path.join('reports/mass', file))
+
+        # HTML content array
+        html_info = []
+
+        # adding main summary content to array
+        html_info.append([requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}', headers=request_headers).content, f'reports/mass/report_all_{start}_{end}.pdf'])
+
+        # get the list of techs and get their HTML contents
+        tech_list = requests.get(f'http://{setup.HOST}:5000/techs').json()
+        for tech in tech_list:
+            html_info.append([requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech["id"]}', headers=request_headers).content, f'reports/mass/report_{tech["id"]}_{start}_{end}.pdf'])
+        
+        # create PDF merger
+        pdf_merger = PdfFileMerger()
+
+        # generate PDF files for each element in HTML info
+        for info in html_info:
+            pdfkit.from_string(str(info[0]).replace('b\'', '').replace('\'', ''), info[1], options=pdf_options)
+            pdf_merger.append(info[1])
+
+        # create final file
+        pdf_merger.write('reports/mass/result.pdf')
+        pdf_merger.close()
+
+        # return final file
+        return send_file('reports/mass/result.pdf', download_name=f'report_mass_{start}_{end}.pdf')
+
+    
+
+    # html_string = ''
+    # with open(f'reports/{file_name}.html', 'w') as file:
+    #     file.write(html_info.text)
+    # with open(f'reports/{file_name}.html') as file:
+    #     html_string = file.read()
+    #     print(html_string)
 
 #RUN APPLICATION
 if __name__ == '__main__':
