@@ -158,6 +158,14 @@ def generate_report():
 def admin():
     return render_template('admin.html')
 
+# ADMIN PAGES
+@app.route('/admin/<page>')
+def admin_page(page):
+    try:
+        return render_template(f'admin-{page}.html')
+    except:
+        return render_template('admin.html')
+
 #RUN APPLICATION
 if __name__ == '__main__':
     app.run(debug=setup.DEBUG, port=setup.PORT, host = setup.HOST)
