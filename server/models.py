@@ -185,6 +185,29 @@ class Price(db.Document):
             'price_history': self.price_history
         }
 
+class Game(db.Document):
+    name = db.StringField()
+    price_used = db.FloatField()
+    price_cib = db.FloatField()
+    price_new = db.FloatField()
+    barcode = db.StringField()
+    pc_id = db.StringField()
+    pc_url = db.StringField()
+    system = db.StringField()
+
+    def get_json(self):
+        return {
+            '_id': str(self.id),
+            'price_used': self.price_used,
+            'price_cib': self.price_cib,
+            'price_new': self.price_new,
+            'barcode': self.barcode,
+            'pc_id': self.pc_id,
+            'pc_url': self.pc_url,
+            'system': self.system
+        }
+
+
 class SystemLog(db.Document):
     old_coa = db.StringField(default='N/A')
     new_coa = db.StringField(required=True)
