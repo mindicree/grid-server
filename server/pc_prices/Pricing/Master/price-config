@@ -1,0 +1,11 @@
+# Pricing Coefficents
+# 0 - 7.99
+pricingcoefficientlow=0.50
+# 8 - 19.99
+pricingcoefficientmid=0.70
+# 20.00+
+pricingcoefficienthigh=0.90
+# console name
+gamesysname='Master'
+# default condition
+defaultcondition='loose'

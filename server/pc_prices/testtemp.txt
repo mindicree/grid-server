@@ -1,0 +1,3 @@
+<a href="#">12 sales per day</a>
+<a href="#">2 sales per day</a>
+<a href="#">2 sales per week</a>

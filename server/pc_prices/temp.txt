@@ -1,0 +1,7 @@
+                <td class="title">UPC:</td>
+                
+                <td class="details" itemprop="value">
+                    
+                        710425298936,710425299216
+                    
+                

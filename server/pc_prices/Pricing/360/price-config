@@ -1,0 +1,11 @@
+# Pricing Coefficents
+# 0 - 7.99
+pricingcoefficientlow=0.80
+# 8 - 19.99
+pricingcoefficientmid=0.90
+# 20.00+
+pricingcoefficienthigh=1.00
+# console name
+gamesysname='360'
+# default condition
+defaultcondition='cib'

@@ -1,0 +1,292 @@
+#! /bin/bash
+
+# TODO: deal w/ used being higher than cib if still an issue
+# TODO: implement mangager override
+
+# settings
+pricebracketing=5
+pricebracketbegin=20
+mgroverride=100
+# "pricingcoefficient" DEPRECATED use low/mid/high instead 
+pricingcoefficient=0.50
+# 0 - 7.99
+pricingcoefficientlow=0.50
+# 8 - 19.99
+pricingcoefficientmid=0.75
+# 20.00+
+pricingcoefficienthigh=0.90
+
+# price calculation loop vars
+ciblineindex=0
+newlineindex=0
+uselineindex=0
+eoflineindex=0
+cibgameprice=0
+usegameprice=0
+newgameprice=0
+cibdatamissing=0
+usedatamissing=0
+newdatamissing=0
+gamechartiterator=0
+verifyindexline=0
+lineoffset=0
+tempmathvar=0
+
+# cleanup from last use
+rm ./pricing.csv
+
+
+while read line1
+do read line2
+   wget "$line1" -O temphtml.txt
+
+   # get chart data
+   grep "chart_data" temphtml.txt > test.txt
+
+   # format chart data
+   sed -e 's/[0-9]\{13\},//g' -e 's/VGPC.chart_data = //g' -e 's/\],\[/\n/g' -e 's/\[\[/\n/g' -e 's/\]\]/\n/g' -e 's/[ }{,:;]//g' test.txt > tempchartdata.txt
+
+   #get indicies
+   ciblineindex=$(sed -n '/cib/=' tempchartdata.txt)
+   newlineindex=$(sed -n '/new/=' tempchartdata.txt)
+   uselineindex=$(sed -n '/use/=' tempchartdata.txt)
+   eoflineindex=$(sed -n '$=' tempchartdata.txt)
+
+   #get CIB array
+   lineoffset=12
+   verifyindexline=$(($ciblineindex + $lineoffset))
+   if [ $verifyindexline -lt $uselineindex ]; then
+      gamechartiterator=$uselineindex
+      let "gamechartiterator--"
+      cibgamehistory[12]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[11]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[10]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[9]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[8]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[7]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[6]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[5]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[4]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[3]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[2]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      cibgamehistory[1]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      cibdatamissing=0
+   else
+      cibdatamissing=1
+   fi
+
+   #get USE array
+   lineoffset=12
+   verifyindexline=$(($uselineindex + $lineoffset))
+   if [ $verifyindexline -lt $newlineindex ]; then
+      gamechartiterator=$newlineindex
+      let "gamechartiterator--"
+      usegamehistory[12]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[11]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[10]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[9]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[8]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[7]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[6]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[5]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[4]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[3]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[2]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      usegamehistory[1]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      usedatamissing=0
+   else
+      usedatamissing=1
+   fi
+
+   #get NEW array
+   lineoffest=13
+   verifyindexline=$(($newlineindex + $lineoffset))
+   if [ $verifyindexline -lt $eoflineindex ]; then
+      gamechartiterator=$eoflineindex
+      let "gamechartiterator--"
+      newgamehistory[12]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[11]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[10]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[9]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[8]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[7]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[6]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[5]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[4]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[3]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[2]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      let "gamechartiterator--"
+      newgamehistory[1]=$(sed -n "${gamechartiterator}p" tempchartdata.txt)
+      newdatamissing=0
+   else
+      newdatamissing=1
+   fi
+
+   # calculate average prices w/ bc
+   # -------------------------------------------------------------------
+   # new game calculations
+   if [ $newdatamissing -eq 0 ]; then
+      tempmathvar=0
+      for i in {1..12}
+      do
+         tempmathvar=`echo "scale=2; ${newgamehistory[$i]} + $tempmathvar" | bc`
+      done
+      tempmathvar=`echo "scale=2; $tempmathvar / 12" | bc`
+      # pricing brackets
+      gameislow=`echo "$tempmathvar < 8" | bc`
+      gameismid=`echo "($tempmathvar > 7.99) && ($tempmathvar < 20)" | bc`
+      gameishigh=`echo "$tempmathvar > 19.99" | bc`
+
+      if [ $gameislow -eq 1 ]; then
+        tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficientlow"| bc`
+      fi
+      if [ $gameismid -eq 1 ]; then
+        tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficientmid"| bc`
+      fi
+      if [ $gameishigh -eq 1 ]; then
+        tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficienthigh"| bc`
+      fi
+      # pricingcofficient Deprecated use low/mid/high instead
+      # tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficient"| bc`
+      tempmathvar=`echo "($tempmathvar+0.5)/1" | bc`
+      if [ $tempmathvar -gt $pricebracketbegin ]; then
+         tempmathvar=`echo "($tempmathvar / $pricebracketing) * $pricebracketing"| bc`
+      fi
+      newgameprice=`echo "scale=2; $tempmathvar - 0.01" | bc`
+   else
+      newgameprice="ND"
+   fi
+
+   # --------------------------------------------------------------------
+   # cib game calculations
+   if [ $cibdatamissing -eq 0 ]; then
+      tempmathvar=0
+      for i in {1..12}
+      do
+         tempmathvar=`echo "scale=2; ${cibgamehistory[$i]} + $tempmathvar" | bc`
+      done
+      tempmathvar=`echo "scale=2; $tempmathvar / 12" | bc`
+      # pricing brackets
+      gameislow=`echo "$tempmathvar < 8" | bc`
+      gameismid=`echo "($tempmathvar > 7.99) && ($tempmathvar < 20)" | bc`
+      gameishigh=`echo "$tempmathvar > 19.99" | bc`
+
+      if [ $gameislow -eq 1 ]; then
+        tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficientlow"| bc`
+      fi
+      if [ $gameismid -eq 1 ]; then
+        tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficientmid"| bc`
+      fi
+      if [ $gameishigh -eq 1 ]; then
+        tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficienthigh"| bc`
+      fi
+      # pricingcofficient Deprecated use low/mid/high instead
+      # tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficient"| bc`
+      tempmathvar=`echo "($tempmathvar+0.5)/1" | bc`
+      if [ $tempmathvar -gt $pricebracketbegin ]; then
+         tempmathvar=`echo "($tempmathvar / $pricebracketing) * $pricebracketing"| bc`
+      fi
+      cibgameprice=`echo "scale=2; $tempmathvar - 0.01" | bc`
+   else
+      cibgameprice="ND"
+   fi
+
+   # ---------------------------------------------------------------------
+   # used game calculations
+   if [ $usedatamissing -eq 0 ]; then
+      tempmathvar=0
+      for i in {1..12}
+      do
+         tempmathvar=`echo "scale=2; ${usegamehistory[$i]} + $tempmathvar" | bc`
+      done
+      tempmathvar=`echo "scale=2; $tempmathvar / 12" | bc`
+      # pricing brackets
+      gameislow=`echo "$tempmathvar < 8" | bc`
+      gameismid=`echo "($tempmathvar > 7.99) && ($tempmathvar < 20)" | bc`
+      gameishigh=`echo "$tempmathvar > 19.99" | bc`
+
+      if [ $gameislow -eq 1 ]; then
+        tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficientlow"| bc`
+      fi
+      if [ $gameismid -eq 1 ]; then
+        tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficientmid"| bc`
+      fi
+      if [ $gameishigh -eq 1 ]; then
+        tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficienthigh"| bc`
+      fi
+      # pricingcofficient Deprecated use low/mid/high instead
+      # tempmathvar=`echo "scale=2; $tempmathvar * $pricingcoefficient"| bc`
+      tempmathvar=`echo "($tempmathvar+0.5)/1" | bc`
+      if [ $tempmathvar -gt $pricebracketbegin ]; then
+         tempmathvar=`echo "($tempmathvar / $pricebracketing) * $pricebracketing"| bc`
+      fi
+      usegameprice=`echo "scale=2; $tempmathvar - 0.01" | bc`
+   else
+      usegameprice="ND"
+   fi
+
+   # get VGPC uid
+   grep -A 13 "VGPC.product" temphtml.txt > temp.txt
+   grep -w "id" temp.txt > tempid.txt
+   gameidnumber=$(sed 's/[^0-9]//g' tempid.txt)
+
+   # get game upc
+   grep -A 6 "UPC:" temphtml.txt > temp.txt
+   grep '[0-9]\{12\}' temp.txt > tempupc.txt
+   gameupc=$(sed 's/[^0-9]//g' tempupc.txt)
+
+   # write out data
+   cp tempchartdata.txt ./chartdata/"$gameidnumber"
+   #      name   used          cib           new           upc      id            url  
+   echo "$line2,$usegameprice,$cibgameprice,$newgameprice,$gameupc,$gameidnumber,$line1 "
+   echo "$line2,$usegameprice,$cibgameprice,$newgameprice,$gameupc,$gameidnumber,$line1 " >> pricing.csv
+
+   # randomized sleep
+   randsleeptime=$RANDOM
+   let "randsleeptime %= 5"
+   echo "sleeping for $randsleeptime seconds"
+   sleep $randsleeptime
+
+done < index.txt
+# TEMPORARILY not index.txt
+
+# cleanup from this use
+rm ./tempchartdata.txt
+rm ./temphtml.txt
+rm ./tempid.txt
+rm ./tempupc.txt
+rm ./temp.txt
+
+echo "Pricing Update Completed"

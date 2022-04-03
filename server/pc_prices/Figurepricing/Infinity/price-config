@@ -1,0 +1,11 @@
+# Pricing Coefficents
+# 0 - 7.99
+pricingcoefficientlow=0.75
+# 8 - 19.99
+pricingcoefficientmid=0.85
+# 20.00+
+pricingcoefficienthigh=0.95
+# console name
+gamesysname='Infinity'
+# default condition
+defaultcondition='loose'

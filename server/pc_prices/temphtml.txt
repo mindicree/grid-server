@@ -1,0 +1,3980 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <title>Zathura Prices Xbox | Compare Loose, CIB &amp; New Prices
+</title>
+
+        <meta name="application-name" content="PriceCharting" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <meta name="apple-mobile-web-app-capable" content="yes"> 
+        <meta name="mobile-web-app-capable" content="yes"> 
+        <link rel="stylesheet" href="/css-longterm/jquery-ui-1.10.3.custom.css" type="text/css" />
+        <link rel="stylesheet" href="/css/vgpc_f.css" type="text/css" />
+        
+        <link rel="stylesheet" href="/css-longterm/print.css" type="text/css" media="print" />
+        <style>
+        
+            a#logo {
+                background:center no-repeat url('/images/logo-pricecharting-new.png');
+                width:200px;
+            }
+        
+        
+        </style>
+
+    
+        <link rel="shortcut icon" href="/images/favicon.ico" />
+        <link rel="alternate" type="application/atom+xml" title="PriceCharting.com Blog - Atom" href="http://blog.pricecharting.com/feeds/posts/default" />
+        <link rel="alternate" type="application/rss+xml" title="PriceCharting.com Blog - RSS" href="http://blog.pricecharting.com/feeds/posts/default?alt=rss" />
+        <link rel="apple-touch-icon" sizes="196x196" href="/images/apple-touch-icon.png" /> 
+        <link rel="apple-touch-icon-precomposed" sizes="512x512" href="/images/apple-touch-icon-precomposed.png" /> 
+        <link rel="shortcut icon" sizes="512x512" href="/images/apple-touch-icon-precomposed.png" /> 
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="google-site-verification" content="_pahRUDiFs29d13PYp2Kis5Ky5mKfjCdfbylwQwqiZE" />
+    
+
+        
+        <link rel="canonical" href="https://www.pricecharting.com/game/xbox/zathura">
+        
+
+        
+        
+    <link rel="alternate" hreflang="de" href="https://www.pricecharting.com/de/game/xbox/zathura" />
+
+    <link rel="alternate" hreflang="en" href="https://www.pricecharting.com/game/xbox/zathura" />
+
+    <link rel="alternate" hreflang="es" href="https://www.pricecharting.com/es/game/xbox/zathura" />
+
+    <link rel="alternate" hreflang="fr" href="https://www.pricecharting.com/fr/game/xbox/zathura" />
+
+    <link rel="alternate" hreflang="nl" href="https://www.pricecharting.com/nl/game/xbox/zathura" />
+
+    <link rel="alternate" hreflang="pt" href="https://www.pricecharting.com/pt/game/xbox/zathura" />
+
+    <link rel="alternate" hreflang="ru" href="https://www.pricecharting.com/ru/game/xbox/zathura" />
+
+
+        
+
+        
+
+        
+        <meta name="description" content="Compare current and historic Zathura prices (Xbox).  Loose, Complete (CIB), and New prices updated daily
+">
+        <meta property="og:description" content="Compare current and historic Zathura prices (Xbox).  Loose, Complete (CIB), and New prices updated daily
+">
+        
+        
+        <meta property="og:site_name" content="PriceCharting">
+        <meta property="og:type" content="website">
+
+        <script type="text/javascript">
+            if (typeof VGPC == 'undefined') var VGPC = { };
+            VGPC.www_url = "https:\/\/www.pricecharting.com";
+            
+            VGPC.forex_rates = {"AUD":1.404121,"BRL":5.2189,"CAD":1.273311,"CNY":6.3574,"EUR":0.885404,"GBP":0.739429,"MXN":20.442944,"NZD":1.512701};
+            
+        </script>
+
+        <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script defer src="/js/jquery.elevateZoom-3.0.8.min.js"></script>
+        
+        <script async src="https://epnt.ebay.com/static/epn-smart-tools.js"></script>
+        <script defer src="https://code.highcharts.com/stock/highstock.js"></script>
+        
+        <script defer src="/js/quagga.min.js" type="text/javascript"></script>
+        <script defer src="/js/market_h.js" type="text/javascript"></script>
+        
+        
+        <script>
+            
+            var ramp = {config: '//config.playwire.com/1024559/v2/websites/73367/banner.json' }
+            
+        </script>
+        <script id="ramp" data-delay="2500" src="//cdn.intergient.com/ramp.js" defer></script>
+        
+
+        
+        
+        <meta name='ir-site-verification-token' value='-1849206648' />
+        
+
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+    ga('create', 'UA-501078-6', 'auto');
+
+    ga('send', 'pageview');
+
+    
+</script>
+
+    </head>
+    <body>
+        
+        
+        <div class="container">
+            <div class="top_bar">
+                <a id="logo" href="https://www.pricecharting.com/"></a>
+
+                
+                <div class="menu">
+                
+                        
+    <ul class="brand">
+        <li class="brand"><a href="#" id="current">Market</a>
+            <ul class="menu-dropdown">
+                <li><a href="/market">Buy</a></li>
+                <li><a href="/sell">Sell</a></li>
+                <li><a href="/offers">Newest Listings</a></li>
+            </ul>
+        </li>
+
+        <li class="brand" id="nintendo"><a href="#">Nintendo</a>
+            <ul class="menu-dropdown">
+                <li>
+                    <ul class="region">
+                        <li class="title">NTSC (USA)</li>
+                        <li><a href="/console/nes">Nintendo NES</a></li>
+                        <li><a href="/console/super-nintendo">Super Nintendo</a></li>
+                        <li><a href="/console/nintendo-64">Nintendo 64</a></li>
+                        <li><a href="/console/gamecube">Gamecube</a></li>
+                        <li><a href="/console/wii">Wii</a></li>
+                        <li><a href="/console/wii-u">Wii U</a></li>
+                        <li><a href="/console/nintendo-switch">Switch</a></li>
+                        <li><a href="/console/gameboy">GameBoy</a></li>
+                        <li><a href="/console/gameboy-color">GameBoy Color</a></li>
+                        <li><a href="/console/gameboy-advance">GameBoy Advance</a></li>
+                        <li><a href="/console/nintendo-ds">Nintendo DS</a></li>
+                        <li><a href="/console/nintendo-3ds">Nintendo 3DS</a></li>
+                        <li><a href="/console/virtual-boy">Virtual Boy</a></li>
+                        <li><a href="/console/game-&-watch">Game &amp; Watch</a></li>
+                    </ul>
+
+                    <ul class="region">
+                        <li class="title">PAL (Europe)</li>
+                        <li><a href="/console/pal-nes">PAL NES</a></li>
+                        <li><a href="/console/pal-super-nintendo">PAL Super Nintendo</a></li>
+                        <li><a href="/console/pal-nintendo-64">PAL Nintendo 64</a></li>
+                        <li><a href="/console/pal-gamecube">PAL Gamecube</a></li>
+                        <li><a href="/console/pal-wii">PAL Wii</a></li>
+                        <li><a href="/console/pal-wii-u">PAL Wii U</a></li>
+                        <li><a href="/console/pal-nintendo-switch">PAL Switch</a></li>
+                        <li><a href="/console/pal-gameboy">PAL GameBoy</a></li>
+                        <li><a href="/console/pal-gameboy-color">PAL GameBoy Color</a></li>
+                        <li><a href="/console/pal-gameboy-advance">PAL GameBoy Advance</a></li>
+                        <li><a href="/console/pal-nintendo-ds">PAL Nintendo DS</a></li>
+                        <li><a href="/console/pal-nintendo-3ds">PAL Nintendo 3DS</a></li>
+                    </ul>
+
+                    <ul class="region">
+                        <li class="title">Japan</li>
+                        <li><a href="/console/famicom">Famicom</a></li>
+                        <li><a href="/console/super-famicom">Super Famicom</a></li>
+                        <li><a href="/console/jp-nintendo-64">JP Nintendo 64</a></li>
+                        <li><a href="/console/jp-gamecube">JP Gamecube</a></li>
+                        <li><a href="/console/jp-wii">JP Wii</a></li>
+                        <li><a href="/console/jp-wii-u">JP Wii U</a></li>
+                        <li><a href="/console/jp-nintendo-switch">JP Switch</a></li>
+                        <li><a href="/console/jp-gameboy">JP GameBoy</a></li>
+                        <li><a href="/console/jp-gameboy-color">JP GameBoy Color</a></li>
+                        <li><a href="/console/jp-gameboy-advance">JP GameBoy Advance</a></li>
+                        <li><a href="/console/jp-nintendo-ds">JP Nintendo DS</a></li>
+                        <li><a href="/console/jp-nintendo-3ds">JP Nintendo 3DS</a></li>
+                        <li><a href="/console/jp-virtual-boy">JP Virtual Boy</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li class="brand" id="sony"><a href="#">
+            <span id="menu-top-ps">PlayStation</span>
+            <span id="menu-top-sony">Sony</span></a>
+            <ul class="menu-dropdown">
+                <li>
+                    <ul class="region">
+                        <li class="title">NTSC (USA)</li>
+                        <li><a href="/console/playstation">PlayStation 1</a></li>
+                        <li><a href="/console/playstation-2">PlayStation 2</a></li>
+                        <li><a href="/console/playstation-3">PlayStation 3</a></li>
+                        <li><a href="/console/playstation-4">PlayStation 4</a></li>
+                        <li><a href="/console/playstation-5">PlayStation 5</a></li>
+                        <li><a href="/console/psp">PSP</a></li>
+                        <li><a href="/console/playstation-vita">PlayStation Vita</a></li>
+                    </ul>
+
+                    <ul class="region">
+                        <li class="title">PAL (Europe)</li>
+                        <li><a href="/console/pal-playstation">PAL PlayStation 1</a></li>
+                        <li><a href="/console/pal-playstation-2">PAL PlayStation 2</a></li>
+                        <li><a href="/console/pal-playstation-3">PAL PlayStation 3</a></li>
+                        <li><a href="/console/pal-playstation-4">PAL PlayStation 4</a></li>
+                        <li><a href="/console/pal-playstation-5">PAL PlayStation 5</a></li>
+                        <li><a href="/console/pal-psp">PAL PSP</a></li>
+                        <li><a href="/console/pal-playstation-vita">PAL PlayStation Vita</a></li>
+                    </ul>
+
+                    <ul class="region">
+                        <li class="title">Japan</li>
+                        <li><a href="/console/jp-playstation">JP PlayStation 1</a></li>
+                        <li><a href="/console/jp-playstation-2">JP PlayStation 2</a></li>
+                        <li><a href="/console/jp-playstation-3">JP PlayStation 3</a></li>
+                        <li><a href="/console/jp-playstation-4">JP PlayStation 4</a></li>
+                        <li><a href="/console/jp-playstation-5">JP PlayStation 5</a></li>
+                        <li><a href="/console/jp-psp">JP PSP</a></li>
+                        <li><a href="/console/jp-playstation-vita">JP PlayStation Vita</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li class="brand" id="menu-top-sega"><a href="#">Sega</a><a name="sega-section"></a>
+            <ul class="menu-dropdown">
+                <li>
+                    <ul class="region">
+                        <li class="title">NTSC (USA)</li>
+                        <li><a href="/console/sega-master-system">Sega Master System</a></li>
+                        <li><a href="/console/sega-genesis">Sega Genesis</a></li>
+                        <li><a href="/console/sega-cd">Sega CD</a></li>
+                        <li><a href="/console/sega-32x">Sega 32X</a></li>
+                        <li><a href="/console/sega-saturn">Sega Saturn</a></li>
+                        <li><a href="/console/sega-dreamcast">Sega Dreamcast</a></li>
+                        <li><a href="/console/sega-game-gear">Sega Game Gear</a></li>
+                        <li><a href="/console/sega-pico">Sega Pico</a></li>
+                    </ul>
+
+                    <ul class="region">
+                        <li class="title">PAL (Europe)</li>
+                        <li><a href="/console/pal-sega-master-system">PAL Master System</a></li>
+                        <li><a href="/console/pal-sega-mega-drive">PAL Mega Drive</a></li>
+                        <li><a href="/console/pal-sega-mega-cd">PAL Mega CD </a></li>
+                        <li><a href="/console/pal-mega-drive-32x">PAL Mega Drive 32X</a></li>
+                        <li><a href="/console/pal-sega-saturn">PAL Sega Saturn</a></li>
+                        <li><a href="/console/pal-sega-dreamcast">PAL Sega Dreamcast</a></li>
+                        <li><a href="/console/pal-sega-game-gear">PAL Sega Game Gear</a></li>
+                        <li><a href="/console/pal-sega-pico">PAL Sega Pico</a></li>
+                    </ul>
+
+                    <ul class="region">
+                        <li class="title">Japan</li>
+                        <li><a href="/console/jp-sega-mark-iii">JP Sega Mark III</a></li>
+                        <li><a href="/console/jp-sega-mega-drive">JP Mega Drive</a></li>
+                        <li><a href="/console/jp-sega-mega-cd">JP Mega CD</a></li>
+                        <li><a href="/console/jp-super-32x">JP Super 32X</a></li>
+                        <li><a href="/console/jp-sega-saturn">JP Sega Saturn</a></li>
+                        <li><a href="/console/jp-sega-dreamcast">JP Sega Dreamcast</a></li>
+                        <li><a href="/console/jp-sega-game-gear">JP Sega Game Gear</a></li>
+                        <li><a href="/console/jp-sega-pico">JP Sega Pico</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li class="brand" id="menu-top-xbox"><a href="#">Xbox</a><a name="xbox-section"></a>
+            <ul class="menu-dropdown">
+                <li>
+                    <ul class="region">
+                        <li class="title">NTSC (USA)</li>
+                        <li><a href="/console/xbox">Xbox</a></li>
+                        <li><a href="/console/xbox-360">Xbox 360</a></li>
+                        <li><a href="/console/xbox-one">Xbox One</a></li>
+                        <li><a href="/console/xbox-series-x">Xbox Series X</a></li>
+                    </ul>
+
+                    <ul class="region">
+                        <li class="title">PAL (Europe)</li>
+                        <li><a href="/console/pal-xbox">PAL Xbox</a></li>
+                        <li><a href="/console/pal-xbox-360">PAL Xbox 360</a></li>
+                        <li><a href="/console/pal-xbox-one">PAL Xbox One</a></li>
+                        <li><a href="/console/pal-xbox-series-x">PAL Xbox Series X</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li class="brand" id="menu-top-atari"><a href="#">Atari</a><a name="atari-section"></a>
+            <ul class="menu-dropdown single">
+                <li><a href="/console/atari-2600">Atari 2600</a></li>
+                <li><a href="/console/atari-5200">Atari 5200</a></li>
+                <li><a href="/console/atari-7800">Atari 7800</a></li>
+                <li><a href="/console/atari-400">Atari 400/800</a></li>
+                <li><a href="/console/atari-lynx">Atari Lynx</a></li>
+                <li><a href="/console/jaguar">Atari Jaguar</a></li>
+            </ul>
+        </li>
+
+        <li class="brand" id="menu-top-figures"><a href="#">Figures</a><a name="figures-section"></a>
+            <ul class="menu-dropdown single">
+                <li><a href="/console/amiibo">amiibo Figures</a></li>
+                <li><a href="/console/skylanders">Skylanders Figures</a></li>
+                <li><a href="/console/disney-infinity">Infinity Figures</a></li>
+                <li><a href="/console/lego-dimensions">LEGO Dimensions Figs</a></li>
+                <li><a href="/console/starlink">Starlink Figures</a></li>
+            </ul>
+        </li>
+
+        <li class="brand" id="menu-top-neogeo"><a href="#">Neo Geo</a><a name="neogeo-section"></a>
+            <ul class="menu-dropdown single">
+                <li><a href="/console/neo-geo">Neo Geo MVS</a></li>
+                <li><a href="/console/neo-geo-aes">Neo Geo AES</a></li>
+                <li><a href="/console/neo-geo-cd">Neo Geo CD</a></li>
+                <li><a href="/console/neo-geo-pocket-color">Neo Geo Pocket Color</a></li>
+            </ul>
+        </li>
+
+        <li class="brand" id="mobile-other"><a href="#">Other</a>
+            <ul class="menu-dropdown single">
+                <li><a href="/trading-cards" rel="nofollow">Trading Cards</a></li>
+                <li><a href="/page/mobile-menu#figures-section" rel="nofollow">Figures</a></li>
+                <li><a href="/page/mobile-menu#atari-section" rel="nofollow">Atari</a></li>
+                <li><a href="/page/mobile-menu#neogeo-section" rel="nofollow">Neo Geo</a></li>
+                <li><a href="/page/mobile-menu#sega-section" rel="nofollow">Sega</a></li>
+                <li><a href="/page/mobile-menu#xbox-section" rel="nofollow">Xbox</a></li>
+                <li><a href="/page/mobile-menu#other-section" rel="nofollow">Other</a></li>
+            </ul>
+        </li>
+        <li class="brand" id="desktop-other"><a href="#">
+                Other <span id="menu-top-other-systems">Systems</span>
+        </a><a name="other-section"></a>
+            <ul class="menu-dropdown single">
+                <li><a href="/console/pc-games">PC &amp; MS-DOS</a></li>
+                <li><a href="/console/nintendo-power">Nintendo Power</a></li>
+                <li><a href="/console/strategy-guide">Strategy Guides</a></li>
+                <li id="menu-item-amiibo"><a href="/console/amiibo">amiibo Figures</a></li>
+                <li id="menu-item-skylanders"><a href="/console/skylanders">Skylanders Figures</a></li>
+                <li id="menu-item-infinity"><a href="/console/disney-infinity">Infinity Figures</a></li>
+                <li id="menu-item-dimensions"><a href="/console/lego-dimensions">LEGO Dimensions Figs</a></li>
+                <li><a href="/console/3do">3DO</a></li>
+                <li><a href="/console/action-max">Action Max</a></li>
+                <li><a href="/console/amiga">Amiga</a></li>
+                <li><a href="/console/amiga-cd32">Amiga CD32</a></li>
+                <li><a href="/console/arcadia-2001">Arcadia 2001</a></li>
+                <li id="menu-item-atari-2600"><a href="/console/atari-2600" rel="nofollow">Atari 2600</a></li>
+                <li id="menu-item-atari-5200"><a href="/console/atari-5200" rel="nofollow">Atari 5200</a></li>
+                <li id="menu-item-atari-7800"><a href="/console/atari-7800" rel="nofollow">Atari 7800</a></li>
+                <li id="menu-item-atari-400"><a href="/console/atari-400">Atari 400/800</a></li>
+                <li id="menu-item-lynx"><a href="/console/atari-lynx" rel="nofollow">Atari Lynx</a></li>
+                <li id="menu-item-jaguar"><a href="/console/jaguar" rel="nofollow">Atari Jaguar</a></li>
+                <li><a href="/console/bally-astrocade">Bally Astrocade</a></li>
+                <li><a href="/console/cd-i">CD-i</a></li>
+                <li><a href="/console/colecovision">Colecovision</a></li>
+                <li><a href="/console/commodore-64">Commodore 64</a></li>
+                <li><a href="/console/fairchild-channel-f">Fairchild F</a></li>
+                <li><a href="/console/famicom-disk-system">Famicom Disk System</a></li>
+                <li><a href="/console/gamecom">Game.Com</a></li>
+                <li><a href="/console/gizmondo">Gizmondo</a></li>
+                <li><a href="/console/intellivision">Intellivision</a></li>
+                <li><a href="/console/mattel-aquarius">Mattel Aquarius</a></li>
+                <li><a href="/console/mini-arcade">Mini Arcade</a></li>
+                <li><a href="/console/pal-msx">MSX</a></li>
+                <li><a href="/console/pal-msx2">MSX 2</a></li>
+                <li><a href="/console/n-gage">N-Gage</a></li>
+                <li id="menu-item-neogeo"><a href="/console/neo-geo">Neo Geo MVS</a></li>
+                <li id="menu-item-neogeo-aes"><a href="/console/neo-geo-aes">Neo Geo AES</a></li>
+                <li id="menu-item-neogeo-cd"><a href="/console/neo-geo-cd">Neo Geo CD</a></li>
+                <li id="menu-item-neogeo-pocket"><a href="/console/neo-geo-pocket-color">Neo Geo Pocket Color</a></li>
+                <li><a href="/console/magnavox-odyssey">Odyssey</a></li>
+                <li><a href="/console/magnavox-odyssey-2">Odyssey 2</a></li>
+                <li><a href="/console/magnavox-odyssey-300">Odyssey 300</a></li>
+                <li><a href="/console/pokemon-mini">Pokemon Mini</a></li>
+                <li id="menu-item-master"><a href="/console/sega-master-system">Sega Master System</a></li>
+                <li id="menu-item-genesis"><a href="/console/sega-genesis">Sega Genesis</a></li>
+                <li id="menu-item-sega-cd"><a href="/console/sega-cd">Sega CD</a></li>
+                <li id="menu-item-32x"><a href="/console/sega-32x">Sega 32X</a></li>
+                <li id="menu-item-saturn"><a href="/console/sega-saturn">Sega Saturn</a></li>
+                <li id="menu-item-dreamcast"><a href="/console/sega-dreamcast">Sega Dreamcast</a></li>
+                <li id="menu-item-game-gear"><a href="/console/sega-game-gear">Sega Game Gear</a></li>
+                <li id="menu-item-pico"><a href="/console/sega-pico">Sega Pico</a></li>
+                <li><a href="/console/ti-99">TI-99</a></li>
+                <li><a href="/console/turbografx-16">TurboGrafx-16</a></li>
+                <li><a href="/console/turbografx-cd">TurboGrafx CD</a></li>
+                <li><a href="/console/vectrex">Vectrex</a></li>
+                <li><a href="/console/vic-20">Vic-20</a></li>
+                <li><a href="/console/wonderswan">Wonderswan</a></li>
+                <li><a href="/console/wonderswan-color">Wonderswan Color</a></li>
+                <li id="menu-item-xbox"><a href="/console/xbox" rel="nofollow">Xbox</a></li>
+                <li id="menu-item-xbox-360"><a href="/console/xbox-360" rel="nofollow">Xbox 360</a></li>
+                <li id="menu-item-xbox-one"><a href="/console/xbox-one" rel="nofollow">Xbox One</a></li>
+                <li id="menu-item-xbox-series-x"><a href="/console/xbox-series-x" rel="nofollow">Xbox Series X</a></li>
+                <li><a href="/console/zx-spectrum">ZX Spectrum</a></li>
+            </ul>
+        </li>
+
+        <li class="brand" id="trading-cards"><a href="#">
+            <a class="small-desktop-hidden" href="/trading-cards">Trading Cards</a>
+            <a class="small-desktop-visible" href="#">Cards</a>
+            <ul class="menu-dropdown single">
+                <li><a href="/category/pokemon-cards">Pokemon Cards</a></li>
+                <li><a href="/category/magic-cards">Magic Cards</a></li>
+                <li><a href="/category/yugioh-cards">YuGiOh Cards</a></li>
+                <li><a href="/category/garbage-pail-cards">Garbage Pail Cards</a></li>
+            </ul>
+        </li>
+
+        <li class="brand" id="tools"><a href="#">Tools</a>
+            <ul class="menu-dropdown single">
+                <li><a href="/pricecharting-pro?f=menu">Premium Features</a></li>
+                <li><a href="/page/collection-tracker">Collection Tracker</a></li>
+                <li><a href="/lot-value-calculator">Lot Value Calculator</a></li>
+                <li><a href="/lot-value-automater">Lot Value Automater</a></li>
+                <li><a href="/ebay-lot-bot">eBay Lot Bot</a></li>
+                <li><a href="/snipe">eBay Deal Scanner</a></li>
+                <li><a href="/big-movers">Hot Items</a></li>
+                <li><a href="/most-wished-for">Most Wanted List</a></li>
+                <li><a href="/collections-for-sale">Collections For Sale</a></li>
+                <li><a href="/page/video-game-cover-art">Game Cover Art</a></li>
+            </ul>
+        </li>
+
+        
+    </ul>
+
+                
+                </div>
+                
+
+                
+                    <div class='search_box'>
+                        
+                        <form method="GET" action="/search-products">
+                        
+                            <span class="search_box">Search</span>
+                            <input
+                                id="game_search_box"
+                                name="q"
+                                type="search"
+                                
+                                autofocus
+                                autocomplete="off"
+                                required
+                            
+                                title="Search by Product, UPC or ASIN"
+                                placeholder="Search by Product, UPC or ASIN"
+                            
+                                >
+                            <select id="search_type" name="type">
+                                <option value="prices">Prices</option>
+                                <option value="market" >Market</option>
+                            </select>
+                            <input class="search_button" value="Go" type="submit">
+                            
+                            <button id="scan_button" class="search_button" type="button">
+                                <img src="/images/upc.gif" />
+                            </button>
+                            
+                        </form>
+                        <br>
+                    </div> 
+                
+            </div> 
+
+            <div id="content">
+                <div class="mid_col">
+                
+<script type="text/javascript">
+    if (typeof VGPC == 'undefined') var VGPC = { };
+    VGPC.chart_data = {"boxonly":[[1199145600000,0],[1201824000000,0],[1204329600000,0],[1207008000000,0],[1209600000000,0],[1212278400000,0],[1214870400000,0],[1217548800000,0],[1220227200000,0],[1222819200000,0],[1225497600000,0],[1228089600000,0],[1230768000000,0],[1233446400000,0],[1235865600000,0],[1238544000000,0],[1241136000000,0],[1243814400000,0],[1246406400000,0],[1249084800000,0],[1251763200000,0],[1254355200000,0],[1257033600000,0],[1259625600000,0],[1262304000000,0],[1264982400000,0],[1267401600000,0],[1270080000000,0],[1272672000000,0],[1275350400000,0],[1277942400000,0],[1280620800000,0],[1283299200000,0],[1285891200000,0],[1288569600000,0],[1291161600000,0],[1293840000000,0],[1296518400000,0],[1298937600000,0],[1301616000000,0],[1304208000000,0],[1306886400000,0],[1309478400000,0],[1312156800000,0],[1314835200000,0],[1317427200000,0],[1320105600000,0],[1322697600000,0],[1325376000000,0],[1328054400000,0],[1330560000000,0],[1333238400000,0],[1335830400000,0],[1338508800000,0],[1341100800000,0],[1343779200000,0],[1346457600000,0],[1349049600000,0],[1351728000000,0],[1354320000000,0],[1356998400000,0],[1359676800000,0],[1362096000000,0],[1364774400000,0],[1367366400000,0],[1370044800000,0],[1372636800000,0],[1375315200000,0],[1377993600000,0],[1380585600000,0],[1383264000000,0],[1385856000000,0],[1388534400000,0],[1391212800000,0],[1393632000000,0],[1396310400000,0],[1398902400000,0],[1401580800000,0],[1404172800000,0],[1406851200000,0],[1409529600000,0],[1412121600000,0],[1414800000000,0],[1417392000000,0],[1420070400000,0],[1422748800000,0],[1425168000000,0],[1427846400000,0],[1430438400000,0],[1433116800000,0],[1435708800000,0],[1438387200000,0],[1441065600000,0],[1443657600000,0],[1446336000000,0],[1448928000000,0],[1451606400000,0],[1454284800000,0],[1456790400000,0],[1459468800000,0],[1462082400000,0],[1464760800000,0],[1467352800000,0],[1470031200000,0],[1472709600000,0],[1475301600000,0],[1477980000000,0],[1480575600000,0],[1483254000000,0],[1485932400000,0],[1488351600000,0],[1491026400000,0],[1493618400000,0],[1496296800000,0],[1498888800000,0],[1501567200000,0],[1504245600000,0],[1506837600000,0],[1509516000000,0],[1512111600000,0],[1514790000000,0],[1517468400000,0],[1519887600000,0],[1522562400000,0],[1525154400000,0],[1527832800000,0],[1530424800000,0],[1533103200000,0],[1535781600000,0],[1538373600000,0],[1541052000000,0],[1543647600000,0],[1546326000000,0],[1549004400000,0],[1551423600000,0],[1554098400000,0],[1556690400000,0],[1559368800000,0],[1561960800000,0],[1564639200000,0],[1567317600000,0],[1569909600000,0],[1572588000000,0],[1575183600000,0],[1577862000000,0],[1580540400000,0],[1583046000000,0],[1585720800000,0],[1588312800000,0],[1590991200000,0],[1593583200000,0],[1596261600000,0],[1598940000000,0],[1601532000000,0],[1604210400000,0],[1606806000000,0],[1609484400000,271],[1612162800000,268],[1614582000000,264],[1617256800000,271],[1619848800000,251],[1622527200000,295],[1625119200000,298],[1627797600000,312],[1630476000000,292],[1633068000000,264],[1635746400000,237],[1638342000000,291],[1641020400000,281],[1643698800000,267]],"cib":[[1199145600000,0],[1201824000000,0],[1204329600000,0],[1207008000000,0],[1209600000000,0],[1212278400000,0],[1214870400000,0],[1217548800000,0],[1220227200000,0],[1222819200000,0],[1225497600000,0],[1228089600000,0],[1230768000000,0],[1233446400000,0],[1235865600000,0],[1238544000000,0],[1241136000000,0],[1243814400000,0],[1246406400000,0],[1249084800000,0],[1251763200000,0],[1254355200000,0],[1257033600000,0],[1259625600000,0],[1262304000000,0],[1264982400000,0],[1267401600000,0],[1270080000000,0],[1272672000000,0],[1275350400000,0],[1277942400000,0],[1280620800000,0],[1283299200000,0],[1285891200000,0],[1288569600000,0],[1291161600000,0],[1293840000000,0],[1296518400000,0],[1298937600000,0],[1301616000000,0],[1304208000000,0],[1306886400000,0],[1309478400000,0],[1312156800000,0],[1314835200000,0],[1317427200000,0],[1320105600000,0],[1322697600000,0],[1325376000000,0],[1328054400000,0],[1330560000000,0],[1333238400000,0],[1335830400000,0],[1338508800000,0],[1341100800000,0],[1343779200000,0],[1346457600000,0],[1349049600000,0],[1351728000000,0],[1354320000000,0],[1356998400000,0],[1359676800000,0],[1362096000000,0],[1364774400000,499],[1367366400000,347],[1370044800000,347],[1372636800000,449],[1375315200000,499],[1377993600000,499],[1380585600000,499],[1383264000000,449],[1385856000000,449],[1388534400000,399],[1391212800000,399],[1393632000000,307],[1396310400000,499],[1398902400000,399],[1401580800000,297],[1404172800000,398],[1406851200000,297],[1409529600000,297],[1412121600000,795],[1414800000000,795],[1417392000000,795],[1420070400000,795],[1422748800000,644],[1425168000000,499],[1427846400000,572],[1430438400000,572],[1433116800000,341],[1435708800000,649],[1438387200000,649],[1441065600000,247],[1443657600000,247],[1446336000000,525],[1448928000000,425],[1451606400000,425],[1454284800000,799],[1456790400000,490],[1459468800000,490],[1462082400000,490],[1464760800000,1499],[1467352800000,1499],[1470031200000,1499],[1472709600000,1499],[1475301600000,550],[1477980000000,550],[1480575600000,416],[1483254000000,213],[1485932400000,213],[1488351600000,599],[1491026400000,697],[1493618400000,595],[1496296800000,699],[1498888800000,635],[1501567200000,515],[1504245600000,515],[1506837600000,635],[1509516000000,515],[1512111600000,576],[1514790000000,509],[1517468400000,509],[1519887600000,507],[1522562400000,507],[1525154400000,525],[1527832800000,576],[1530424800000,560],[1533103200000,561],[1535781600000,560],[1538373600000,613],[1541052000000,603],[1543647600000,588],[1546326000000,596],[1549004400000,599],[1551423600000,585],[1554098400000,592],[1556690400000,567],[1559368800000,596],[1561960800000,596],[1564639200000,550],[1567317600000,556],[1569909600000,556],[1572588000000,483],[1575183600000,483],[1577862000000,520],[1580540400000,520],[1583046000000,534],[1585720800000,580],[1588312800000,472],[1590991200000,472],[1593583200000,483],[1596261600000,499],[1598940000000,500],[1601532000000,549],[1604210400000,549],[1606806000000,613],[1609484400000,695],[1612162800000,642],[1614582000000,659],[1617256800000,697],[1619848800000,623],[1622527200000,750],[1625119200000,743],[1627797600000,771],[1630476000000,706],[1633068000000,567],[1635746400000,600],[1638342000000,747],[1641020400000,661],[1643698800000,622]],"graded":[[1199145600000,0],[1201824000000,0],[1204329600000,0],[1207008000000,0],[1209600000000,0],[1212278400000,0],[1214870400000,0],[1217548800000,0],[1220227200000,0],[1222819200000,0],[1225497600000,0],[1228089600000,0],[1230768000000,0],[1233446400000,0],[1235865600000,0],[1238544000000,0],[1241136000000,0],[1243814400000,0],[1246406400000,0],[1249084800000,0],[1251763200000,0],[1254355200000,0],[1257033600000,0],[1259625600000,0],[1262304000000,0],[1264982400000,0],[1267401600000,0],[1270080000000,0],[1272672000000,0],[1275350400000,0],[1277942400000,0],[1280620800000,0],[1283299200000,0],[1285891200000,0],[1288569600000,0],[1291161600000,0],[1293840000000,0],[1296518400000,0],[1298937600000,0],[1301616000000,0],[1304208000000,0],[1306886400000,0],[1309478400000,0],[1312156800000,0],[1314835200000,0],[1317427200000,0],[1320105600000,0],[1322697600000,0],[1325376000000,0],[1328054400000,0],[1330560000000,0],[1333238400000,0],[1335830400000,0],[1338508800000,0],[1341100800000,0],[1343779200000,0],[1346457600000,0],[1349049600000,0],[1351728000000,0],[1354320000000,0],[1356998400000,0],[1359676800000,0],[1362096000000,0],[1364774400000,0],[1367366400000,0],[1370044800000,0],[1372636800000,0],[1375315200000,0],[1377993600000,0],[1380585600000,0],[1383264000000,0],[1385856000000,0],[1388534400000,0],[1391212800000,0],[1393632000000,0],[1396310400000,0],[1398902400000,0],[1401580800000,0],[1404172800000,0],[1406851200000,0],[1409529600000,0],[1412121600000,0],[1414800000000,0],[1417392000000,0],[1420070400000,0],[1422748800000,0],[1425168000000,0],[1427846400000,0],[1430438400000,0],[1433116800000,0],[1435708800000,0],[1438387200000,0],[1441065600000,0],[1443657600000,0],[1446336000000,0],[1448928000000,0],[1451606400000,0],[1454284800000,0],[1456790400000,0],[1459468800000,0],[1462082400000,0],[1464760800000,0],[1467352800000,0],[1470031200000,0],[1472709600000,0],[1475301600000,0],[1477980000000,0],[1480575600000,0],[1483254000000,0],[1485932400000,0],[1488351600000,0],[1491026400000,0],[1493618400000,0],[1496296800000,0],[1498888800000,0],[1501567200000,0],[1504245600000,0],[1506837600000,0],[1509516000000,0],[1512111600000,0],[1514790000000,0],[1517468400000,0],[1519887600000,0],[1522562400000,0],[1525154400000,0],[1527832800000,0],[1530424800000,0],[1533103200000,0],[1535781600000,0],[1538373600000,0],[1541052000000,0],[1543647600000,0],[1546326000000,0],[1549004400000,0],[1551423600000,0],[1554098400000,0],[1556690400000,0],[1559368800000,0],[1561960800000,0],[1564639200000,0],[1567317600000,0],[1569909600000,0],[1572588000000,0],[1575183600000,0],[1577862000000,0],[1580540400000,0],[1583046000000,0],[1585720800000,0],[1588312800000,0],[1590991200000,0],[1593583200000,0],[1596261600000,0],[1598940000000,0],[1601532000000,0],[1604210400000,0],[1606806000000,0],[1609484400000,0],[1612162800000,0],[1614582000000,0],[1617256800000,0],[1619848800000,0],[1622527200000,0],[1625119200000,0],[1627797600000,0],[1630476000000,0],[1633068000000,0],[1635746400000,0],[1638342000000,0],[1641020400000,0]],"manualonly":[[1199145600000,0],[1201824000000,0],[1204329600000,0],[1207008000000,0],[1209600000000,0],[1212278400000,0],[1214870400000,0],[1217548800000,0],[1220227200000,0],[1222819200000,0],[1225497600000,0],[1228089600000,0],[1230768000000,0],[1233446400000,0],[1235865600000,0],[1238544000000,0],[1241136000000,0],[1243814400000,0],[1246406400000,0],[1249084800000,0],[1251763200000,0],[1254355200000,0],[1257033600000,0],[1259625600000,0],[1262304000000,0],[1264982400000,0],[1267401600000,0],[1270080000000,0],[1272672000000,0],[1275350400000,0],[1277942400000,0],[1280620800000,0],[1283299200000,0],[1285891200000,0],[1288569600000,0],[1291161600000,0],[1293840000000,0],[1296518400000,0],[1298937600000,0],[1301616000000,0],[1304208000000,0],[1306886400000,0],[1309478400000,0],[1312156800000,0],[1314835200000,0],[1317427200000,0],[1320105600000,0],[1322697600000,0],[1325376000000,0],[1328054400000,0],[1330560000000,0],[1333238400000,0],[1335830400000,0],[1338508800000,0],[1341100800000,0],[1343779200000,0],[1346457600000,0],[1349049600000,0],[1351728000000,0],[1354320000000,0],[1356998400000,0],[1359676800000,0],[1362096000000,0],[1364774400000,0],[1367366400000,0],[1370044800000,0],[1372636800000,0],[1375315200000,0],[1377993600000,0],[1380585600000,0],[1383264000000,0],[1385856000000,0],[1388534400000,0],[1391212800000,0],[1393632000000,0],[1396310400000,0],[1398902400000,0],[1401580800000,0],[1404172800000,0],[1406851200000,0],[1409529600000,0],[1412121600000,0],[1414800000000,0],[1417392000000,0],[1420070400000,0],[1422748800000,0],[1425168000000,0],[1427846400000,0],[1430438400000,0],[1433116800000,0],[1435708800000,0],[1438387200000,0],[1441065600000,0],[1443657600000,0],[1446336000000,0],[1448928000000,0],[1451606400000,0],[1454284800000,0],[1456790400000,0],[1459468800000,0],[1462082400000,0],[1464760800000,0],[1467352800000,0],[1470031200000,0],[1472709600000,0],[1475301600000,0],[1477980000000,0],[1480575600000,0],[1483254000000,0],[1485932400000,0],[1488351600000,0],[1491026400000,0],[1493618400000,0],[1496296800000,0],[1498888800000,0],[1501567200000,0],[1504245600000,0],[1506837600000,0],[1509516000000,0],[1512111600000,0],[1514790000000,0],[1517468400000,0],[1519887600000,0],[1522562400000,0],[1525154400000,0],[1527832800000,0],[1530424800000,0],[1533103200000,0],[1535781600000,0],[1538373600000,0],[1541052000000,0],[1543647600000,0],[1546326000000,0],[1549004400000,0],[1551423600000,0],[1554098400000,0],[1556690400000,0],[1559368800000,0],[1561960800000,0],[1564639200000,0],[1567317600000,0],[1569909600000,0],[1572588000000,0],[1575183600000,0],[1577862000000,0],[1580540400000,0],[1583046000000,0],[1585720800000,0],[1588312800000,0],[1590991200000,0],[1593583200000,0],[1596261600000,0],[1598940000000,0],[1601532000000,0],[1604210400000,0],[1606806000000,0],[1609484400000,169],[1612162800000,168],[1614582000000,165],[1617256800000,169],[1619848800000,157],[1622527200000,185],[1625119200000,187],[1627797600000,196],[1630476000000,182],[1633068000000,166],[1635746400000,148],[1638342000000,182],[1641020400000,176],[1643698800000,167]],"new":[[1199145600000,0],[1201824000000,0],[1204329600000,0],[1207008000000,0],[1209600000000,0],[1212278400000,0],[1214870400000,0],[1217548800000,0],[1220227200000,0],[1222819200000,0],[1225497600000,0],[1228089600000,0],[1230768000000,0],[1233446400000,0],[1235865600000,0],[1238544000000,0],[1241136000000,0],[1243814400000,0],[1246406400000,0],[1249084800000,0],[1251763200000,0],[1254355200000,0],[1257033600000,0],[1259625600000,0],[1262304000000,0],[1264982400000,0],[1267401600000,0],[1270080000000,0],[1272672000000,0],[1275350400000,0],[1277942400000,0],[1280620800000,627],[1283299200000,660],[1285891200000,660],[1288569600000,200],[1291161600000,698],[1293840000000,399],[1296518400000,399],[1298937600000,399],[1301616000000,699],[1304208000000,695],[1306886400000,695],[1309478400000,695],[1312156800000,708],[1314835200000,787],[1317427200000,759],[1320105600000,722],[1322697600000,658],[1325376000000,630],[1328054400000,500],[1330560000000,500],[1333238400000,578],[1335830400000,573],[1338508800000,640],[1341100800000,857],[1343779200000,834],[1346457600000,834],[1349049600000,769],[1351728000000,764],[1354320000000,473],[1356998400000,473],[1359676800000,473],[1362096000000,550],[1364774400000,540],[1367366400000,395],[1370044800000,1250],[1372636800000,775],[1375315200000,775],[1377993600000,800],[1380585600000,800],[1383264000000,853],[1385856000000,669],[1388534400000,700],[1391212800000,1050],[1393632000000,900],[1396310400000,900],[1398902400000,900],[1401580800000,1399],[1404172800000,850],[1406851200000,1002],[1409529600000,1389],[1412121600000,1379],[1414800000000,799],[1417392000000,263],[1420070400000,263],[1422748800000,500],[1425168000000,401],[1427846400000,401],[1430438400000,500],[1433116800000,563],[1435708800000,797],[1438387200000,625],[1441065600000,625],[1443657600000,711],[1446336000000,797],[1448928000000,1379],[1451606400000,1399],[1454284800000,1399],[1456790400000,1399],[1459468800000,1399],[1462082400000,1399],[1464760800000,1399],[1467352800000,1448],[1470031200000,1448],[1472709600000,1448],[1475301600000,1250],[1477980000000,1250],[1480575600000,1880],[1483254000000,1880],[1485932400000,1880],[1488351600000,1880],[1491026400000,1880],[1493618400000,1880],[1496296800000,1880],[1498888800000,1880],[1501567200000,1880],[1504245600000,1880],[1506837600000,1448],[1509516000000,1448],[1512111600000,1200],[1514790000000,1178],[1517468400000,996],[1519887600000,912],[1522562400000,811],[1525154400000,799],[1527832800000,799],[1530424800000,799],[1533103200000,799],[1535781600000,799],[1538373600000,799],[1541052000000,799],[1543647600000,799],[1546326000000,799],[1549004400000,876],[1551423600000,971],[1554098400000,959],[1556690400000,950],[1559368800000,949],[1561960800000,949],[1564639200000,921],[1567317600000,919],[1569909600000,837],[1572588000000,866],[1575183600000,815],[1577862000000,809],[1580540400000,920],[1583046000000,1031],[1585720800000,1023],[1588312800000,1152],[1590991200000,1211],[1593583200000,1160],[1596261600000,1159],[1598940000000,993],[1601532000000,998],[1604210400000,981],[1606806000000,1012],[1609484400000,1030],[1612162800000,1041],[1614582000000,1452],[1617256800000,1452],[1619848800000,1372],[1622527200000,1350],[1625119200000,1337],[1627797600000,1329],[1630476000000,1427],[1633068000000,1256],[1635746400000,1495],[1638342000000,1477],[1641020400000,1477],[1643698800000,1477]],"used":[[1199145600000,399],[1201824000000,400],[1204329600000,429],[1207008000000,347],[1209600000000,288],[1212278400000,287],[1214870400000,255],[1217548800000,250],[1220227200000,200],[1222819200000,199],[1225497600000,150],[1228089600000,200],[1230768000000,200],[1233446400000,200],[1235865600000,200],[1238544000000,199],[1241136000000,199],[1243814400000,150],[1246406400000,199],[1249084800000,345],[1251763200000,345],[1254355200000,272],[1257033600000,149],[1259625600000,199],[1262304000000,199],[1264982400000,198],[1267401600000,198],[1270080000000,200],[1272672000000,162],[1275350400000,200],[1277942400000,200],[1280620800000,245],[1283299200000,99],[1285891200000,300],[1288569600000,99],[1291161600000,175],[1293840000000,64],[1296518400000,99],[1298937600000,99],[1301616000000,99],[1304208000000,200],[1306886400000,213],[1309478400000,350],[1312156800000,323],[1314835200000,322],[1317427200000,324],[1320105600000,324],[1322697600000,253],[1325376000000,244],[1328054400000,142],[1330560000000,112],[1333238400000,88],[1335830400000,99],[1338508800000,87],[1341100800000,91],[1343779200000,99],[1346457600000,150],[1349049600000,178],[1351728000000,128],[1354320000000,90],[1356998400000,112],[1359676800000,87],[1362096000000,128],[1364774400000,150],[1367366400000,134],[1370044800000,147],[1372636800000,160],[1375315200000,180],[1377993600000,269],[1380585600000,258],[1383264000000,225],[1385856000000,225],[1388534400000,212],[1391212800000,199],[1393632000000,199],[1396310400000,199],[1398902400000,199],[1401580800000,495],[1404172800000,200],[1406851200000,180],[1409529600000,195],[1412121600000,200],[1414800000000,168],[1417392000000,339],[1420070400000,499],[1422748800000,324],[1425168000000,324],[1427846400000,300],[1430438400000,300],[1433116800000,244],[1435708800000,310],[1438387200000,310],[1441065600000,398],[1443657600000,398],[1446336000000,449],[1448928000000,499],[1451606400000,199],[1454284800000,199],[1456790400000,100],[1459468800000,199],[1462082400000,199],[1464760800000,150],[1467352800000,649],[1470031200000,209],[1472709600000,540],[1475301600000,480],[1477980000000,99],[1480575600000,399],[1483254000000,587],[1485932400000,587],[1488351600000,222],[1491026400000,247],[1493618400000,247],[1496296800000,247],[1498888800000,247],[1501567200000,247],[1504245600000,247],[1506837600000,222],[1509516000000,222],[1512111600000,278],[1514790000000,289],[1517468400000,309],[1519887600000,311],[1522562400000,316],[1525154400000,298],[1527832800000,296],[1530424800000,296],[1533103200000,295],[1535781600000,295],[1538373600000,295],[1541052000000,307],[1543647600000,307],[1546326000000,307],[1549004400000,351],[1551423600000,351],[1554098400000,351],[1556690400000,351],[1559368800000,351],[1561960800000,351],[1564639200000,351],[1567317600000,351],[1569909600000,351],[1572588000000,301],[1575183600000,307],[1577862000000,311],[1580540400000,291],[1583046000000,291],[1585720800000,327],[1588312800000,338],[1590991200000,345],[1593583200000,349],[1596261600000,361],[1598940000000,361],[1601532000000,363],[1604210400000,363],[1606806000000,376],[1609484400000,375],[1612162800000,417],[1614582000000,470],[1617256800000,479],[1619848800000,477],[1622527200000,492],[1625119200000,492],[1627797600000,492],[1630476000000,491],[1633068000000,499],[1635746400000,499],[1638342000000,497],[1641020400000,497],[1643698800000,599]]};
+    
+    VGPC.product = {
+        id:  11470 ,
+        asin : "B000B90GCW",
+        epid : "48245062",
+        is_system: false,
+        is_card: false,
+        is_disc: true,
+        is_comic: false,
+        is_old: false,
+    };
+    VGPC.console_uid = "G8";
+    VGPC.user_id = "";
+    VGPC.category = "video-games";
+</script>
+
+<style>
+    .tour {
+        top:100px;
+        right:20px;
+    }
+    .ebay_widget {
+        width:100%;
+        height:220px;
+        margin: 20px 0;
+        padding: 20px 0;
+        border-top: dashed 1px #aaa;
+        background: url('/images/msg.png') center no-repeat;
+    }
+    .on-wishlists {
+        font-size: 10px;
+    }
+    span.free-ship {
+        font-size: 10px;
+        color: #aaa;
+    }
+    #product_name .set-logo {
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+    }
+    .flag {
+        cursor: pointer;
+    }
+    
+    
+    @media screen and (max-width: 830px) {
+        .on-wishlists {
+            display: none;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        span.free-ship {
+            display: none;
+        }
+    }
+</style>
+
+
+
+
+
+
+<div id="game-page" itemscope itemtype="http://schema.org/VideoGame">
+    
+    <h1 id="product_name" class="chart_title" title="11470">
+        Zathura 
+        <a href="/console/xbox">
+            Xbox
+        
+        </a>
+    </h1>
+
+    <div id="product_details">
+        <div class="cover">
+            
+            <img src='https://commondatastorage.googleapis.com/images.pricecharting.com/AMIfv94TLlyGAPYOGKaET5gQl5g_7oMrX9AHBLkz4W84oWlqSdtMsAkl7NtTUDRQA0dFPgjvTlfNYbVeVAM6OYx0ayvL8IGvoPacEIT4IV6J8868bTNBQao5gyzb3uVd8zyPkmhuqGV3mnfMhQWqhrQJrjn3RUQRXg/240.jpg'
+                 alt="Zathura Xbox Prices"
+                 onerror="autoreplace_404_image(this);"
+                 itemprop="image"
+                 
+                 />
+            
+            
+        </div>
+
+        <ul class="product-links add_to collection">
+        
+            <li class="add_to collection product-link">
+                
+                <ul class="list">
+                    <li class="list-item"><a href="#" class="js-add-one-click" data-product-id="11470">In One Click</a></li>
+                    <li class="list-item"><a href="/publish-offer?product=11470&add-to-collection=1" rel="nofollow">With Details</a></li>
+                </ul>
+                <span class="blue button small">&#43; Collection</span>
+                
+            </li>
+            <li class="add_to wishlist product-link">
+                
+                <span class="blue button small js-add-bid">&#43; Wishlist</span>
+                
+                
+            </li>
+            <li class="product-link buy-it">
+                <a class="blue button small" href="/offers?product=11470">Buy/Sell</a>
+            </li>
+            <li class="item_details product-link">
+                <a  href="#itemdetails" title="See more images &amp; item info" onclick="ga('send', 'event', 'Clicks', 'GamePage', 'ItemDetails');">Item Details</a>
+            </li>
+            <li id="chart_link" class="product-link">
+                <a href="#">Show Historic Prices</a>
+            </li>
+        
+        </ul>
+    </div>
+
+    
+    <div id="chart">
+        <p><span class="icon-throbber"></span></p>
+    </div>
+
+    <table id="price_data" class="info_box">
+        <thead>
+            <tr>
+            
+                <th>Loose<span class="small-desktop-hidden"> Price</span>
+</th>
+                
+                <th>Complete<span class="small-desktop-hidden"> Price</span>
+</th>
+                
+                <th>New<span class="small-desktop-hidden"> Price</span>
+</th>
+                <th class="tablet-portrait-hidden">Graded<span class="small-desktop-hidden"> Price</span>
+</span></th>
+                <th class="tablet-portrait-hidden">Box<span class="small-desktop-hidden"> Only Price</span>
+</th>
+                <th class="tablet-portrait-hidden">Manual<span class="small-desktop-hidden"> Only Price</span>
+</th>
+                
+            
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="used_price">
+                    <span class="price js-price">
+                    $5.99
+                    </span>
+                    <span class="change" title="dollar change from last update">
+                    <span class="js-price">$0.00</span>
+                    </span>
+                
+                </td>
+                <td id="complete_price">
+                    <span class="price js-price">
+                    $6.22
+                    </span>
+                    <span class="change" title="dollar change from last update">
+                    -<span class="js-price">$0.39</span>
+                    </span>
+                
+                </td>
+                <td id="new_price">
+                    <span class="price js-price">
+                    $14.77
+                    </span>
+                    <span class="change" title="dollar change from last update">
+                    <span class="js-price">$0.00</span>
+                    </span>
+                
+                </td>
+        
+                <td id="graded_price" class="tablet-portrait-hidden">
+                    <span class="price js-price">
+                    N/A
+                    </span>
+                    <span class="change" title="dollar change from last update">
+                    <span class="js-price">$0.00</span>
+                    </span>
+                
+                </td>
+                <td id="box_only_price" class="tablet-portrait-hidden">
+                    <span class="price js-price">
+                    $2.67
+                    </span>
+                    <span class="change" title="dollar change from last update">
+                    -<span class="js-price">$0.02</span>
+                    </span>
+                
+                </td>
+                <td id="manual_only_price" class="tablet-portrait-hidden">
+                    <span class="price js-price">
+                    $1.67
+                    </span>
+                    <span class="change" title="dollar change from last update">
+                    -<span class="js-price">$0.01</span>
+                    </span>
+                
+                </td>
+            
+        
+            </tr>
+            <tr class="sales_volume">
+                <td class="js-show-tab" data-show-tab="completed-auctions-used">
+    <span class="tablet-portrait-hidden">volume:&nbsp;</span>
+    <a href="#">5 sales per year</a>
+</td>
+                <td class="js-show-tab" data-show-tab="completed-auctions-cib">
+    <span class="tablet-portrait-hidden">volume:&nbsp;</span>
+    <a href="#">1 sale per week</a>
+</td>
+                <td class="js-show-tab" data-show-tab="completed-auctions-new">
+    <span class="tablet-portrait-hidden">volume:&nbsp;</span>
+    <a href="#">4 sales per year</a>
+</td>
+            
+                <td class="js-show-tab tablet-portrait-hidden" data-show-tab="completed-auctions-graded">
+    <span class="tablet-portrait-hidden">volume:&nbsp;</span>
+    <a href="#">1 sale per year</a>
+</td>
+                <td class="js-show-tab tablet-portrait-hidden" data-show-tab="completed-auctions-box-only">
+    <span class="tablet-portrait-hidden">volume:&nbsp;</span>
+    <a href="#">1 sale per year</a>
+</td>
+                <td class="js-show-tab tablet-portrait-hidden" data-show-tab="completed-auctions-manual-only">
+    <span class="tablet-portrait-hidden">volume:&nbsp;</span>
+    <a href="#">1 sale per year</a>
+</td>
+                
+            
+            </tr>
+
+        
+        
+        
+
+        </tbody>
+
+        
+        
+        <thead>
+            <tr class="additional_data extra_row">
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="additional_data">
+            
+                <th>Graded</th>
+                <th>Box<span class="tablet-portrait-hidden"> Only<span>
+</th>
+                <th>Manual<span class="tablet-portrait-hidden"> Only<span>
+</th>
+            
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="additional_data">
+                </td>
+                <td id="graded_price">
+                    <span class="price js-price" title="current value in Graded condition">
+                    N/A
+                    </span>
+                    <span class="change" title="dollar change from last update">
+                    <span class="js-price">$0.00</span>
+                    </span>
+                </td>
+                <td id="box_only_price">
+                    <span class="price js-price" title="current Box Only value">
+                    $2.67
+                    </span>
+                    <span class="change" title="dollar change from last update">
+                    -<span class="js-price">$0.02</span>
+                    </span>
+                </td>
+                <td id="manual_only_price">
+                    <span class="price js-price" title="current Manual Only value">
+                    $1.67
+                    </span>
+                    <span class="change" title="dollar change from last update">
+                    -<span class="js-price">$0.01</span>
+                    </span>
+                </td>
+            </td>
+
+        </tbody>
+        
+    </table>
+
+    
+    <a name="completed-auctions-used"></a>
+    <a name="completed-auctions-cib"></a>
+    <a name="completed-auctions-new"></a>
+    <a name="completed-auctions-graded"></a>
+    <a name="completed-auctions-box-only"></a>
+    <a name="completed-auctions-manual-only"></a>
+
+    <div id="price_comparison">
+        <div id="tab-bar">
+            
+            <div class="tab used-prices selected">
+                Current<span class="small-desktop-hidden"> Prices</span>
+
+            </div>
+            
+            <div class="tab completed-auctions-used available">
+            
+                Loose
+            
+                <span class="small-desktop-hidden"> Sold Listings</span>
+            </div>
+            <div class="tab available completed-auctions-cib">
+            
+                CIB
+            
+                <span class="small-desktop-hidden"> Sold Listings</span>
+            </div>
+            <div class="tab available completed-auctions-new">
+            
+                New
+            
+                <span class="small-desktop-hidden"> Sold Listings</span>
+            </div>
+        
+            <div class="tab available completed-auctions-graded">
+            
+                Graded
+            
+                <span class="small-desktop-hidden"> Sold Listings</span>
+            </div>
+            <div class="tab available completed-auctions-box-only">
+            
+                Box<span class="tablet-portrait-hidden"> Only<span>
+
+            
+                <span class="small-desktop-hidden"> Sold Listings</span>
+            </div>
+            <div class="tab available completed-auctions-manual-only">
+            
+                Manual<span class="tablet-portrait-hidden"> Only<span>
+
+            
+                <span class="small-desktop-hidden"> Sold Listings</span>
+            </div>
+        
+        </div>
+        <div class="tab-frame">
+            
+            <table class="used-prices condition-comparison" >
+                <thead>
+                    <tr>
+                        <th class="condition">Loose Price</th>
+                        <th colspan="2" class="adjust-for-shipping">
+                            <input id="adjust-for-shipping" type="checkbox" />
+                            <label for="adjust-for-shipping">
+                                Add <span class="tablet-portrait-hidden">typical</span> shipping<span class="tablet-portrait-hidden"> costs</span>
+
+                            </label>
+                        </th>
+                    </tr>
+                    <tr class="column-labels">
+                        <th>Site</th>
+                        <th class="price">Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                
+                    <tr data-source-name="Amazon">
+                        
+        <td class="store">Amazon</td>
+        <td class="price">
+            
+                <span class="js-price" title="Last checked: February 13, 2022">$0.50</span>
+            
+            
+        </td>
+        
+        <td class="see-it">
+            <a data-affiliate="Amazon"
+               target="_blank"
+               href='http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;tag=game-compare-20&amp;linkCode=ur2&amp;location=http%3A%2F%2Fwww.amazon.com%2Fgp%2Foffer-listing%2FB000B90GCW'
+               ><img class="see-it" src="/images/see-it_a.png" alt="See It"/></a>
+            
+        </td>
+
+                    </tr>
+                
+                    <tr data-source-name="eBay">
+                        
+        <td class="store">eBay</td>
+        <td class="price">
+            
+                <span class="js-price" title="Last checked: February 12, 2022">$3.94</span>
+            
+            
+        </td>
+        
+        <td class="see-it">
+            <a data-affiliate="eBay"
+               target="_blank"
+               href='https://www.ebay.com/p/48245062?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336817478&amp;customid=G11470_abTestName-control&amp;toolid=10001'
+               ><img class="see-it" src="/images/see-it_a.png" alt="See It"/></a>
+            
+            <img height="1"
+                 width="1"
+                 style="border-style:none;"
+                 alt=""
+                 src='https://www.ebayadservices.com/marketingtracking/v1/impression?mpt=11355641&amp;mkevt=2&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;siteid=0&amp;ad_type=0&amp;toolid=10001&amp;campid=5336817478&amp;customid=G11470'/>
+            
+        </td>
+
+                    </tr>
+                
+                    <tr data-source-name="PriceCharting">
+                        
+        <td class="store">PriceCharting</td>
+        <td class="price">
+            
+                <span class="js-price" title="Last checked: February 15, 2022">$6.00</span>
+            
+                <span class="free-ship">+ free shipping</span>
+            
+            
+        </td>
+        
+        <td class="see-it">
+            <a data-affiliate="PriceCharting"
+               target="_blank"
+               href='https://www.pricecharting.com/offers?product=11470'
+               ><img class="see-it" src="/images/see-it_a.png" alt="See It"/></a>
+            
+        </td>
+
+                    </tr>
+                
+                </tbody>
+                <thead>
+                    <tr>
+                        <th colspan="4" class="condition">Complete Price</th>
+                    </tr>
+                    <tr class="column-labels">
+                        <th>Site</th>
+                        <th class="price">Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                
+                    <tr data-source-name="eBay">
+                        
+        <td class="store">eBay</td>
+        <td class="price">
+            
+                <span class="js-price" title="Last checked: February 12, 2022">$4.97</span>
+            
+            
+        </td>
+        
+        <td class="see-it">
+            <a data-affiliate="eBay"
+               target="_blank"
+               href='https://www.ebay.com/p/48245062?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336817478&amp;customid=G11470_abTestName-control&amp;toolid=10001'
+               ><img class="see-it" src="/images/see-it_a.png" alt="See It"/></a>
+            
+            <img height="1"
+                 width="1"
+                 style="border-style:none;"
+                 alt=""
+                 src='https://www.ebayadservices.com/marketingtracking/v1/impression?mpt=11355641&amp;mkevt=2&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;siteid=0&amp;ad_type=0&amp;toolid=10001&amp;campid=5336817478&amp;customid=G11470'/>
+            
+        </td>
+
+                    </tr>
+                
+                    <tr data-source-name="PriceCharting">
+                        
+        <td class="store">PriceCharting</td>
+        <td class="price">
+            
+                <span class="js-price" title="Last checked: February 15, 2022">$6.00</span>
+            
+                <span class="free-ship">+ free shipping</span>
+            
+            
+        </td>
+        
+        <td class="see-it">
+            <a data-affiliate="PriceCharting"
+               target="_blank"
+               href='https://www.pricecharting.com/offers?product=11470'
+               ><img class="see-it" src="/images/see-it_a.png" alt="See It"/></a>
+            
+        </td>
+
+                    </tr>
+                
+                    <tr data-source-name="Amazon">
+                        
+        <td class="store">Amazon</td>
+        <td class="price">
+            
+                <span class="js-price" title="Last checked: February 13, 2022">$14.77</span>
+            
+            
+        </td>
+        
+        <td class="see-it">
+            <a data-affiliate="Amazon"
+               target="_blank"
+               href='http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;tag=game-compare-20&amp;linkCode=ur2&amp;location=http%3A%2F%2Fwww.amazon.com%2Fgp%2Foffer-listing%2FB000B90GCW'
+               ><img class="see-it" src="/images/see-it_a.png" alt="See It"/></a>
+            
+        </td>
+
+                    </tr>
+                
+                </tbody>
+                <thead>
+                    <tr>
+                        <th colspan="4" class="condition">New Price</th>
+                    </tr>
+                    <tr class="column-labels">
+                        <th>Site</th>
+                        <th class="price">Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                
+                    <tr data-source-name="Amazon">
+                        
+        <td class="store">Amazon</td>
+        <td class="price">
+            
+                <span class="js-price" title="Last checked: February 13, 2022">$14.77</span>
+            
+            
+        </td>
+        
+        <td class="see-it">
+            <a data-affiliate="Amazon"
+               target="_blank"
+               href='http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;tag=game-compare-20&amp;linkCode=ur2&amp;location=http%3A%2F%2Fwww.amazon.com%2Fgp%2Foffer-listing%2FB000B90GCW'
+               ><img class="see-it" src="/images/see-it_a.png" alt="See It"/></a>
+            
+        </td>
+
+                    </tr>
+                
+                    <tr data-source-name="eBay">
+                        
+        <td class="store">eBay</td>
+        <td class="price">
+            
+                <span class="js-price" title="Last checked: February 12, 2022">$23.64</span>
+            
+            
+        </td>
+        
+        <td class="see-it">
+            <a data-affiliate="eBay"
+               target="_blank"
+               href='https://www.ebay.com/p/48245062?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336817478&amp;customid=G11470_abTestName-control&amp;toolid=10001'
+               ><img class="see-it" src="/images/see-it_a.png" alt="See It"/></a>
+            
+            <img height="1"
+                 width="1"
+                 style="border-style:none;"
+                 alt=""
+                 src='https://www.ebayadservices.com/marketingtracking/v1/impression?mpt=11355641&amp;mkevt=2&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;siteid=0&amp;ad_type=0&amp;toolid=10001&amp;campid=5336817478&amp;customid=G11470'/>
+            
+        </td>
+
+                    </tr>
+                
+                    <tr data-source-name="PriceCharting">
+                        
+        <td class="store">PriceCharting</td>
+        <td class="price">
+            
+        </td>
+        
+        <td class="see-it">
+            <a data-affiliate="PriceCharting"
+               target="_blank"
+               href='https://www.pricecharting.com/offers?product=11470'
+               ><img class="see-it" src="/images/see-it_a.png" alt="See It"/></a>
+            
+        </td>
+
+                    </tr>
+                
+                </tbody>
+            </table>
+            
+            <div class="completed-auctions-used" >
+                
+<table class="hoverable-rows sortable">
+    <thead>
+        <tr>
+            <th class="date" title="Click to sort by date">
+                Sale Date
+                <span class="arrow-up">&#x25B2;</span>
+                <span class="arrow-down default">&#x25BC;</span>
+            </th>
+            <th class="title" title="Click to sort by title">
+                Title
+                <span class="arrow-up">&#x25B2;</span>
+                <span class="arrow-down">&#x25BC;</span>
+            </th>
+            <th class="numeric" title="Click to sort by amount">
+                <span class="arrow-up">&#x25B2;</span>
+                <span class="arrow-down">&#x25BC;</span>
+                Price
+            </th>
+            <th class="thumb-down"></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        
+        
+        
+            
+            
+            
+            
+            <tr id="ebay-234379331443">
+                <td class="date">2022-01-31</td>
+                <td class="title" title="eBay-234379331443">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/234379331443?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Xbox - Zathura Aventure Is Waiting Clean Scratch Free Game Disc Only
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$9.84</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-234160137856">
+                <td class="date">2022-01-11</td>
+                <td class="title" title="eBay-234160137856">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/234160137856?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Xbox - Zathura Aventure Is Waiting Clean Scratch Free Game Disc Only
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-363410924641">
+                <td class="date">2021-06-25</td>
+                <td class="title" title="eBay-363410924641">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/363410924641?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Original Xbox) - Disc Only - Tested &amp; Working 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-333784583289">
+                <td class="date">2021-03-03</td>
+                <td class="title" title="eBay-333784583289">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/333784583289?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox) - DISC ONLY - A1615
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.85</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-223636072645">
+                <td class="date">2021-02-25</td>
+                <td class="title" title="eBay-223636072645">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/223636072645?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Original Xbox, 2005) Disc Only, Tested!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-233678284068">
+                <td class="date">2020-08-25</td>
+                <td class="title" title="eBay-233678284068">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/233678284068?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox) - DISC ONLY
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.75</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-153950765041">
+                <td class="date">2020-07-14</td>
+                <td class="title" title="eBay-153950765041">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/153950765041?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) B2 DISC ONLY
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$3.74</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-124142083569">
+                <td class="date">2020-06-24</td>
+                <td class="title" title="eBay-124142083569">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/124142083569?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) Disc only
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$3.48</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-333581235255">
+                <td class="date">2020-04-27</td>
+                <td class="title" title="eBay-333581235255">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/333581235255?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) - DISC ONLY
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$3.49</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-264617207262">
+                <td class="date">2020-04-17</td>
+                <td class="title" title="eBay-264617207262">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/264617207262?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox) *DISC ONLY - TESTED &amp; GUARANTEED - SHIPS FAST*
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.29</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-333443560140">
+                <td class="date">2020-02-11</td>
+                <td class="title" title="eBay-333443560140">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/333443560140?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) - DISC ONLY
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$2.85</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-392435377790">
+                <td class="date">2019-10-29</td>
+                <td class="title" title="eBay-392435377790">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/392435377790?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura - Original Xbox Game - Game Only
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$2.67</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-113565372578">
+                <td class="date">2019-02-04</td>
+                <td class="title" title="eBay-113565372578">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/113565372578?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005)(DISC ONLY) #5226
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.17</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-292156020907">
+                <td class="date">2018-05-17</td>
+                <td class="title" title="eBay-292156020907">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/292156020907?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) Disc Only-Free Shipping
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$2.95</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-183066203010">
+                <td class="date">2018-02-22</td>
+                <td class="title" title="eBay-183066203010">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/183066203010?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005)---Disc Only---VG/EX---
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$3.51</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-182811970815">
+                <td class="date">2017-10-28</td>
+                <td class="title" title="eBay-182811970815">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/182811970815?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) Disc Only
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$0.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-291831933794">
+                <td class="date">2017-04-10</td>
+                <td class="title" title="eBay-291831933794">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/291831933794?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura - Original Xbox Game
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$2.47</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-371880960829">
+                <td class="date">2017-03-16</td>
+                <td class="title" title="eBay-371880960829">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/371880960829?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura - Original Xbox Game - Game Only
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$2.22</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-401146573074">
+                <td class="date">2017-01-15</td>
+                <td class="title" title="eBay-401146573074">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/401146573074?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura Xbox For Xbox Original Game Only 3E
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.87</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-201746150173">
+                <td class="date">2016-12-18</td>
+                <td class="title" title="eBay-201746150173">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/201746150173?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura, , Xbox Video Games
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$3.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-191972378526">
+                <td class="date">2016-12-15</td>
+                <td class="title" title="eBay-191972378526">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/191972378526?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Xbox Zathura VideoGames 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.16</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-371799050883">
+                <td class="date">2016-12-05</td>
+                <td class="title" title="eBay-371799050883">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/371799050883?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005)
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$3.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-142162558759">
+                <td class="date">2016-11-03</td>
+                <td class="title" title="eBay-142162558759">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/142162558759?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005)
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$0.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-282219253176">
+                <td class="date">2016-10-21</td>
+                <td class="title" title="eBay-282219253176">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/282219253176?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura RARE Extremely Fun Action Adventure Movie Game! (Microsoft Xbox, 2005)
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.80</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-291723328832">
+                <td class="date">2016-09-26</td>
+                <td class="title" title="eBay-291723328832">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/291723328832?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft XBOX) 2005
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.40</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-272356498076">
+                <td class="date">2016-09-03</td>
+                <td class="title" title="eBay-272356498076">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/272356498076?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft XBOX) 2005 Free Shipping! Tested and working
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.25</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-371619667213">
+                <td class="date">2016-08-07</td>
+                <td class="title" title="eBay-371619667213">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/371619667213?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005)
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$2.09</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-252468974485">
+                <td class="date">2016-07-25</td>
+                <td class="title" title="eBay-252468974485">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/252468974485?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Xbox, 2005)
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$6.49</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+    </tbody>
+</table>
+
+
+            </div>
+            <div class="completed-auctions-cib">
+                
+<table class="hoverable-rows sortable">
+    <thead>
+        <tr>
+            <th class="date" title="Click to sort by date">
+                Sale Date
+                <span class="arrow-up">&#x25B2;</span>
+                <span class="arrow-down default">&#x25BC;</span>
+            </th>
+            <th class="title" title="Click to sort by title">
+                Title
+                <span class="arrow-up">&#x25B2;</span>
+                <span class="arrow-down">&#x25BC;</span>
+            </th>
+            <th class="numeric" title="Click to sort by amount">
+                <span class="arrow-up">&#x25B2;</span>
+                <span class="arrow-down">&#x25BC;</span>
+                Price
+            </th>
+            <th class="thumb-down"></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        
+        
+        
+            
+            
+            
+            
+            <tr id="ebay-403324216748">
+                <td class="date">2022-02-11</td>
+                <td class="title" title="eBay-403324216748">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/403324216748?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) cib complete
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$6.00</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-254807879971">
+                <td class="date">2022-02-02</td>
+                <td class="title" title="eBay-254807879971">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/254807879971?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) UNTESTED 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.19</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-384692237298">
+                <td class="date">2022-01-30</td>
+                <td class="title" title="eBay-384692237298">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/384692237298?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            2005 Zathura Video Game Xbox Tested Working Complete 2K Games
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.50</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-175052967131">
+                <td class="date">2022-01-26</td>
+                <td class="title" title="eBay-175052967131">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/175052967131?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Xbox : Zathura VideoGames
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$6.61</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-403312141329">
+                <td class="date">2022-01-17</td>
+                <td class="title" title="eBay-403312141329">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/403312141329?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Xbox, 2005) Complete by Take Two Interactive 2005
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.00</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-255302147443">
+                <td class="date">2022-01-02</td>
+                <td class="title" title="eBay-255302147443">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/255302147443?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura Original XBOX Video Games
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$8.49</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-393810559927">
+                <td class="date">2021-12-21</td>
+                <td class="title" title="eBay-393810559927">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/393810559927?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura Microsoft Xbox Complete W/ Manual CIB 2K Games NTSC 2005
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.51</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-372926159129">
+                <td class="date">2021-12-13</td>
+                <td class="title" title="eBay-372926159129">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/372926159129?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            ZATHURA game for (Original Xbox) W/case and manual  NTSC K38
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$12.95</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-185162797797">
+                <td class="date">2021-11-29</td>
+                <td class="title" title="eBay-185162797797">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/185162797797?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) Clean Tested Working - Free Ship
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$8.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-383445877333">
+                <td class="date">2021-10-19</td>
+                <td class="title" title="eBay-383445877333">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/383445877333?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Xbox, 2005) Rated E10&#43; for Everyone 10&#43;, Complete
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-265056285654">
+                <td class="date">2021-10-16</td>
+                <td class="title" title="eBay-265056285654">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/265056285654?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Xbox, 2005) Complete by Take Two Interactive 2005
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.00</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-353656908231">
+                <td class="date">2021-10-15</td>
+                <td class="title" title="eBay-353656908231">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/353656908231?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) CIB Complete with Manual
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-402041875978">
+                <td class="date">2021-09-26</td>
+                <td class="title" title="eBay-402041875978">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/402041875978?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) .. BACK COMP W/360 TESTED WORKS
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.00</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-373702039338">
+                <td class="date">2021-09-25</td>
+                <td class="title" title="eBay-373702039338">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/373702039338?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) TESTED &amp; WORKS!  Complete CIB Original Xbox
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$8.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-284421858089">
+                <td class="date">2021-09-19</td>
+                <td class="title" title="eBay-284421858089">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/284421858089?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            zathura xbox Complete With Manual
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$2.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-174818973486">
+                <td class="date">2021-08-20</td>
+                <td class="title" title="eBay-174818973486">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/174818973486?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) Complete  
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.73</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-294265551498">
+                <td class="date">2021-07-28</td>
+                <td class="title" title="eBay-294265551498">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/294265551498?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) CIB 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$8.00</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-203449492164">
+                <td class="date">2021-06-09</td>
+                <td class="title" title="eBay-203449492164">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/203449492164?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$9.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-174767613031">
+                <td class="date">2021-05-20</td>
+                <td class="title" title="eBay-174767613031">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/174767613031?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            ZATHURA-[XBOX] 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.00</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-324219181969">
+                <td class="date">2021-05-20</td>
+                <td class="title" title="eBay-324219181969">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/324219181969?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura Xbox 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-184845001129">
+                <td class="date">2021-05-19</td>
+                <td class="title" title="eBay-184845001129">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/184845001129?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura, Complete in Case w/ Free Movie Pass, Microsoft XBOX 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$8.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-313346689313">
+                <td class="date">2021-05-17</td>
+                <td class="title" title="eBay-313346689313">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/313346689313?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) *BUY 2 GET 1 FREE &#43;FREE SHIPPING* 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-234005328752">
+                <td class="date">2021-05-11</td>
+                <td class="title" title="eBay-234005328752">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/234005328752?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            ZATHURA - Microsoft Xbox, 2005 - Complete - Tested 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.95</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-131543023455">
+                <td class="date">2021-05-06</td>
+                <td class="title" title="eBay-131543023455">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/131543023455?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Xbox)50%off shipping on additional purchase
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$6.16</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-224427679287">
+                <td class="date">2021-05-04</td>
+                <td class="title" title="eBay-224427679287">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/224427679287?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura for Microsoft Xbox, 2005
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$8.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-114206187393">
+                <td class="date">2021-04-18</td>
+                <td class="title" title="eBay-114206187393">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/114206187393?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) (Complete)
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$11.04</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-193925152816">
+                <td class="date">2021-04-15</td>
+                <td class="title" title="eBay-193925152816">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/193925152816?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura Microsoft Xbox Live 2005 Video Game
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.88</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-174300201963">
+                <td class="date">2021-03-01</td>
+                <td class="title" title="eBay-174300201963">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/174300201963?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Xbox : Zathura VideoGames
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.64</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-154341646290">
+                <td class="date">2021-02-22</td>
+                <td class="title" title="eBay-154341646290">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/154341646290?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            RARE Microsoft Original Xbox Zathura Complete CIB w/ Movie Ticket Works Jumanji!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$9.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-224347685681">
+                <td class="date">2021-02-12</td>
+                <td class="title" title="eBay-224347685681">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/224347685681?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005)
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.00</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+    </tbody>
+</table>
+
+
+            </div>
+            <div class="completed-auctions-new">
+                
+<table class="hoverable-rows sortable">
+    <thead>
+        <tr>
+            <th class="date" title="Click to sort by date">
+                Sale Date
+                <span class="arrow-up">&#x25B2;</span>
+                <span class="arrow-down default">&#x25BC;</span>
+            </th>
+            <th class="title" title="Click to sort by title">
+                Title
+                <span class="arrow-up">&#x25B2;</span>
+                <span class="arrow-down">&#x25BC;</span>
+            </th>
+            <th class="numeric" title="Click to sort by amount">
+                <span class="arrow-up">&#x25B2;</span>
+                <span class="arrow-down">&#x25BC;</span>
+                Price
+            </th>
+            <th class="thumb-down"></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        
+        
+        
+            
+            
+            
+            
+            <tr id="ebay-233140892815">
+                <td class="date">2021-12-13</td>
+                <td class="title" title="eBay-233140892815">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/233140892815?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura for Microsoft Xbox 2005 Science Fiction Shooter adventure Rated E10&#43;
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$13.46</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-294027614681">
+                <td class="date">2021-11-04</td>
+                <td class="title" title="eBay-294027614681">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/294027614681?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft, Xbox 2005) Factory Sealed!!! New!!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$22.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-124912738916">
+                <td class="date">2021-09-28</td>
+                <td class="title" title="eBay-124912738916">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/124912738916?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura Sealed.  Original Xbox.
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$12.00</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-333911438766">
+                <td class="date">2021-03-06</td>
+                <td class="title" title="eBay-333911438766">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/333911438766?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura for Microsoft Xbox, 2005
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$19.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-133452429152">
+                <td class="date">2020-08-30</td>
+                <td class="title" title="eBay-133452429152">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/133452429152?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) New &amp; Sealed Authentic
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$4.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-372983975710">
+                <td class="date">2020-05-03</td>
+                <td class="title" title="eBay-372983975710">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/372983975710?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) New &amp; Sealed Authentic
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$14.95</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-164087887211">
+                <td class="date">2020-03-15</td>
+                <td class="title" title="eBay-164087887211">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/164087887211?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura, Original Xbox **Factory Sealed**  BRAND NEW!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$14.95</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    <a title="Report this auction as incorrect" href="#">
+                        <span class="report-sale js-report-bad-sale" title="Click if inaccurate.  Tells admin to look at sale" >Report</span>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-114044114025">
+                <td class="date">2020-02-13</td>
+                <td class="title" title="eBay-114044114025">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/114044114025?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura, Original Xbox **Factory Sealed** 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-391775987200">
+                <td class="date">2020-02-05</td>
+                <td class="title" title="eBay-391775987200">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/391775987200?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) RARE NEW
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$16.10</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-153800070499">
+                <td class="date">2020-02-01</td>
+                <td class="title" title="eBay-153800070499">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/153800070499?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura, Original Xbox **Factory Sealed** 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.50</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-274049872848">
+                <td class="date">2019-12-18</td>
+                <td class="title" title="eBay-274049872848">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/274049872848?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) BRAND NEW  Free Shipping !!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.72</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-223466958872">
+                <td class="date">2019-11-10</td>
+                <td class="title" title="eBay-223466958872">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/223466958872?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) BRAND NEW FACTORY SEALED RARE COMPLETE VERY GOOD
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$8.79</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-392262345761">
+                <td class="date">2019-09-23</td>
+                <td class="title" title="eBay-392262345761">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/392262345761?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) BRAND NEW  Free Shipping !!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-123638004883">
+                <td class="date">2019-02-26</td>
+                <td class="title" title="eBay-123638004883">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/123638004883?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) RARE NEW Factory Sealed!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$14.00</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-392196113988">
+                <td class="date">2019-01-17</td>
+                <td class="title" title="eBay-392196113988">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/392196113988?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) BRAND NEW  Free Shipping !!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-273441334976">
+                <td class="date">2018-09-15</td>
+                <td class="title" title="eBay-273441334976">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/273441334976?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Microsoft Xbox, Zathura  BRAND NEW  Free Shipping !!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$6.90</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-282995458716">
+                <td class="date">2018-06-09</td>
+                <td class="title" title="eBay-282995458716">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/282995458716?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Microsoft Xbox, Zathura  BRAND NEW  Free Shipping !!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$6.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-392019921506">
+                <td class="date">2018-05-14</td>
+                <td class="title" title="eBay-392019921506">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/392019921506?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) BRAND NEW  Free Shipping !!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-392000817945">
+                <td class="date">2018-04-14</td>
+                <td class="title" title="eBay-392000817945">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/392000817945?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) BRAND NEW  Free Shipping !!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-391980650573">
+                <td class="date">2018-03-15</td>
+                <td class="title" title="eBay-391980650573">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/391980650573?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) BRAND NEW  Free Shipping !!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-391961181452">
+                <td class="date">2018-02-12</td>
+                <td class="title" title="eBay-391961181452">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/391961181452?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Microsoft Xbox, 2005) BRAND NEW  Free Shipping !!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$7.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-252655449848">
+                <td class="date">2016-12-10</td>
+                <td class="title" title="eBay-252655449848">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/252655449848?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Brand New/Factory Sealed ZATHURA [Xbox, 2005] 2K Games 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$18.80</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-262645394102">
+                <td class="date">2016-10-26</td>
+                <td class="title" title="eBay-262645394102">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/262645394102?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            LOT 2 Xbox Zathura and IHRA Professional Drag Racing 2005 NEW FACTORY SEALED! 
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$12.50</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-231993577287">
+                <td class="date">2016-07-07</td>
+                <td class="title" title="eBay-231993577287">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/231993577287?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura (Xbox 2005) Brand New, Factory Sealed! Based on the Movie and Book!!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$14.48</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-161905858496">
+                <td class="date">2015-12-10</td>
+                <td class="title" title="eBay-161905858496">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/161905858496?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura Brand New Factory Sealed Damaged Wrapping Microsoft Xbox
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$13.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-161897653992">
+                <td class="date">2015-12-06</td>
+                <td class="title" title="eBay-161897653992">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/161897653992?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            BRAND NEW SEALED Microsoft XBOX Zathura
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$14.98</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-161556397260">
+                <td class="date">2015-02-04</td>
+                <td class="title" title="eBay-161556397260">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/161556397260?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            XBOX ZATHURA BRAND NEW!
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$5.00</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-381037823260">
+                <td class="date">2014-11-06</td>
+                <td class="title" title="eBay-381037823260">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/381037823260?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura  (Xbox, 2005) Brand New Sealed
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$0.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-181405878025">
+                <td class="date">2014-08-02</td>
+                <td class="title" title="eBay-181405878025">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/181405878025?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura  (Xbox, 2005) New, factory sealed
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$19.99</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+            
+            
+            
+            
+            <tr id="ebay-121395967918">
+                <td class="date">2014-08-01</td>
+                <td class="title" title="eBay-121395967918">
+                    <a target="_blank" class="js-ebay-completed-sale"
+                       href="https://www.ebay.com/itm/121395967918?mkevt=1&amp;mkcid=1&amp;mkrid=711-53200-19255-0&amp;campid=5336510469&amp;customid=G11470_ebayCarousel-control&amp;toolid=10001">
+                        
+                            Zathura---XBOX---Brand New and Sealed
+                        
+                    </a>
+                </td>
+                <td class="numeric">
+                    <span class="js-price">$2.25</span>
+                </td>
+                <td class="thumb-down">
+                    
+                    
+                </td>
+            </tr>
+            
+        
+    </tbody>
+</table>
+
+
+            </div>
+            <div class="completed-auctions-graded">
+                
+<p>No sales data for this game and condition</p>
+
+
+            </div>
+            <div class="completed-auctions-box-only">
+                
+<p>No sales data for this game and condition</p>
+
+
+            </div>
+            <div class="completed-auctions-manual-only">
+                
+<p>No sales data for this game and condition</p>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="ebay_widget">
+        
+            <ins class="epn-placement" data-config-id="60c1149135f0dde991c7a9ec" data-keyword="Zathura Xbox"></ins>
+        
+    </div>
+
+    
+    <a name="itemdetails"></a>
+    <div id="full_details" >
+        
+        <h2>Zathura (Xbox) Details
+</h2>
+        
+
+        <table id="attribute">
+        
+        
+            <tr>
+                <td class="title">Genre:</td>
+                <td class="details" itemprop="genre">
+                    Action &amp; Adventure
+                
+                </td>
+            </tr>
+        
+        
+            <tr>
+                <td class="title">Release Date:</td>
+                <td class="details" itemprop="datePublished">
+                
+                    November 1, 2005
+                
+                
+                </td>
+            </tr>
+        
+        
+            <tr>
+            
+                <td class="title">ESRB Rating:</td>
+            
+                <td class="details" itemprop="contentRating">
+                    
+                        Everyone 10&#43;
+                    
+                
+                </td>
+            </tr>
+        
+            <tr>
+                <td class="title">Publisher:</td>
+                <td class="details" itemprop="publisher">
+                    
+                        
+                        <a href="/search-products?type=prices&publisher=2K%20Games">2K Games</a>
+                        
+                    
+                
+                </td>
+            </tr>
+        
+            <tr>
+                <td class="title">Developer:</td>
+                <td class="details" itemprop="author">
+                    
+                        none
+                    
+                
+                </td>
+            </tr>
+        
+            <tr>
+            
+                <td class="title">Model Number:</td>
+            
+                <td class="details" itemprop="model-number">
+                    
+                        none
+                    
+                
+                </td>
+            </tr>
+        
+        
+            
+            <tr>
+                <td class="title">Disc Count:</td>
+                <td class="details">
+                
+                    1 game disc
+                
+                
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="title">Player Count:</td>
+                <td class="details">
+                
+                    1 player
+                
+                
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="title">Also Compatible On:</td>
+                <td class="details">
+                
+                    none
+                
+                
+                </td>
+            </tr>
+            
+        
+            <tr>
+                <td class="title">Notes:</td>
+                <td class="details">
+                    
+                        none
+                    
+                
+                </td>
+            </tr>
+
+            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+        
+            <tr itemprop="identifier" itemptype="http://schema.org/PropertyValue">
+                
+                <meta itemprop="propertyID" content="gtin12" />
+                <td class="title">UPC:</td>
+                
+                <td class="details" itemprop="value">
+                    
+                        710425298936,710425299216
+                    
+                
+                </td>
+            </tr>
+        
+        
+            <tr>
+                <td class="title">ASIN (Amazon):</td>
+                <td class="details">
+                    
+                        B000B90GCW
+                    
+                
+                </td>
+            </tr>
+            <tr>
+                <td class="title">ePID (eBay):</td>
+                <td class="details">
+                    
+                        48245062
+                    
+                
+                </td>
+            </tr>
+            
+        
+        
+            <tr>
+                <td class="title">PriceCharting ID:</td>
+                <td class="details">
+                    11470
+                </td>
+            </tr>
+
+        
+            
+
+            
+        
+
+            <tr>
+                
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                
+            </tr>
+
+            <tr>
+                <td class="title">Description:</td>
+                <td class="details" itemprop="description">
+                
+                    none
+                
+                
+                </td>
+            <tr>
+        </table>
+    </div>
+
+    
+    
+        <div class="pw-leaderboard" style="margin: 10px 0;" data-pw-desk="leaderboard_btf" data-pw-mobi="leaderboard_btf">
+        </div>
+    
+
+    <a name="images"></a>
+    <div id="extra-images">
+    
+        <h2>More Photos of Zathura</h2>
+    
+
+    
+    
+
+        <div class="spacer">&nbsp;</div>
+    </div>
+
+    <p class="price_info">
+        Zathura prices (Xbox) are updated daily for each source listed above. The prices shown are the lowest prices available for Zathura the last time we updated.
+<br/>
+Historic sales data are completed sales with a buyer and a seller agreeing on a price.  We do not factor unsold items into our prices.
+<br/>
+Chart shows the price of Zathura at the end of each month going back as long as we have tracked the item.
+<br/>
+Loose, CIB, and New prices are the current market price.
+
+    </p>
+
+    <meta itemprop="url" content="https://www.pricecharting.com/game/xbox/zathura" />
+    <meta itemprop="name" content="Zathura" />
+    <meta itemprop="applicationCategory" content="Game" />
+    <meta itemprop="operatingSystem" content="Xbox" />
+    <meta itemprop="gamePlatform" content="Xbox" />
+
+    
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "How many people can play Zathura for Xbox?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+    
+                "text": "Zathura for Xbox can be played by "
+    
+            }
+        }
+    
+        ,
+        {
+            "@type": "Question",
+            "name": "What is Zathura for Xbox rated?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Zathura for Xbox is rated Everyone 10&#43;"
+            }
+        }
+    
+    
+        ,
+        {
+            "@type": "Question",
+            "name": "Who published Zathura for Xbox?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "2K Games published Zathura for Xbox"
+            }
+        }
+    
+    
+    
+        ,
+        {
+            "@type": "Question",
+            "name": "When was Zathura for Xbox released?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Zathura for Xbox was released November 1, 2005"
+            }
+        }
+    
+    
+        
+    
+    ]
+}
+</script>
+
+
+</div> 
+
+
+
+
+
+
+<div id="js-tour0" class="tour">
+    <div class="pointer-down"></div>
+    
+    Select options to<br>
+    display historic prices
+    
+    <a href="#" class="js-close">Ok</a>
+</div>
+
+
+
+                </div> 
+            </div> 
+
+        
+                        <div class="footer">
+            
+            
+                <div class="pw-leaderboard" style="margin: 10px 0;" data-pw-desk="leaderboard_btf" data-pw-mobi="leaderboard_btf">
+                </div>
+            
+
+                <ul>
+                    <li class="first_row">Categories</li>
+                    <li><a href="https://www.pricecharting.com">Video Game Prices</a></li>
+                    <li><a href="https://www.pricecharting.com/category/pokemon-cards">Pokemon Card Prices</a></li>
+                    <li><a href="https://www.pricecharting.com/category/magic-cards">Magic Card Prices</a></li>
+                    <li><a href="https://www.sportscardspro.com/category/baseball-cards">Baseball Card Prices</a></li>
+                    <li><a href="https://www.sportscardspro.com/category/basketball-cards">Basketball Card Prices</a></li>
+                    <li><a href="https://www.sportscardspro.com/category/football-cards">Football Card Prices</a></li>
+                </ul>
+
+                <ul>
+                    <li class="first_row">Tools</li>
+                    <li><a href="https://www.pricecharting.com/page/collection-tracker">Collection Tracker</a></li>
+                    <li><a href="https://www.pricecharting.com/lot-value-calculator">Lot Value Calculator</a></li>
+                    <li><a href="https://www.pricecharting.com/lot-value-automater">Lot Value Automater</a></li>
+                    <li><a href="https://www.pricecharting.com/ebay-lot-bot">eBay Lot Bot</a></li>
+                    <li><a href="https://www.pricecharting.com/snipe">eBay Game Sniper</a></li>
+                </ul>
+
+                <ul>
+                <li class="first_row">Navigation</li>
+                    <li><a href="https://www.pricecharting.com" rel="nofollow">Home</a></li>
+                    <li><a href="https://www.pricecharting.com/pricecharting-pro?f=footer">PriceCharting Pro</a></li>
+                    <li><a href="https://www.pricecharting.com/page/about" rel="nofollow">About Us</a></li>
+                    <li><a href="https://www.pricecharting.com/page/contact-us">Contact Us</a></li>
+                    <li><a href="https://www.pricecharting.com/page/feature-requests">Request Features</a></li>
+                </ul>
+
+                <ul>
+                <li class="first_row">Other Links</li>
+                    <li><a href="/faq">FAQ/Help</a></li>
+                    <li><a href="http://blog.pricecharting.com">Blog &amp; Changelog</a></li>
+                    <li><a href="https://www.pricecharting.com/api-documentation">API Documentation</a></li>
+                    <li><a href="/contribute">Edit/Contribute</a></li>
+                    <li><a href="/page/app">PriceCharting App</a></li>
+                </ul>
+
+                <ul>
+                <li class="first_row">Policies</li>
+                    <li><a href="https://www.pricecharting.com/page/terms-of-service">Terms of Service</a></li>
+                    <li><a href="https://www.pricecharting.com/page/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/return-policy">Return Policy</a></li>
+                </ul>
+
+                <p>
+                    PriceCharting &copy; 2007-2022<br>
+                    We are user supported.  We may earn an affiliate commission if you buy stuff
+                    after clicking links on our site to eBay or Amazon
+                </p>
+
+            </div> 
+
+        
+
+            <a class="logo_link" href="https://www.pricecharting.com/"></a>
+
+            <div class="login">
+                <p>
+
+                    
+                    <a href="https://www.pricecharting.com/login?return=https%3A%2F%2Fwww.pricecharting.com%2Fgame%2Fxbox%2Fzathura" rel="nofollow">Login</a> |
+                    <ul class="dropdown account_dropdown">
+                        <li><a href="https://www.pricecharting.com/create-account?return=https%3A%2F%2Fwww.pricecharting.com%2Fgame%2Fxbox%2Fzathura" rel="nofollow">Create Account</a> <i class="arrow down"></i> |
+                            <ul>
+                                <li><span>Dark <input type="checkbox" id="color-theme" /></span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <ul id="currency_selector" class="dropdown currency_dropdown">
+                        <li><a id="dropdown_selected_currency">USD</a> <i class="arrow down"></i> |
+                            <ul>
+                                <li><a data-currency="USD" title="US Dollar">USD</a></li>
+                                <li><a data-currency="CAD" title="Canadian Dollar">CAD</a></li>
+                                <li><a data-currency="CNY" title="Chinese Yuan">CNY</a></li>
+                                <li><a data-currency="AUD" title="Australian Dollar">AUD</a></li>
+                                <li><a data-currency="BRL" title="Brazilian Real">BRL</a></li>
+                                <li><a data-currency="EUR" title="Euro">EUR</a></li>
+                                <li><a data-currency="GBP" title="British Pound">GBP</a></li>
+                                <li><a data-currency="MXN" title="Mexican Peso">MXN</a></li>
+                                <li><a data-currency="NZD" title="New Zealand Dollar">NZD</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <ul class="dropdown">
+                        <li><a>English</a> <i class="arrow down"></i> |
+                            <ul>
+                            
+                                <li><a href="https://www.pricecharting.com/de/game/xbox/zathura">Deutsch</a></li>
+                            
+                                <li><a href="https://www.pricecharting.com/game/xbox/zathura">English</a></li>
+                            
+                                <li><a href="https://www.pricecharting.com/es/game/xbox/zathura">Español</a></li>
+                            
+                                <li><a href="https://www.pricecharting.com/fr/game/xbox/zathura">Français</a></li>
+                            
+                                <li><a href="https://www.pricecharting.com/nl/game/xbox/zathura">Nederlands</a></li>
+                            
+                                <li><a href="https://www.pricecharting.com/pt/game/xbox/zathura">Português</a></li>
+                            
+                                <li><a href="https://www.pricecharting.com/ru/game/xbox/zathura">Pусский</a></li>
+                            
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <a href="/faq">FAQ</a>
+
+                </p>
+            </div> 
+
+        </div> 
+
+        
+
+        <div id="toast"></div>
+
+        
+        <div id="js-dialog-upc">
+            <div id="upc-stream"></div>
+        </div>
+        
+
+        
+        
+        
+
+        <script type="text/javascript">
+        
+            
+                
+                ga('set', 'dimension1', 'playwireB_playwire'); 
+                
+                ga('send', 'event', 'ABTest', 'NeededToLoadCustomVariable','None', {nonInteraction: true});
+            
+        
+
+        
+            
+            ga('send', 'event', 'Popular_Uid', 'Viewed', 'G11470_video-games', {nonInteraction: true});
+        
+
+        
+
+        
+        
+
+        
+        
+
+
+        
+        
+
+        
+        
+
+        
+        </script>
+    </body>
+</html>

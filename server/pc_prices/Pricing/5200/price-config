@@ -1,0 +1,11 @@
+# Pricing Coefficents
+# 0 - 7.99
+pricingcoefficientlow=0.30
+# 8 - 19.99
+pricingcoefficientmid=0.50
+# 20.00+
+pricingcoefficienthigh=0.70
+# console name
+gamesysname='5200'
+# default condition
+defaultcondition='loose'

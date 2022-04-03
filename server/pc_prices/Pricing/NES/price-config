@@ -1,0 +1,11 @@
+# Pricing Coefficents
+# 0 - 7.99
+pricingcoefficientlow=0.70
+# 8 - 19.99
+pricingcoefficientmid=0.80
+# 20.00+
+pricingcoefficienthigh=0.90
+# console name
+gamesysname='NES'
+# default condition
+defaultcondition='loose'
