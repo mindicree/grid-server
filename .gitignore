@@ -6,3 +6,19 @@ server/routes/__pycache__/*
 
 discord/sfx/*
 discord/token.txt
+server/pc_prices/Pricing/PS-4/index.txt
+server/pc_prices/Pricing/PS-4/price-config
+server/pc_prices/Pricing/PS-4/pricing.csv
+server/pc_prices/Pricing/PS2-patch/index.txt
+server/pc_prices/Pricing/PS2-patch/price-config
+server/pc_prices/Pricing/PS2-patch/pricing.csv
+server/pc_prices/Pricing/PS2-patch/sellrate.csv
+server/pc_prices/Pricing/PS4/index.txt
+server/pc_prices/Pricing/PS4/price-config
+server/pc_prices/Pricing/PS4/pricing.csv
+server/pc_prices/Pricing/Xbox One/index.txt
+server/pc_prices/Pricing/Xbox One/price-config
+server/pc_prices/Pricing/Xbox One/pricing.csv
+server/pc_prices/Pricing/Xbox-One/index.txt
+server/pc_prices/Pricing/Xbox-One/price-config
+server/pc_prices/Pricing/Xbox-One/pricing.csv

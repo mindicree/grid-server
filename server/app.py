@@ -8,6 +8,7 @@ from system_pricing_functions import *
 from playsound import playsound
 import config
 import os
+import csv
 
 #App Initialization
 app = Flask(__name__)
@@ -1738,7 +1739,13 @@ def tech_reports():
 
 @app.route('/game-prices')
 def game_prices():
-    return make_response(jsonify({}))
+    logs = Game.objects()
+    log_data = []
+    for log in logs:
+        log_data.append(log.get_json())
+    response = make_response(jsonify(log_data), 200)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 @app.route('/game-prices/update-csv/<system>')
 def game_prices_csv():
@@ -1746,7 +1753,58 @@ def game_prices_csv():
 
 @app.route('/game-prices/update-db')
 def game_prices_db():
-    return make_response(jsonify({}))
+    # for each directory in 
+    try:
+        pc_dir = 'pc_prices/Pricing'
+        for console in os.listdir(pc_dir):
+                with open(f'{pc_dir}/{console}/pricing.csv') as file:
+                    game_price_list = csv.reader(file)
+                    for item in game_price_list:
+                        game_price_check = Game.objects(pc_id=str(item[5])).first()
+                        print(f'Saving {item[0]}...')
+                        if not game_price_check:
+                            game_price = Game()
+                            game_price.name = item[0]
+                            try:
+                                game_price.price_used = float(item[1])
+                            except:
+                                game_price.price_used = -1
+                            try:
+                                game_price.price_cib = float(item[2])
+                            except:
+                                game_price.price_cib = -1
+                            try:
+                                game_price.price_new = float(item[3])
+                            except:
+                                game_price.price_new = -1
+                            game_price.barcode = str(item[4])
+                            game_price.pc_id = str(item[5])
+                            game_price.pc_url = str(item[6])
+                            game_price.system = str(console)
+                            game_price.save()
+                        else:
+                            game_price_check.name = item[0]
+                            try:
+                                game_price_check.price_used = float(item[1])
+                            except:
+                                game_price_check.price_used = -1
+                            try:
+                                game_price_check.price_cib = float(item[2])
+                            except:
+                                game_price_check.price_cib = -1
+                            try:
+                                game_price_check.price_new = float(item[3])
+                            except:
+                                game_price_check.price_new = -1
+                            game_price_check.barcode = str(item[4])
+                            game_price_check.pc_id = str(item[5])
+                            game_price_check.pc_url = str(item[6])
+                            game_price_check.system = str(console)
+                            game_price_check.save()
+    except Exception as e:
+        return make_response(str(e), 500)
+                        
+    return make_response(jsonify({'message': 'Database of game prices updated successfully'}))
 
 #RUN APPLICATION
 if __name__ == '__main__':
