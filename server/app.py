@@ -1761,7 +1761,7 @@ def game_prices_db():
                     game_price_list = csv.reader(file)
                     for item in game_price_list:
                         game_price_check = Game.objects(pc_id=str(item[5])).first()
-                        print(f'Saving {item[0]}...')
+                        print(f'Saving {item[0]} for {str(console)}...')
                         if not game_price_check:
                             game_price = Game()
                             game_price.name = item[0]
