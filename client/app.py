@@ -63,6 +63,7 @@ def prices():
 def game_prices():
     prices = requests.get('http://localhost:5000/game-prices').json()
     for price in prices:
+        price['img_link'] = url_for('static', filename=f'img/img_games/{price["pc_id"]}.jpg')
         pass
     return render_template('game_prices.html', host_ip=setup.HOST, p=prices)
 
