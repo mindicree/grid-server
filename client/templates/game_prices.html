@@ -5,5 +5,8 @@ Game Prices | GRID Server
 {% endblock %}
 
 {% block body %}
-
+<script>
+    game_prices=JSON.parse('{{ p | tojson | safe }}')
+    
+</script>
 {% endblock %}

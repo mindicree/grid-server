@@ -5,6 +5,7 @@ import requests
 import pdfkit
 from PyPDF2 import PdfFileMerger
 import os
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -60,24 +61,27 @@ def prices():
 #Game Prices Page
 @app.route('/game-prices')
 def game_prices():
-    return render_template('game_prices.html', host_ip=setup.HOST)
+    prices = requests.get('http://localhost:5000/game-prices').json()
+    for price in prices:
+        pass
+    return render_template('game_prices.html', host_ip=setup.HOST, p=prices)
 
 #Console Log Prices Page
 @app.route('/consolelogs')
 def consolelog():
     return render_template('consolelog.html', host_ip=setup.HOST)
 
-#Console Log Prices Page
+#Console GCOMM Prices Page
 @app.route('/console-gcomm')
 def console_gcomm():
     return render_template('consolegcomm.html', host_ip=setup.HOST)
 
-#Console Log Prices Page
+#Techs and Reports Page
 @app.route('/techs')
 def techs():
     return render_template('techs.html', host_ip=setup.HOST)
 
-#Console Log Prices Page
+#Report Generation Page
 @app.route('/generate-report')
 def generate_report():
     if not request.args:
