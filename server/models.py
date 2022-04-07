@@ -198,6 +198,7 @@ class Game(db.Document):
     def get_json(self):
         return {
             '_id': str(self.id),
+            'name': self.name,
             'price_used': self.price_used,
             'price_cib': self.price_cib,
             'price_new': self.price_new,
