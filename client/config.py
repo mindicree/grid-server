@@ -5,6 +5,7 @@ class Config():
     DEBUG = True
     HOST = 'localhost'
     PORT = 5001
+    DATABASE_URL = 'http://localhost:5000'
 
 # Test Config
 # class Config():
