@@ -13,7 +13,6 @@ Game Prices | GRID Server
     <script>
         let search_input = document.querySelector('#input_game_search')
         search_input.addEventListener('keypress', (e) => {
-            console.log(e.code)
             if (e.code === 'Enter') {
                 searchTable(search_input)
                 search_input.value = ''
