@@ -511,7 +511,7 @@ System Logs | GRID Server
                         this.style.display = "none";
                         document.querySelector("#loading-gif").style.display = "initial";
                         submission.tech = techInitials;
-                        fetch('http://{{ host_ip }}:5000/syslogs', {method: 'POST', body: JSON.stringify(submission)})
+                        fetch(`${base_url}/api/v1/syslogs`, {method: 'POST', body: JSON.stringify(submission)})
                         .then(response => {
                             if (response.status == 201) {
                                 window.location.assign('syslogs');
@@ -892,7 +892,8 @@ System Logs | GRID Server
     }
 
     //fetch system log data from backend API
-    fetch('http://{{ host_ip }}:5000/syslogs')
+    // TODO put in globals file
+    fetch(`${base_url}/api/v1/syslogs`)
     .then(response => response.json())
     .then(data => {
         //assign data to global variable
