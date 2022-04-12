@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, send_file
+from flask import Flask, request, render_template, redirect, url_for, send_file, make_response, jsonify
 from flask_cors import CORS
 import config
 import requests
@@ -29,6 +29,19 @@ def index():
 @app.route('/syslogs')
 def syslogs():
     return render_template('syslogs.html', host_ip=setup.HOST)
+
+# System Log API
+@app.route('/api/v1/syslogs',methods=['GET','POST'])
+def syslogs_api_mass():
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/syslogs').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'POST':
+        syslog_json =requests.post(f'{setup.DATABASE_URL}/syslogs', data=request.data).json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 201)
+    pass
 
 #G-COMM Logs Page
 @app.route('/gcomm')
