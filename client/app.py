@@ -65,7 +65,7 @@ def game_prices():
     for price in prices:
         price['img_link'] = url_for('static', filename=f'img/img_games/{price["pc_id"]}.jpg')
         pass
-    return render_template('game_prices.html', host_ip=setup.HOST, p=prices)
+    return render_template('game_prices_2.html', host_ip=setup.HOST, p=prices)
 
 #Console Log Prices Page
 @app.route('/consolelogs')
