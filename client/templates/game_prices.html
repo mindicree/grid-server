@@ -94,6 +94,27 @@ Game Prices | GRID Server
         // clear table
         clearTable()
 
+        // delimit value
+        let search_query = field.value.split(' ')
+
+        let filtered_list = []
+        game_prices.forEach((element) => {
+            let isValid = false
+            search_query.every(term => {
+                if (element.name.toLowerCase().includes(term.toLowerCase()) || element.barcode.toLowerCase().includes(term.toLowerCase())) {
+                    isValid = true
+                    return true
+                } else {
+                    isValid = false
+                    return false
+                }
+            })
+            if (isValid) {
+                filtered_list.push(element)
+            }
+        })
+
+        /*
         // create list of filtered prices
         let filtered_list = []
         game_prices.forEach((element) => {
@@ -101,6 +122,7 @@ Game Prices | GRID Server
                 filtered_list.push(element)
             }
         })
+        */
 
         // add filtered list to table
         loadTableSearch(filtered_list)
