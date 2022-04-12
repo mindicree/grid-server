@@ -8,8 +8,18 @@ Game Prices | GRID Server
 <!--Database Search Tools-->
 <br>
 <div style="display: grid; grid-template-columns: 80% auto; gap: 16px; width: 90%; max-width: 800px; margin: auto;">
-    <input id='input_game_search' autofocus="autofocus" oninput='searchTable(this)' type="text" class="form-control" placeholder="Search">
+    <input id='input_game_search' autofocus="autofocus" type="text" class="form-control" placeholder="Search">
     <button class="btn btn-success" onclick="clearSearch()">Clear</button>
+    <script>
+        let search_input = document.querySelector('#input_game_search')
+        search_input.addEventListener('keypress', (e) => {
+            console.log(e.code)
+            if (e.code === 'Enter') {
+                searchTable(search_input)
+                search_input.value = ''
+            }
+        })
+    </script>
 </div>
 <div id="game_price_table_container" style="max-width: 1024px; margin: auto; padding: 20px 0px;">
     <table class="table table-striped table-hover table-bordered">
