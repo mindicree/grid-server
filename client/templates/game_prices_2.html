@@ -94,12 +94,6 @@ Game Prices | GRID Server
 
     // function to filter table by search field
     function searchTable(field) {
-        // if search not long enough, load basic table
-        if (field.value.length < 4) {
-            loadTable(1)
-            return
-        }
-
         // clear table
         clearTable()
 
