@@ -393,13 +393,50 @@ def admin_page(page):
         return render_template('admin.html')
 
 # PRINT
-# ARGS: type [CHECKLIST, SYSLOG, SYSCOM, CONLOG, CONCOM, GAME]
+# ARGS: type [CHECKLIST, SYSLOG, SYSCOM, CONLOG, CONCOM, GAME, TWOLINE, TRILINE, PARTS, BARCODE]
 # DATA: json
 @app.route('/print-testing')
-def print_start():
+def print_test():
     print_job = subprocess.run(['./print.sh', './labels/checklist.prn'], capture_output=True, text=True)
     print(f'Output: {print_job.stdout}')
     return make_response(jsonify({'message': 'print complete'}), 200)
+
+@app.route('/print')
+def print_job():
+    try:
+        print_type = request.args.get("type")
+        if print_type == None:
+            return make_response(jsonify({'error': 'no print type found'}), 400)
+    except KeyError:
+        return make_response(jsonify({'error': 'no print type found'}), 400)
+    except:
+        return make_response(jsonify({'error': 'server could not extract type properly'}), 500)
+    try:
+        if print_type == 'CHECKLIST':
+            return str(print_type)
+        elif print_type == 'SYSLOG':
+            return str(print_type)
+        elif print_type == 'SYSCOM':
+            return str(print_type)
+        elif print_type == 'CONLOG':
+            return str(print_type)
+        elif print_type == 'CONCOM':
+            return str(print_type)
+        elif print_type == 'GAME':
+            return str(print_type)
+        elif print_type == 'TWOLINE':
+            return str(print_type)
+        elif print_type == 'TRILINE':
+            return str(print_type)
+        elif print_type == 'PARTS':
+            return str(print_type)
+        elif print_type == 'BARCODE':
+            return str(print_type)
+        else:
+            return make_response(jsonify({'error': f'invalid print type of {print_type}'}), 400)
+    except:
+        return make_response(jsonify({'error': 'server could not print'}), 500)
+    pass
 
 #RUN APPLICATION
 if __name__ == '__main__':
