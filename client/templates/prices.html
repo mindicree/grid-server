@@ -65,7 +65,7 @@ Prices | GRID Server
     let price_list;
     let filter_list = [];
     let categories;
-    fetch('http://{{ host_ip }}:5000/prices')
+    fetch(`${base_url}/api/v1/prices`)
     .then(response => response.json())
     .then(data => {
         price_list = data['price_list']

@@ -193,6 +193,16 @@ def work_orders_edit():
 def prices():
     return render_template('prices.html', host_ip=setup.HOST)
 
+# GENERAL PRICES API
+@app.route('/api/v1/prices', methods=['GET'])
+def prices_api():
+    if request.method == 'GET':
+        wo_json = requests.get(f'{setup.DATABASE_URL}/prices').json()
+        print(wo_json)
+        return make_response(jsonify(wo_json), 200)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+
 #Game Prices Page
 @app.route('/game-prices')
 def game_prices():
