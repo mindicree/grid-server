@@ -207,7 +207,7 @@ def prices_api():
 #Game Prices Page
 @app.route('/game-prices')
 def game_prices():
-    prices = requests.get('http://localhost:5000/game-prices').json()
+    prices = requests.get(f'{setup.DATABASE_URL}/game-prices').json()
     for price in prices:
         price['img_link'] = url_for('static', filename=f'img/img_games/{price["pc_id"]}.jpg')
         pass
@@ -288,6 +288,20 @@ def consolegcomms_api_single(log_id):
 def techs():
     return render_template('techs.html', host_ip=setup.HOST)
 
+# TECH API
+@app.route('/api/v1/techs', methods=['GET', 'PUT'])
+def techs_api():
+    if request.method == 'GET':
+        techs_json = requests.get(f'{setup.DATABASE_URL}/techs').json()
+        print(techs_json)
+        return make_response(jsonify(techs_json), 200)
+    if request.method == 'PUT':
+        techs_json = requests.put(f'{setup.DATABASE_URL}/techs?old={request.args.get("old")}&new={request.args.get("new")}', data=request.data).json()
+        print(techs_json)
+        return make_response(jsonify(techs_json), 200)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+
 #Report Generation Page
 @app.route('/generate-report')
 def generate_report():
@@ -317,7 +331,7 @@ def generate_report():
     }
 
     if tech_id:
-        html_info = requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech_id}', headers=request_headers)
+        html_info = requests.get(f'{setup.DATABASE_URL}/techs/reports?start={start}&end={end}&tech_id={tech_id}', headers=request_headers)
         file_name = f'report_{tech_id}_{start}_{end}'
         pdfkit.from_string(str(html_info.content).replace('b\'', '').replace('\'', ''), f'reports/{file_name}.pdf', options=pdf_options)
         # pdfkit.from_url(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech_id}', f'reports/{file_name}.pdf', options=pdf_options)
@@ -333,12 +347,12 @@ def generate_report():
         html_info = []
 
         # adding main summary content to array
-        html_info.append([requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}', headers=request_headers).content, f'reports/mass/report_all_{start}_{end}.pdf'])
+        html_info.append([requests.get(f'{setup.DATABASE_URL}/techs/reports?start={start}&end={end}', headers=request_headers).content, f'reports/mass/report_all_{start}_{end}.pdf'])
 
         # get the list of techs and get their HTML contents
-        tech_list = requests.get(f'http://{setup.HOST}:5000/techs').json()
+        tech_list = requests.get(f'{setup.DATABASE_URL}/techs').json()
         for tech in tech_list:
-            html_info.append([requests.get(f'http://{setup.HOST}:5000/techs/reports?start={start}&end={end}&tech_id={tech["id"]}', headers=request_headers).content, f'reports/mass/report_{tech["id"]}_{start}_{end}.pdf'])
+            html_info.append([requests.get(f'{setup.DATABASE_URL}/techs/reports?start={start}&end={end}&tech_id={tech["id"]}', headers=request_headers).content, f'reports/mass/report_{tech["id"]}_{start}_{end}.pdf'])
         
         # create PDF merger
         pdf_merger = PdfFileMerger()

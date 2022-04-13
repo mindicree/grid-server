@@ -1686,7 +1686,7 @@ def tech_reports():
             system_log_list = SystemLog.objects(__raw__=raw_query)
             system_log_count, system_log_rev = len(system_log_list), 0
             for log in system_log_list:
-                system_log_rev += log.price
+                system_log_rev = system_log_rev + log.price
             
             #GCOMMLog data
             system_gcomm_list = GCommLog.objects(__raw__=raw_query)
@@ -1701,7 +1701,7 @@ def tech_reports():
             console_log_list = ConsoleLog.objects(__raw__=raw_query)
             console_log_count, console_log_rev = len(console_log_list), 0
             for log in console_log_list:
-                console_log_rev += log.price
+                console_log_rev = console_log_rev + log.price
 
             # ConsoleGCOMM data
             console_gcomm_list = ConsoleGCommLog.objects(__raw__=raw_query)
@@ -1712,7 +1712,10 @@ def tech_reports():
             work_order_list = WorkOrder.objects(__raw__=raw_query)
             work_order_count, work_order_rev = len(work_order_list), 0
             for log in work_order_list:
-                work_order_rev += log.price
+                try:
+                    work_order_rev = work_order_rev + log.price
+                except TypeError:
+                    pass
 
             return render_template('report_mass_template_2.html', sd=start_date.date(), ed=end_date.date(), sll=system_log_list, slc=system_log_count, slr="${:,.2f}".format(system_log_rev), sgl=system_gcomm_list, sgc=system_gcomm_count, sgcc=system_gcomm_c_count, cll=console_log_list, clc=console_log_count, clr="${:,.2f}".format(console_log_rev), cgl=console_gcomm_list, cgc=console_gcomm_count, wol=work_order_list, woc=work_order_count, wor="${:,.2f}".format(work_order_rev), tr="${:,.2f}".format(system_log_rev + console_log_rev + work_order_rev))
             # return make_response(jsonify({'message': f'Tech report endpoint with dates [{start_date}] and [{end_date}])'}), 200)

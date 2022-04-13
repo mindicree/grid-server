@@ -41,7 +41,7 @@ Techs | GRID Server
 
 <script>
     let original_data, new_data
-    fetch('http://{{ host_ip }}:5000/techs')
+    fetch(`${base_url}/api/v1/techs`)
     .then(response => response.json())
     .then(data => {
         original_data = data.sort((a, b) => {
@@ -164,7 +164,7 @@ Techs | GRID Server
             return true
         })
 
-        fetch(`http://{{ host_ip }}:5000/techs?old=${tech_id}&new=${new_id}`, {method: 'PUT', body: JSON.stringify(new_data)})
+        fetch(`${base_url}/api/v1/techs?old=${tech_id}&new=${new_id}`, {method: 'PUT', body: JSON.stringify(new_data)})
         .then(response => response.json())
         .then(data => {
             try {
