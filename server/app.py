@@ -1309,11 +1309,6 @@ def work_orders():
         playsound('sounds/you\'ve_got_mail.mp3')
         try:
             data = json.loads(request.data)
-            try:
-                if not isValidTechId(data['tech']):
-                    return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
-            except KeyError:
-                return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
             log = WorkOrder(fname=data['fname'], lname=data['lname'], phone1=data['phone1'], phone2=data['phone2'], computer_type=data['computer_type'], model=data['model'], password=data['password'], isPurchasedFromUs=data['isPurchasedFromUs'], isUnderWarranty=data['isUnderWarranty'], isWithPowerSupply=data['isWithPowerSupply'], isWithOtherItems=data['isWithOtherItems'], other_items=data['other_items'], issue_category=data['issue_category'], issue_description=data['issue_description'], cashier=data['cashier'], dt_recieved=datetime.utcnow(), dt_last_updated=datetime.utcnow())
             print(log.dt_recieved)
             log.save()
@@ -1378,11 +1373,6 @@ def work_order(log_id):
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
         data = json.loads(request.data)
-        try:
-            if not isValidTechId(data['tech']):
-                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
-        except KeyError:
-            return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
         if not data:
             response = make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
             response.headers.add("Access-Control-Allow-Origin", "*")
@@ -1470,12 +1460,6 @@ def work_orders_pickup():
         # check if argument provided
         if not request.args.get('id') or not request.args.get('sig'):
                 return make_response(jsonify({'error': 'Bad request - missing arguments'}), 400)
-        
-        try:
-            if not isValidTechId(request.args.get('tech')):
-                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
-        except KeyError:
-            return make_response(jsonify({'error': 'Tech ID not provided'}), 400)
 
         # check id if available
         log = WorkOrder.objects(id=request.args.get('id')).first()

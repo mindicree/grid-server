@@ -81,7 +81,7 @@ Work Orders Edit | GRID Server
                 btn.style.display = 'none';
                 //console.log(workOrderEdit);
                 //console.log(JSON.stringify(workOrderEdit));
-                let apiURL = 'http://{{ host_ip }}:5000/work-orders/' + workOrderEdit._id;
+                let apiURL = `${base_url}/api/v1/work-orders/` + workOrderEdit._id;
                 //make POST call and reload
                 fetch(apiURL, {method: 'PUT', body: JSON.stringify(workOrderEdit)})
                 .then(response => response.json())
@@ -231,7 +231,7 @@ Work Orders Edit | GRID Server
 <script>
     let workOrderOriginal;
     let workOrderEdit;
-    fetch('http://{{ host_ip }}:5000/work-orders/{{ wo_id }}')
+    fetch(`${base_url}/api/v1/work-orders/{{ wo_id }}`)
         .then(response => response.json())
         .then(data => {
             workOrderOriginal = data;

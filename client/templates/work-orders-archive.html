@@ -30,7 +30,7 @@ Work Orders Archive | GRID Server
 <!-- LOAD TABLES -->
 <script>
     let workOrdersArchive = [];
-    fetch('http://{{ host_ip }}:5000/work-orders/archive')
+    fetch('${base_url}/api/v1/work-orders/archive')
     .then(response => response.json())
     .then(data => {
         workOrdersArchive = data;

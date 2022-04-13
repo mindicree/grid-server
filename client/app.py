@@ -101,10 +101,84 @@ def gcomms_api_single(log_id):
 def work_orders():
     return render_template('work-orders.html', host_ip=setup.HOST)
 
+# WorkOrders Log API
+@app.route('/api/v1/work-orders',methods=['GET','POST'])
+def wo_api_mass():
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/work-orders').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'POST':
+        syslog_json =requests.post(f'{setup.DATABASE_URL}/work-orders', data=request.data).json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 201)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+# WorkOrders Log API
+@app.route('/api/v1/work-orders/current',methods=['GET','POST'])
+def wo_api_mass_current():
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/work-orders/current').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+# WorkOrders Claim API
+@app.route('/api/v1/work-orders/claim',methods=['POST','PUT'])
+def wo_api_claim():
+    if request.method == 'POST' or request.method == 'PUT':
+        syslog_json = requests.post(f'{setup.DATABASE_URL}/work-orders/claim?id={request.args.get("id")}&tech={request.args.get("tech")}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+# WorkOrders Complete API
+@app.route('/api/v1/work-orders/complete',methods=['POST','PUT'])
+def wo_api_complete():
+    if request.method == 'POST' or request.method == 'PUT':
+        syslog_json = requests.post(f'{setup.DATABASE_URL}/work-orders/complete?id={request.args.get("id")}&tech={request.args.get("tech")}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+# WorkOrders Pickup API
+@app.route('/api/v1/work-orders/pickup',methods=['POST','PUT'])
+def wo_api_pickup():
+    if request.method == 'POST' or request.method == 'PUT':
+        syslog_json = requests.post(f'{setup.DATABASE_URL}/work-orders/pickup?id={request.args.get("id")}&sig={request.args.get("sig")}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+# WorkOrders Log API Single
+@app.route('/api/v1/work-orders/<log_id>',methods=['GET','PUT', 'DELETE'])
+def wo_api_single(log_id):
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/work-orders/{log_id}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'PUT':
+        syslog_json =requests.put(f'{setup.DATABASE_URL}/work-orders/{log_id}', data=request.data).json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'DELETE':
+        syslog_json =requests.delete(f'{setup.DATABASE_URL}/work-orders/{log_id}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
 #Work Orders Archive Page
 @app.route('/work-orders-archive')
 def work_orders_archive():
     return render_template('work-orders-archive.html', host_ip=setup.HOST)
+
+# WORK ORDERS ARCHIVE API
+@app.route('/api/v1/work-orders/archive', methods=['GET'])
+def wo_archive_api():
+    if request.method == 'GET':
+        wo_json = requests.get(f'{setup.DATABASE_URL}/work-orders/archive')
+        print(wo_json)
+        return make_response(jsonify(wo_json), 200)
 
 #Work Orders Edit Page
 @app.route('/work-orders-edit')

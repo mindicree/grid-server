@@ -273,12 +273,12 @@ Work Orders | GRID Server
         }
 
         //create URL for POST call
-        let apiURL = 'http://{{ host_ip }}:5000/work-orders';
+        let apiURL = `${base_url}/api/v1/work-orders`;
         //make POST call and reload
         fetch(apiURL, {method: 'POST', body: JSON.stringify(workOrderJSON)})
         .then(response => response.json())
         .then(data => {
-            alert('Work Order Submitted Successfully');
+            alert(JSON.stringify(data));
             window.location.replace('work-orders');
         })
 
@@ -297,7 +297,7 @@ Work Orders | GRID Server
             alert('Error: No tech');
         } else {
             //alert('Tech ' + tech_entry + ' chosen');
-            let claimURL = 'http://{{ host_ip }}:5000/work-orders/complete?id=' + id + '&tech=' + tech_entry;
+            let claimURL = `${base_url}/api/v1/work-orders/complete?id=${id}&tech=${tech_entry}`;
             fetch(claimURL, {method: 'POST'})
             .then(response => response.json())
             .then(data => {
@@ -329,7 +329,7 @@ Work Orders | GRID Server
             alert('Error: No signature');
         } else {
             //alert('Tech ' + tech_entry + ' chosen');
-            let claimURL = 'http://{{ host_ip }}:5000/work-orders/pickup?id=' + id + '&sig=' + signature;
+            let claimURL = `${base_url}/api/v1/work-orders/pickup?id=${id}&sig=${signature}`;
             fetch(claimURL, {method: 'POST'})
             .then(response => response.json())
             .then(data => {
@@ -360,7 +360,7 @@ Work Orders | GRID Server
             alert('Error: No tech');
         } else {
             //alert('Tech ' + tech_entry + ' chosen');
-            let claimURL = 'http://{{ host_ip }}:5000/work-orders/claim?id=' + id + '&tech=' + tech_entry;
+            let claimURL = `${base_url}/api/v1/work-orders/claim?id=${id}&tech=${tech_entry}`;
             fetch(claimURL, {method: 'POST'})
             .then(response => response.json())
             .then(data => {
@@ -388,7 +388,7 @@ Work Orders | GRID Server
     let workOrdersInProgress = [];
     let workOrdersReady = [];
     let workOrdersArchive = [];
-    fetch('http://{{ host_ip }}:5000/work-orders/current')
+    fetch(`${base_url}/api/v1/work-orders/current`)
     .then(response => response.json())
     .then(data => {
         workOrders = data;
