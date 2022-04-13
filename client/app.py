@@ -43,6 +43,23 @@ def syslogs_api_mass():
         return make_response(jsonify(syslog_json), 201)
     pass
 
+# System Log API Single
+@app.route('/api/v1/syslogs/<log_id>',methods=['GET','PUT', 'DELETE'])
+def syslogs_api_single(log_id):
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/syslogs/{log_id}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'PUT':
+        syslog_json =requests.put(f'{setup.DATABASE_URL}/syslogs/{log_id}', data=request.data).json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'DELETE':
+        syslog_json =requests.delete(f'{setup.DATABASE_URL}/syslogs/{log_id}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    pass
+
 #G-COMM Logs Page
 @app.route('/gcomm')
 def gcomm():
