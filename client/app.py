@@ -20,6 +20,7 @@ setup = config.Config()
 # TODO convert all tech initials to capital upon entry
 # TODO autofocus tech input on submission entry
 # TODO go to new location instead of refresh
+# TODO remove mass console.logs
 
 #HOME
 @app.route('/')
@@ -216,6 +217,36 @@ def game_prices():
 @app.route('/consolelogs')
 def consolelog():
     return render_template('consolelog.html', host_ip=setup.HOST)
+
+# CONSOLE Log API
+@app.route('/api/v1/consolelogs',methods=['GET','POST'])
+def consolelog_api_mass():
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/consolelogs').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'POST':
+        syslog_json =requests.post(f'{setup.DATABASE_URL}/consolelogs', data=request.data).json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 201)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+# CONSOLE Log API Single
+@app.route('/api/v1/consolelogs/<log_id>',methods=['GET','PUT', 'DELETE'])
+def consolelog_api_single(log_id):
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/consolelogs/{log_id}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'PUT':
+        syslog_json =requests.put(f'{setup.DATABASE_URL}/consolelogs/{log_id}', data=request.data).json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'DELETE':
+        syslog_json =requests.delete(f'{setup.DATABASE_URL}/consolelogs/{log_id}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
 
 #Console GCOMM Prices Page
 @app.route('/console-gcomm')

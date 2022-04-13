@@ -107,7 +107,7 @@ Console Logs | GRID Server
                 document.querySelector("#submission-modal-button").addEventListener('click', function() {
                     this.style.display = "none";
                     document.querySelector("#loading-gif").style.display = "initial";
-                    fetch('http://{{ host_ip }}:5000/consolelogs', {method: 'POST', body: JSON.stringify(submission)})
+                    fetch(`${base_url}/api/v1/consolelogs`, {method: 'POST', body: JSON.stringify(submission)})
                     .then(response => response.json())
                     .then(data => {
                         alert('Submission Successful!')
@@ -248,7 +248,7 @@ Console Logs | GRID Server
     let itemsPerPage = 10;
     let numItems, numTotalPages;
     let tableBodyId = 'tableConsoleLogBody';
-    fetch('http://{{ host_ip }}:5000/consolelogs')
+    fetch(`${base_url}/api/v1/consolelogs`)
     .then(response => response.json())
     .then(data => {
         consoles = data.reverse()
@@ -427,7 +427,7 @@ Console Logs | GRID Server
                     '<p><b>Console: </b><input id="edit-console-'+entry._id+'" type="text" value="' + entry.console + '" required></p>' +
                     '<p><b>Special Model: </b><input placeholder="leave blank if N/A" id="edit-special-model-'+entry._id+'" type="text" value="' + entry.special_model + '" ></p>' +
                     '<p><b>Color: </b><input placeholder="leave blank if base" id="edit-color-'+entry._id+'" type="text" value="' + entry.special_color + '" ></p>' +
-                    '<p><b>HDD Size (GB): </b><input placeholder="leave blank if N/A" id="edit-hdd-'+entry._id+'" type="text" value="' + entry.hdd_size + '" ></p>' +
+                    '<p><b>HDD Size (GB): </b><input placeholder="leave blank if N/A" id="edit-hdd-'+entry._id+'" type="text" value="' + (entry.hdd_size == null ? '' : entry.hdd_size) + '" ></p>' +
                     '<p><b>Price: </b><input id="edit-price-'+entry._id+'" type="text" value="' + entry.price + '" required></p>' +
                     '<p><b>Tech: </b><input id="edit-tech-'+entry._id+'" type="text" value="' + entry.tech + '" required></p>' +
                 '</div>' + 
@@ -509,7 +509,7 @@ Console Logs | GRID Server
                 'console': form.querySelector(`#edit-console-${console_edit_id}`).value,
                 'special_model': form.querySelector(`#edit-special-model-${console_edit_id}`).value,
                 'special_color': form.querySelector(`#edit-color-${console_edit_id}`).value,
-                'hdd_size': form.querySelector(`#edit-hdd-${console_edit_id}`).value,
+                'hdd_size': Number.parseInt(form.querySelector(`#edit-hdd-${console_edit_id}`).value),
                 'price': form.querySelector(`#edit-price-${console_edit_id}`).value,
                 'tech': form.querySelector(`#edit-tech-${console_edit_id}`).value,
             }
@@ -517,12 +517,16 @@ Console Logs | GRID Server
             console.log(error)
             return false
         }
-        fetch(`http://{{ host_ip }}:5000/consolelogs/${console_edit_id}`, {method: 'PUT', body: JSON.stringify(edit_submission)})
+        fetch(`${base_url}/api/v1/consolelogs/${console_edit_id}`, {method: 'PUT', body: JSON.stringify(edit_submission)})
         .then(response => response.json())
         .then(data => {
-            console.log(data)
-            alert('Console information updated successfully')
-            window.location.reload()
+            if (!data.error) {
+                console.log(data)
+                alert('Console information updated successfully')
+                window.location.reload()
+            } else {
+                alert(JSON.stringify(data))
+            }
         })
         .catch(error => {
             alert(error)
@@ -537,7 +541,7 @@ Console Logs | GRID Server
     function deleteConsoleLog(delete_btn) {
         let system_id = delete_btn.id.replace('edit-btn-delete-', "");
         if (confirm('Are you SURE you want to delete this log? This cannot be undone.')) {
-            let apiURL = 'http://{{ host_ip }}:5000/consolelogs/' + system_id;
+            let apiURL = `${base_url}/api/v1/consolelogs/${system_id}`;
             fetch(apiURL, {method: 'DELETE'})
             .then(response => {
                 alert('Log deleted successfully');
