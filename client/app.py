@@ -18,7 +18,8 @@ setup = config.Config()
 # TODO remove instances of bootstrap and just use link
 # TODO make sure datetimes are local
 # TODO convert all tech initials to capital upon entry
-
+# TODO autofocus tech input on submission entry
+# TODO go to new location instead of refresh
 
 #HOME
 @app.route('/')
@@ -64,6 +65,36 @@ def syslogs_api_single(log_id):
 @app.route('/gcomm')
 def gcomm():
     return render_template('gcomm.html', host_ip=setup.HOST)
+
+# G-COMM Log API
+@app.route('/api/v1/gcommlogs',methods=['GET','POST'])
+def gcomms_api_mass():
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/gcommlogs').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'POST':
+        syslog_json =requests.post(f'{setup.DATABASE_URL}/gcommlogs', data=request.data).json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 201)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+# G-COMM Log API Single
+@app.route('/api/v1/gcommlogs/<log_id>',methods=['GET','PUT', 'DELETE'])
+def gcomms_api_single(log_id):
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/gcommlogs/{log_id}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'PUT':
+        syslog_json =requests.put(f'{setup.DATABASE_URL}/gcommlogs/{log_id}', data=request.data).json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'DELETE':
+        syslog_json =requests.delete(f'{setup.DATABASE_URL}/gcommlogs/{log_id}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
 
 #Work Orders Page
 @app.route('/work-orders')
