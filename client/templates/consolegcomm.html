@@ -136,7 +136,7 @@ Home | GRID Server
                 document.querySelector("#submission-modal-button").addEventListener('click', function() {
                     this.style.display = "none";
                     document.querySelector("#loading-gif").style.display = "initial";
-                    fetch('http://{{ host_ip }}:5000/consolegcomms', {method: 'POST', body: JSON.stringify(submission)})
+                    fetch(`${base_url}/api/v1/consolegcomms`, {method: 'POST', body: JSON.stringify(submission)})
                     .then(response => response.json())
                     .then(data => {
                         alert('Submission Successful!')
@@ -277,7 +277,7 @@ Home | GRID Server
     let itemsPerPage = 100;
     let numItems, numTotalPages;
     let tableBodyId = 'tableConsoleLogBody';
-    fetch('http://{{ host_ip }}:5000/consolegcomms')
+    fetch(`${base_url}/api/v1/consolegcomms`)
     .then(response => response.json())
     .then(data => {
         consoles = data.reverse()
@@ -566,7 +566,7 @@ Home | GRID Server
             console.log(error)
             return false
         }
-        fetch(`http://{{ host_ip }}:5000/consolegcomms/${console_edit_id}`, {method: 'PUT', body: JSON.stringify(edit_submission)})
+        fetch(`${base_url}/api/v1/consolegcomms/${console_edit_id}`, {method: 'PUT', body: JSON.stringify(edit_submission)})
         .then(response => response.json())
         .then(data => {
             console.log(data)
@@ -586,7 +586,7 @@ Home | GRID Server
     function deleteConsoleLog(delete_btn) {
         let system_id = delete_btn.id.replace('edit-btn-delete-', "");
         if (confirm('Are you SURE you want to delete this log? This cannot be undone.')) {
-            let apiURL = 'http://{{ host_ip }}:5000/consolegcomms/' + system_id;
+            let apiURL = `${base_url}/api/v1/consolegcomms/${system_id}`;
             fetch(apiURL, {method: 'DELETE'})
             .then(response => {
                 alert('Log deleted successfully');

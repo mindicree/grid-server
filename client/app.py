@@ -253,6 +253,36 @@ def consolelog_api_single(log_id):
 def console_gcomm():
     return render_template('consolegcomm.html', host_ip=setup.HOST)
 
+# G-COMM Log API
+@app.route('/api/v1/consolegcomms',methods=['GET','POST'])
+def consolegcomms_api_mass():
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/consolegcomms').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'POST':
+        syslog_json =requests.post(f'{setup.DATABASE_URL}/consolegcomms', data=request.data).json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 201)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+# G-COMM Log API Single
+@app.route('/api/v1/consolegcomms/<log_id>',methods=['GET','PUT', 'DELETE'])
+def consolegcomms_api_single(log_id):
+    if request.method == 'GET':
+        syslog_json = requests.get(f'{setup.DATABASE_URL}/consolegcomms/{log_id}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'PUT':
+        syslog_json =requests.put(f'{setup.DATABASE_URL}/consolegcomms/{log_id}', data=request.data).json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    if request.method == 'DELETE':
+        syslog_json =requests.delete(f'{setup.DATABASE_URL}/consolegcomms/{log_id}').json()
+        print(syslog_json)
+        return make_response(jsonify(syslog_json), 200)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
 #Techs and Reports Page
 @app.route('/techs')
 def techs():
