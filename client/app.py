@@ -41,7 +41,7 @@ def syslogs_api_mass():
         syslog_json =requests.post(f'{setup.DATABASE_URL}/syslogs', data=request.data).json()
         print(syslog_json)
         return make_response(jsonify(syslog_json), 201)
-    pass
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
 
 # System Log API Single
 @app.route('/api/v1/syslogs/<log_id>',methods=['GET','PUT', 'DELETE'])
@@ -58,7 +58,7 @@ def syslogs_api_single(log_id):
         syslog_json =requests.delete(f'{setup.DATABASE_URL}/syslogs/{log_id}').json()
         print(syslog_json)
         return make_response(jsonify(syslog_json), 200)
-    pass
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
 
 #G-COMM Logs Page
 @app.route('/gcomm')
