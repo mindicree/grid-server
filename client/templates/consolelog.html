@@ -267,13 +267,14 @@ Console Logs | GRID Server
         tableBody.innerHTML = ''
         let indexMul = selectedPage - 1
 
+        /*
         // selected page range check
         if (selectedPage > numTotalPages || selectedPage < 0) {
             console.log('Error: selected page is out of range')
             alert('Error in pagination. Contact developer')
             return -1;
         }
-
+        */
         try {
             for (let i = indexMul*itemsPerPage; i < selectedPage*itemsPerPage; i++) {
                 //replace this list with appropriate data names in other instances
