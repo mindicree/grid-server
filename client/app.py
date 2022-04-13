@@ -6,6 +6,7 @@ import pdfkit
 from PyPDF2 import PdfFileMerger
 import os
 import json
+import subprocess
 
 app = Flask(__name__)
 CORS(app)
@@ -390,6 +391,15 @@ def admin_page(page):
         return render_template(f'admin-{page}.html')
     except:
         return render_template('admin.html')
+
+# PRINT
+# ARGS: type [CHECKLIST, SYSLOG, SYSCOM, CONLOG, CONCOM, GAME]
+# DATA: json
+@app.route('/print-testing')
+def print_start():
+    print_job = subprocess.run(['./print.sh', './labels/checklist.prn'], capture_output=True, text=True)
+    print(f'Output: {print_job.stdout}')
+    return make_response(jsonify({'message': 'print complete'}), 200)
 
 #RUN APPLICATION
 if __name__ == '__main__':
