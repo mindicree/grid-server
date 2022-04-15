@@ -401,8 +401,9 @@ def print_test():
     print(f'Output: {print_job.stdout}')
     return make_response(jsonify({'message': 'print complete'}), 200)
 
-@app.route('/print')
+@app.route('/print', methods=['POST'])
 def print_job():
+    # if type not found, return error
     try:
         print_type = request.args.get("type")
         if print_type == None:
@@ -411,11 +412,27 @@ def print_job():
         return make_response(jsonify({'error': 'no print type found'}), 400)
     except:
         return make_response(jsonify({'error': 'server could not extract type properly'}), 500)
+    
+    # try to get print data
+    # if none found, return error
+    try:
+        print_data = json.loads(request.data)
+        if print_data == None:
+            return make_response(jsonify({'error': 'print data not provided'}))
+    except:
+        return make_response(jsonify({'error': 'could not load print data from JSON'}), 400)
+
+    # try to get ZPL code for printing
+    zpl_code = ''
     try:
         if print_type == 'CHECKLIST':
             return str(print_type)
         elif print_type == 'SYSLOG':
-            return str(print_type)
+            try:
+                with open('./labels/templates/LABEL_TEMP_SYSLOG.prn', 'r') as file:
+                    zpl_code = file.read()
+            except:
+                return make_response(jsonify({'error': 'could not open file for printing'}), 500)
         elif print_type == 'SYSCOM':
             return str(print_type)
         elif print_type == 'CONLOG':
@@ -436,7 +453,10 @@ def print_job():
             return make_response(jsonify({'error': f'invalid print type of {print_type}'}), 400)
     except:
         return make_response(jsonify({'error': 'server could not print'}), 500)
-    pass
+
+    # if not GOC return ZPL file for client print script
+    # else print normally and return success message
+    return make_response(jsonify({'message': 'end of print function'}))
 
 #RUN APPLICATION
 if __name__ == '__main__':
