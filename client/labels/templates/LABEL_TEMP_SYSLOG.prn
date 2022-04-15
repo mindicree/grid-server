@@ -1,0 +1,56 @@
+^XA
+^FO30,50
+^GB350,320,3,B,1^FS
+^FO200,10
+^A0,42,30
+^FD Specifications^FS
+^FO60,70
+^A0,42,25
+^FD[[PROCESSOR]]^FS
+^FO60,120
+^A0,42,25
+^FD[[RAM]]^FS
+^FO60,170
+^A0,42,25
+^FD[[HDD]]^FS
+^FO60,220
+^A0,42,25
+^FD[[DISC]]^FS
+^FO60,270
+^A0,42,25
+^FD[[OS]]^FS
+^FO60,320
+^A0,42,25
+^FD[[TAGS]]^FS
+^FO60,375
+^A0,20,15
+^FDThis Sticker Must Remain On Computer For Warranty^FS
+^FO390,300
+^A0B,20,14
+^FDProd: 38.2^FS
+^FO390,50
+^A0B,20,14
+^FDStock Date: _______________^FSn^FO450,0
+^A0,180,120
+^FD[[PRICE]]^FS
+^FO425,165
+^A0,28,20
+^FDWARRANTY - 30 DAYS^FS
+^FO425,195
+^A0,28,20
+^FDComputer Will Be Repaired Or Store Credit^FS
+^FO425,225
+^A0,28,20
+^FDWill Be Given Toward A Replacement^FS
+^FO425,255
+^A0,28,20
+^FDRECIEPT REQUIRED FOR WARRANTY^FS
+^FO425,285
+^A0,28,20
+^FDBattery Longevity Not Warrantied^FS
+^FO425,325
+^B3N,N,50,Y,N
+^FD000000336^FS
+^FO350,150
+^A0B,28,20
+^FDStock# [[STOCK_ID]]^FS^XZ
