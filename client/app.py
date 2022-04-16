@@ -7,6 +7,7 @@ from PyPDF2 import PdfFileMerger
 import os
 import json
 import subprocess
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -401,6 +402,14 @@ def print_test():
     print(f'Output: {print_job.stdout}')
     return make_response(jsonify({'message': 'print complete'}), 200)
 
+def print_label(path_to_file):
+    try:
+        print_job = subprocess.run(['./print.sh', path_to_file], capture_output=True, text=True)
+        print(f'Output: {print_job.stdout}')
+        return print_job.returncode
+    except Exception as e:
+        raise e
+
 @app.route('/print', methods=['POST'])
 def print_job():
     # if type not found, return error
@@ -422,17 +431,78 @@ def print_job():
     except:
         return make_response(jsonify({'error': 'could not load print data from JSON'}), 400)
 
+    # check if goc is set
+    try:
+        goc_flag = request.args.get('goc')
+    except KeyError:
+        goc_flag = False
+    except Exception as e:
+        return make_response(jsonify({'error': 'could not check goc flag for printing'}), 500)
+
     # try to get ZPL code for printing
     zpl_code = ''
     try:
         if print_type == 'CHECKLIST':
-            return str(print_type)
+            try:
+                if goc_flag:
+                    try:
+                        status_code = print_label('./labels/checklist.prn')
+                        print(f'Print status code: {status_code}')
+                        return make_response(jsonify({'message': 'GOC label print successful'}))
+                    except:
+                        return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+                else:
+                    return send_file('./labels/checklist.prn', download_name=f'checklist')
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not print checklist', 'err_msg': f'{e}'}), 500)
         elif print_type == 'SYSLOG':
             try:
-                with open('./labels/templates/LABEL_TEMP_SYSLOG.prn', 'r') as file:
-                    zpl_code = file.read()
-            except:
-                return make_response(jsonify({'error': 'could not open file for printing'}), 500)
+                with open('./labels/templates/LABEL_TEMP_SYSLOG.prn', 'r') as template, open('./labels/prints/LABEL_PRINT_SYSLOG.prn', 'w') as final:
+                    zpl_code = str(template.read())
+                    # try to do a string replace
+                    try:
+                        # get values and create strings
+                        processor_string = f'{print_data["cpu_model"]} {print_data["cpu_gen"]} - {print_data["cpu_speed"]}Ghz'
+                        ram_string = f'{print_data["ram"]} of RAM'
+                        hdd_string = f'{print_data["hdd"]} {("SSD" if "SSD" in print_data["tags"] else "HDD")}'
+                        disc_string = print_data["disk_drive"] if print_data["disk_drive"] != "None" else "."
+                        os_string = print_data["os"]
+                        tag_string = ''
+                        for tag in print_data["tags"]:
+                            if tag != "SSD":
+                                tag_string = f'{tag_string} {tag}'
+                        price_string = f'{print_data["price"]}'
+                        date_from_data = datetime.strptime(print_data['dt_initial_irl_log'], '%a, %d %b %Y %H:%M:%S %Z')
+                        stock_string = f'{date_from_data.strftime("%y%m%d")}-{print_data["_id"][-6:]}'
+
+                        # replace template placeholders with value strings
+                        zpl_code = zpl_code.replace('[[PROCESSOR]]', processor_string).replace('[[RAM]]', ram_string).replace('[[RAM]]', ram_string).replace('[[HDD]]', hdd_string).replace('[[DISK]]', disc_string).replace('[[OS]]', os_string).replace('[[TAGS]]', tag_string).replace('[[PRICE]]', price_string).replace('[[STOCK_ID]]', stock_string)
+                        # return zpl_code
+                    except Exception as e:
+                        print(e)
+                        return make_response(jsonify({'error': 'could not do string replacements properly'}), 500)
+
+                    # try to write zpl_code string to final print file
+                    try:
+                        final.write(zpl_code)
+                        pass
+                    except Exception as e:
+                        return make_response(jsonify({'error': 'could not create syslog label file successfully'}), 500)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not open file for printing', 'message': f'{e}'}), 500)
+        
+            # if goc is true, try to print
+            if goc_flag:
+                try:
+                    status_code = print_label('./labels/prints/LABEL_PRINT_SYSLOG.prn')
+                    print(f'Print status code: {status_code}')
+                    return make_response(jsonify({'message': 'GOC label print successful'}))
+                except:
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+            else:
+                return send_file('./labels/prints/LABEL_PRINT_SYSLOG.prn', download_name=f'{stock_string}')
+            # else return file
+        
         elif print_type == 'SYSCOM':
             return str(print_type)
         elif print_type == 'CONLOG':

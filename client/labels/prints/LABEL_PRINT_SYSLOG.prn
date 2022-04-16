@@ -6,22 +6,22 @@
 ^FD Specifications^FS
 ^FO60,70
 ^A0,42,25
-^FD[[PROCESSOR]]^FS
+^FDCore i5 Gen 8 - 2.6Ghz^FS
 ^FO60,120
 ^A0,42,25
-^FD[[RAM]]^FS
+^FD8GB of RAM^FS
 ^FO60,170
 ^A0,42,25
-^FD[[HDD]]^FS
+^FD250GB SSD^FS
 ^FO60,220
 ^A0,42,25
-^FD[[DISK]]^FS
+^FD.^FS
 ^FO60,270
 ^A0,42,25
-^FD[[OS]]^FS
+^FDWindows 10 Home^FS
 ^FO60,320
 ^A0,42,25
-^FD[[TAGS]]^FS
+^FD Webcam HDMI Touchscreen^FS
 ^FO60,375
 ^A0,20,15
 ^FDThis Sticker Must Remain On Computer For Warranty^FS
@@ -32,7 +32,7 @@
 ^A0B,20,14
 ^FDStock Date: _______________^FSn^FO450,0
 ^A0,180,120
-^FD[[PRICE]]^FS
+^FD209.99^FS
 ^FO425,165
 ^A0,28,20
 ^FDWARRANTY - 30 DAYS^FS
@@ -53,4 +53,4 @@
 ^FD000000336^FS
 ^FO350,150
 ^A0B,28,20
-^FDStock# [[STOCK_ID]]^FS^XZ
+^FDStock# 220416-170284^FS^XZ
