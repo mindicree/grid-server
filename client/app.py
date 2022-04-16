@@ -512,7 +512,43 @@ def print_job():
         elif print_type == 'GAME':
             return str(print_type)
         elif print_type == 'TWOLINE':
-            return str(print_type)
+            # try to pull correct data from JSON
+            try:
+                row1 = str(print_data["row_1"])
+                row2 = str(print_data["row_2"])
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}))
+            
+            # try to open file and read string
+            try:
+                with open('./labels/templates/LABEL_TEMP_TWOLINE.prn', 'r') as template:
+                    zpl_code = str(template.read())
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not read data from TWOLINE template file', 'err_msg': f'{e}'}))
+
+            # try to replace string values
+            try:
+                zpl_code = zpl_code.replace('[[ROW1]]', row1).replace('[[ROW2]]', row2)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}))
+
+            # try to write ZPL code to print file
+            try:
+                with open('./labels/prints/LABEL_PRINT_TWOLINE.prn', 'w') as final:
+                    final.write(zpl_code)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}))
+
+            # try to print label or send back to client as file
+            if goc_flag:
+                try:
+                    status_code = print_label('./labels/prints/LABEL_PRINT_TWOLINE.prn')
+                    print(f'Print status code: {status_code}')
+                    return make_response(jsonify({'message': 'TWOLINE label print successful'}))
+                except:
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+            else:
+                return send_file('./labels/prints/LABEL_PRINT_TWOLINE.prn', download_name=f'TWOLINE-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
         elif print_type == 'TRILINE':
             return str(print_type)
         elif print_type == 'PARTS':
@@ -521,8 +557,8 @@ def print_job():
             return str(print_type)
         else:
             return make_response(jsonify({'error': f'invalid print type of {print_type}'}), 400)
-    except:
-        return make_response(jsonify({'error': 'server could not print'}), 500)
+    except Exception as e:
+        return make_response(jsonify({'error': 'server could not print', 'err_msg': f'{e}'}), 500)
 
     # if not GOC return ZPL file for client print script
     # else print normally and return success message
