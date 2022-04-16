@@ -550,7 +550,44 @@ def print_job():
             else:
                 return send_file('./labels/prints/LABEL_PRINT_TWOLINE.prn', download_name=f'TWOLINE-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
         elif print_type == 'TRILINE':
-            return str(print_type)
+            # try to pull correct data from JSON
+            try:
+                row1 = str(print_data["row_1"])
+                row2 = str(print_data["row_2"])
+                row3 = str(print_data["row_3"])
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}))
+            
+            # try to open file and read string
+            try:
+                with open('./labels/templates/LABEL_TEMP_TRILINE.prn', 'r') as template:
+                    zpl_code = str(template.read())
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not read data from TRILINE template file', 'err_msg': f'{e}'}))
+
+            # try to replace string values
+            try:
+                zpl_code = zpl_code.replace('[[ROW1]]', row1).replace('[[ROW2]]', row2).replace('[[ROW3]]', row3)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not interpolate values into TRILINE ZPL template', 'err_msg': f'{e}'}))
+
+            # try to write ZPL code to print file
+            try:
+                with open('./labels/prints/LABEL_PRINT_TRILINE.prn', 'w') as final:
+                    final.write(zpl_code)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not write ZPL code to TRILINE file', 'err_msg': f'{e}'}))
+
+            # try to print label or send back to client as file
+            if goc_flag:
+                try:
+                    status_code = print_label('./labels/prints/LABEL_PRINT_TRILINE.prn')
+                    print(f'Print status code: {status_code}')
+                    return make_response(jsonify({'message': 'TRILINE label print successful'}))
+                except:
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+            else:
+                return send_file('./labels/prints/LABEL_PRINT_TRILINE.prn', download_name=f'TRILINE-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
         elif print_type == 'PARTS':
             return str(print_type)
         elif print_type == 'BARCODE':
