@@ -504,6 +504,15 @@ def print_job():
             # else return file
         
         elif print_type == 'SYSCOM':
+            # try to pull correct data from JSON
+
+            # try to open template file and read string
+
+            # try to replace string with values
+
+            # try to write final ZPL code to print file
+
+            # try to print file or send back as file or ZPL code
             return str(print_type)
         elif print_type == 'CONLOG':
             return str(print_type)
