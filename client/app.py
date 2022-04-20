@@ -502,8 +502,103 @@ def print_job():
             else:
                 return send_file('./labels/prints/LABEL_PRINT_SYSLOG.prn', download_name=f'{stock_string}')
             # else return file
-        
         elif print_type == 'SYSCOM':
+            # try to pull correct data from JSON
+            try:
+                brand = str(print_data["brand"])
+                model = str(print_data["model"])
+                condition = str(print_data["condition"])
+                computer_type = str(print_data["computer_type"])
+                os = str(print_data["os"])
+                laptop_screen_condition = str(print_data["laptop_screen_condition"])
+                laptop_screen_size = int(print_data["laptop_screen_size"])
+                desktop_gpu_type = str(print_data["desktop_gpu_type"])
+                desktop_display_ports = print_data["desktop_display_ports"]
+                aio_screen_condition = str(print_data["aio_screen_condition"])
+                aio_screen_size = int(print_data["aio_screen_size"])
+                cpu_brand = str(print_data["cpu_brand"])
+                cpu_model = str(print_data["cpu_model"])
+                cpu_speed = print_data["cpu_speed"]
+                ram = str(print_data["ram"])
+                hdd = str(print_data["hdd"])
+                hdd_type = str(print_data["hdd_type"])
+                notes = str(print_data["notes"])
+                tech = str(print_data["tech"])
+                dt_initial_irl_log = datetime.strptime(print_data['dt_initial_irl_log'], '%a, %d %b %Y %H:%M:%S %Z')
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}))
+            
+            # try to open file and read string
+            try:
+                with open('./labels/templates/LABEL_TEMP_SYSCOM.prn', 'r') as template:
+                    zpl_code = str(template.read())
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not read data from TWOLINE template file', 'err_msg': f'{e}'}))
+
+            # try to replace string values
+            try:
+                zpl_code = zpl_code.replace('[[TOP]]', f'{computer_type} - {brand} {model} - {dt_initial_irl_log.strftime("%Y.%m.%d")}')
+                zpl_code = zpl_code.replace('[[CONDITION]]', f'{condition}')
+                if cpu_speed < 0:
+                    cpu_speed_string = ""
+                else:
+                    cpu_speed_string = f', {cpu_speed}GHz'
+                zpl_code = zpl_code.replace('[[PROCESSOR]]', f'{cpu_brand} {cpu_model}{cpu_speed_string}')
+                zpl_code = zpl_code.replace('[[RAM]]', f'{ram} RAM')
+                zpl_code = zpl_code.replace('[[HDD]]', f'{hdd} {hdd_type}')
+                zpl_code = zpl_code.replace('[[NOTES]]', f'{"" if notes == "None" else notes}')
+                if computer_type == "Desktop":
+                    zpl_code = zpl_code.replace('[[SCREEN_CONDITION_OR_GPU_TYPE]]', f'{desktop_gpu_type} Graphics')
+                    port_string = ''
+                    for port in desktop_display_ports:
+                        port_string = f'{port}, {port_string}'
+                    zpl_code = zpl_code.replace('[[SCREEN_SIZE_OR_VIDEO_CONNECTION]]', f'Video Ports: {port_string[:-2]}')
+                elif computer_type == "Laptop":
+                    zpl_code = zpl_code.replace('[[SCREEN_CONDITION_OR_GPU_TYPE]]', f'Screen: {laptop_screen_condition}')
+                    if laptop_screen_size == -11:
+                        zpl_code = zpl_code.replace('[[SCREEN_SIZE_OR_VIDEO_CONNECTION]]', 'Screen Size: Less Than 11in')
+                    elif laptop_screen_size == -100:
+                        zpl_code = zpl_code.replace('[[SCREEN_SIZE_OR_VIDEO_CONNECTION]]', 'Screen Size: Greater Than 18in')
+                    else:
+                        zpl_code = zpl_code.replace('[[SCREEN_SIZE_OR_VIDEO_CONNECTION]]', f'Screen Size: {laptop_screen_size}in')
+                elif computer_type == "All-In-One":
+                    zpl_code = zpl_code.replace('[[SCREEN_CONDITION_OR_GPU_TYPE]]', f'Screen: {aio_screen_condition}')
+                    if aio_screen_size == -19:
+                        zpl_code = zpl_code.replace('[[SCREEN_SIZE_OR_VIDEO_CONNECTION]]', 'Screen Size: Less Than 19in')
+                    elif aio_screen_size == -100:
+                        zpl_code = zpl_code.replace('[[SCREEN_SIZE_OR_VIDEO_CONNECTION]]', 'Screen Size: Greater Than 34in')
+                    else:
+                        zpl_code = zpl_code.replace('[[SCREEN_SIZE_OR_VIDEO_CONNECTION]]', f'Screen Size: {aio_screen_size}in')
+                zpl_code = zpl_code.replace('[[TECH]]', f'Tech - {tech}')
+                if os == 'N/A':
+                    os_string = 'No Operating System'
+                else:
+                    os_string = os
+                zpl_code = zpl_code.replace('[[OS]]', os_string)
+            except Exception as e:
+                print(e)
+                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}))
+
+            # try to write ZPL code to print file
+            try:
+                print(zpl_code)
+                with open('./labels/prints/LABEL_PRINT_SYSCOM.prn', 'w') as final:
+                    final.write(zpl_code)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}))
+
+            # try to print label or send back to client as file
+            if goc_flag:
+                try:
+                    status_code = print_label('./labels/prints/LABEL_PRINT_SYSCOM.prn')
+                    print(f'Print status code: {status_code}')
+                    return make_response(jsonify({'message': 'SYSCOM label print successful'}))
+                except:
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+            else:
+                return send_file('./labels/prints/LABEL_PRINT_SYSCOM.prn', download_name=f'SYSCOM-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
+            return str(print_type)
+        elif print_type == 'CONLOG':
             # try to pull correct data from JSON
 
             # try to open template file and read string
@@ -513,12 +608,31 @@ def print_job():
             # try to write final ZPL code to print file
 
             # try to print file or send back as file or ZPL code
-            return str(print_type)
-        elif print_type == 'CONLOG':
+            
             return str(print_type)
         elif print_type == 'CONCOM':
+            # try to pull correct data from JSON
+
+            # try to open template file and read string
+
+            # try to replace string with values
+
+            # try to write final ZPL code to print file
+
+            # try to print file or send back as file or ZPL code
+            
             return str(print_type)
         elif print_type == 'GAME':
+            # try to pull correct data from JSON
+
+            # try to open template file and read string
+
+            # try to replace string with values
+
+            # try to write final ZPL code to print file
+
+            # try to print file or send back as file or ZPL code
+            
             return str(print_type)
         elif print_type == 'TWOLINE':
             # try to pull correct data from JSON
@@ -598,8 +712,28 @@ def print_job():
             else:
                 return send_file('./labels/prints/LABEL_PRINT_TRILINE.prn', download_name=f'TRILINE-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
         elif print_type == 'PARTS':
+            # try to pull correct data from JSON
+
+            # try to open template file and read string
+
+            # try to replace string with values
+
+            # try to write final ZPL code to print file
+
+            # try to print file or send back as file or ZPL code
+            
             return str(print_type)
         elif print_type == 'BARCODE':
+            # try to pull correct data from JSON
+
+            # try to open template file and read string
+
+            # try to replace string with values
+
+            # try to write final ZPL code to print file
+
+            # try to print file or send back as file or ZPL code
+            
             return str(print_type)
         else:
             return make_response(jsonify({'error': f'invalid print type of {print_type}'}), 400)

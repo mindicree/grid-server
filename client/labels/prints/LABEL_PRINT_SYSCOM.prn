@@ -1,0 +1,37 @@
+^XA
+^FO110,90
+^GB700,320,3,B,1^FS
+^FO120,30
+^A0,45,25
+^FDLaptop - Dell Latitude E5570 - 2022.04.12^FS
+^FO25,90
+^A0B,100,80
+^FD THE GRID^FS
+^FO120,110
+^A0N,42,25
+^FD Powers On, No Post^FS
+^FO120,160
+^A0N,42,25
+^FD Other wertgh, 1.0GHz^FS
+^FO120,210
+^A0N,42,25
+^FD less than 1GB RAM^FS
+^FO120,260
+^A0N,42,25
+^FD 120GB SSD^FS
+^FO120,360
+^A0N,42,25
+^FD ^FS
+^FO475,110
+^A0N,42,25
+^FD Screen: Cracked ^FS
+^FO475,160
+^A0N,42,25
+^FD Screen Size: 11in ^FS
+^FO475,210
+^A0N,42,25
+^FD No Operating System ^FS
+^FO475,260
+^A0N,42,25
+^FD Tech - TJ^FS
+^XZ
