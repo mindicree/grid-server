@@ -447,24 +447,51 @@ def print_job():
     except Exception as e:
         return make_response(jsonify({'error': 'could not check goc flag for printing'}), 500)
 
+    # check if quantity is set, otherwise, set to 1
+    try:
+        print_quantity = request.args.get('quantity')
+        if print_quantity == None:
+            print_quantity = 1
+    except:
+        print_quantity = 1
+
     # try to get ZPL code for printing
     zpl_code = ''
     try:
         if print_type == 'CHECKLIST':
+            # try to open file and read string
             try:
-                if goc_flag:
-                    try:
-                        status_code = print_label('./labels/checklist.prn')
-                        print(f'Print status code: {status_code}')
-                        if status_code != 0:
-                            return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
-                        return make_response(jsonify({'message': 'GOC label print successful'}), 200)
-                    except:
-                        return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
-                else:
-                    return send_file('./labels/checklist.prn', download_name=f'checklist')
+                with open('./labels/templates/LABEL_TEMP_CHECKLIST.prn', 'r') as template:
+                    zpl_code = str(template.read())
             except Exception as e:
-                return make_response(jsonify({'error': 'could not print checklist', 'err_msg': f'{e}'}), 500)
+                return make_response(jsonify({'error': 'could not read data from CHECKLIST template file', 'err_msg': f'{e}'}), 500)
+
+            # try to replace string values
+            try:
+                zpl_code = zpl_code.replace('[[QUANTITY]]', str(print_quantity))
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}), 500)
+
+            # try to write ZPL code to print file
+            try:
+                with open('./labels/prints/LABEL_PRINT_CHECKLIST.prn', 'w') as final:
+                    final.write(zpl_code)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}), 500)
+
+            # try to print label or send back to client as file
+            if goc_flag:
+                try:
+                    status_code = print_label('./labels/prints/LABEL_PRINT_CHECKLIST.prn')
+                    print(f'Print status code: {status_code}')
+                    if status_code != 0:
+                            return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
+                    return make_response(jsonify({'message': 'CHECKLIST label print successful'}), 200)
+                except:
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
+            else:
+                return send_file('./labels/prints/LABEL_PRINT_CHECKLIST.prn', download_name=f'CHECKLIST-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
+            
         elif print_type == 'SYSLOG':
             try:
                 with open('./labels/templates/LABEL_TEMP_SYSLOG.prn', 'r') as template, open('./labels/prints/LABEL_PRINT_SYSLOG.prn', 'w') as final:
