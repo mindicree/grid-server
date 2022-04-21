@@ -713,15 +713,42 @@ def print_job():
                 return send_file('./labels/prints/LABEL_PRINT_TRILINE.prn', download_name=f'TRILINE-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
         elif print_type == 'PARTS':
             # try to pull correct data from JSON
-
-            # try to open template file and read string
-
-            # try to replace string with values
-
-            # try to write final ZPL code to print file
-
-            # try to print file or send back as file or ZPL code
+            try:
+                price = str(print_data["price"])
+                date_string = datetime.now().strftime('%Y-%m-%d')
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}))
             
+            # try to open file and read string
+            try:
+                with open('./labels/templates/LABEL_TEMP_PARTS.prn', 'r') as template:
+                    zpl_code = str(template.read())
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not read data from PARTS template file', 'err_msg': f'{e}'}))
+
+            # try to replace string values
+            try:
+                zpl_code = zpl_code.replace('[[PRICE]]', f'{price}').replace('[[DATE]]', date_string)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}))
+
+            # try to write ZPL code to print file
+            try:
+                with open('./labels/prints/LABEL_PRINT_PARTS.prn', 'w') as final:
+                    final.write(zpl_code)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}))
+
+            # try to print label or send back to client as file
+            if goc_flag:
+                try:
+                    status_code = print_label('./labels/prints/LABEL_PRINT_PARTS.prn')
+                    print(f'Print status code: {status_code}')
+                    return make_response(jsonify({'message': 'PARTS label print successful'}))
+                except:
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+            else:
+                return send_file('./labels/prints/LABEL_PRINT_TWOLINE.prn', download_name=f'PARTS-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
             return str(print_type)
         elif print_type == 'BARCODE':
             # try to pull correct data from JSON

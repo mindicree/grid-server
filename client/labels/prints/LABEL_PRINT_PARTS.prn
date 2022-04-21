@@ -1,0 +1,36 @@
+^XA
+^FO60,80
+^GB380,320,3,B,1^FS
+^FO80,20
+^A0,56,42
+^FD - ATTENTION - ^FS
+^FO70,110
+^A0,42,30
+^FD NO EXCHANGE OR REFUND^FS
+^FO70,185
+^A0,32,25
+^FD Non-functioning PC^FS
+^FO70,220
+^A0,32,25
+^FD No Operating System / Hard Drive^FS
+^FO70,255
+^A0,32,23
+^FD Specs may vary from actual contents^FS
+^FO70,330
+^A0,32,23
+^FD Please confirm unit contains^FS
+^FO70,360
+^A0,32,23
+^FD desired hardware before purchase^FS
+^FO450,20
+^A0,180,120
+^FD 49.99^FS
+^FO540,205
+^A0,48,34
+^FD Parts Only^FS
+^FO540,275
+^A0,48,34
+^FD N/A Gb RAM^FS
+^FO580,365
+^A0,42,25
+^FD 2022-04-20^FS^XZ
