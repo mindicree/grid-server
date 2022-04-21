@@ -24,3 +24,6 @@ server/pc_prices/Pricing/Xbox-One/price-config
 server/pc_prices/Pricing/Xbox-One/pricing.csv
 client/labels/prints/*
 client/labels/prints/*.prn
+client/labels/prints/LABEL_PRINT_PARTS.prn
+client/labels/prints/LABEL_PRINT_TRILINE.prn
+client/labels/prints/LABEL_PRINT_TWOLINE.prn
