@@ -79,7 +79,7 @@ function generateTableRow (woData) {
                 '<td><div style="display: grid; grid-template-columns: 80% auto;">' + formatDateString(woData.dt_recieved) + generateDateBox(woData) + '</div></td>' +
                 '<td>' + woData.fname + ' ' + woData.lname + '</td>' + 
                 '<td>' + woData.model + ' (' + woData.computer_type + ') </td>' +
-                '<td><div style="display: grid; margin: auto;"><button id="btn_claim_'+woData._id+'" onclick="claimWorkOrder(this)" class="btn" style="margin: auto;">Claim</button></div></td>' +
+                '<td><div style="display: grid; margin: auto;"><button id="btn_claim_'+woData._id+'" onclick="claimWorkOrder(this)" class="btn" style="margin: auto;">Claim</button><button id="btn_print_'+woData._id+'" onclick="printWorkOrder(this)" class="btn" style="margin: auto;">Print</button></div></td>' +
             '</tr>' + 
             '';
             break;
@@ -95,6 +95,48 @@ function editWorkOrder(btn) {
 
     //stops row click from happening
     event.stopPropagation();
+}
+
+function printWorkOrder(btn) {
+    // get id
+    let id = btn.id.replace('btn_print_', '')
+
+    // stop propogation
+    event.stopPropagation();
+
+    // get print data from id
+    let print_data
+    workOrders.every(item => {
+        if (item._id == id) {
+            print_data = item
+            return false
+        }
+        return true
+    })
+
+    // get the current print location
+    let cpl = getCurrentPrintLocation()
+
+    // create url to fetch
+    let print_url = `${base_url}/print?type=WORKORDER${(cpl === "GOC" ? "&goc=true" : '')}`
+
+    // fetch the print
+    fetch(print_url, {method: 'POST', body: JSON.stringify(print_data)})
+    .then(response => {
+        if (cpl == 'GOC') {
+            return response.json()
+        } else {
+            console.log(response)
+            return NaN
+        }
+    })
+    .then(result => {
+        if (result != NaN) {
+            alert(JSON.stringify(result))
+        }
+    })
+
+
 }
 
 function displayWorkOrder(row_id) {
