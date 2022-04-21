@@ -922,7 +922,7 @@ System Logs | GRID Server
                 "<th>" + element.brand + " " + element.model + " (" + element.computer_type + ")" + "</th>" +
                 "<th>$" + element.price.toFixed(2) + "</th>" +
                 //"<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn' data-bs-toggle='modal' data-bs-target='#id-"+element._id+"'>Info</button><button class='btn'>Edit</button><button class='btn'>Print</button></div></th>" +
-                "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn'>Info</button><button class='btn'>Print</button></div></th>" +
+                "<th><div class='tableStockListButtonContainer'><button id='infoBtn' class='btn'>Info</button><button class='btn' id='btn_print_"+element._id+"' onclick=printByBtn(this)>Print</button></div></th>" +
                 "";
                 //add row click functionality to show information
                 tableEntry.addEventListener('click', function() {
@@ -941,6 +941,46 @@ System Logs | GRID Server
         document.querySelector('#table-loading-indicator').style.display = "none";
     })
     .catch(error => console.log(error));
+
+    // function to print syslog
+    function printByBtn(btn) {
+        let id = btn.id.replace('btn_print_', '')
+
+        // stop propogation
+        event.stopPropagation();
+
+        // get print data from id
+        let print_data
+        systems.every(item => {
+            if (item._id == id) {
+                print_data = item
+                return false
+            }
+            return true
+        })
+
+        // get the current print location
+        let cpl = getCurrentPrintLocation()
+
+        // create url to fetch
+        let print_url = `${base_url}/print?type=SYSLOG${(cpl === "GOC" ? "&goc=true" : '')}`
+
+        // fetch the print
+        fetch(print_url, {method: 'POST', body: JSON.stringify(print_data)})
+        .then(response => {
+            if (cpl == 'GOC') {
+                return response.json()
+            } else {
+                console.log(response)
+                return NaN
+            }
+        })
+        .then(result => {
+            if (result != NaN) {
+                alert(JSON.stringify(result))
+            }
+        })
+    }
 
     //string generator for bootstrap modals
     function entryStringGenerator(entry) {

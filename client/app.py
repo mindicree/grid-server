@@ -574,11 +574,11 @@ def print_job():
                         stock_string = f'{date_from_data.strftime("%y%m%d")}-{print_data["_id"][-6:]}'
 
                         # replace template placeholders with value strings
-                        zpl_code = zpl_code.replace('[[PROCESSOR]]', processor_string).replace('[[RAM]]', ram_string).replace('[[RAM]]', ram_string).replace('[[HDD]]', hdd_string).replace('[[DISK]]', disc_string).replace('[[OS]]', os_string).replace('[[TAGS]]', tag_string).replace('[[PRICE]]', price_string).replace('[[STOCK_ID]]', stock_string).replace('[[QUANTITY]]', print_quantity)
+                        zpl_code = zpl_code.replace('[[PROCESSOR]]', str(processor_string)).replace('[[RAM]]', ram_string).replace('[[RAM]]', ram_string).replace('[[HDD]]', hdd_string).replace('[[DISK]]', disc_string).replace('[[OS]]', os_string).replace('[[TAGS]]', tag_string).replace('[[PRICE]]', price_string).replace('[[STOCK_ID]]', stock_string).replace('[[QUANTITY]]', str(print_quantity))
                         # return zpl_code
                     except Exception as e:
                         print(e)
-                        return make_response(jsonify({'error': 'could not do string replacements properly'}), 500)
+                        return make_response(jsonify({'error': 'could not do string replacements properly', 'err_msg': f'{e}'}), 500)
 
                     # try to write zpl_code string to final print file
                     try:
