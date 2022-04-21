@@ -22,3 +22,4 @@ server/pc_prices/Pricing/Xbox One/pricing.csv
 server/pc_prices/Pricing/Xbox-One/index.txt
 server/pc_prices/Pricing/Xbox-One/price-config
 server/pc_prices/Pricing/Xbox-One/pricing.csv
+client/labels/prints/*
