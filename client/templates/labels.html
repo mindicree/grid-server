@@ -5,5 +5,150 @@ Label Maker | GRID Server
 {% endblock %}
 
 {% block body %}
-    
+<div id="label_maker_container" style="width: 100%; max-width: 1024px; margin:auto; padding-top: 50px;">
+    <nav>
+        <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="tab_checklist" data-bs-toggle="tab" data-bs-target="#tab_content_checklist" type="button" role="tab" aria-controls="tab_content_checklist"aria-selected="true">
+                Checklist
+            </button>
+            <button class="nav-link" id="tab_twoline" data-bs-toggle="tab" data-bs-target="#tab_content_twoline" type="button" role="tab" aria-controls="tab_content_twoline" aria-selected="true">
+                Two Line
+            </button>
+            <button class="nav-link" id="tab_triline" data-bs-toggle="tab" data-bs-target="#tab_content_triline" type="button" role="tab" aria-controls="tab_content_triline" aria-selected="true">
+                Tri Line
+            </button>
+            <button class="nav-link" id="tab_parts" data-bs-toggle="tab" data-bs-target="#tab_content_parts" type="button" role="tab" aria-controls="tab_content_parts" aria-selected="true">
+                Parts
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <style>
+            .label_data_container {
+                width: 80%;
+                max-width: 400px;
+                padding: 50px 0px;
+                margin: auto;
+                display: grid;
+                grid-template-columns: 25% auto;
+                grid-row-gap: 10px;
+            }
+
+            .label_data_container h6 {
+                margin: auto;
+            }
+        </style>
+        <script>
+            function printLabel(btn) {
+                // get the print type
+                let print_type = btn.id.replace('btn_print_', '')
+                console.log(print_type.toUpperCase())
+
+                // get the current print location set in localStorage
+                let loc = getCurrentPrintLocation()
+                console.log(loc)
+
+                // get the amount from the input amount
+                let amount = getNumberFromInput(`input_${print_type}_amount`)
+                console.log(amount)
+
+                // create different URLs based on print type
+                let print_url = `${base_url}/print?type=${print_type.toUpperCase()}&quantity=${amount}${(loc === "GOC" ? '&goc=true' : '')}`
+                console.log(print_url)
+
+                // create object based on print type
+                let print_data
+                switch (print_type.toUpperCase()) {
+                    case 'CHECKLIST':
+                        print_data = {}
+                        break
+                    case 'TWOLINE':
+                        print_data = {
+                            "row_1": getValueOf('input_twoline_row1'), 
+                            "row_2": getValueOf('input_twoline_row2')
+                        }
+                        break
+                    case 'TRILINE':
+                        print_data = {
+                            "row_1": getValueOf('input_triline_row1'), 
+                            "row_2": getValueOf('input_triline_row2'),
+                            "row_3": getValueOf('input_triline_row3')
+                        }
+                        break
+                    case 'PARTS':
+                        print_data = {
+                            "price": getNumberFromInput('input_parts_price')
+                        }
+                        break
+                }
+                console.log(print_data)
+
+                // call to print url and show results
+                fetch(print_url, {method: 'POST', body: JSON.stringify(print_data)})
+                .then(response => {
+                    if (loc == 'GOC') {
+                        return response.json()
+                    } else {
+                        alert('File retrieved')
+                        return NaN
+                    }
+                })
+                .then(result => {
+                    if (result != NaN) {
+                        alert(JSON.stringify(result))
+                    }
+                })
+            }
+        </script>
+        <div class="tab-pane fade show active" id="tab_content_checklist" role="tabpanel" aria-labelledby="tab_checklist">
+            <div class="label_data_container">
+                <h6>Amount: </h6>
+                <input type="text" id="input_checklist_amount" value="10">
+            </div>
+            <div style="display: grid;">
+                <button class="btn btn-success" id="btn_print_checklist" onclick="printLabel(this)" style="margin: auto;">Print</button>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="tab_content_twoline" role="tabpanel" aria-labelledby="tab_twoline">
+            <div class="label_data_container">
+                <h6>Row 1: </h6>
+                <input type="text" id="input_twoline_row1">
+                <h6>Row 2: </h6>
+                <input type="text" id="input_twoline_row2">
+                <h6>Amount: </h6>
+                <input type="text" id="input_twoline_amount" value="1">
+            </div>
+            <div style="display: grid;">
+                <button class="btn btn-success" id="btn_print_twoline" onclick="printLabel(this)" style="margin: auto;">Print</button>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="tab_content_triline" role="tabpanel" aria-labelledby="tab_triline">
+            <div class="label_data_container">
+                <h6>Row 1: </h6>
+                <input type="text" id="input_triline_row1">
+                <h6>Row 2: </h6>
+                <input type="text" id="input_triline_row2">
+                <h6>Row 3: </h6>
+                <input type="text" id="input_triline_row3">
+                <h6>Amount: </h6>
+                <input type="text" id="input_triline_amount" value="1">
+            </div>
+            <div style="display: grid;">
+                <button class="btn btn-success" id="btn_print_triline" onclick="printLabel(this)" style="margin: auto;">Print</button>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="tab_content_parts" role="tabpanel" aria-labelledby="tab_parts">
+            <div class="label_data_container">
+                <h6>Price: </h6>
+                <input type="text" id="input_parts_price">
+                <h6>Amount: </h6>
+                <input type="text" id="input_parts_amount" value="1">
+            </div>
+            <div style="display: grid;">
+                <button class="btn btn-success" id="btn_print_parts" onclick="printLabel(this)" style="margin: auto;">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
