@@ -490,8 +490,7 @@ def print_job():
                 except:
                     return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
             else:
-                return send_file('./labels/prints/LABEL_PRINT_CHECKLIST.prn', download_name=f'CHECKLIST-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
-            
+                return send_file('./labels/prints/LABEL_PRINT_CHECKLIST.prn', download_name=f'CHECKLIST-{datetime.now().strftime("%Y%m%d-%H%M%S")}')   
         elif print_type == 'SYSLOG':
             try:
                 with open('./labels/templates/LABEL_TEMP_SYSLOG.prn', 'r') as template, open('./labels/prints/LABEL_PRINT_SYSLOG.prn', 'w') as final:
@@ -513,7 +512,7 @@ def print_job():
                         stock_string = f'{date_from_data.strftime("%y%m%d")}-{print_data["_id"][-6:]}'
 
                         # replace template placeholders with value strings
-                        zpl_code = zpl_code.replace('[[PROCESSOR]]', processor_string).replace('[[RAM]]', ram_string).replace('[[RAM]]', ram_string).replace('[[HDD]]', hdd_string).replace('[[DISK]]', disc_string).replace('[[OS]]', os_string).replace('[[TAGS]]', tag_string).replace('[[PRICE]]', price_string).replace('[[STOCK_ID]]', stock_string)
+                        zpl_code = zpl_code.replace('[[PROCESSOR]]', processor_string).replace('[[RAM]]', ram_string).replace('[[RAM]]', ram_string).replace('[[HDD]]', hdd_string).replace('[[DISK]]', disc_string).replace('[[OS]]', os_string).replace('[[TAGS]]', tag_string).replace('[[PRICE]]', price_string).replace('[[STOCK_ID]]', stock_string).replace('[[QUANTITY]]', print_quantity)
                         # return zpl_code
                     except Exception as e:
                         print(e)
@@ -614,6 +613,7 @@ def print_job():
                 else:
                     os_string = os
                 zpl_code = zpl_code.replace('[[OS]]', os_string)
+                zpl_code = zpl_code.replace('[[QUANTITY]]', print_quantity)
             except Exception as e:
                 print(e)
                 return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}), 500)
@@ -716,6 +716,7 @@ def print_job():
                 zpl_code = zpl_code.replace('[[TITLE_ROW_2]]', f'{game_name_2}')
                 zpl_code = zpl_code.replace('[[TITLE]]', f'{game_name}')
                 zpl_code = zpl_code.replace('[[CONSOLE]]', f'{game_system.upper()}')
+                zpl_code = zpl_code.replace('[[QUANTITY]]', print_quantity)
                 # making console barcode
                 if game_system in ['Xbox']:
                     zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000210')
@@ -795,7 +796,7 @@ def print_job():
 
             # try to replace string values
             try:
-                zpl_code = zpl_code.replace('[[ROW1]]', row1).replace('[[ROW2]]', row2)
+                zpl_code = zpl_code.replace('[[ROW1]]', row1).replace('[[ROW2]]', row2).replace('[[QUANTITY]]', print_quantity)
             except Exception as e:
                 return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}), 500)
 
@@ -836,7 +837,7 @@ def print_job():
 
             # try to replace string values
             try:
-                zpl_code = zpl_code.replace('[[ROW1]]', row1).replace('[[ROW2]]', row2).replace('[[ROW3]]', row3)
+                zpl_code = zpl_code.replace('[[ROW1]]', row1).replace('[[ROW2]]', row2).replace('[[ROW3]]', row3).replace('[[QUANTITY]]', print_quantity)
             except Exception as e:
                 return make_response(jsonify({'error': 'could not interpolate values into TRILINE ZPL template', 'err_msg': f'{e}'}), 500)
 
@@ -877,6 +878,7 @@ def print_job():
             # try to replace string values
             try:
                 zpl_code = zpl_code.replace('[[PRICE]]', f'{price}').replace('[[DATE]]', date_string)
+                zpl_code = zpl_code.replace('[[QUANTITY]]', print_quantity)
             except Exception as e:
                 return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}), 500)
 
