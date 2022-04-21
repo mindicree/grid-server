@@ -49,3 +49,27 @@ function generateDateBox (woData) {
     return colorBoxString;
 
 }
+
+// function to return the current set printing location
+function getCurrentPrintLocation() {
+    current_print_location = window.localStorage.getItem('print_location')
+    if (current_print_location == null) {
+        return "GOC"
+    } else {
+        return current_print_location
+    }
+}
+
+// funtion to return number value based on provided HTML input id
+function getNumberFromInput(input_id) {
+    let amount_to_print = Number(document.querySelector(`#${input_id}`).value)
+    if (amount_to_print == NaN || amount_to_print == 0) {
+        amount_to_print = 1
+    }
+    return amount_to_print
+}
+
+// function to get the value of an input by id
+function getValueOf(input_id) {
+    return document.querySelector(`#${input_id}`).value
+}
