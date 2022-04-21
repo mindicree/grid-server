@@ -410,6 +410,14 @@ def print_label(path_to_file):
     except Exception as e:
         raise e
 
+def print_game_label(path_to_file):
+    try:
+        print_job = subprocess.run(['./gameprint.sh', path_to_file], capture_output=True, text=True)
+        print(f'Output: {print_job.stdout}')
+        return print_job.returncode
+    except Exception as e:
+        raise e
+
 @app.route('/print', methods=['POST'])
 def print_job():
     # if type not found, return error
@@ -623,16 +631,119 @@ def print_job():
             
             return str(print_type)
         elif print_type == 'GAME':
-            # try to pull correct data from JSON
-
-            # try to open template file and read string
-
-            # try to replace string with values
-
-            # try to write final ZPL code to print file
-
-            # try to print file or send back as file or ZPL code
+            # check if game condition is given
+            try:
+                game_cond = request.args.get('game_cond')
+                if game_cond == None:
+                    return make_response(jsonify({'error': 'could not find game_cond for game printing'}), 400)
+                game_cond = game_cond.upper()
+                if game_cond not in ['LOOSE', 'CIB', 'NEW']:
+                    return make_response(jsonify({'error': f'game_cond \'{game_cond}\' is invalid. Options are \'loose, cib, and new\''}))
+            except KeyError as ke:
+                return make_response(jsonify({'error': 'could not find game_cond for game printing', 'err_msg': f'{ke}'}), 400)
+            except Exception as e:
+                return make_response(jsonify({'error': 'server could not extract game_cond', 'err_msg': f'{e}'}), 500)
             
+            # try to pull correct data from JSON
+            try:
+                game_name = str(print_data["name"])
+                game_system = str(print_data["system"])
+                if game_cond == 'LOOSE':
+                    game_price = print_data["price_used"]
+                elif game_cond == 'CIB':
+                    game_price = print_data["price_cib"]
+                else:
+                    game_price = print_data["price_new"]
+                date_string = datetime.now().strftime('%Y-%m-%d')
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not obtain correct GAME data', 'err_msg': f'{e}'}), 500)
+            
+            # try to open file and read string
+            try:
+                with open('./labels/templates/LABEL_TEMP_GAME.prn', 'r') as template:
+                    zpl_code = str(template.read())
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not read data from GAME template file', 'err_msg': f'{e}'}))
+
+            # try to replace string values
+            try:
+                zpl_code = zpl_code.replace('[[GAME_COND]]', f'{game_cond}')
+                zpl_code = zpl_code.replace('[[PRICE]]', f'{game_price}')
+                # making price barcode
+                game_price_string = str(game_price).replace('.', '')
+                zero_pad_amount = 7 - len(game_price_string)
+                game_price_barcode = ("0"*zero_pad_amount) + game_price_string
+                zpl_code = zpl_code.replace('[[BARCODE_PRICE]]', f'{game_price_barcode}')
+                # split game name into two rows
+                if len(game_name) > 24:
+                    game_name_1, game_name_2 = game_name[:24], game_name[24:]
+                else:
+                    game_name_1, game_name_2 = game_name, ''
+                zpl_code = zpl_code.replace('[[TITLE_ROW_1]]', f'{game_name_1}')
+                zpl_code = zpl_code.replace('[[TITLE_ROW_2]]', f'{game_name_2}')
+                zpl_code = zpl_code.replace('[[TITLE]]', f'{game_name}')
+                zpl_code = zpl_code.replace('[[CONSOLE]]', f'{game_system.upper()}')
+                # making console barcode
+                if game_system in ['Xbox']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000210')
+                if game_system in ['360', 'Xbox-360']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000211')
+                if game_system in ['PS-1', 'PS1']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000212')
+                if game_system in ['PS-2', 'PS2']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000213')
+                if game_system in ['PS-3', 'PS3']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000214')
+                if game_system in ['PSP']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000215')
+                if game_system in ['NES']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000216')
+                if game_system in ['SNES']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000217')
+                if game_system in ['N64']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000218')
+                if game_system in ['Gamecube']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000219')
+                if game_system in ['Wii', 'WiiU']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000220')
+                if game_system in ['Gameboy', 'GB-Advance', 'GBA', 'VirtualBoy']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000221')
+                if game_system in ['DS', '3-DS', '3DS']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000222')
+                if game_system in ['Genesis', 'Master', 'GameGear', '32X', 'SegaCD', 'Dreamcast', 'Saturn']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0000223')
+                if game_system in ['PS-4', 'PS4']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0002174')
+                if game_system in ['Xbox-One', 'XOne']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0002175')
+                if game_system in ['2600', '5200', '7800']:
+                    zpl_code = zpl_code.replace('[[BARCODE_CONSOLE]]', '0002176')
+
+                zpl_code = zpl_code.replace('[[DATE]]', f'{date_string}')
+
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}))
+
+            # try to write ZPL code to print file
+            try:
+                with open('./labels/prints/LABEL_PRINT_GAME.prn', 'w') as final:
+                    final.write(zpl_code)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}))
+
+            # try to print label or send back to client as file
+            if goc_flag:
+                try:
+                    status_code = print_game_label('./labels/prints/LABEL_PRINT_GAME.prn')
+                    print(f'Print status code: {status_code}')
+                    if status_code != 0:
+                        raise Exception
+                    return make_response(jsonify({'message': 'GAME label print successful'}))
+                except Exception as e:
+                    return make_response(jsonify({'error': 'could not print at GOC successfully', 'err_msg': f'{e}'}))
+            else:
+                return send_file('./labels/prints/LABEL_PRINT_GAME.prn', download_name=f'GAME-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
+            return str(print_type)
             return str(print_type)
         elif print_type == 'TWOLINE':
             # try to pull correct data from JSON
