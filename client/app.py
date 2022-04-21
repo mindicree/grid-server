@@ -399,7 +399,7 @@ def labels():
     return render_template('labels.html')
 
 # PRINT
-# ARGS: type [CHECKLIST, SYSLOG, SYSCOM, CONLOG, CONCOM, GAME, TWOLINE, TRILINE, PARTS, BARCODE]
+# ARGS: type [CHECKLIST, SYSLOG, SYSCOM, CONLOG, CONCOM, GAME, TWOLINE, TRILINE, PARTS, BARCODE, WORKORDER]
 # DATA: json
 @app.route('/print-testing')
 def print_test():
@@ -463,6 +463,63 @@ def print_job():
     # try to get ZPL code for printing
     zpl_code = ''
     try:
+        if print_type == 'WORKORDER':
+            # try to pull correct data from JSON
+            try:
+                wo_name = f'{print_data["fname"]} {print_data["lname"]}'
+                date_string = datetime.now().strftime('%Y.%m.%d')
+                wo_comp = print_data["model"]
+                wo_pwd = print_data["password"]
+                wo_phone_1 = print_data["phone1"]
+                wo_phone_2 = print_data["phone2"]
+                wo_pfu = print_data["isPurchasedFromUs"]
+                wo_war = print_data["isUnderWarranty"]
+                wo_pwr = print_data["isWithPowerSupply"]
+                wo_oth = print_data["other_items"]
+                wo_issue = f'{print_data["issue_category"]}: {print_data["issue_description"]}'
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not obtain correct WO data', 'err_msg': f'{e}'}), 500)
+
+            # try to open file and read string
+            try:
+                with open('./labels/templates/LABEL_TEMP_WORKORDER.prn', 'r') as template:
+                    zpl_code = str(template.read())
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not read data from WO template file', 'err_msg': f'{e}'}), 500)
+
+            # try to replace string values
+            try:
+                zpl_code = zpl_code.replace('[[TOP]]', f'WORK ORDER - {wo_name} - {date_string}')
+                zpl_code = zpl_code.replace('[[COMPUTER]]', str(wo_comp))
+                zpl_code = zpl_code.replace('[[PASSWORD]]', (wo_pwd if len(wo_pwd) > 0 else "N/A"))
+                zpl_code = zpl_code.replace('[[PHONE1]]', f'({wo_phone_1[:3]})-{wo_phone_1[3:6]}-{wo_phone_1[6:]}')
+                zpl_code = zpl_code.replace('[[ISSUE]]', str(wo_issue))
+                zpl_code = zpl_code.replace('[[PFU]]', ("Yes" if wo_pfu else "No"))
+                zpl_code = zpl_code.replace('[[WAR]]', ("Yes" if wo_war else "No"))
+                zpl_code = zpl_code.replace('[[PWR]]', ("Yes" if wo_pwr else "No"))
+                zpl_code = zpl_code.replace('[[OTH]]', (str(wo_oth) if print_data["isWithOtherItems"] == True else "N/A"))
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}), 500)
+
+            # try to write ZPL code to print file
+            try:
+                with open('./labels/prints/LABEL_PRINT_WORKORDER.prn', 'w') as final:
+                    final.write(zpl_code)
+            except Exception as e:
+                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}), 500)
+
+            # try to print label or send back to client as file
+            if goc_flag:
+                try:
+                    status_code = print_game_label('./labels/prints/LABEL_PRINT_WORKORDER.prn')
+                    print(f'Print status code: {status_code}')
+                    if status_code != 0:
+                            return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
+                    return make_response(jsonify({'message': 'WORKORDER label print successful'}), 200)
+                except:
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
+            else:
+                return send_file('./labels/prints/LABEL_PRINT_WORKORDER.prn', download_name=f'WORKORDER-{datetime.now().strftime("%Y%m%d-%H%M%S")}')  
         if print_type == 'CHECKLIST':
             # try to open file and read string
             try:
