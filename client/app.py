@@ -393,6 +393,11 @@ def admin_page(page):
     except:
         return render_template('admin.html')
 
+# LABELS PAGE
+@app.route('/labels')
+def labels():
+    return render_template('labels.html')
+
 # PRINT
 # ARGS: type [CHECKLIST, SYSLOG, SYSCOM, CONLOG, CONCOM, GAME, TWOLINE, TRILINE, PARTS, BARCODE]
 # DATA: json
