@@ -456,6 +456,8 @@ def print_job():
                     try:
                         status_code = print_label('./labels/checklist.prn')
                         print(f'Print status code: {status_code}')
+                        if status_code != 0:
+                            return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
                         return make_response(jsonify({'message': 'GOC label print successful'}))
                     except:
                         return make_response(jsonify({'error': 'could not print at GOC successfully'}))
@@ -504,6 +506,8 @@ def print_job():
                 try:
                     status_code = print_label('./labels/prints/LABEL_PRINT_SYSLOG.prn')
                     print(f'Print status code: {status_code}')
+                    if status_code != 0:
+                            return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
                     return make_response(jsonify({'message': 'GOC label print successful'}))
                 except:
                     return make_response(jsonify({'error': 'could not print at GOC successfully'}))
@@ -600,6 +604,8 @@ def print_job():
                 try:
                     status_code = print_label('./labels/prints/LABEL_PRINT_SYSCOM.prn')
                     print(f'Print status code: {status_code}')
+                    if status_code != 0:
+                            return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
                     return make_response(jsonify({'message': 'SYSCOM label print successful'}))
                 except:
                     return make_response(jsonify({'error': 'could not print at GOC successfully'}))
@@ -737,7 +743,7 @@ def print_job():
                     status_code = print_game_label('./labels/prints/LABEL_PRINT_GAME.prn')
                     print(f'Print status code: {status_code}')
                     if status_code != 0:
-                        raise Exception
+                            return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
                     return make_response(jsonify({'message': 'GAME label print successful'}))
                 except Exception as e:
                     return make_response(jsonify({'error': 'could not print at GOC successfully', 'err_msg': f'{e}'}))
@@ -778,6 +784,8 @@ def print_job():
                 try:
                     status_code = print_label('./labels/prints/LABEL_PRINT_TWOLINE.prn')
                     print(f'Print status code: {status_code}')
+                    if status_code != 0:
+                            return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
                     return make_response(jsonify({'message': 'TWOLINE label print successful'}))
                 except:
                     return make_response(jsonify({'error': 'could not print at GOC successfully'}))
@@ -817,6 +825,8 @@ def print_job():
                 try:
                     status_code = print_label('./labels/prints/LABEL_PRINT_TRILINE.prn')
                     print(f'Print status code: {status_code}')
+                    if status_code != 0:
+                            return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
                     return make_response(jsonify({'message': 'TRILINE label print successful'}))
                 except:
                     return make_response(jsonify({'error': 'could not print at GOC successfully'}))
@@ -855,6 +865,8 @@ def print_job():
                 try:
                     status_code = print_label('./labels/prints/LABEL_PRINT_PARTS.prn')
                     print(f'Print status code: {status_code}')
+                    if status_code != 0:
+                            return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
                     return make_response(jsonify({'message': 'PARTS label print successful'}))
                 except:
                     return make_response(jsonify({'error': 'could not print at GOC successfully'}))
