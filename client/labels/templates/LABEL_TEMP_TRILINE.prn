@@ -5,4 +5,6 @@
 ^A0,48,34
 ^FD [[ROW2]]^FS^FO100,320
 ^A0,48,34
-^FD [[ROW3]]^FS^XZ
+^FD [[ROW3]]^FS
+^PQ[[QUANTITY]]
+^XZ
