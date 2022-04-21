@@ -458,9 +458,9 @@ def print_job():
                         print(f'Print status code: {status_code}')
                         if status_code != 0:
                             return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
-                        return make_response(jsonify({'message': 'GOC label print successful'}))
+                        return make_response(jsonify({'message': 'GOC label print successful'}), 200)
                     except:
-                        return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+                        return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
                 else:
                     return send_file('./labels/checklist.prn', download_name=f'checklist')
             except Exception as e:
@@ -508,9 +508,9 @@ def print_job():
                     print(f'Print status code: {status_code}')
                     if status_code != 0:
                             return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
-                    return make_response(jsonify({'message': 'GOC label print successful'}))
+                    return make_response(jsonify({'message': 'GOC label print successful'}), 200)
                 except:
-                    return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
             else:
                 return send_file('./labels/prints/LABEL_PRINT_SYSLOG.prn', download_name=f'{stock_string}')
             # else return file
@@ -538,14 +538,14 @@ def print_job():
                 tech = str(print_data["tech"])
                 dt_initial_irl_log = datetime.strptime(print_data['dt_initial_irl_log'], '%a, %d %b %Y %H:%M:%S %Z')
             except Exception as e:
-                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}), 400)
             
             # try to open file and read string
             try:
                 with open('./labels/templates/LABEL_TEMP_SYSCOM.prn', 'r') as template:
                     zpl_code = str(template.read())
             except Exception as e:
-                return make_response(jsonify({'error': 'could not read data from TWOLINE template file', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not read data from TWOLINE template file', 'err_msg': f'{e}'}), 500)
 
             # try to replace string values
             try:
@@ -589,7 +589,7 @@ def print_job():
                 zpl_code = zpl_code.replace('[[OS]]', os_string)
             except Exception as e:
                 print(e)
-                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}), 500)
 
             # try to write ZPL code to print file
             try:
@@ -597,7 +597,7 @@ def print_job():
                 with open('./labels/prints/LABEL_PRINT_SYSCOM.prn', 'w') as final:
                     final.write(zpl_code)
             except Exception as e:
-                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}), 500)
 
             # try to print label or send back to client as file
             if goc_flag:
@@ -606,9 +606,9 @@ def print_job():
                     print(f'Print status code: {status_code}')
                     if status_code != 0:
                             return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
-                    return make_response(jsonify({'message': 'SYSCOM label print successful'}))
+                    return make_response(jsonify({'message': 'SYSCOM label print successful'}), 200)
                 except:
-                    return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
             else:
                 return send_file('./labels/prints/LABEL_PRINT_SYSCOM.prn', download_name=f'SYSCOM-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
             return str(print_type)
@@ -644,7 +644,7 @@ def print_job():
                     return make_response(jsonify({'error': 'could not find game_cond for game printing'}), 400)
                 game_cond = game_cond.upper()
                 if game_cond not in ['LOOSE', 'CIB', 'NEW']:
-                    return make_response(jsonify({'error': f'game_cond \'{game_cond}\' is invalid. Options are \'loose, cib, and new\''}))
+                    return make_response(jsonify({'error': f'game_cond \'{game_cond}\' is invalid. Options are \'loose, cib, and new\''}), 400)
             except KeyError as ke:
                 return make_response(jsonify({'error': 'could not find game_cond for game printing', 'err_msg': f'{ke}'}), 400)
             except Exception as e:
@@ -669,7 +669,7 @@ def print_job():
                 with open('./labels/templates/LABEL_TEMP_GAME.prn', 'r') as template:
                     zpl_code = str(template.read())
             except Exception as e:
-                return make_response(jsonify({'error': 'could not read data from GAME template file', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not read data from GAME template file', 'err_msg': f'{e}'}), 500)
 
             # try to replace string values
             try:
@@ -728,14 +728,14 @@ def print_job():
                 zpl_code = zpl_code.replace('[[DATE]]', f'{date_string}')
 
             except Exception as e:
-                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}), 500)
 
             # try to write ZPL code to print file
             try:
                 with open('./labels/prints/LABEL_PRINT_GAME.prn', 'w') as final:
                     final.write(zpl_code)
             except Exception as e:
-                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}), 500)
 
             # try to print label or send back to client as file
             if goc_flag:
@@ -744,9 +744,9 @@ def print_job():
                     print(f'Print status code: {status_code}')
                     if status_code != 0:
                             return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
-                    return make_response(jsonify({'message': 'GAME label print successful'}))
+                    return make_response(jsonify({'message': 'GAME label print successful'}), 200)
                 except Exception as e:
-                    return make_response(jsonify({'error': 'could not print at GOC successfully', 'err_msg': f'{e}'}))
+                    return make_response(jsonify({'error': 'could not print at GOC successfully', 'err_msg': f'{e}'}), 500)
             else:
                 return send_file('./labels/prints/LABEL_PRINT_GAME.prn', download_name=f'GAME-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
             return str(print_type)
@@ -757,27 +757,27 @@ def print_job():
                 row1 = str(print_data["row_1"])
                 row2 = str(print_data["row_2"])
             except Exception as e:
-                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}), 400)
             
             # try to open file and read string
             try:
                 with open('./labels/templates/LABEL_TEMP_TWOLINE.prn', 'r') as template:
                     zpl_code = str(template.read())
             except Exception as e:
-                return make_response(jsonify({'error': 'could not read data from TWOLINE template file', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not read data from TWOLINE template file', 'err_msg': f'{e}'}), 500)
 
             # try to replace string values
             try:
                 zpl_code = zpl_code.replace('[[ROW1]]', row1).replace('[[ROW2]]', row2)
             except Exception as e:
-                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}), 500)
 
             # try to write ZPL code to print file
             try:
                 with open('./labels/prints/LABEL_PRINT_TWOLINE.prn', 'w') as final:
                     final.write(zpl_code)
             except Exception as e:
-                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}), 500)
 
             # try to print label or send back to client as file
             if goc_flag:
@@ -786,9 +786,9 @@ def print_job():
                     print(f'Print status code: {status_code}')
                     if status_code != 0:
                             return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
-                    return make_response(jsonify({'message': 'TWOLINE label print successful'}))
+                    return make_response(jsonify({'message': 'TWOLINE label print successful'}), 200)
                 except:
-                    return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
             else:
                 return send_file('./labels/prints/LABEL_PRINT_TWOLINE.prn', download_name=f'TWOLINE-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
         elif print_type == 'TRILINE':
@@ -798,27 +798,27 @@ def print_job():
                 row2 = str(print_data["row_2"])
                 row3 = str(print_data["row_3"])
             except Exception as e:
-                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}), 400)
             
             # try to open file and read string
             try:
                 with open('./labels/templates/LABEL_TEMP_TRILINE.prn', 'r') as template:
                     zpl_code = str(template.read())
             except Exception as e:
-                return make_response(jsonify({'error': 'could not read data from TRILINE template file', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not read data from TRILINE template file', 'err_msg': f'{e}'}), 500)
 
             # try to replace string values
             try:
                 zpl_code = zpl_code.replace('[[ROW1]]', row1).replace('[[ROW2]]', row2).replace('[[ROW3]]', row3)
             except Exception as e:
-                return make_response(jsonify({'error': 'could not interpolate values into TRILINE ZPL template', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not interpolate values into TRILINE ZPL template', 'err_msg': f'{e}'}), 500)
 
             # try to write ZPL code to print file
             try:
                 with open('./labels/prints/LABEL_PRINT_TRILINE.prn', 'w') as final:
                     final.write(zpl_code)
             except Exception as e:
-                return make_response(jsonify({'error': 'could not write ZPL code to TRILINE file', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not write ZPL code to TRILINE file', 'err_msg': f'{e}'}), 500)
 
             # try to print label or send back to client as file
             if goc_flag:
@@ -827,9 +827,9 @@ def print_job():
                     print(f'Print status code: {status_code}')
                     if status_code != 0:
                             return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
-                    return make_response(jsonify({'message': 'TRILINE label print successful'}))
+                    return make_response(jsonify({'message': 'TRILINE label print successful'}), 200)
                 except:
-                    return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
             else:
                 return send_file('./labels/prints/LABEL_PRINT_TRILINE.prn', download_name=f'TRILINE-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
         elif print_type == 'PARTS':
@@ -838,27 +838,27 @@ def print_job():
                 price = str(print_data["price"])
                 date_string = datetime.now().strftime('%Y-%m-%d')
             except Exception as e:
-                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not obtain correct data', 'err_msg': f'{e}'}), 400)
             
             # try to open file and read string
             try:
                 with open('./labels/templates/LABEL_TEMP_PARTS.prn', 'r') as template:
                     zpl_code = str(template.read())
             except Exception as e:
-                return make_response(jsonify({'error': 'could not read data from PARTS template file', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not read data from PARTS template file', 'err_msg': f'{e}'}), 500)
 
             # try to replace string values
             try:
                 zpl_code = zpl_code.replace('[[PRICE]]', f'{price}').replace('[[DATE]]', date_string)
             except Exception as e:
-                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not interpolate values into ZPL template', 'err_msg': f'{e}'}), 500)
 
             # try to write ZPL code to print file
             try:
                 with open('./labels/prints/LABEL_PRINT_PARTS.prn', 'w') as final:
                     final.write(zpl_code)
             except Exception as e:
-                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}))
+                return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}), 500)
 
             # try to print label or send back to client as file
             if goc_flag:
@@ -867,9 +867,9 @@ def print_job():
                     print(f'Print status code: {status_code}')
                     if status_code != 0:
                             return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
-                    return make_response(jsonify({'message': 'PARTS label print successful'}))
+                    return make_response(jsonify({'message': 'PARTS label print successful'}), 200)
                 except:
-                    return make_response(jsonify({'error': 'could not print at GOC successfully'}))
+                    return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
             else:
                 return send_file('./labels/prints/LABEL_PRINT_TWOLINE.prn', download_name=f'PARTS-{datetime.now().strftime("%Y%m%d-%H%M%S")}')
             return str(print_type)
@@ -892,7 +892,7 @@ def print_job():
 
     # if not GOC return ZPL file for client print script
     # else print normally and return success message
-    return make_response(jsonify({'message': 'end of print function'}))
+    return make_response(jsonify({'message': 'something is wrong with this print function'}), 500)
 
 #RUN APPLICATION
 if __name__ == '__main__':
