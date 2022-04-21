@@ -17,4 +17,15 @@ Home | GRID Server
     <a href="admin">Admin</a></p>
     <a href="game-prices">Game Prices</a></p>
     <a href="labels">Labels</a> (In Progress)</p>
+    <select name="print_location" id="select_print_location">
+        <option value="GOC">GOC</option>
+        <option value="Remote">Remote</option>
+    </select>
+    <script>
+        let print_location_selector = document.querySelector('#select_print_location')
+        print_location_selector.value = getCurrentPrintLocation()
+        print_location_selector.addEventListener('change', function() {
+            window.localStorage.setItem('print_location', print_location_selector.value)
+        })
+    </script>
 {% endblock %}
