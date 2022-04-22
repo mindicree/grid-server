@@ -163,12 +163,67 @@ Game Prices | GRID Server
             `<td class='align-middle' style='width: 64px;'><div style='display: grid;'><img class='game_thumbnail' style='display: none; margin: auto;' onload="loadImage(this)" src=${e.img_link} width='64px' height='64px'></div></td>` + 
             `<td class='align-middle'>${e.name}</td>` +  
             `<td class='align-middle'>${e.system}</td>` + 
-            `<td class='align-middle' ${(e.price_used < 0 ? 'style="backround-color: #F00"' : '')}><div style='display: grid;'><span style='margin: auto'>${(e.price_used < 0 ? 'N/A' : `$${e.price_used}`)}</span><button class='btn btn-success' id='print_used_${e._id}' style='background-color: var(--green)'>Print</button></div></td>` + 
-            `<td class='align-middle' ${(e.price_cib < 0 ? 'style="backround-color: #F00"' : '')}><div style='display: grid;'><span style='margin: auto'>${(e.price_cib < 0 ? 'N/A' : `$${e.price_cib}`)}</span><button class='btn btn-success' id='print_cib_${e._id}' style='background-color: var(--green)'>Print</button></div></td>` + 
-            `<td class='align-middle' ${(e.price_new < 0 ? 'style="backround-color: #F00"' : '')}><div style='display: grid;'><span style='margin: auto'>${(e.price_new < 0 ? 'N/A' : `$${e.price_new}`)}</span><button class='btn btn-success' id='print_new_${e._id}' style='background-color: var(--green)'>Print</button></div></td>` + 
+            `<td class='align-middle' ${(e.price_used < 0 ? 'style="backround-color: #F00"' : '')}><div style='display: grid;'><span style='margin: auto'>${(e.price_used < 0 ? 'N/A' : `$${e.price_used}`)}</span><button class='btn btn-success' id='btn_print_used_${e._id}' onclick="printGame(this)" style='background-color: var(--green)'>Print</button></div></td>` + 
+            `<td class='align-middle' ${(e.price_cib < 0 ? 'style="backround-color: #F00"' : '')}><div style='display: grid;'><span style='margin: auto'>${(e.price_cib < 0 ? 'N/A' : `$${e.price_cib}`)}</span><button class='btn btn-success' id='btn_print_cib_${e._id}' onclick="printGame(this)" style='background-color: var(--green)'>Print</button></div></td>` + 
+            `<td class='align-middle' ${(e.price_new < 0 ? 'style="backround-color: #F00"' : '')}><div style='display: grid;'><span style='margin: auto'>${(e.price_new < 0 ? 'N/A' : `$${e.price_new}`)}</span><button class='btn btn-success' id='btn_print_new_${e._id}' onclick="printGame(this)" style='background-color: var(--green)'>Print</button></div></td>` + 
         ``;
 
         return tableRow
+    }
+
+    function printGame(btn) {
+        // get id and condition
+        let condition
+        if (btn.id.includes('used')) {
+            condition = 'used'
+        } else if (btn.id.includes('cib')) {
+            condition = 'cib'
+        } else if (btn.id.includes('new')) {
+            condition = 'new'
+        } else {
+            alert(`Condition of btn \'${btn.id}\' not found`)
+            return
+        }
+        let id = btn.id.replace(`btn_print_${condition}_`, '')
+        if (condition === 'used') {
+            condition = 'loose'
+        }
+
+        // stop propogation
+        event.stopPropagation();
+
+        // get print data from id
+        let print_data
+        game_prices.every(item => {
+            if (item._id == id) {
+                print_data = item
+                return false
+            }
+            return true
+        })
+
+        // get the current print location
+        let cpl = getCurrentPrintLocation()
+
+        // create url to fetch
+        let print_url = `${base_url}/print?type=GAME&game_cond=${condition}${(cpl === "GOC" ? "&goc=true" : '')}`
+
+        // fetch the print
+        fetch(print_url, {method: 'POST', body: JSON.stringify(print_data)})
+        .then(response => {
+            if (cpl == 'GOC') {
+                return response.json()
+            } else {
+                return response.text()
+            }
+        })
+        .then(result => {
+            if (isJSONObject(result)) {
+                alert(JSON.stringify(result))
+            } else {
+                alert(result)
+            }
+        })
     }
 
     function addRowToTable(row) {
