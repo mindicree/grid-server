@@ -16,10 +16,8 @@ CORS(app)
 setup = config.Config()
 
 # TODO add validation functions to all resources
-# TODO replace all forEach calls with every calls
-# TODO remove instances of bootstrap and just use link
+# TODO replace inneficient forEach calls with every calls
 # TODO make sure datetimes are local
-# TODO convert all tech initials to capital upon entry
 # TODO autofocus tech input on submission entry
 # TODO go to new location instead of refresh
 # TODO remove mass console.logs

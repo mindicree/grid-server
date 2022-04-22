@@ -32,8 +32,6 @@ setup = config.Config()
 #TODO default time does not work; manually enter time on ORM creation
 #TODO replace all file opens with with open file as f
 #TODO separate data saves into individual lines and surround in try-catch
-#TODO implement playrandsound from discord bot
-#TODO create tech association json
 #TODO add tech validator before all posts and puts
 
 ### ROUTES ###
@@ -73,8 +71,12 @@ def syslogs():
     if request.method == 'POST':
         try:
             data = json.loads(request.data)
-            if not isValidTechId(data['tech']):
-                return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+            # check for valid tech id
+            try:
+                if not isValidTechId(data['tech']):
+                    return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+            except KeyError:
+                return make_response(jsonify({'error': 'Tech ID not provided'}), 404)
 
             # log = SystemLog(old_coa=data['old_coa'], new_coa=data['new_coa'], serial_no=data['serial_no'], brand=data['brand'], model=data['model'], os=data['os'], computer_type=data['computer_type'], source=data['source'], cpu_brand=data['cpu_brand'], cpu_model=data['cpu_model'], cpu_gen=data['cpu_gen'], cpu_speed=data['cpu_speed'], ram=data['ram'], hdd = data['hdd'], disk_drive=data['disk_drive'], tags=data['tags'], tech=data['tech'])
             log = SystemLog()
@@ -727,6 +729,12 @@ def consolelogs():
     if request.method == 'POST':
         try:
             data = json.loads(request.data)
+            # check for valid tech id
+            try:
+                if not isValidTechId(data['tech']):
+                    return make_response(jsonify({'error': f'Tech with id {data["tech"]} not found'}), 400)
+            except KeyError:
+                return make_response(jsonify({'error': 'Tech ID not provided'}), 404)
             # log = ConsoleLog(brand=data['brand'], console=data['console'], special_color=data['special_color'], special_model=data['special_model'], hdd_size=data['hdd_size'], price=data['price'], tech=data['tech'], dt_initial_system_log=datetime.utcnow(), dt_initial_irl_log=datetime.utcnow(), dt_last_update=datetime.utcnow())
             log = ConsoleLog()
             log.brand = data['brand']
