@@ -73,3 +73,14 @@ function getNumberFromInput(input_id) {
 function getValueOf(input_id) {
     return document.querySelector(`#${input_id}`).value
 }
+
+// function to check if variable is JSON object
+// borrowed from https://www.cloudhadoop.com/javascript-check-json-found/
+function isJSONObject(obj) {
+    try {
+        JSON.parse(obj)
+        return true    
+    } catch (e) {
+        return false
+    }
+}
