@@ -84,3 +84,33 @@ function isJSONObject(obj) {
         return false
     }
 }
+
+//function to format date for data
+function formatDateString(dateString) {
+    date = new Date(dateString);
+    dateFormat = {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    }
+    return date.toLocaleDateString('en-UK', dateFormat);
+}
+
+//function to format date for data
+function formatDate(dateString) {
+    date = new Date(dateString);
+    dateFormat = {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    }
+    return date.toLocaleDateString('en-UK', dateFormat);
+}
