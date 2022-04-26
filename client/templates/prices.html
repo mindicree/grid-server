@@ -271,6 +271,7 @@ Prices | GRID Server
         price_history.forEach(element => {
             elementDate = new Date(element.date)
             if (elementDate > latestDate) {
+                latestDate = elementDate
                 price = element.price
             }
         })
