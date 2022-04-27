@@ -763,6 +763,8 @@ def print_job():
                 game_system = str(print_data["system"])
                 try:
                     game_price = request.args.get('custom_price')
+                    if game_price == None:
+                        raise Exception
                 except:
                     if game_cond == 'LOOSE':
                         game_price = print_data["price_used"]
