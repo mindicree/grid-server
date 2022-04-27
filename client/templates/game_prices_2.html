@@ -27,9 +27,15 @@ Game Prices | GRID Server
                 <th>Thumbnail</th>
                 <th>Game</th>
                 <th>System</th>
-                <th>Loose</th>
-                <th>CIB</th>
-                <th>New</th>
+                <th class="th_game">Loose</th>
+                <th class="th_game">CIB</th>
+                <th class="th_game">New</th>
+                <th class="th_game">Custom</th>
+                <style>
+                    .th_game {
+                        width: 100px;
+                    }
+                </style>
             </tr>
         </thead>
         <tbody id="tableBodyGamePrices">
@@ -166,6 +172,7 @@ Game Prices | GRID Server
             `<td class='align-middle' ${(e.price_used < 0 ? 'style="backround-color: #F00"' : '')}><div style='display: grid;'><span style='margin: auto'>${(e.price_used < 0 ? 'N/A' : `$${e.price_used}`)}</span><button class='btn btn-success' id='btn_print_used_${e._id}' onclick="printGame(this)" style='background-color: var(--green)'>Print</button></div></td>` + 
             `<td class='align-middle' ${(e.price_cib < 0 ? 'style="backround-color: #F00"' : '')}><div style='display: grid;'><span style='margin: auto'>${(e.price_cib < 0 ? 'N/A' : `$${e.price_cib}`)}</span><button class='btn btn-success' id='btn_print_cib_${e._id}' onclick="printGame(this)" style='background-color: var(--green)'>Print</button></div></td>` + 
             `<td class='align-middle' ${(e.price_new < 0 ? 'style="backround-color: #F00"' : '')}><div style='display: grid;'><span style='margin: auto'>${(e.price_new < 0 ? 'N/A' : `$${e.price_new}`)}</span><button class='btn btn-success' id='btn_print_new_${e._id}' onclick="printGame(this)" style='background-color: var(--green)'>Print</button></div></td>` + 
+            `<td class='align-middle'><div style='display: grid;'><input id='input_custom_${e._id}' type="number"></div></td>` + 
         ``;
 
         return tableRow
@@ -189,6 +196,9 @@ Game Prices | GRID Server
             condition = 'loose'
         }
 
+        // check for custom price
+        let custom_price = Number(document.querySelector(`#input_custom_${id}`).value.replace('$', ''))
+
         // stop propogation
         event.stopPropagation();
 
@@ -206,8 +216,8 @@ Game Prices | GRID Server
         let cpl = getCurrentPrintLocation()
 
         // create url to fetch
-        let print_url = `${base_url}/print?type=GAME&game_cond=${condition}${(cpl === "GOC" ? "&goc=true" : '')}`
-
+        let print_url = `${base_url}/print?type=GAME&game_cond=${condition}${(cpl === "GOC" ? "&goc=true" : '')}${(custom_price ? `&custom_price=${document.querySelector(`#input_custom_${id}`).value}` : '')}`
+        console.log(print_url)
         // fetch the print
         fetch(print_url, {method: 'POST', body: JSON.stringify(print_data)})
         .then(response => {

@@ -73,7 +73,7 @@ Prices | GRID Server
 
         // Sort price list by name
         price_list.sort((a, b) => {
-            return a.name > b.name;
+            return a.name.toLowerCase() > b.name.toLowerCase();
         })
 
         // Load price items into table

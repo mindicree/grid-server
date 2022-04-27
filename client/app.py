@@ -195,10 +195,30 @@ def prices():
     return render_template('prices.html', host_ip=setup.HOST)
 
 # GENERAL PRICES API
-@app.route('/api/v1/prices', methods=['GET'])
+@app.route('/api/v1/prices', methods=['GET', 'POST'])
 def prices_api():
     if request.method == 'GET':
         wo_json = requests.get(f'{setup.DATABASE_URL}/prices').json()
+        print(wo_json)
+        return make_response(jsonify(wo_json), 200)
+    if request.method == 'POST':
+        wo_json = requests.post(f'{setup.DATABASE_URL}/prices', data=request.data).json()
+        print(wo_json)
+        return make_response(jsonify(wo_json), 201)
+    return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
+
+# GENERAL PRICES API
+@app.route('/api/v1/prices/<price_id>', methods=['PUT', 'DELETE'])
+def prices_api_single(price_id):
+    if request.method == 'PUT':
+        try:
+            wo_json = requests.put(f'{setup.DATABASE_URL}/prices/{price_id}', data=request.data).json()
+            print(wo_json)
+            return make_response(jsonify(wo_json), 200)
+        except Exception as e:
+            return make_response(jsonify({'err_msg': f'{e}'}))
+    if request.method == 'DELETE':
+        wo_json = requests.delete(f'{setup.DATABASE_URL}/prices/{price_id}', data=request.data).json()
         print(wo_json)
         return make_response(jsonify(wo_json), 200)
     return make_response(jsonify({'error': 'invalid HTTP request made to server'}), 400)
@@ -741,12 +761,15 @@ def print_job():
             try:
                 game_name = str(print_data["name"])
                 game_system = str(print_data["system"])
-                if game_cond == 'LOOSE':
-                    game_price = print_data["price_used"]
-                elif game_cond == 'CIB':
-                    game_price = print_data["price_cib"]
-                else:
-                    game_price = print_data["price_new"]
+                try:
+                    game_price = request.args.get('custom_price')
+                except:
+                    if game_cond == 'LOOSE':
+                        game_price = print_data["price_used"]
+                    elif game_cond == 'CIB':
+                        game_price = print_data["price_cib"]
+                    else:
+                        game_price = print_data["price_new"]
                 date_string = datetime.now().strftime('%Y-%m-%d')
             except Exception as e:
                 return make_response(jsonify({'error': 'could not obtain correct GAME data', 'err_msg': f'{e}'}), 500)

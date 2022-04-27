@@ -984,7 +984,12 @@ def prices_by_id(price_id):
         price = Price.objects(id=price_id).first()
         if not price:
             return make_response(jsonify({'error': 'Price information with ID [' + price_id + '] not found.'}), 404)
-        data = json.loads(request.data)
+        try:
+            print(request.data)
+            data = json.loads(request.data)
+        except Exception as e:
+            return make_response(jsonify({'err_msg': 'can\'t load data into data'}), 500)
+
         if not data:
             return make_response(jsonify({'error': 'Bad request - no data recieved'}), 400)
         history = price.price_history

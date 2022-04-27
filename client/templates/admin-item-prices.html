@@ -5,12 +5,449 @@ Item Prices | Admin | GRID Server
 {% endblock %}
 
 {% block body %}
+<style>
+    #top_btn_container {
+        margin: auto;
+        width: 100%;
+        max-width: 200px;
+        visibility: initial;
+    }
 
-<div id="admin_btn_container">
-    <button onclick="window.location.assign('/admin/item-prices')" class="btn btn-outline-success">Edit Item Prices</button>
-    <button onclick="window.location.assign('/admin/system-prices')" class="btn btn-outline-success">Edit System Prices</button>
-    <button onclick="window.location.assign('/admin/game-prices')" class="btn btn-outline-success">Edit Game Prices</button>
-    <button onclick="window.location.assign('/admin/techs')" class="btn btn-outline-success">Edit Tech List</button>
+    #btm_btn_container {
+        margin: auto;
+        width: 100%;
+        max-width: 200px;
+        visibility: hidden;
+    }
+
+    #admin_price_container {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 20px auto;
+    }
+
+    .price_input_container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 75%;
+        margin: auto;
+        padding: 8px 0px;
+    }
+
+    .price_input_container * {
+        margin: auto;
+        width: 100%;
+    }
+
+    @media only screen and (min-width: 1024px) {
+        #top_btn_container {
+            visibility: hidden;
+        }
+
+        #btm_btn_container {
+            visibility: initial;
+        }
+
+        #admin_price_container {
+            grid-template-columns: auto 60% auto;
+        }
+    }
+</style>
+<div id='admin_price_container'>
+    <!-- 'Top' and 'Bottom' buttons for showing new price modal -->
+    <div id="top_btn_container">
+        <button class="btn btn-success" style="width: 100%; margin: auto;" data-bs-toggle="modal"
+            data-bs-target="#newPriceModal">+</button>
+    </div>
+    <table class="table table-striped table-hover table-bordered align-middle" style="width: 100%; margin: 20px auto;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Last Edited</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody id="tablePriceListBody">
+
+        </tbody>
+    </table>
+    <div id="btm_btn_container">
+        <button class="btn btn-success" style="width: 100%; margin: auto;" data-bs-toggle="modal"
+            data-bs-target="#newPriceModal">+</button>
+    </div>
 </div>
+
+<!-- New Price Modal -->
+<div class="modal fade" id="newPriceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Price</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="price_input_container">
+                    <p><b>Name: </b></p>
+                    <input type="text" id="new_price_name">
+                </div>
+                <div class="price_input_container">
+                    <p><b>Price: </b></p>
+                    <input type="number" id="new_price_amount">
+                </div>
+                <div class="price_input_container">
+                    <p><b>Category: </b></p>
+                    <select name="category_0" id="select_category_0">
+                        <option value="" selected disabled hidden>Select One...</option>
+                    </select>
+                </div>
+                <div class="price_input_container">
+                    <p><b>Sub-Category: </b></p>
+                    <select name="category_1" id="select_category_1" disabled>
+                        <option value="" selected disabled hidden>Select One...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" onclick="submitNewPrice()"
+                    id="btn_submit_new_price">Submit</button>
+                <img id="submit-loading-gif" src="{{ url_for('static', filename='img/loading.gif') }}"
+                    style="display: none; width: 32px; height: 32px;"></img>
+                <script>
+                    function submitNewPrice() {
+                        // replace button with loading thing
+                        document.querySelector('#submit-loading-gif').style.display = 'initial'
+                        document.querySelector('#btn_submit_new_price').style.display = 'none'
+
+                        // get values for generating submission
+                        // check if values are valid, otherwise alert
+                        let price_name, price_amount, type_0, type_1
+                        try {
+                            price_name = document.querySelector('#new_price_name').value
+                            if (price_name.replace(' ', '').length <= 0 || price_name == NaN) {
+                                alert('Name not provided')
+                                return
+                            }
+                            price_amount = Number(document.querySelector('#new_price_amount').value)
+                            if (price_amount <= 0 || price_amount == NaN) {
+                                alert('Price not provided')
+                                return
+                            }
+                            type_0 = document.querySelector('#select_category_0').value
+                            if (type_0.replace(' ', '').length <= 0 || type_0 == NaN) {
+                                alert('Category not provided')
+                                return
+                            }
+                            type_1 = document.querySelector('#select_category_1').value
+                            if (type_1.replace(' ', '').length <= 0 || type_1 == NaN) {
+                                alert('Sub-Category not provided')
+                                return
+                            }
+                        } catch (error) {
+                            console.log(error)
+                            alert('Could not get values for new price submission')
+                            return
+                        }
+
+
+                        // create submission json
+                        let submission = {
+                            'name': price_name,
+                            'type_0': type_0.replace(' ', ''),
+                            'type_1': type_1.replace(' ', ''),
+                            'price': price_amount
+                        }
+
+                        // send request
+                        // if successful 201, reload page 
+                        // else, bring back submit button
+                        fetch(`${base_url}/api/v1/prices`, { method: 'POST', body: JSON.stringify(submission) })
+                            .then(response => {
+                                if (response.status == 201) {
+                                    return response.json()
+                                } else {
+                                    throw new Error(`returned status code ${response.status}\n. Data: ${JSON.stringify(response.json())}`)
+                                }
+                            })
+                            .then(data => {
+                                alert(JSON.stringify(data))
+                                window.location.assign('/admin/item-prices')
+                            })
+                            .catch(error => {
+                                console.log(error)
+                                alert(error)
+                                document.querySelector('#submit-loading-gif').style.display = 'none'
+                                document.querySelector('#btn_submit_new_price').style.display = 'initial'
+                            })
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Price Modal -->
+<div class="modal fade" id="editPriceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Price</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="price_input_container">
+                    <p><b>Name: </b></p>
+                    <input type="text" id="edit_price_name">
+                </div>
+                <div class="price_input_container">
+                    <p><b>Price: </b></p>
+                    <input type="number" id="edit_price_amount">
+                </div>
+                <div class="price_input_container">
+                    <p><b>Category: </b></p>
+                    <select name="category_0" id="edit_category_0">
+                        <option value="" selected disabled hidden>Select One...</option>
+                    </select>
+                </div>
+                <div class="price_input_container">
+                    <p><b>Sub-Category: </b></p>
+                    <select name="category_1" id="edit_category_1">
+                        <option value="" selected disabled hidden>Select One...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="btn_edit_submit" onclick="submitEditPrice()"
+                    id="btn_submit_edit_price">Submit</button>
+                <img id="edit-loading-gif" src="{{ url_for('static', filename='img/loading.gif') }}"
+                    style="display: none; width: 32px; height: 32px;"></img>
+                <script>
+                    let current_edit_id = 0
+                    function submitEditPrice() {
+                        // replace button with loading thing
+                        document.querySelector('#edit-loading-gif').style.display = 'initial'
+                        document.querySelector('#btn_edit_submit').style.display = 'none'
+
+                        // get values for generating submission
+                        // check if values are valid, otherwise alert
+                        let price_name, price_amount, type_0, type_1
+                        try {
+                            price_name = document.querySelector('#edit_price_name').value
+                            if (price_name.replace(' ', '').length <= 0 || price_name == NaN) {
+                                alert('Name not provided')
+                                return
+                            }
+                            price_amount = Number(document.querySelector('#edit_price_amount').value.replace('$', ''))
+                            if (price_amount <= 0 || price_amount == NaN) {
+                                alert('Price not provided')
+                                return
+                            }
+                            type_0 = document.querySelector('#edit_category_0').value
+                            if (type_0.replace(' ', '').length <= 0 || type_0 == NaN) {
+                                alert('Category not provided')
+                                return
+                            }
+                            type_1 = document.querySelector('#edit_category_1').value
+                            if (type_1.replace(' ', '').length <= 0 || type_1 == NaN) {
+                                alert('Sub-Category not provided')
+                                return
+                            }
+                        } catch (error) {
+                            console.log(error)
+                            alert('Could not get values for new price submission')
+                            return
+                        }
+
+
+                        // create submission json
+                        let submission = {
+                            'name': price_name,
+                            'type_0': type_0.replace(' ', ''),
+                            'type_1': type_1.replace(' ', ''),
+                            'price': price_amount
+                        }
+
+                        console.log(submission)
+
+                        // send request
+                        // if successful 201, reload page 
+                        // else, bring back submit button
+                        fetch(`${base_url}/api/v1/prices/${current_edit_id}`, { method: 'PUT', body: JSON.stringify(submission) })
+                            .then(response => {
+                                if (response.status == 200) {
+                                    return response.json()
+                                } else {
+                                    throw new Error(`returned status code ${response.status}\n. Data: ${JSON.stringify(response.json())}`)
+                                    return 
+                                }
+                            })
+                            .then(data => {
+                                alert(JSON.stringify(data))
+                                window.location.assign('/admin/item-prices')
+                            })
+                            .catch(error => {
+                                console.log(error)
+                                alert(error)
+                                document.querySelector('#edit-loading-gif').style.display = 'none'
+                                document.querySelector('#btn_edit_submit').style.display = 'initial'
+                            })
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    let price_list;
+    let filter_list = [];
+    let categories;
+    fetch(`${base_url}/api/v1/prices`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            price_list = data['price_list']
+            categories = data['categories']
+
+            // Sort price list by name
+            price_list.sort((a, b) => {
+                return a.name.toLowerCase() > b.name.toLowerCase();
+            })
+
+            // Load price items into table
+            price_list.forEach(element => {
+                document.querySelector('#tablePriceListBody').innerHTML += generateTableRow(element)
+            });
+
+            // //hide loading thing
+            // document.querySelector('#table_loading_indicator').style.display = 'none';
+
+            // load categories into categories selections
+            let category_keys = Object.keys(categories)
+            let category_selector = document.querySelector('#select_category_0')
+            let edit_category_selector = document.querySelector('#edit_category_0')
+            let sub_category_selector = document.querySelector('#select_category_1')
+            let edit_sub_category_selector = document.querySelector('#edit_category_1')
+            category_keys.forEach(element => {
+                category_selector.innerHTML += `<option value='${element}'>${element}</option>`
+                edit_category_selector.innerHTML += `<option value='${element}'>${element}</option>`
+            });
+
+            //Action listener that changes sub category options based on selected category
+            category_selector.addEventListener("change", function () {
+                console.log("Change Category to " + category_selector.value);
+                sub_category_selector.innerHTML = '<option value="" selected disabled hidden>Select One...</option>'
+                categories[category_selector.value].forEach(element => {
+                    sub_category_selector.innerHTML += `<option value='${element}'>${element}</option>`
+                })
+                sub_category_selector.removeAttribute('disabled')
+            });
+            edit_category_selector.addEventListener("change", function () {
+                edit_sub_category_selector.innerHTML = '<option value="" selected disabled hidden>Select One...</option>'
+                categories[edit_category_selector.value].forEach(element => {
+                    edit_sub_category_selector.innerHTML += `<option value='${element}'>${element}</option>`
+                })
+                edit_sub_category_selector.removeAttribute('disabled')
+            });
+
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+
+    // function that returns string to be placed in table
+    function generateTableRow(item) {
+        let latest_data = getCurrentInfo(item);
+        return '' +
+            '<tr id="tr_' + item._id + '">' +
+            '<td class="">' + item.name + '</td>' +
+            `<td>${item.type_0} (${item.type_1})</td>` +
+            '<td>$' + latest_data.price + '</td>' +
+            '<td>' + formatDate(latest_data.date) + '</td>' +
+            `<td><div style='display: grid;'><button class='btn' id='btn_edit_${item._id}' onclick="showEditModal(this)">Edit</button><button class='btn' id='btn_delete_${item._id}' onclick='deletePrice(this)'>Delete</button></div></td>`
+        '</tr>';
+    }
+
+    // function to show the edit modal, fill with data, and set current edit id
+    function showEditModal(btn) {
+        // set current edit id to working id
+        current_edit_id = btn.id.replace('btn_edit_', '')
+        console.log(`ceid: ${current_edit_id}`)
+
+        // find the price data with said id
+        let price_info
+        price_list.every(element => {
+            if (element._id === current_edit_id) {
+                price_info = element
+                return false
+            }
+            return true
+        })
+
+        // replace blank info with price info
+        document.querySelector('#edit_price_name').value = price_info.name
+        document.querySelector('#edit_price_amount').value = getCurrentInfo(price_info).price
+        document.querySelector('#edit_category_0').value = price_info.type_0
+        document.querySelector('#edit_category_1').innerHTML = ''
+        // load values into edit_category_1
+        categories[price_info.type_0].forEach(element => {
+            document.querySelector('#edit_category_1').innerHTML += `<option value='${element}'>${element}</option>`
+        })
+        document.querySelector('#edit_category_1').value = price_info.type_1
+
+        // show modal
+        let myModal = new bootstrap.Modal(document.getElementById('editPriceModal'))
+        myModal.toggle()
+    }
+
+    // function to get the latest price info from a price item based on
+    function getCurrentInfo(item) {
+        let price = 0;
+        let price_history = item.price_history;
+        let latestDate = new Date('1970-01-01');
+        let elementDate;
+        price_history.forEach(element => {
+            elementDate = new Date(element.date)
+            if (elementDate > latestDate) {
+                latestDate = elementDate
+                price = element.price
+            }
+        })
+        return { "price": price, "date": latestDate }
+    }
+
+    // function to delete the selected price
+    function deletePrice(btn) {
+        let isConfirmed = confirm('Are you sure you want to delete this price?')
+        if (isConfirmed) {
+            let id = btn.id.replace('btn_delete_', '')
+            console.log(id)
+            fetch(`${base_url}/api/v1/prices/${id}`, { method: 'DELETE' })
+                .then(response => {
+                    if (response.status == 200) {
+                        return response.json()
+                    } else {
+                        throw new Error(`Deletion returned with non-200 status code. Price may not have been deleted.\nReturn data: ${JSON.stringify(response.json())}`)
+                    }
+                })
+                .then(data => {
+                    alert(JSON.stringify(data))
+                    window.location.reload()
+                })
+                .catch(error => {
+                    console.log(error)
+                    alert(error)
+                })
+        } else {
+            return
+        }
+
+    }
+</script>
 
 {% endblock %}
