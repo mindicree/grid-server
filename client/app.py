@@ -27,6 +27,11 @@ setup = config.Config()
 def index():
     return render_template('index.html')
 
+# remote testing
+@app.route('/remote-testing')
+def remote_test():
+    return make_response(jsonify({'ip': f'{request.remote_addr}'}))
+
 #System Logs Page
 @app.route('/syslogs')
 def syslogs():
