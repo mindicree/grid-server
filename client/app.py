@@ -411,6 +411,18 @@ def admin_page(page):
     except:
         return render_template('admin.html')
 
+
+# SYSTEM PRICE
+@app.route('/api/v1/system-prices', methods=['GET', 'PUT'])
+def system_price_api():
+    if request.method == 'GET':
+        price_json = requests.get(f'{setup.DATABASE_URL}/system-prices').json()
+        return make_response(jsonify(price_json), 200)
+    if request.method == 'PUT':
+        response_json = requests.put(f'{setup.DATABASE_URL}/system-prices', data= request.data).json()
+        return make_response(jsonify({'message': 'price_updated_successful;ly'}), 200)
+    return make_response(jsonify({'error': 'incorrect http request made'}))
+
 # LABELS PAGE
 @app.route('/labels')
 def labels():

@@ -1,42 +1,29 @@
 {
     "brand": {
-        "Apple": 0,
         "Alienware": 0,
+        "Apple": 0,
         "Custom": 0
     },
     "computer_type": {
+        "All-In-One": 50,
         "Desktop": -40,
-        "Laptop": 0,
-        "All-In-One": 50
-    },
-    "source": {
-        "Corporate": 0,
-        "Charlotte": 0,
-        "Residential": 0
+        "Laptop": 0
     },
     "cpu_brand": {
-        "Intel": 0,
         "AMD": 0,
+        "Intel": 0,
         "Other": 0
     },
-    "cpu_model": {
-        "Pentium": -10,
-        "Celeron": -10,
-        "Core Duo": -10,
-        "Core 2 Duo": -10,
-        "Core Quad": -10,
-        "Core 2 Quad": -10,
-        "Core i3": 0,
-        "Core i5": 20,
-        "Core i7": 60,
-        "K10": -10,
-        "Bulldozer": 0,
-        "Ryzen 3": 10,
-        "Ryzen 5": 30,
-        "Ryzen 7": 50
-    },
     "cpu_gen": {
+        "1000 Series": 25,
+        "2000 Series": 30,
+        "3000 Series": 35,
+        "4000 Series": 40,
+        "5000 Series": 45,
         "Gen 1": -5,
+        "Gen 10": 480,
+        "Gen 11": 600,
+        "Gen 12": 60,
         "Gen 2": 15,
         "Gen 3": 35,
         "Gen 4": 70,
@@ -44,64 +31,77 @@
         "Gen 6": 155,
         "Gen 7": 210,
         "Gen 8": 285,
-        "Gen 9": 375,
-        "Gen 10": 480,
-        "Gen 11": 600,
-        "Gen 12": 60,
-        "1000 Series": 25,
-        "2000 Series": 30,
-        "3000 Series": 35,
-        "4000 Series": 40,
-        "5000 Series": 45
+        "Gen 9": 375
+    },
+    "cpu_model": {
+        "Bulldozer": 0,
+        "Celeron": -10,
+        "Core 2 Duo": -10,
+        "Core 2 Quad": -10,
+        "Core Duo": -10,
+        "Core Quad": -10,
+        "Core i3": 0,
+        "Core i5": 20,
+        "Core i7": 60,
+        "K10": -10,
+        "Pentium": -10,
+        "Ryzen 3": 10,
+        "Ryzen 5": 30,
+        "Ryzen 7": 60
     },
     "cpu_speed": {
-        "base_speed": 1.0,
         "base_price": 0,
-        "increment_speed": 0.1,
-        "increment_price": 1
-    },
-    "ram": {
-        "1GB": 0,
-        "2GB": 0,
-        "3GB": 0,
-        "4GB": 0,
-        "6GB": 5,
-        "8GB": 10,
-        "10GB": 10,
-        "12GB": 15,
-        "16GB": 20,
-        "24GB": 30,
-        "32GB": 40
-    },
-    "hdd": {
-        "80GB": 0,
-        "120GB": 0,
-        "160GB": 0,
-        "250GB": 5,
-        "320GB": 10,
-        "500GB": 15,
-        "640GB": 15,
-        "750GB": 20,
-        "1.0TB": 25,
-        "1TB": 25,
-        "1.5TB": 30,
-        "2.0TB": 35,
-        "3.0TB": 40,
-        "4.0TB": 45,
-        "SSD": 2.0
+        "base_speed": 1,
+        "increment_price": 1,
+        "increment_speed": 0.1
     },
     "disk_drive": {
-        "None": 0,
+        "BLU-RAY": 20,
         "CD-ROM": 1,
         "CD-RW": 5,
         "DVD-ROM": 5,
         "DVD-RW": 10,
-        "BLU-RAY": 20
+        "None": 0
+    },
+    "hdd": {
+        "1.0TB": 25,
+        "1.5TB": 30,
+        "120GB": 0,
+        "160GB": 0,
+        "1TB": 25,
+        "2.0TB": 35,
+        "250GB": 5,
+        "3.0TB": 40,
+        "320GB": 10,
+        "4.0TB": 45,
+        "500GB": 15,
+        "640GB": 15,
+        "750GB": 20,
+        "80GB": 0,
+        "SSD": 2
+    },
+    "ram": {
+        "10GB": 10,
+        "12GB": 15,
+        "16GB": 20,
+        "1GB": 0,
+        "24GB": 30,
+        "2GB": 0,
+        "32GB": 40,
+        "3GB": 0,
+        "4GB": 0,
+        "6GB": 5,
+        "8GB": 10
+    },
+    "source": {
+        "Charlotte": 0,
+        "Corporate": 0,
+        "Residential": 0
     },
     "tags": {
-        "Webcam": 10,
+        "2nd Drive - ": 0,
         "HDMI": 10,
         "Touchscreen": 30,
-        "2nd Drive - ": 0
+        "Webcam": 10
     }
 }

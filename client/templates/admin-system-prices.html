@@ -5,12 +5,85 @@ System Prices | Admin | GRID Server
 {% endblock %}
 
 {% block body %}
+<style>
+    #system_price_container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin: auto;
+    }
 
-<div id="admin_btn_container">
-    <button onclick="window.location.assign('/admin/item-prices')" class="btn btn-outline-success">Edit Item Prices</button>
-    <button onclick="window.location.assign('/admin/system-prices')" class="btn btn-outline-success">Edit System Prices</button>
-    <button onclick="window.location.assign('/admin/game-prices')" class="btn btn-outline-success">Edit Game Prices</button>
-    <button onclick="window.location.assign('/admin/techs')" class="btn btn-outline-success">Edit Tech List</button>
+    #system_price_container * {
+        margin: auto;
+    }
+
+    .system_price_container_side {
+        visibility: hidden;
+    }
+
+    #below_the_thing {
+        display: grid;
+        margin: auto;
+        width: min(100%, 200px);
+        padding: 16px 0px;
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+</style>
+
+<div id="system_price_container">
+    <div class="system_price_container_side">
+
+    </div>
+    <textarea name="" id="textarea_system_prices" cols="30" rows="20"></textarea>
+    <div class="system_price_container_side">
+
+    </div>
 </div>
+<div id="below_the_thing">
+    <button class="btn btn-success" onclick="showTestModal()">Test</button>
+    <button class="btn btn-success" onclick="submitChanges()">Save</button>
+</div>
+
+<script>
+    fetch(`${base_url}/api/v1/system-prices`)
+    .then(response => response.json())
+    .then(data => {
+        document.querySelector('#textarea_system_prices').innerHTML = formatJSONToString(data)
+    })
+    .catch(error => {
+        console.log(error)
+        alert(error)
+    })
+
+    function formatJSONToString(obj) {
+        return JSON.stringify(obj, null, "\t")
+    }
+
+    function submitChanges() {
+        let submission
+        // try to parse string from textarea to JSON object
+        // show error if failed to do so
+        try {
+            submission = JSON.parse(document.querySelector('#textarea_system_prices').value)
+            console.log(submission)
+        } catch (error) {
+            console.log(`Woah! ${error}\n\nTLDR, JSON isn't right lol`)
+            alert(`${error}\n\n TLDR, JSON isn't formatted right. Fix pls`)
+        }
+
+        // do the thing
+        fetch(`${base_url}/api/v1/system-prices`, {method: 'PUT', body: JSON.stringify(submission)})
+        .then(response => {
+            if (response.status == 200) {
+                try {
+                    alert(JSON.stringify(response.json()))
+                    window.location.reload()
+                } catch(error) {
+                    console.log(error)
+                }
+            }
+        })
+    }
+</script>
 
 {% endblock %}
