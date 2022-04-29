@@ -232,12 +232,7 @@ Game Prices | GRID Server
             }
         })
         .then(result => {
-            if (isJSONObject(result)) {
-                alert('is in fact JSON object')
-                alert(JSON.stringify(result, null, "\t"))
-            } else {
-                alert(JSON.stringify(result, null, "\t"))
-            }
+            console.log(result)
         })
     }
 
