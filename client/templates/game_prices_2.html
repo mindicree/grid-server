@@ -215,6 +215,10 @@ Game Prices | GRID Server
         // get the current print location
         let cpl = getCurrentPrintLocation()
 
+        // refocus search bar
+        document.querySelector('#input_game_search').focus()
+
+
         // create url to fetch
         let print_url = `${base_url}/print?type=GAME&game_cond=${condition}${(cpl === "GOC" ? "&goc=true" : '')}${(custom_price != NaN && custom_price != 0 ? `&custom_price=${document.querySelector(`#input_custom_${id}`).value}` : '')}`
         console.log(print_url)
@@ -229,9 +233,10 @@ Game Prices | GRID Server
         })
         .then(result => {
             if (isJSONObject(result)) {
-                alert(JSON.stringify(result))
+                alert('is in fact JSON object')
+                alert(JSON.stringify(result, null, "\t"))
             } else {
-                alert(result)
+                alert(JSON.stringify(result, null, "\t"))
             }
         })
     }
