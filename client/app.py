@@ -556,9 +556,16 @@ def print_job():
             else:
                 return send_file('./labels/prints/LABEL_PRINT_WORKORDER.prn', download_name=f'WORKORDER-{datetime.now().strftime("%Y%m%d-%H%M%S")}')  
         if print_type == 'CHECKLIST':
+            # try to see if mac flag is in print data
+            try:
+                checklist_type = print_data["type"].upper()
+            except:
+                checklist_type = 'GENERIC'
+                pass
+
             # try to open file and read string
             try:
-                with open('./labels/templates/LABEL_TEMP_CHECKLIST.prn', 'r') as template:
+                with open(f'./labels/templates/LABEL_TEMP_CHECKLIST_{checklist_type}.prn', 'r') as template:
                     zpl_code = str(template.read())
             except Exception as e:
                 return make_response(jsonify({'error': 'could not read data from CHECKLIST template file', 'err_msg': f'{e}'}), 500)
@@ -571,7 +578,7 @@ def print_job():
 
             # try to write ZPL code to print file
             try:
-                with open('./labels/prints/LABEL_PRINT_CHECKLIST.prn', 'w') as final:
+                with open(f'./labels/prints/LABEL_PRINT_CHECKLIST_{checklist_type}.prn', 'w') as final:
                     final.write(zpl_code)
             except Exception as e:
                 return make_response(jsonify({'error': 'could not write ZPL code to file', 'err_msg': f'{e}'}), 500)
@@ -579,7 +586,7 @@ def print_job():
             # try to print label or send back to client as file
             if goc_flag:
                 try:
-                    status_code = print_label('./labels/prints/LABEL_PRINT_CHECKLIST.prn')
+                    status_code = print_label(f'./labels/prints/LABEL_PRINT_CHECKLIST_{checklist_type}.prn')
                     print(f'Print status code: {status_code}')
                     if status_code != 0:
                             return make_response(jsonify({'error': f'status code \'{status_code}\' given while printing {print_type} labels; potential failure to print at GOC location'}), 500)
@@ -587,7 +594,7 @@ def print_job():
                 except:
                     return make_response(jsonify({'error': 'could not print at GOC successfully'}), 500)
             else:
-                return send_file('./labels/prints/LABEL_PRINT_CHECKLIST.prn', download_name=f'CHECKLIST-{datetime.now().strftime("%Y%m%d-%H%M%S")}')   
+                return send_file(f'./labels/prints/LABEL_PRINT_CHECKLIST_{checklist_type}.prn', download_name=f'CHECKLIST-{datetime.now().strftime("%Y%m%d-%H%M%S")}')   
         elif print_type == 'SYSLOG':
             try:
                 with open('./labels/templates/LABEL_TEMP_SYSLOG.prn', 'r') as template, open('./labels/prints/LABEL_PRINT_SYSLOG.prn', 'w') as final:

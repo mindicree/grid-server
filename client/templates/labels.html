@@ -60,7 +60,9 @@ Label Maker | GRID Server
                 let print_data
                 switch (print_type.toUpperCase()) {
                     case 'CHECKLIST':
-                        print_data = {}
+                        print_data = {
+                            "type": getValueOf('select_checklist_type')
+                        }
                         break
                     case 'TWOLINE':
                         print_data = {
@@ -102,6 +104,22 @@ Label Maker | GRID Server
         </script>
         <div class="tab-pane fade show active" id="tab_content_checklist" role="tabpanel" aria-labelledby="tab_checklist">
             <div class="label_data_container">
+                <h6>Type: </h6>
+                <select id="select_checklist_type">
+                    <option value="generic">Generic</option>
+                    <option value="mac">Mac</option>
+                </select>
+                <script>
+                    let select_checklist_type = document.querySelector('#select_checklist_type')
+                    select_checklist_type.addEventListener('change', function() {
+                        window.localStorage.setItem('checklist_type', select_checklist_type.value)
+                    })
+                    try {
+                        select_checklist_type.value = window.localStorage.getItem('checklist_type')
+                    } catch {
+                        select_checklist_type.value = 'generic'
+                    }
+                </script>
                 <h6>Amount: </h6>
                 <input type="text" id="input_checklist_amount" value="10">
             </div>

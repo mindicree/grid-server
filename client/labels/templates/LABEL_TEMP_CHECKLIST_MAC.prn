@@ -1,0 +1,102 @@
+^XA
+
+^FO20,60
+^A0B,56,42
+^FD TECH: _________ ^FS
+
+
+^FO100,180
+^A0B,32,23
+^FD Physical Inspection^FS
+
+
+^FO140,60
+^A0B,32,23
+^FD Notes:____________________^FS
+
+^FO180,115
+^A0B,32,23
+^FD Wipe Drive^FS
+
+^FO180,60
+^GB30,30,3,B,1^FS
+
+^FO220,115
+^A0B,32,23
+^FD Install MacOS^FS
+
+^FO220,60
+^GB30,30,3,B,1^FS
+
+^FO260,115
+^A0B,32,23
+^FD Update MacOS^FS
+
+^FO260,60
+^GB30,30,3,B,1^FS
+
+^FO300,115
+^A0B,32,23
+^FD Test Keyboard^FS
+
+^FO300,60
+^GB30,30,3,B,1^FS
+
+^FO340,115
+^A0B,32,23
+^FD Test USB Ports^FS
+
+^FO340,60
+^GB30,30,3,B,1^FS
+
+^FO380,115
+^A0B,32,23
+^FD Test Webcam^FS
+
+^FO380,60
+^GB30,30,3,B,1^FS
+
+^FO420,115
+^A0B,32,23
+^FD Test Audio^FS
+
+^FO420,60
+^GB30,30,3,B,1^FS
+
+^FO460,115
+^A0B,32,23
+^FD Blow Out^FS
+
+^FO460,60
+^GB30,30,3,B,1^FS
+
+^FO500,115
+^A0B,32,23
+^FD Clean^FS
+
+^FO500,60
+^GB30,30,3,B,1^FS
+
+^FO540,115
+^A0B,32,23
+^FD Remove Stickers^FS
+
+^FO540,60
+^GB30,30,3,B,1^FS
+
+^FO580,115
+^A0B,32,23
+^FD Remove Asset Tags^FS
+
+^FO580,60
+^GB30,30,3,B,1^FS
+
+^FO620,115
+^A0B,32,23
+^FD Log^FS
+
+^FO620,60
+^GB30,30,3,B,1^FS
+
+^PQ[[QUANTITY]]
+^XZ
